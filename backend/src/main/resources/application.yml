@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: litebooth
+  datasource:
+    url: jdbc:mysql://172.31.241.156:3306/litebooth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: litebooth
+    password: 0d000721
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8080
+
+mybatis-plus:
+  type-aliases-package: com.tamakara.litebooth.domain.entity
+  mapper-locations: "classpath*:/mapper/*.xml"
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  global-config:
+    db-config:
+      id-type: assign_id
+      update-strategy: not_null
+
+minio:
+  endpoint: http://172.31.241.156:9000
+  access-key: root
+  secret-key: 0d000721
+  bucket-name: litebooth
+
+token:
+    secret: litebooth
+    expiration: 86400

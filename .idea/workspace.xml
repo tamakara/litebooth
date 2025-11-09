@@ -5,19 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化前端页面">
-      <change afterPath="$PROJECT_DIR$/frontend/src/api/user.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ItemCard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/stores/itemStore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/config/MinioConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/FileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/LoginFormDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/RegisterFormDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/File.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/pojo/Profile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/LoginVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/RegisterVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/FileMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/FileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/FileServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/util/HashUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/util/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/util/MinIOUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/mysql/db.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.env.development" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.env.production" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/api/http.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/utils/passwordEncrypt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilotDiffState.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AuthDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AuthDialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ProductCard.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/orderStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/orderStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/productStore.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/userStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/userStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vite.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +52,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
+        <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -70,12 +96,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.docker: Compose 部署.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.LiteboothApplication.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Application/nodejs/node.exe",
+    "last_opened_file_path": "C:/Users/suhxhee/Code/IDEA/litebooth/docker/docker-compose.yml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -88,21 +120,52 @@
     "settings.editor.selected.configurable": "MavenSettings",
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\backend\src\main\java\com\tamakara\litebooth\controller" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\backend\src\main\java\com\tamakara\litebooth" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\backend\src\main\java\com\tamakara\litebooth\util" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.tamakara.litebooth.domain.dto" />
+      <recent name="com.tamakara.litebooth.mapper" />
+      <recent name="com.tamakara.litebooth.domain.vo" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="Spring Boot.LiteboothApplication">
+    <configuration name="db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/docker/mysql/db.sql" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
+    </configuration>
     <configuration name="LiteboothApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tamakara.litebooth.LiteboothApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker: Compose 部署" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="sourceFilePath" value="docker/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
     </configuration>
     <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
@@ -116,9 +179,17 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.docker: Compose 部署" />
       <item itemvalue="npm.dev" />
       <item itemvalue="Spring Boot.LiteboothApplication" />
+      <item itemvalue="数据库脚本.db.sql" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="数据库脚本.db.sql" />
+        <item itemvalue="Docker.docker: Compose 部署" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -137,7 +208,8 @@
       <option name="presentableId" value="Default" />
       <updated>1762665885925</updated>
       <workItem from="1762665887028" duration="4571000" />
-      <workItem from="1762673049050" duration="11486000" />
+      <workItem from="1762673049050" duration="11499000" />
+      <workItem from="1762687423376" duration="14233000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -179,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762685833922</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="优化前端页面">
+      <option name="closed" value="true" />
+      <created>1762687409113</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1762687409113</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

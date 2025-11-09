@@ -1,13 +1,14 @@
 <script setup>
 import {ref, reactive, watch} from 'vue'
 import {useUserStore} from '../stores/userStore'
+import { ElMessage } from 'element-plus'
 
 const props = defineProps({visible: {type: Boolean, default: false}})
 const emit = defineEmits(['update:visible', 'success'])
 const user = useUserStore()
 const isRegister = ref(false)
 const loginForm = reactive({username: '', password: ''})
-const registerForm = reactive({username: '', password: '', email: ''})
+const registerForm = reactive({username: '', password: '', email: '', code: ''})
 
 watch(() => props.visible, v => {
   if (!v) reset()
@@ -19,13 +20,19 @@ function reset() {
   registerForm.username = ''
   registerForm.password = ''
   registerForm.email = ''
+  registerForm.code = ''
   user.error = ''
   isRegister.value = false
 }
 
+function sendEmailCode(scene) {
+  ElMessage.success(`验证码已发送（${scene}）`)
+}
+
 async function submit() {
   if (isRegister.value) {
-    await user.register(registerForm)
+    const { username, password, email } = registerForm
+    await user.register({ username, password, email })
   } else {
     await user.login(loginForm)
   }
@@ -68,6 +75,13 @@ async function submit() {
         </el-form-item>
         <el-form-item label="密码">
           <el-input v-model="registerForm.password" type="password" show-password placeholder="密码"/>
+        </el-form-item>
+        <el-form-item label="验证码">
+          <el-input v-model="registerForm.code" placeholder="输入验证码">
+            <template #append>
+              <el-button @click="sendEmailCode('注册')">发送</el-button>
+            </template>
+          </el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" :loading="user.loading" @click="submit">注册</el-button>

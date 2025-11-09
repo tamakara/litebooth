@@ -7,35 +7,22 @@ import {ElMessage} from 'element-plus'
 const user = useUserStore()
 const orders = useOrderStore()
 
-const edit = reactive({name: '', email: '', phone: ''})
-const editing = ref(false)
+// 移除整体编辑状态，用户名固定显示
+// 邮箱与密码通过弹窗修改
 const fileInput = ref(null)
 
+// 弹窗相关表单
+const emailDialogVisible = ref(false)
+const passwordDialogVisible = ref(false)
+const emailEdit = reactive({oldEmail: '', newEmail: '', code: ''})
+const passwordEdit = reactive({oldPassword: '', newPassword: '', code: ''})
+
 watchEffect(() => {
-  if (user.profile && !editing.value) {
-    edit.name = user.profile.name || ''
-    edit.email = user.profile.email || ''
-    edit.phone = user.profile.phone || ''
+  if (user.profile) {
+    // 重置弹窗表单中的旧邮箱
+    emailEdit.oldEmail = user.profile.email || ''
   }
 })
-
-const startEdit = () => {
-  editing.value = true
-}
-const cancelEdit = () => {
-  editing.value = false
-  if (user.profile) {
-    edit.name = user.profile.name
-    edit.email = user.profile.email
-    edit.phone = user.profile.phone
-  }
-}
-const save = () => {
-  if (!user.isLogin) return
-  user.updateProfile({name: edit.name, email: edit.email, phone: edit.phone})
-  ElMessage.success('资料已保存')
-  editing.value = false
-}
 
 const triggerAvatar = () => {
   fileInput.value?.click()
@@ -50,6 +37,61 @@ const onFileChange = (e) => {
     e.target.value = ''
   }
   reader.readAsDataURL(f)
+}
+
+// 打开弹窗
+const openEmailDialog = () => {
+  if (!user.isLogin) return
+  emailEdit.oldEmail = user.profile?.email || ''
+  emailEdit.newEmail = ''
+  emailEdit.code = ''
+  emailDialogVisible.value = true
+}
+const openPasswordDialog = () => {
+  if (!user.isLogin) return
+  passwordEdit.oldPassword = ''
+  passwordEdit.newPassword = ''
+  passwordEdit.code = ''
+  passwordDialogVisible.value = true
+}
+
+// 发送验证码（占位）
+const sendEmailCode = (scene) => {
+  ElMessage.success(`验证码已发送（${scene}）`)
+}
+
+// 提交邮箱修改
+const submitEmailChange = () => {
+  if (!user.profile) return
+  if (emailEdit.oldEmail !== user.profile.email) {
+    ElMessage.error('旧邮箱不匹配')
+    return
+  }
+  if (!emailEdit.newEmail) {
+    ElMessage.error('请输入新邮箱')
+    return
+  }
+  if (!emailEdit.code) {
+    ElMessage.error('请输入验证码')
+    return
+  }
+  user.updateProfile({email: emailEdit.newEmail})
+  ElMessage.success('邮箱已更新')
+  emailDialogVisible.value = false
+}
+
+// 提交密码修改（占位）
+const submitPasswordChange = () => {
+  if (!passwordEdit.oldPassword || !passwordEdit.newPassword) {
+    ElMessage.error('请填写旧密码与新密码')
+    return
+  }
+  if (!passwordEdit.code) {
+    ElMessage.error('请输入邮箱验证码')
+    return
+  }
+  ElMessage.success('密码已更新')
+  passwordDialogVisible.value = false
 }
 
 const myOrders = computed(() => {
@@ -76,31 +118,71 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
             <input ref="fileInput" type="file" accept="image/*" class="hidden-file" @change="onFileChange"/>
           </div>
           <div class="fields">
-            <el-form class="user-form" label-width="96px" :disabled="!editing">
-              <el-form-item label="用户名">
-                <el-input v-model="edit.name" placeholder="输入用户名"/>
-              </el-form-item>
-              <el-form-item label="邮箱">
-                <el-input v-model="edit.email" placeholder="输入邮箱"/>
-              </el-form-item>
-              <el-form-item label="手机号">
-                <el-input v-model="edit.phone" placeholder="输入手机号"/>
-              </el-form-item>
-              <el-form-item v-if="editing" class="form-actions-inline">
-                <div class="form-action-group">
-                  <el-button type="primary" @click="save">保存</el-button>
-                  <el-button @click="cancelEdit">取消</el-button>
-                  <el-button type="danger" @click="user.logout()">退出登录</el-button>
-                </div>
-              </el-form-item>
-            </el-form>
-            <div v-if="!editing" class="actions-row">
-              <el-button type="primary" @click="startEdit">编辑资料</el-button>
+
+            <div class="info-row">
+              <div class="label">用户名</div>
+              <div class="value">{{ user.profile?.username }}</div>
+            </div>
+
+            <div class="info-row">
+              <div class="label">邮箱</div>
+              <div class="value">
+                <span>{{ user.profile?.email }}</span>
+              </div>
+            </div>
+            <div class="logout-row">
+              <el-button type="primary" @click="openEmailDialog">修改邮箱</el-button>
+              <el-button type="primary" @click="openPasswordDialog">修改密码</el-button>
               <el-button type="danger" @click="user.logout()">退出登录</el-button>
             </div>
           </div>
         </div>
       </el-card>
+
+      <el-dialog v-model="emailDialogVisible" title="修改邮箱" width="420px">
+        <el-form label-width="90px">
+          <el-form-item label="旧邮箱">
+            <div class="plain-value">{{ emailEdit.oldEmail }}</div>
+          </el-form-item>
+          <el-form-item label="新邮箱">
+            <el-input v-model="emailEdit.newEmail" placeholder="输入新邮箱" />
+          </el-form-item>
+          <el-form-item label="验证码">
+            <el-input v-model="emailEdit.code" placeholder="输入验证码">
+              <template #append>
+                <el-button @click="sendEmailCode('邮箱修改')">发送</el-button>
+              </template>
+            </el-input>
+          </el-form-item>
+        </el-form>
+        <template #footer>
+          <el-button @click="emailDialogVisible=false">取消</el-button>
+          <el-button type="primary" @click="submitEmailChange">确定</el-button>
+        </template>
+      </el-dialog>
+
+      <!-- 密码编辑弹窗 -->
+      <el-dialog v-model="passwordDialogVisible" title="修改密码" width="420px">
+        <el-form label-width="90px">
+          <el-form-item label="旧密码">
+            <el-input v-model="passwordEdit.oldPassword" type="password" placeholder="输入旧密码" />
+          </el-form-item>
+          <el-form-item label="新密码">
+            <el-input v-model="passwordEdit.newPassword" type="password" placeholder="输入新密码" />
+          </el-form-item>
+          <el-form-item label="验证码">
+            <el-input v-model="passwordEdit.code" placeholder="邮箱验证码">
+              <template #append>
+                <el-button @click="sendEmailCode('密码修改')">发送</el-button>
+              </template>
+            </el-input>
+          </el-form-item>
+        </el-form>
+        <template #footer>
+          <el-button @click="passwordDialogVisible=false">取消</el-button>
+          <el-button type="primary" @click="submitPasswordChange">确定</el-button>
+        </template>
+      </el-dialog>
 
       <el-card class="panel">
         <template #header>历史订单</template>
@@ -194,35 +276,29 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
   border-left: 1px solid #f0f2f5;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
+  gap: 10px;
 }
 
-.user-form {
-  width: 100%;
-  max-width: 100%;
-}
-
-.user-form .el-input {
-  width: 100%;
-}
-
-.actions-row {
+.info-row {
   display: flex;
-  gap: 12px;
-  margin-top: 12px;
-  width: 100%;
-  justify-content: center;
+  align-items: center;
+  gap: 16px;
 }
-
-.form-actions-inline {
-  margin-bottom: 0;
+.info-row .label {
+  width: 96px;
+  color: #555;
+  font-weight: 500;
 }
-
-.form-action-group {
+.info-row .value {
+  flex: 1;
   display: flex;
-  gap: 12px;
-  justify-content: center;
-  width: 100%;
+  align-items: center;
+}
+.logout-row {
+  margin-top: 4px;
+  display: flex;
+  gap: 10px;
 }
 
 .order-list {
@@ -296,9 +372,5 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
   overflow: hidden;
 }
 
-@media (max-width: 600px) {
-  .user-form, .actions-row {
-    max-width: 100%;
-  }
-}
+.plain-value { color: #606266; }
 </style>

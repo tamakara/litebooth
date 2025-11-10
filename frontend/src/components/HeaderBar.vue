@@ -4,6 +4,7 @@ import {useRouter} from 'vue-router'
 import {useUserStore} from '../stores/userStore'
 import {useItemStore} from '../stores/itemStore'
 import AuthDialog from './AuthDialog.vue'
+import defaultAvatar from '../assets/default_avatar.png'
 
 const router = useRouter()
 const user = useUserStore()
@@ -12,13 +13,11 @@ const item = useItemStore()
 const showAuth = ref(false)
 const onLoginSuccess = () => {
   showAuth.value = false;
-  router.push('/user')
 }
 
 const handleSearch = () => {
   if (router.currentRoute.value.path !== '/') router.push('/')
 }
-const logout = () => user.logout()
 </script>
 
 <template>
@@ -28,29 +27,31 @@ const logout = () => user.logout()
       <span class="brand-name">LiteBooth</span>
     </div>
     <div class="nav-center">
-      <el-input v-model="item.keyword" placeholder="搜索商品名称 (回车)" clearable class="global-search"
-                @keydown.enter="handleSearch">
+      <el-input
+          v-model="item.keyword"
+          placeholder="搜索商品名称 (回车)"
+          clearable
+          class="global-search"
+          size="large"
+          @keydown.enter="handleSearch"
+      >
         <template #append>
-          <el-button type="primary" @click="handleSearch">搜索</el-button>
+          <el-button type="primary" size="large" @click="handleSearch">搜索</el-button>
         </template>
       </el-input>
     </div>
     <div class="nav-right">
       <template v-if="user.isLogin">
-        <el-dropdown trigger="hover" :hide-on-click="false">
-          <span class="avatar-trigger">
-            <el-avatar :size="40" class="avatar">{{ user.username.slice(0, 1).toUpperCase() }}</el-avatar>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item  @click="logout">退出账号</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
+        <div class="user-box" role="button" @click="router.push('/user')">
+          <el-avatar :size="40" class="avatar" :src="user.profile?.avatar || defaultAvatar"/>
+          <span class="username">{{ user.username }}</span>
+        </div>
       </template>
       <template v-else>
-        <el-avatar :size="40" class="avatar" style="background:#409eff; cursor:pointer" @click="showAuth = true">登
-        </el-avatar>
+        <div class="user-box" role="button" aria-label="未登录，点击登录" @click="showAuth = true">
+          <el-avatar :size="40" class="avatar":src="defaultAvatar"/>
+          <span class="username">未登录</span>
+        </div>
       </template>
     </div>
     <AuthDialog v-model:visible="showAuth" @success="onLoginSuccess"/>
@@ -65,7 +66,7 @@ const logout = () => user.logout()
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 28px;
+  padding: 12px 28px;
   border-radius: 4px;
   background: #ffffff;
   border-bottom: 1px solid #e2e5e9;
@@ -75,7 +76,7 @@ const logout = () => user.logout()
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-weight: 700;
   color: #111827;
   cursor: pointer;
@@ -99,21 +100,67 @@ const logout = () => user.logout()
   border-radius: 8px;
 }
 
+.brand-name {
+  font-size: 20px;
+  letter-spacing: .2px;
+}
+
 .logo-dot {
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: linear-gradient(135deg, #409eff, #67c23a);
-  box-shadow: 0 0 0 4px rgba(64, 158, 255, .15);
+  box-shadow: 0 0 0 5px rgba(64, 158, 255, .15);
 }
 
 .avatar {
   box-shadow: 0 2px 6px rgba(0, 0, 0, .12);
 }
 
-.avatar-trigger {
-  display: inline-flex;
+.username {
+  font-weight: 600;
+  color: #333;
   cursor: pointer;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 12px 4px 6px;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.user-box:hover {
+  border-color: #cfd4dc;
+  background: #f9fafb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .06);
+}
+
+.user-box:active {
+  transform: translateY(1px);
+}
+
+/* 放大输入框视觉高度与字号，匹配用户区块高度 */
+.global-search :deep(.el-input__wrapper) {
+  height: 44px;
+}
+
+.global-search :deep(.el-input__inner) {
+  font-size: 15px;
+}
+
+/* 追加区按钮与输入框等高 */
+.global-search :deep(.el-input-group__append .el-button) {
+  height: 44px;
 }
 
 @media (max-width: 920px) {

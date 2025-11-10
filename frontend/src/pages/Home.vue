@@ -14,7 +14,7 @@ const list = computed(() => item.filteredItems)
 </script>
 
 <template>
-  <Announcement />
+  <Announcement/>
 
   <section class="hero">
     <h1>发现好物，享受生活</h1>
@@ -23,34 +23,80 @@ const list = computed(() => item.filteredItems)
 
   <div class="group-bar">
     <el-button
-      v-for="g in item.groups"
-      :key="g"
-      class="grp-btn"
-      :type="item.groupSelected === g ? 'primary' : 'default'"
-      @click="item.setGroup(g)"
-    >{{ g }}</el-button>
+        v-for="g in item.groups"
+        :key="g"
+        class="grp-btn"
+        :type="item.groupSelected === g ? 'primary' : 'default'"
+        @click="item.setGroup(g)"
+    >{{ g }}
+    </el-button>
   </div>
 
-  <el-skeleton v-if="item.loading" :rows="6" animated />
+  <el-skeleton v-if="item.loading" :rows="6" animated/>
 
   <section v-else class="grid">
-    <el-empty v-if="!list.length" description="当前分组暂无商品" />
-    <ItemCard v-for="p in list" :key="p.id" :item="p" />
+    <el-empty v-if="!list.length" description="当前分组暂无商品"/>
+    <ItemCard v-for="p in list" :key="p.id" :item="p"/>
   </section>
 </template>
 
 <style scoped>
-.hero { text-align: center; margin-bottom: 12px; }
-.hero h1 { margin: 0 0 6px; font-size: 28px; color: #111827; line-height: 1.65; }
-.hero p { margin: 0; color: #6b7280; line-height: 2.2; }
-.group-bar { display: flex; justify-content: center; gap: 12px; margin: 16px 0 32px; flex-wrap: wrap; }
+.hero {
+  text-align: center;
+  margin-bottom: 12px;
+}
 
-/* 网格布局 */
-.grid { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
-@media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1024px) { .grid { grid-template-columns: repeat(4, 1fr); } }
-@media (min-width: 1280px) { .grid { grid-template-columns: repeat(5, 1fr); } }
+.hero h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  color: #111827;
+  line-height: 1.65;
+}
 
-/* 分组按钮 */
-.grp-btn { border-radius: 32px; height: 36px; padding: 0 18px; font-size: 15px; font-weight: 500; }
+.hero p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 2.2;
+}
+
+.group-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0 32px;
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.grp-btn {
+  border-radius: 15px;
+  width: 65px;
+  height: 40px;
+  padding: 0 18px;
+  font-size: 15px;
+  font-weight: 500;
+}
 </style>

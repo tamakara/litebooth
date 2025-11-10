@@ -1,7 +1,6 @@
 package com.tamakara.litebooth.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.tamakara.litebooth.domain.pojo.Profile;
 import lombok.Data;
 
 import java.time.Instant;

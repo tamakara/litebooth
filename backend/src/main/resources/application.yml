@@ -26,6 +26,7 @@ minio:
   access-key: root
   secret-key: 0d000721
   bucket-name: litebooth
+  url-expiration: 86400
 
 token:
     secret: litebooth

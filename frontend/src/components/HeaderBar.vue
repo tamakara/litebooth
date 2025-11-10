@@ -49,7 +49,7 @@ const handleSearch = () => {
       </template>
       <template v-else>
         <div class="user-box" role="button" aria-label="未登录，点击登录" @click="showAuth = true">
-          <el-avatar :size="40" class="avatar":src="defaultAvatar"/>
+          <el-avatar :size="40" class="avatar" :src="defaultAvatar"/>
           <span class="username">未登录</span>
         </div>
       </template>
@@ -67,7 +67,7 @@ const handleSearch = () => {
   align-items: center;
   justify-content: space-between;
   padding: 12px 28px;
-  border-radius: 4px;
+  border-radius: 8px;
   background: #ffffff;
   border-bottom: 1px solid #e2e5e9;
   box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
@@ -133,7 +133,7 @@ const handleSearch = () => {
   gap: 10px;
   padding: 4px 12px 4px 6px;
   border: 1px solid #e5e7eb;
-  border-radius: 999px;
+  border-radius:16px;
   background: #fff;
   cursor: pointer;
   transition: all .2s ease;

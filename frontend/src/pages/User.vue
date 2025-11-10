@@ -7,11 +7,8 @@ import {ElMessage} from 'element-plus'
 const user = useUserStore()
 const orders = useOrderStore()
 
-// 移除整体编辑状态，用户名固定显示
-// 邮箱与密码通过弹窗修改
 const fileInput = ref(null)
 
-// 弹窗相关表单
 const emailDialogVisible = ref(false)
 const passwordDialogVisible = ref(false)
 const emailEdit = reactive({oldEmail: '', newEmail: '', code: ''})
@@ -19,7 +16,6 @@ const passwordEdit = reactive({oldPassword: '', newPassword: '', code: ''})
 
 watchEffect(() => {
   if (user.profile) {
-    // 重置弹窗表单中的旧邮箱
     emailEdit.oldEmail = user.profile.email || ''
   }
 })
@@ -27,19 +23,14 @@ watchEffect(() => {
 const triggerAvatar = () => {
   fileInput.value?.click()
 }
-const onFileChange = (e) => {
-  const f = e.target.files?.[0]
-  if (!f) return
-  const reader = new FileReader()
-  reader.onload = () => {
-    user.updateProfile({avatar: reader.result})
-    ElMessage.success('头像已更新')
-    e.target.value = ''
-  }
-  reader.readAsDataURL(f)
+const onAvatarChange = async (e) => {
+  const file = e.target.files?.[0]
+  if (!file) return
+  await user.updateAvatar(file)
+  ElMessage.success('头像已更新')
+  e.target.value = ''
 }
 
-// 打开弹窗
 const openEmailDialog = () => {
   if (!user.isLogin) return
   emailEdit.oldEmail = user.profile?.email || ''
@@ -55,12 +46,10 @@ const openPasswordDialog = () => {
   passwordDialogVisible.value = true
 }
 
-// 发送验证码（占位）
 const sendEmailCode = (scene) => {
   ElMessage.success(`验证码已发送（${scene}）`)
 }
 
-// 提交邮箱修改
 const submitEmailChange = () => {
   if (!user.profile) return
   if (emailEdit.oldEmail !== user.profile.email) {
@@ -75,12 +64,11 @@ const submitEmailChange = () => {
     ElMessage.error('请输入验证码')
     return
   }
-  user.updateProfile({email: emailEdit.newEmail})
+  user.updateEmail(mailEdit.newEmail)
   ElMessage.success('邮箱已更新')
   emailDialogVisible.value = false
 }
 
-// 提交密码修改（占位）
 const submitPasswordChange = () => {
   if (!passwordEdit.oldPassword || !passwordEdit.newPassword) {
     ElMessage.error('请填写旧密码与新密码')
@@ -115,7 +103,7 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
               {{ user.username.slice(0, 1).toUpperCase() }}
             </el-avatar>
             <div class="avatar-hint">点击更换头像</div>
-            <input ref="fileInput" type="file" accept="image/*" class="hidden-file" @change="onFileChange"/>
+            <input ref="fileInput" type="file" accept="image/*" class="hidden-file" @change="onAvatarChange"/>
           </div>
           <div class="fields">
 
@@ -145,7 +133,7 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
             <div class="plain-value">{{ emailEdit.oldEmail }}</div>
           </el-form-item>
           <el-form-item label="新邮箱">
-            <el-input v-model="emailEdit.newEmail" placeholder="输入新邮箱" />
+            <el-input v-model="emailEdit.newEmail" placeholder="输入新邮箱"/>
           </el-form-item>
           <el-form-item label="验证码">
             <el-input v-model="emailEdit.code" placeholder="输入验证码">
@@ -165,10 +153,10 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
       <el-dialog v-model="passwordDialogVisible" title="修改密码" width="420px">
         <el-form label-width="90px">
           <el-form-item label="旧密码">
-            <el-input v-model="passwordEdit.oldPassword" type="password" placeholder="输入旧密码" />
+            <el-input v-model="passwordEdit.oldPassword" type="password" placeholder="输入旧密码"/>
           </el-form-item>
           <el-form-item label="新密码">
-            <el-input v-model="passwordEdit.newPassword" type="password" placeholder="输入新密码" />
+            <el-input v-model="passwordEdit.newPassword" type="password" placeholder="输入新密码"/>
           </el-form-item>
           <el-form-item label="验证码">
             <el-input v-model="passwordEdit.code" placeholder="邮箱验证码">
@@ -285,16 +273,19 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
   align-items: center;
   gap: 16px;
 }
+
 .info-row .label {
   width: 96px;
   color: #555;
   font-weight: 500;
 }
+
 .info-row .value {
   flex: 1;
   display: flex;
   align-items: center;
 }
+
 .logout-row {
   margin-top: 4px;
   display: flex;
@@ -372,5 +363,7 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
   overflow: hidden;
 }
 
-.plain-value { color: #606266; }
+.plain-value {
+  color: #606266;
+}
 </style>

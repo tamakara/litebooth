@@ -1,10 +1,14 @@
 import {defineStore} from 'pinia'
-import {login, register} from "@/api/user.js";
+import {getProfileVO, login, register, updateAvatar} from "@/api/user.js";
 
 export const useUserStore = defineStore('user', {
     state: () => ({
         token: '',
-        profile: null, // { username, email, avatar}
+        profile: {
+            username: '',
+            email: '',
+            avatar: ''
+        },
         loading: false,
         error: ''
     }),
@@ -41,9 +45,24 @@ export const useUserStore = defineStore('user', {
             this.loading = false
         },
 
-        updateProfile(payload) {
-            if (!this.profile) return
-            this.profile = {...this.profile, ...payload}
+        async restore() {
+            if (this.token) return
+            const token = localStorage.getItem('token')
+            if (token) {
+                this.token = token
+                const res = await getProfileVO()
+                this.profile = res.data
+            }
+        },
+
+        async updateAvatar(newAvatarFile) {
+            const res = await updateAvatar(newAvatarFile)
+            this.profile.avatar = res.data
+        },
+
+        updateEmail(newEmail) {
+            // if (!this.profile) return
+            // this.profile = {...this.profile, ...payload}
         },
 
         logout() {

@@ -35,7 +35,6 @@ public class UserController {
         return ResponseEntity.ok(vo);
     }
 
-
     @GetMapping("/getProfileVO")
     public ResponseEntity<ProfileVO> getProfileVO(
             @RequestAttribute("userId") Long userId
@@ -52,14 +51,4 @@ public class UserController {
         String avatarUrl = userService.updateAvatar(userId, file);
         return ResponseEntity.ok(avatarUrl);
     }
-
-//    @PostMapping("/updateGender")
-//    public ResponseEntity<Void> updateGender(
-//            @RequestHeader("X-USER-ID") Long userId,
-//            @RequestParam Integer gender
-//    ) {
-//        userService.updateGender(userId, gender);
-//        return ResponseEntity.ok().build();
-//    }
-
 }

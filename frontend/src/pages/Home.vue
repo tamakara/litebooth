@@ -1,42 +1,48 @@
 <script setup>
-import {onMounted, computed} from 'vue'
-import {useItemStore} from '../stores/itemStore'
+import { onMounted, computed } from 'vue'
+import { useHomeStore } from '../stores/homeStore'
 import Announcement from '../components/Announcement.vue'
 import ItemCard from '../components/ItemCard.vue'
 
-const item = useItemStore()
+const home = useHomeStore()
+
+const pageData = computed(() => home.pageData)
+const list = computed(() => home.filteredItems)
+const groups = computed(() => home.groups)
 
 onMounted(() => {
-  if (!item.items.length) item.fetchItems()
+  if (!home.items.length) home.fetchHomeData()
 })
-
-const list = computed(() => item.filteredItems)
 </script>
 
 <template>
-  <Announcement/>
+  <Announcement
+    v-if="pageData.announcement.content"
+    :content="pageData.announcement.content"
+  />
 
   <section class="hero">
-    <h1>发现好物，享受生活</h1>
-    <p>简洁优雅的小店页面示例，支持商家自定义分组浏览。</p>
+    <h1>{{ pageData.header.title }}</h1>
+    <p>{{ pageData.header.subtitle }}</p>
   </section>
 
   <div class="group-bar">
     <el-button
-        v-for="g in item.groups"
-        :key="g"
-        class="grp-btn"
-        :type="item.groupSelected === g ? 'primary' : 'default'"
-        @click="item.setGroup(g)"
-    >{{ g }}
+      v-for="g in groups"
+      :key="g"
+      class="grp-btn"
+      :type="home.groupSelected === g ? 'primary' : 'default'"
+      @click="home.setGroup(g)"
+    >
+      {{ g }}
     </el-button>
   </div>
 
-  <el-skeleton v-if="item.loading" :rows="6" animated/>
+  <el-skeleton v-if="home.loading" :rows="6" animated />
 
   <section v-else class="grid">
-    <el-empty v-if="!list.length" description="当前分组暂无商品"/>
-    <ItemCard v-for="p in list" :key="p.id" :item="p"/>
+    <el-empty v-if="!list.length" description="当前分组暂无商品" />
+    <ItemCard v-for="p in list" :key="p.id" :item="p" />
   </section>
 </template>
 

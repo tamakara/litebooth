@@ -15,7 +15,8 @@ http.interceptors.response.use(
     (res) => res,
     (err) => {
         if (err.response?.status === 401) {
-            // 跳转登录
+            localStorage.removeItem('token')
+            window.location.reload()
         }
         return Promise.reject(err)
     }

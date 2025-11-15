@@ -17,6 +17,4 @@ public interface UserService extends IService<User> {
     ProfileVO getProfileVO(Long userId);
 
     String updateAvatar(Long userId, MultipartFile file);
-
-//    void updateGender(Long userId, Integer gender);
 }

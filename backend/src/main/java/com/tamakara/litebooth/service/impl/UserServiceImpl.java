@@ -88,14 +88,4 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         return avatarUrl;
     }
-
-//    @Override
-//    public void updateGender(Long userId, Integer gender) {
-//        User user = userMapper.selectById(userId);
-//        if (user == null) throw new RuntimeException("用户不存在");
-//
-//        user.setGender(gender);
-//        userMapper.updateById(user);
-//    }
-
 }

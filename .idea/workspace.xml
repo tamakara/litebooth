@@ -4,26 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化顶栏样式">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/ProfileVO.java" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成头像更新功能">
+      <change afterPath="$PROJECT_DIR$/frontend/src/stores/homeStore.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilotDiffState.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/LiteboothApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/LiteboothApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/config/WebConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/pojo/Profile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/LoginVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/LoginVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/RegisterVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/RegisterVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/http.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/userStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/userStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/itemStore.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
-        <option value="JavaScript File" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -202,7 +195,11 @@
       <workItem from="1762673049050" duration="11499000" />
       <workItem from="1762687423376" duration="14489000" />
       <workItem from="1762751740029" duration="1404000" />
-      <workItem from="1762753923934" duration="6745000" />
+      <workItem from="1762753923934" duration="9703000" />
+      <workItem from="1762847953445" duration="5000" />
+      <workItem from="1763194364092" duration="1000" />
+      <workItem from="1763196981565" duration="3000" />
+      <workItem from="1763201185062" duration="3030000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -268,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762753103001</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="完成头像更新功能">
+      <option name="closed" value="true" />
+      <created>1762772133294</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762772133294</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +297,7 @@
     <MESSAGE value="优化前端页面" />
     <MESSAGE value="完善账号登录注册功能" />
     <MESSAGE value="优化顶栏样式" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化顶栏样式" />
+    <MESSAGE value="完成头像更新功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成头像更新功能" />
   </component>
 </project>

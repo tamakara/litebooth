@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useUserStore } from '../stores/userStore'
-import { useHomeStore } from '../stores/homeStore'
+import {computed, ref} from 'vue'
+import {useRouter} from 'vue-router'
+import {useUserStore} from '../stores/userStore'
+import {useHomeStore} from '../stores/homeStore'
 import AuthDialog from './AuthDialog.vue'
 import defaultAvatar from '../assets/default_avatar.png'
 
@@ -10,15 +10,17 @@ const router = useRouter()
 const user = useUserStore()
 const home = useHomeStore()
 
+
+const searchForm = computed(() => home.searchForm)
+
 const showAuth = ref(false)
 const onLoginSuccess = () => {
   showAuth.value = false
 }
 
 const handleSearch = () => {
-  // 触发 store 内部关键字变化（若后续需要额外逻辑可统一放在 setKeyword 内）
-  home.setKeyword(home.pageData.searchForm.keyword)
-  if (router.currentRoute.value.path !== '/') router.push('/')
+  searchForm.pageNum = 1
+  home.fetchItemData()
 }
 </script>
 
@@ -30,15 +32,21 @@ const handleSearch = () => {
     </div>
     <div class="nav-center">
       <el-input
-        v-model="home.pageData.searchForm.keyword"
-        placeholder="搜索商品名称 (回车)"
-        clearable
-        class="global-search"
-        size="large"
-        @keydown.enter="handleSearch"
+          v-model="searchForm.keyword"
+          placeholder="搜索商品名称"
+          clearable
+          class="global-search"
+          size="large"
+          @keydown.enter="handleSearch"
       >
         <template #append>
-          <el-button type="primary" size="large" @click="handleSearch">搜索</el-button>
+          <el-button
+              type="primary"
+              size="large"
+              @click="handleSearch"
+          >
+            搜索
+          </el-button>
         </template>
       </el-input>
     </div>
@@ -46,26 +54,26 @@ const handleSearch = () => {
       <template v-if="user.isLogin">
         <div class="user-box" role="button" @click="router.push('/user')">
           <el-avatar
-            :size="40"
-            class="avatar"
-            :src="user.profile?.avatar || defaultAvatar"
+              :size="40"
+              class="avatar"
+              :src="user.profile?.avatar || defaultAvatar"
           />
           <span class="username">{{ user.username }}</span>
         </div>
       </template>
       <template v-else>
         <div
-          class="user-box"
-          role="button"
-          aria-label="未登录，点击登录"
-          @click="showAuth = true"
+            class="user-box"
+            role="button"
+            aria-label="未登录，点击登录"
+            @click="showAuth = true"
         >
-          <el-avatar :size="40" class="avatar" :src="defaultAvatar" />
+          <el-avatar :size="40" class="avatar" :src="defaultAvatar"/>
           <span class="username">未登录</span>
         </div>
       </template>
     </div>
-    <AuthDialog v-model:visible="showAuth" @success="onLoginSuccess" />
+    <AuthDialog v-model:visible="showAuth" @success="onLoginSuccess"/>
   </el-header>
 </template>
 

@@ -99,9 +99,7 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
         <template #header>基本资料</template>
         <div class="profile">
           <div class="avatar-col">
-            <el-avatar :size="80" :src="user.profile?.avatar" class="avatar-preview" @click="triggerAvatar">
-              {{ user.username.slice(0, 1).toUpperCase() }}
-            </el-avatar>
+            <el-avatar :size="80" :src="user.profile?.avatar" class="avatar-preview" @click="triggerAvatar" />
             <div class="avatar-hint">点击更换头像</div>
             <input ref="fileInput" type="file" accept="image/*" class="hidden-file" @change="onAvatarChange"/>
           </div>

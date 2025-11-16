@@ -31,17 +31,31 @@ CREATE TABLE `file`
 
 CREATE TABLE `item`
 (
-    `id`                   BIGINT       NOT NULL AUTO_INCREMENT,
-    `user_id`              BIGINT       NOT NULL,
-    `item_state`                INTEGER      NOT NULL,
-    `delivery_method_code` INTEGER      NOT NULL,
-    `price`                DOUBLE       NOT NULL,
-    `postage`              DOUBLE      NOT NULL,
-    `name`                 VARCHAR(255) NOT NULL,
-    `description`          TEXT         NOT NULL,
-    `favorites`            BIGINT       NOT NULL,
-    `created_at`           TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`           TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY (`id`, `user_id`)
+    `id`          BIGINT       NOT NULL AUTO_INCREMENT,
+    `show`        BOOLEAN      NOT NULL,
+    `price`       DOUBLE       NOT NULL,
+    `name`        VARCHAR(255) NOT NULL,
+    `description` TEXT         NOT NULL,
+    `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`  TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE `home_info`
+(
+    `id`           BIGINT       NOT NULL AUTO_INCREMENT,
+    `announcement` TEXT         NOT NULL,
+    `title`        VARCHAR(255) NOT NULL,
+    `subtitle`     VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) DEFAULT CHARSET = utf8mb4;
+INSERT INTO `home_info` (`id`, `announcement`, `title`, `subtitle`)
+VALUES (0, '', '标题', '副标题');
+
+CREATE TABLE `group`
+(
+    `id`   BIGINT       NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) DEFAULT CHARSET = utf8mb4;
+INSERT INTO `group` (`id`, `name`) VALUES (0, '全部');

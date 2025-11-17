@@ -25,21 +25,29 @@ CREATE TABLE `file`
     `name`       VARCHAR(255) NOT NULL,
     `hash`       VARCHAR(255) NOT NULL,
     `size`       BIGINT       NOT NULL,
-    `created_at` TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE `item`
 (
     `id`          BIGINT       NOT NULL AUTO_INCREMENT,
-    `show`        BOOLEAN      NOT NULL,
-    `price`       DOUBLE       NOT NULL,
+    `is_active`        BOOLEAN      NOT NULL,
     `name`        VARCHAR(255) NOT NULL,
+    `price`       DOUBLE       NOT NULL,
+    `stock`       BIGINT       NOT NULL,
+    `group`       VARCHAR(255) NOT NULL,
     `description` TEXT         NOT NULL,
     `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`  TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
+INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `stock`, `group`, `description`)
+VALUES (1, true, '示例商品 1', 1.11, 1, '1', 'a');
+INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `stock`, `group`, `description`)
+VALUES (2, false, '示例商品 2', 2.22, 2, '2', 'b');
+INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `stock`, `group`, `description`)
+VALUES (3, true, '示例商品 3', 3.33, 3, '3', 'c');
 
 CREATE TABLE `home_info`
 (
@@ -58,4 +66,5 @@ CREATE TABLE `group`
     `name` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
-INSERT INTO `group` (`id`, `name`) VALUES (0, '全部');
+INSERT INTO `group` (`id`, `name`)
+VALUES (0, '全部');

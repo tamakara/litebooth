@@ -14,20 +14,23 @@ public class Item {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+    @TableField(value = "is_active")
+    private Boolean isActive;
+
     @TableField(value = "name")
     private String name;
-
-    @TableField(value = "description")
-    private String description;
-
-    @TableField(value = "stock")
-    private Long stock;
 
     @TableField(value = "price")
     private Double price;
 
-    @TableField(value = "group")
+    @TableField(value = "stock")
+    private Long stock;
+
+    @TableField(value = "`group`")
     private String group;
+
+    @TableField(value = "description")
+    private String description;
 
     @TableField(value = "created_at")
     private Instant createdAt;

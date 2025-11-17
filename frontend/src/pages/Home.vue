@@ -8,10 +8,22 @@ const home = useHomeStore()
 
 const homeInfo = computed(() => home.homeInfo)
 const searchForm = computed(() => home.searchForm)
-const list = computed(() => home.itemData.items)
+const itemCardList = computed(() => home.itemCardList)
+
+const handlePageChange = (page) => {
+  searchForm.value.pageNumber = page
+  home.fetchItemInfo()
+}
+
+const handleSizeChange = (size) => {
+  searchForm.value.pageSize = size
+  searchForm.value.pageNumber = 1
+  home.fetchItemInfo()
+}
 
 onMounted(() => {
   home.fetchHomeInfo()
+  home.fetchItemInfo()
 })
 </script>
 
@@ -30,8 +42,8 @@ onMounted(() => {
         v-for="g in homeInfo.groups"
         :key="g"
         class="grp-btn"
-        :type="searchForm.groupName === g ? 'primary' : 'default'"
-        @click="searchForm.groupName=g"
+        :type="searchForm.group === g ? 'primary' : 'default'"
+        @click="searchForm.group=g"
     >
       {{ g }}
     </el-button>
@@ -39,11 +51,23 @@ onMounted(() => {
 
   <section class="item-grid">
     <ItemCard
-        v-for="it in list"
+        v-for="it in itemCardList.items"
         :key="it.id"
         :item="it"
     />
   </section>
+
+  <div class="pager-wrap">
+    <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="itemCardList.total"
+        :current-page="searchForm.pageNumber"
+        :page-size="searchForm.pageSize"
+        @current-change="handlePageChange"
+        @size-change="handleSizeChange"
+    />
+  </div>
 </template>
 
 <style scoped>
@@ -104,5 +128,11 @@ onMounted(() => {
   padding: 0 18px;
   font-size: 15px;
   font-weight: 500;
+}
+
+.pager-wrap {
+  margin: 24px 0 8px;
+  display: flex;
+  justify-content: center;
 }
 </style>

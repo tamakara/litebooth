@@ -10,7 +10,6 @@ const router = useRouter()
 const user = useUserStore()
 const home = useHomeStore()
 
-
 const searchForm = computed(() => home.searchForm)
 
 const showAuth = ref(false)

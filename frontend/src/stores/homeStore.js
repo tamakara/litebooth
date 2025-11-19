@@ -61,7 +61,7 @@ export const useHomeStore = defineStore('home', {
         async fetchItemInfo() {
             this.loading = true
             try {
-                const response = await getItemCardListVO(searchForm)
+                const response = await getItemCardListVO(this.searchForm)
                 this.itemCardList = response.data
             } finally {
                 this.loading = false

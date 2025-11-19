@@ -12,4 +12,5 @@ public class ItemCard {
     private String name;
     private Double price;
     private String group;
+    private String cover;
 }

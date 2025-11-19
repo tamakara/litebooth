@@ -29,6 +29,9 @@ public class Item {
     @TableField(value = "`group`")
     private String group;
 
+    @TableField(value = "cover")
+    private Long cover;
+
     @TableField(value = "description")
     private String description;
 

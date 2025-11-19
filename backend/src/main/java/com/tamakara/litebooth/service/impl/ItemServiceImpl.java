@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.entity.Item;
 import com.tamakara.litebooth.domain.pojo.ItemCard;
 import com.tamakara.litebooth.domain.vo.ItemCardListVO;
+import com.tamakara.litebooth.mapper.FileMapper;
 import com.tamakara.litebooth.mapper.ItemMapper;
+import com.tamakara.litebooth.service.FileService;
 import com.tamakara.litebooth.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements ItemService {
     private final ItemMapper itemMapper;
+    private final FileService fileService;
 
     @Override
     public ItemCardListVO getItemCardListVO(String keyword, String group, Long pageNumber, Long pageSize) {
@@ -36,7 +39,8 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
                                 item.getId(),
                                 item.getName(),
                                 item.getPrice(),
-                                item.getGroup()
+                                item.getGroup(),
+                                fileService.getFileUrl(item.getCover(), 86400)
                         )
                 ).toList();
 

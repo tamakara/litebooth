@@ -17,29 +17,7 @@ export const useHomeStore = defineStore('home', {
             pageSize: 20
         },
         itemCardList: {
-            items: [
-                {
-                    id: 1,
-                    name: '示例商品 1',
-                    price: 19.9,
-                    cover: 'https://picsum.photos/seed/i1/300/200',
-                    group: '1',
-                },
-                {
-                    id: 2,
-                    name: '示例商品 2',
-                    price: 29.9,
-                    cover: 'https://picsum.photos/seed/i2/300/200',
-                    group: '1',
-                },
-                {
-                    id: 3,
-                    name: '示例商品 3',
-                    price: 39.9,
-                    cover: 'https://picsum.photos/seed/i3/300/200',
-                    group: '2',
-                }
-            ],
+            items: [],
             pageNumber: 1,
             pageSize: 20,
             total: 100
@@ -53,7 +31,6 @@ export const useHomeStore = defineStore('home', {
             try {
                 const response = await getHomeInfoVO()
                 this.homeInfo = response.data
-
             } finally {
                 this.loading = false
             }

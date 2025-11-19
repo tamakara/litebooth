@@ -19,7 +19,7 @@ const onLoginSuccess = () => {
 
 const handleSearch = () => {
   searchForm.pageNum = 1
-  home.fetchItemData()
+  home.fetchItemInfo()
 }
 </script>
 

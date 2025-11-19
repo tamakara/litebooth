@@ -21,6 +21,12 @@ const handleSizeChange = (size) => {
   home.fetchItemInfo()
 }
 
+const handleGroupChange = (group) => {
+  searchForm.value.group = group
+  searchForm.value.pageNumber = 1
+  home.fetchItemInfo()
+}
+
 onMounted(() => {
   home.fetchHomeInfo()
   home.fetchItemInfo()
@@ -43,7 +49,7 @@ onMounted(() => {
         :key="g"
         class="grp-btn"
         :type="searchForm.group === g ? 'primary' : 'default'"
-        @click="searchForm.group=g"
+        @click="handleGroupChange(g)"
     >
       {{ g }}
     </el-button>

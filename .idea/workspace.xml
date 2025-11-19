@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成商品查询接口">
-      <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilotDiffState.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成商品查询接口对接">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/pojo/ItemCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/pojo/ItemCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/ItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/ItemServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/mysql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/homeStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/homeStore.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,39 +63,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.docker: Compose 部署.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.LiteboothApplication.executor": "Run",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/suhxhee/Code/IDEA/litebooth/frontend/src/assets",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Run",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker: Compose 部署.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.LiteboothApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/suhxhee/Code/IDEA/litebooth/frontend/src/assets&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\assets" />
@@ -202,7 +199,8 @@
       <workItem from="1763291162332" duration="18748000" />
       <workItem from="1763392625365" duration="9430000" />
       <workItem from="1763555550250" duration="1223000" />
-      <workItem from="1763559698599" duration="3551000" />
+      <workItem from="1763559698599" duration="3636000" />
+      <workItem from="1763569008232" duration="1690000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -300,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763404668348</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="完成商品查询接口对接">
+      <option name="closed" value="true" />
+      <created>1763563424982</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1763563424982</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,6 +334,7 @@
     <MESSAGE value="封装首页数据" />
     <MESSAGE value="完成首页信息对接" />
     <MESSAGE value="完成商品查询接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成商品查询接口" />
+    <MESSAGE value="完成商品查询接口对接" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成商品查询接口对接" />
   </component>
 </project>

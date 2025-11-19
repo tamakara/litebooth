@@ -5,3 +5,7 @@ export function getItemCardListVO(searchForm) {
         params: searchForm
     })
 }
+
+export function getItemDetail(id) {
+    return http.get(`/item/getItemDetail/${id}`)
+}

@@ -1,4 +1,4 @@
-package com.tamakara.litebooth.domain.vo;
+package com.tamakara.litebooth.domain.vo.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

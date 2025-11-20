@@ -37,7 +37,7 @@ CREATE TABLE `item`
     `price`       DOUBLE       NOT NULL,
     `stock`       BIGINT       NOT NULL,
     `group`       VARCHAR(255) NOT NULL,
-    `cover`    BIGINT       NULL,
+    `cover`       BIGINT       NULL,
     `description` TEXT         NOT NULL,
     `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -69,3 +69,19 @@ CREATE TABLE `group`
 ) DEFAULT CHARSET = utf8mb4;
 INSERT INTO `group` (`id`, `name`)
 VALUES (0, '全部');
+
+CREATE TABLE `order`
+(
+    `id`          BIGINT       NOT NULL,
+    `user_id`     BIGINT       NOT NULL,
+    `status`      VARCHAR(255) NOT NULL,
+    `user_mail`   VARCHAR(255) NOT NULL,
+    `item_id`     BIGINT       NOT NULL,
+    `item_name`   VARCHAR(255) NOT NULL,
+    `item_price`  DOUBLE       NOT NULL,
+    `quantity`    BIGINT       NOT NULL,
+    `total_price` DOUBLE       NOT NULL,
+    `pay_method`  VARCHAR(255) NOT NULL,
+    `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) DEFAULT CHARSET = utf8mb4;

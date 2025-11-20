@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia'
-import { getItemInfoVO} from "@/api/item.js";
+import {getItemInfoVO} from "@/api/item.js";
+import {createOrder} from "@/api/order.js";
 
 export const useItemStore = defineStore('item', {
     state: () => ({
@@ -13,9 +14,21 @@ export const useItemStore = defineStore('item', {
             stock: 50,
             description: '<h1>示例商品介绍：这是一个用于演示的商品详情页面。</h1>',
         },
-        buyForm: {
-            qty: 1,
-            payType: 'wechat'
+        orderForm: {
+            itemId: 1,
+            quantity: 1,
+            payMethod: 'wechat'
+        },
+        orderInfo: {
+            id: 1,
+            status: '未付款',
+            userMail: '',
+            itemName: '示例商品',
+            itemPrice: 19.98,
+            quantity: 1,
+            totalPrice: 19.98,
+            payMethod: 'wechat',
+            createTime: '2024-06-01 12:00:00',
         }
     }),
     getters: {},
@@ -25,11 +38,17 @@ export const useItemStore = defineStore('item', {
             try {
                 const response = await getItemInfoVO(itemId)
                 this.itemInfo = response.data
+                this.orderForm.itemId = this.itemInfo.id
             } catch (error) {
                 console.error('Failed to fetch item info:', error)
             } finally {
                 this.loading = false
             }
+        },
+        async createOrder() {
+            const response = await createOrder(this.orderForm)
+            this.orderInfo = response.data
+            console.log(this.orderInfo)
         }
     }
 })

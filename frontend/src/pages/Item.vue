@@ -6,9 +6,13 @@ import {useRouter} from "vue-router";
 const item = useItemStore()
 const router = useRouter()
 
-const buyForm = computed(() => item.buyForm)
+const orderForm = computed(() => item.orderForm)
 const itemInfo = computed(() => item.itemInfo)
 const loading = computed(() => item.loading)
+
+const onClick = () => {
+   item.createOrder()
+}
 
 onMounted(() => {
   item.fetchItemInfo(router.currentRoute.value.params.id)
@@ -31,28 +35,31 @@ onMounted(() => {
 
           <div class="info-col">
             <div class="item-name">{{ itemInfo.name }}</div>
+
             <div class="price-row">
-              <div class="price">¥ {{ Number(itemInfo.price).toFixed(2) }}</div>
+              <div class="price">
+                ¥ {{ Number(itemInfo.price).toFixed(2) }}
+              </div>
               <div class="stock-line">
-                库存：{{ itemInfo.stock }}
+                库存: {{ itemInfo.stock }}
               </div>
             </div>
 
             <div class="form-row">
               <div class="label">购买数量</div>
-              <el-input-number v-model="buyForm.qty" :min="1" :max="itemInfo.stock"/>
+              <el-input-number v-model="orderForm.quantity" :min="1" :max="itemInfo.stock"/>
             </div>
 
             <div class="form-row">
               <div class="label">支付方式</div>
-              <el-radio-group v-model="buyForm.payType">
+              <el-radio-group v-model="orderForm.payMethod">
                 <el-radio label="wechat">微信</el-radio>
                 <el-radio label="alipay">支付宝</el-radio>
               </el-radio-group>
             </div>
 
             <div class="pay-row">
-              <el-button class="order-btn" type="primary" size="large">下单</el-button>
+              <el-button class="order-btn" type="primary" size="large" @click="onClick">下单</el-button>
             </div>
           </div>
         </div>
@@ -146,7 +153,7 @@ onMounted(() => {
 }
 
 .item-name {
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 600;
 }
 
@@ -163,9 +170,9 @@ onMounted(() => {
 }
 
 .stock-line {
-  font-size: 15px; /* 字号略大一些 */
+  font-size: 15px;
   font-weight: 500;
-  color: #10b981; /* 绿色强调库存 */
+  color: #10b981;
 }
 
 
@@ -191,23 +198,6 @@ onMounted(() => {
 
 .desc-body {
   padding: 4px 0;
-}
-
-.desc-text {
-  margin-bottom: 12px;
-  color: #374151;
-  line-height: 1.8;
-}
-
-.desc-images {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.desc-img {
-  max-width: 100%;
-  border-radius: 4px;
 }
 
 .rich-text :deep(img) {

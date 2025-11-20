@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.entity.Group;
 import com.tamakara.litebooth.domain.entity.HomeInfo;
-import com.tamakara.litebooth.domain.vo.HomeInfoVO;
+import com.tamakara.litebooth.domain.vo.home.HomeInfoVO;
 import com.tamakara.litebooth.mapper.GroupMapper;
 import com.tamakara.litebooth.mapper.HomeMapper;
 import com.tamakara.litebooth.service.HomeService;
@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

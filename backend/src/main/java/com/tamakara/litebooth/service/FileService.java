@@ -8,5 +8,4 @@ public interface FileService extends IService<File> {
     Long uploadFile(MultipartFile multipartFile);
 
     String getFileUrl(Long fileId, Integer time);
-
 }

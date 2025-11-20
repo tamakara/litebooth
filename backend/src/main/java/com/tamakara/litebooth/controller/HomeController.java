@@ -1,6 +1,6 @@
 package com.tamakara.litebooth.controller;
 
-import com.tamakara.litebooth.domain.vo.HomeInfoVO;
+import com.tamakara.litebooth.domain.vo.home.HomeInfoVO;
 import com.tamakara.litebooth.service.HomeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

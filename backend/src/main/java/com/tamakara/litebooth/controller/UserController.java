@@ -2,9 +2,9 @@ package com.tamakara.litebooth.controller;
 
 import com.tamakara.litebooth.domain.dto.LoginFormDTO;
 import com.tamakara.litebooth.domain.dto.RegisterFormDTO;
-import com.tamakara.litebooth.domain.vo.LoginVO;
-import com.tamakara.litebooth.domain.vo.ProfileVO;
-import com.tamakara.litebooth.domain.vo.RegisterVO;
+import com.tamakara.litebooth.domain.vo.user.LoginVO;
+import com.tamakara.litebooth.domain.vo.user.ProfileVO;
+import com.tamakara.litebooth.domain.vo.user.RegisterVO;
 import com.tamakara.litebooth.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.tamakara.litebooth.controller;
 
-import com.tamakara.litebooth.domain.vo.ItemCardListVO;
-import com.tamakara.litebooth.domain.vo.ItemInfoVO;
+import com.tamakara.litebooth.domain.vo.item.ItemCardListVO;
+import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
 import com.tamakara.litebooth.service.ItemService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

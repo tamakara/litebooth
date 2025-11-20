@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.entity.Item;
 import com.tamakara.litebooth.domain.pojo.ItemCard;
 import com.tamakara.litebooth.domain.vo.ItemCardListVO;
+import com.tamakara.litebooth.domain.vo.ItemInfoVO;
 import com.tamakara.litebooth.mapper.FileMapper;
 import com.tamakara.litebooth.mapper.ItemMapper;
 import com.tamakara.litebooth.service.FileService;
@@ -45,5 +46,22 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
                 ).toList();
 
         return new ItemCardListVO(items, page.getCurrent(), page.getSize(), page.getTotal());
+    }
+
+    @Override
+    public ItemInfoVO getItemInfoVO(Long itemId) {
+        Item item = itemMapper.selectById(itemId);
+        if (item == null) {
+            throw new IllegalArgumentException("Item not found");
+        }
+        ItemInfoVO vo = new ItemInfoVO();
+        vo.setId(item.getId());
+        vo.setName(item.getName());
+        vo.setGroup(item.getGroup());
+        vo.setCover(fileService.getFileUrl(item.getCover(), 86400));
+        vo.setPrice(item.getPrice());
+        vo.setStock(item.getStock());
+        vo.setDescription(item.getDescription());
+        return vo;
     }
 }

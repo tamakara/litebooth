@@ -1,25 +1,17 @@
 <script setup>
-import {ref} from 'vue'
+import {useItemStore} from '@/stores/itemStore'
+import {computed, onMounted} from "vue";
+import {useRouter} from "vue-router";
 
-// 示例数据：先不对接后端
-const loading = ref(false)
-const detail = ref({
-  id: 1,
-  name: '示例商品：AI 写真套餐',
-  group: '1',
-  cover: 'https://via.placeholder.com/480x320.png?text=Item+Cover',
-  price: 19.9,
-  salesCount: 128,
-  stock: 50,
-  qty: 1,
-  // 支付方式示例字段
-  payType: 'wechat',
-  description: '示例商品介绍：这是一个用于演示的商品详情页面。',
-  descHtml: '',
-  images: [
-    'https://via.placeholder.com/900x400.png?text=Detail+Image+1',
-    'https://via.placeholder.com/900x400.png?text=Detail+Image+2'
-  ]
+const item = useItemStore()
+const router = useRouter()
+
+const buyForm = computed(() => item.buyForm)
+const itemInfo = computed(() => item.itemInfo)
+const loading = computed(() => item.loading)
+
+onMounted(() => {
+  item.fetchItemInfo(router.currentRoute.value.params.id)
 })
 </script>
 
@@ -27,43 +19,33 @@ const detail = ref({
   <div class="page">
     <div class="wrap" v-loading="loading">
       <el-card class="panel main-panel">
-        <template #header>
-          <div class="panel-header">
-            <div class="panel-title">
-              <span class="tag">商品详情</span>
-            </div>
-          </div>
-        </template>
-
         <div class="main-body">
           <div class="cover-col">
             <el-image
-                :src="detail.cover"
+                :src="itemInfo.cover"
                 fit="cover"
                 class="cover-img"
-                :preview-src-list="[detail.cover]"
+                :preview-src-list="[itemInfo.cover]"
             />
           </div>
 
           <div class="info-col">
-            <div class="item-name">{{ detail.name }}</div>
-
+            <div class="item-name">{{ itemInfo.name }}</div>
             <div class="price-row">
-              <div class="price">¥ {{ Number(detail.price).toFixed(2) }}</div>
-              <div class="meta">
-                <span class="sold">已售 {{ detail.salesCount }}</span>
-                <span class="stock">库存 {{ detail.stock }}</span>
+              <div class="price">¥ {{ Number(itemInfo.price).toFixed(2) }}</div>
+              <div class="stock-line">
+                库存：{{ itemInfo.stock }}
               </div>
             </div>
 
             <div class="form-row">
               <div class="label">购买数量</div>
-              <el-input-number v-model="detail.qty" :min="1" :max="detail.stock || 999" />
+              <el-input-number v-model="buyForm.qty" :min="1" :max="itemInfo.stock"/>
             </div>
 
             <div class="form-row">
               <div class="label">支付方式</div>
-              <el-radio-group v-model="detail.payType">
+              <el-radio-group v-model="buyForm.payType">
                 <el-radio label="wechat">微信</el-radio>
                 <el-radio label="alipay">支付宝</el-radio>
               </el-radio-group>
@@ -79,24 +61,11 @@ const detail = ref({
       <el-card class="panel desc-panel">
         <template #header>
           <div class="panel-header">
-            <h3 class="title small">商品详情介绍</h3>
+            <h3 class="title small">商品介绍</h3>
           </div>
         </template>
         <div class="desc-body">
-          <div v-if="detail.descHtml" class="rich-text" v-html="detail.descHtml" />
-          <template v-else>
-            <p class="desc-text">{{ detail.description }}</p>
-            <div class="desc-images" v-if="detail.images && detail.images.length">
-              <el-image
-                  v-for="(img, i) in detail.images"
-                  :key="i"
-                  :src="img"
-                  fit="contain"
-                  class="desc-img"
-                  :preview-src-list="detail.images"
-              />
-            </div>
-          </template>
+          <div class="rich-text" v-html="itemInfo.description"/>
         </div>
       </el-card>
 
@@ -117,7 +86,7 @@ const detail = ref({
 <style scoped>
 .page {
   max-width: 980px;
-  margin: 32px auto 0; /* 顶栏与内容之间预留 32px 距离 */
+  margin: 32px auto 0;
 }
 
 .wrap {
@@ -193,21 +162,12 @@ const detail = ref({
   color: #ef4444;
 }
 
-.meta {
-  display: flex;
-  gap: 16px;
-  font-size: 14px;
-  color: #6b7280;
+.stock-line {
+  font-size: 15px; /* 字号略大一些 */
+  font-weight: 500;
+  color: #10b981; /* 绿色强调库存 */
 }
 
-.sold,
-.stock {
-  font-size: 15px;
-}
-
-.stock {
-  color: #10b981;
-}
 
 .form-row {
   display: flex;

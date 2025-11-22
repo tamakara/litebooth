@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 import {getItemInfoVO} from "@/api/item.js";
-import {createOrder} from "@/api/order.js";
+import {cancelOrder, createOrder} from "@/api/order.js";
 
 export const useItemStore = defineStore('item', {
     state: () => ({
@@ -28,7 +28,7 @@ export const useItemStore = defineStore('item', {
             quantity: 1,
             totalPrice: 19.98,
             payMethod: 'wechat',
-            createTime: '2024-06-01 12:00:00',
+            createdAt: '2024-06-01 12:00:00',
         }
     }),
     getters: {},
@@ -45,10 +45,14 @@ export const useItemStore = defineStore('item', {
                 this.loading = false
             }
         },
+
         async createOrder() {
             const response = await createOrder(this.orderForm)
             this.orderInfo = response.data
-            console.log(this.orderInfo)
+        },
+
+        async cancelOrder() {
+            await cancelOrder(this.orderInfo.id)
         }
     }
 })

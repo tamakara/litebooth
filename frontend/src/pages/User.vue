@@ -1,11 +1,9 @@
 <script setup>
 import {reactive, watchEffect, computed, ref} from 'vue'
 import {useUserStore} from '../stores/userStore'
-import {useOrderStore} from '../stores/orderStore'
 import {ElMessage} from 'element-plus'
 
 const user = useUserStore()
-const orders = useOrderStore()
 
 const fileInput = ref(null)
 

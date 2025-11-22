@@ -32,7 +32,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             throw new RuntimeException("商品不存在");
         }
 
-
         Order order = new Order();
         order.setUserId(userId);
         order.setUserMail(user.getEmail());
@@ -49,7 +48,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order = orderMapper.selectById(order.getId());
 
         OrderVO vo = new OrderVO();
-        vo.setId(order.getId());
+        vo.setId(String.valueOf(order.getId()));
         vo.setUserMail(order.getUserMail());
         vo.setStatus(order.getStatus());
         vo.setItemName(order.getItemName());
@@ -60,5 +59,19 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         vo.setCreatedAt(order.getCreatedAt());
 
         return vo;
+    }
+
+    @Override
+    public void cancelOrder(Long userId, Long orderId) {
+        Order order = orderMapper.selectById(orderId);
+        if (order == null || !order.getUserId().equals(userId)) {
+            throw new RuntimeException("订单不存在或无权限取消");
+        }
+
+        if (!"未支付".equals(order.getStatus())) {
+            throw new RuntimeException("只有未支付的订单才能取消");
+        }
+
+        orderMapper.deleteById(orderId);
     }
 }

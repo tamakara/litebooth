@@ -10,7 +10,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderVO {
-    private Long id;
+    private String id;
     private String status;
     private String userMail;
     private String itemName;

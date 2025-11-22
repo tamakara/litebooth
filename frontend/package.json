@@ -12,6 +12,7 @@
     "@element-plus/icons-vue": "^2.3.2",
     "axios": "^1.13.2",
     "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.19",
     "element-plus": "^2.11.7",
     "pinia": "^3.0.4",
     "vite-plugin-vue-devtools": "^8.0.4",

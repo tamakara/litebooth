@@ -20,8 +20,18 @@ public class OrderController {
             @RequestAttribute("userId") Long userId,
             @RequestBody OrderFormDTO orderFormDTO
     ) {
-        OrderVO vo = orderService.createOrder(userId,orderFormDTO);
+        OrderVO vo = orderService.createOrder(userId, orderFormDTO);
         return ResponseEntity.ok(vo);
     }
+
+    @DeleteMapping("/cancelOrder/{orderId}")
+    public ResponseEntity<Void> cancelOrder(
+            @RequestAttribute("userId") Long userId,
+            @PathVariable("orderId") Long orderId
+    ) {
+        orderService.cancelOrder(userId, orderId);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

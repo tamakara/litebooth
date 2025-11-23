@@ -30,6 +30,11 @@ const onCancelOrderClick = async () => {
   orderDialogVisible.value = false
 }
 
+const onPayOrderClick = async () => {
+  await item.payOrder()
+  orderDialogVisible.value = false
+}
+
 onMounted(() => {
   item.fetchItemInfo(router.currentRoute.value.params.id)
 })
@@ -69,7 +74,7 @@ onMounted(() => {
             <div class="form-row">
               <div class="label">支付方式</div>
               <el-radio-group v-model="orderForm.payMethod">
-                <el-radio label="wechat">微信</el-radio>
+                <el-radio label="wxpay">微信</el-radio>
                 <el-radio label="alipay">支付宝</el-radio>
               </el-radio-group>
             </div>
@@ -119,13 +124,13 @@ onMounted(() => {
           <div class="order-row"><span class="label">总价</span><span
               class="price">¥ {{ Number(orderInfo.totalPrice).toFixed(2) }}</span></div>
           <div class="order-row"><span
-              class="label">支付方式</span><span>{{ orderInfo.payMethod === 'wechat' ? '微信' : '支付宝' }}</span></div>
+              class="label">支付方式</span><span>{{ orderInfo.payMethod === 'wxpay' ? '微信' : '支付宝' }}</span></div>
           <div class="order-row"><span class="label">创建时间</span><span>{{ orderCreatedAtFormatted }}</span></div>
         </div>
         <template #footer>
           <span class="dialog-footer">
             <el-button type="danger" @click="onCancelOrderClick">取消订单</el-button>
-            <el-button type="primary">去付款</el-button>
+            <el-button type="primary" @click="onPayOrderClick">去付款</el-button>
           </span>
         </template>
       </el-dialog>

@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 import {getItemInfoVO} from "@/api/item.js";
-import {cancelOrder, createOrder} from "@/api/order.js";
+import {cancelOrder, createOrder, payOrder} from "@/api/order.js";
 
 export const useItemStore = defineStore('item', {
     state: () => ({
@@ -17,7 +17,7 @@ export const useItemStore = defineStore('item', {
         orderForm: {
             itemId: 1,
             quantity: 1,
-            payMethod: 'wechat'
+            payMethod: 'wxpay'
         },
         orderInfo: {
             id: 1,
@@ -27,7 +27,7 @@ export const useItemStore = defineStore('item', {
             itemPrice: 19.98,
             quantity: 1,
             totalPrice: 19.98,
-            payMethod: 'wechat',
+            payMethod: 'wxpay',
             createdAt: '2024-06-01 12:00:00',
         }
     }),
@@ -53,6 +53,10 @@ export const useItemStore = defineStore('item', {
 
         async cancelOrder() {
             await cancelOrder(this.orderInfo.id)
+        },
+
+        async payOrder() {
+            await payOrder(this.orderInfo.id)
         }
     }
 })

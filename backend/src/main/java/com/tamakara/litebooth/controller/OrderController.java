@@ -33,5 +33,14 @@ public class OrderController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/payOrder/{orderId}")
+    public ResponseEntity<Void> payOrder(
+            @RequestAttribute("userId") Long userId,
+            @PathVariable("orderId") Long orderId
+    ) {
+        orderService.payOrder(userId, orderId);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

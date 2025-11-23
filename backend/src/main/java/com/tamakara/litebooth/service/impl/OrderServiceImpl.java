@@ -74,4 +74,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
         orderMapper.deleteById(orderId);
     }
+
+    @Override
+    public void payOrder(Long userId, Long orderId) {
+        Order order = orderMapper.selectById(orderId);
+        order.setStatus("已支付");
+        orderMapper.updateById(order);
+    }
 }

@@ -9,4 +9,6 @@ public interface OrderService extends IService<Order> {
     OrderVO createOrder(Long userId, OrderFormDTO orderFormDTO);
 
     void cancelOrder(Long userId, Long orderId);
+
+    void payOrder(Long userId, Long orderId);
 }

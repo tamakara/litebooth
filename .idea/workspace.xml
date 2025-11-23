@@ -4,20 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成创建订单接口">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/order/OrderVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/order/OrderVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Item.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/itemStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/itemStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/orderStore.js" beforeDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成支付接口">
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +18,8 @@
         <option value="TypeScript File" />
         <option value="Vue Composition API Component" />
         <option value="JavaScript File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -185,8 +173,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-84258761d1cc-intellij.indexing.shared.core-IU-243.28141.18" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.28141.18" />
       </set>
     </attachedChunks>
   </component>
@@ -217,7 +205,9 @@
       <workItem from="1763646058579" duration="2987000" />
       <workItem from="1763662457770" duration="8272000" />
       <workItem from="1763671730817" duration="1138000" />
-      <workItem from="1763821311617" duration="4963000" />
+      <workItem from="1763821311617" duration="19328000" />
+      <workItem from="1763923269087" duration="192000" />
+      <workItem from="1763923659479" duration="7863000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -355,7 +345,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763672587152</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="完成取消订单功能">
+      <option name="closed" value="true" />
+      <created>1763830469641</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1763830469641</updated>
+    </task>
+    <task id="LOCAL-00019" summary="完成支付接口">
+      <option name="closed" value="true" />
+      <created>1763932934152</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1763932934152</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,6 +394,16 @@
     <MESSAGE value="创建商品详情页面" />
     <MESSAGE value="完成商品详情页面对接" />
     <MESSAGE value="完成创建订单接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成创建订单接口" />
+    <MESSAGE value="完成取消订单功能" />
+    <MESSAGE value="完成支付接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成支付接口" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>

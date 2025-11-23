@@ -8,3 +8,7 @@ export function cancelOrder(orderId) {
     return http.delete(`/order/cancelOrder/${orderId}`)
 }
 
+export function payOrder(orderId) {
+    return http.post(`/order/payOrder/${orderId}`)
+}
+

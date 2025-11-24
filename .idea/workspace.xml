@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成支付接口">
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Stock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/StockMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/userStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/userStore.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +29,8 @@
         <option value="TypeScript File" />
         <option value="Vue Composition API Component" />
         <option value="JavaScript File" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -207,7 +218,7 @@
       <workItem from="1763671730817" duration="1138000" />
       <workItem from="1763821311617" duration="19328000" />
       <workItem from="1763923269087" duration="192000" />
-      <workItem from="1763923659479" duration="7863000" />
+      <workItem from="1763923659479" duration="16418000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -361,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763932934152</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="完成支付接口">
+      <option name="closed" value="true" />
+      <created>1763932953659</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1763932953659</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

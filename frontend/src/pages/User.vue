@@ -36,6 +36,7 @@ const openEmailDialog = () => {
   emailEdit.code = ''
   emailDialogVisible.value = true
 }
+
 const openPasswordDialog = () => {
   if (!user.isLogin) return
   passwordEdit.oldPassword = ''
@@ -83,7 +84,7 @@ const submitPasswordChange = () => {
 const myOrders = computed(() => {
   if (!user.isLogin) return []
   const email = user.profile?.email?.toLowerCase() || ''
-  return orders.orders.filter(o => o.user.email.toLowerCase() === email)
+  return user.orders.filter(o => o.user.email.toLowerCase() === email)
 })
 const fmt = (d) => new Date(d).toLocaleString()
 const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') ? 'success' : 'info')

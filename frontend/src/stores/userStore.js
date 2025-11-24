@@ -9,6 +9,7 @@ export const useUserStore = defineStore('user', {
             email: '',
             avatar: ''
         },
+        orders:[],
         loading: false,
         error: ''
     }),
@@ -23,7 +24,7 @@ export const useUserStore = defineStore('user', {
             await new Promise(r => setTimeout(r, 400))
 
             const res = await login(form)
-            console.log(res)
+
             this.token = res.data.token
             this.profile = res.data.profile
             localStorage.setItem('token', this.token)
@@ -53,6 +54,12 @@ export const useUserStore = defineStore('user', {
                 const res = await getProfileVO()
                 this.profile = res.data
             }
+        },
+
+        async getOrders() {
+            // const res = await getOrders()
+            // this.orders = res.data
+
         },
 
         async updateAvatar(newAvatarFile) {

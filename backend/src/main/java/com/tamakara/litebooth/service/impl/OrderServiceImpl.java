@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.dto.OrderFormDTO;
 import com.tamakara.litebooth.domain.entity.Item;
 import com.tamakara.litebooth.domain.entity.Order;
+import com.tamakara.litebooth.domain.entity.Stock;
 import com.tamakara.litebooth.domain.entity.User;
 import com.tamakara.litebooth.domain.vo.order.OrderVO;
 import com.tamakara.litebooth.mapper.ItemMapper;
 import com.tamakara.litebooth.mapper.OrderMapper;
+import com.tamakara.litebooth.mapper.StockMapper;
 import com.tamakara.litebooth.mapper.UserMapper;
 import com.tamakara.litebooth.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private final OrderMapper orderMapper;
     private final ItemMapper itemMapper;
     private final UserMapper userMapper;
+    private final StockMapper stockMapper;
 
     @Override
     public OrderVO createOrder(Long userId, OrderFormDTO orderFormDTO) {
@@ -78,7 +81,24 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Override
     public void payOrder(Long userId, Long orderId) {
         Order order = orderMapper.selectById(orderId);
-        order.setStatus("已支付");
+        order.setStatus("待发货");
+        orderMapper.updateById(order);
+
+        Item item = itemMapper.selectById(order.getItemId());
+
+        if (item.getIsAutoDelivery()) {
+            deliveryOrder(0L, orderId);
+        }
+
+    }
+
+    @Override
+    public void deliveryOrder(Long userId, Long orderId) {
+        Order order = orderMapper.selectById(orderId);
+        order.setStatus("已发货");
+
+        Stock stock = stockMapper.selectByItemId(order.getItemId());
+        order.setContent(stock.getContent());
         orderMapper.updateById(order);
     }
 }

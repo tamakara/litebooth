@@ -31,24 +31,25 @@ CREATE TABLE `file`
 
 CREATE TABLE `item`
 (
-    `id`          BIGINT       NOT NULL AUTO_INCREMENT,
-    `is_active`   BOOLEAN      NOT NULL,
-    `name`        VARCHAR(255) NOT NULL,
-    `price`       DOUBLE       NOT NULL,
-    `stock`       BIGINT       NOT NULL,
-    `group`       VARCHAR(255) NOT NULL,
-    `cover`       BIGINT       NULL,
-    `description` TEXT         NOT NULL,
-    `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `id`               BIGINT       NOT NULL AUTO_INCREMENT,
+    `is_active`        BOOLEAN      NOT NULL,
+    `is_auto_delivery` BOOLEAN      NOT NULL,
+    `name`             VARCHAR(255) NOT NULL,
+    `price`            DOUBLE       NOT NULL,
+    `stock`            BIGINT       NOT NULL,
+    `group`            VARCHAR(255) NOT NULL,
+    `cover`            BIGINT       NULL,
+    `description`      TEXT         NOT NULL,
+    `created_at`       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
-INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `stock`, `group`, `cover`, `description`)
-VALUES (1, true, '示例商品 1', 1.11, 1, '1', 2, 'a');
-INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `stock`, `group`, `cover`, `description`)
-VALUES (2, false, '示例商品 2', 2.22, 2, '2', 2, 'b');
-INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `stock`, `group`, `cover`, `description`)
-VALUES (3, true, '示例商品 3', 3.33, 3, '3', 2, 'c');
+INSERT INTO `item` (`id`, `is_active`, `is_auto_delivery`, `name`, `price`, `stock`, `group`, `cover`, `description`)
+VALUES (1, true, true, '示例商品 1', 1.11, 1, '1', 2, 'a');
+INSERT INTO `item` (`id`, `is_active`, `is_auto_delivery`, `name`, `price`, `stock`, `group`, `cover`, `description`)
+VALUES (2, true, false, '示例商品 2', 2.22, 2, '2', 2, 'b');
+INSERT INTO `item` (`id`, `is_active`, `is_auto_delivery`, `name`, `price`, `stock`, `group`, `cover`, `description`)
+VALUES (3, true, true, '示例商品 3', 3.33, 3, '3', 2, 'c');
 
 CREATE TABLE `home_info`
 (
@@ -73,8 +74,8 @@ VALUES (0, '全部');
 CREATE TABLE `order`
 (
     `id`          BIGINT       NOT NULL,
-    `user_id`     BIGINT       NOT NULL,
     `status`      VARCHAR(255) NOT NULL,
+    `user_id`     BIGINT       NOT NULL,
     `user_mail`   VARCHAR(255) NOT NULL,
     `item_id`     BIGINT       NOT NULL,
     `item_name`   VARCHAR(255) NOT NULL,
@@ -82,6 +83,20 @@ CREATE TABLE `order`
     `quantity`    BIGINT       NOT NULL,
     `total_price` DOUBLE       NOT NULL,
     `pay_method`  VARCHAR(255) NOT NULL,
+    `content`     TEXT      DEFAULT NULL,
     `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE `stock`
+(
+    `id`         BIGINT       NOT NULL,
+    `status`     VARCHAR(255) NOT NULL,
+    `item_id`    BIGINT       NOT NULL,
+    `order_id`   BIGINT       NOT NULL,
+    `content`    TEXT         NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;

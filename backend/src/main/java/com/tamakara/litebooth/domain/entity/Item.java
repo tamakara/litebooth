@@ -17,6 +17,9 @@ public class Item {
     @TableField(value = "is_active")
     private Boolean isActive;
 
+    @TableField(value = "is_auto_delivery")
+    private Boolean isAutoDelivery;
+
     @TableField(value = "name")
     private String name;
 

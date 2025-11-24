@@ -1329,182 +1329,197 @@ user_service_db|schema||user_service_user||UPDATE|G</Grants>
       <Position>2</Position>
       <StoredType>tinyint(1)|0s</StoredType>
     </column>
-    <column id="328" parent="306" name="name">
+    <column id="328" parent="306" name="is_auto_delivery">
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StoredType>varchar(255)|0s</StoredType>
+      <StoredType>tinyint(1)|0s</StoredType>
     </column>
-    <column id="329" parent="306" name="price">
+    <column id="329" parent="306" name="name">
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <StoredType>double|0s</StoredType>
-    </column>
-    <column id="330" parent="306" name="stock">
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-      <StoredType>bigint|0s</StoredType>
-    </column>
-    <column id="331" parent="306" name="group">
-      <NotNull>1</NotNull>
-      <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="332" parent="306" name="cover">
-      <Position>7</Position>
+    <column id="330" parent="306" name="price">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>double|0s</StoredType>
+    </column>
+    <column id="331" parent="306" name="stock">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="333" parent="306" name="description">
+    <column id="332" parent="306" name="group">
       <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="333" parent="306" name="cover">
       <Position>8</Position>
+      <StoredType>bigint|0s</StoredType>
+    </column>
+    <column id="334" parent="306" name="description">
+      <NotNull>1</NotNull>
+      <Position>9</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="334" parent="306" name="created_at">
+    <column id="335" parent="306" name="created_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-      <Position>9</Position>
-      <StoredType>timestamp|0s</StoredType>
-    </column>
-    <column id="335" parent="306" name="updated_at">
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
       <Position>10</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <index id="336" parent="306" name="PRIMARY">
+    <column id="336" parent="306" name="updated_at">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+      <Position>11</Position>
+      <StoredType>timestamp|0s</StoredType>
+    </column>
+    <index id="337" parent="306" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="337" parent="306" name="PRIMARY">
+    <key id="338" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="338" parent="307" name="id">
+    <column id="339" parent="307" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="339" parent="307" name="user_id">
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-      <StoredType>bigint|0s</StoredType>
-    </column>
     <column id="340" parent="307" name="status">
       <NotNull>1</NotNull>
-      <Position>3</Position>
+      <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="341" parent="307" name="user_mail">
+    <column id="341" parent="307" name="user_id">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>bigint|0s</StoredType>
+    </column>
+    <column id="342" parent="307" name="user_mail">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="342" parent="307" name="item_id">
+    <column id="343" parent="307" name="item_id">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="343" parent="307" name="item_name">
+    <column id="344" parent="307" name="item_name">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="344" parent="307" name="item_price">
+    <column id="345" parent="307" name="item_price">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="345" parent="307" name="quantity">
+    <column id="346" parent="307" name="quantity">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="346" parent="307" name="total_price">
+    <column id="347" parent="307" name="total_price">
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="347" parent="307" name="pay_method">
+    <column id="348" parent="307" name="pay_method">
       <NotNull>1</NotNull>
       <Position>10</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="348" parent="307" name="created_at">
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    <column id="349" parent="307" name="content">
       <Position>11</Position>
+      <StoredType>text|0s</StoredType>
+    </column>
+    <column id="350" parent="307" name="created_at">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <Position>12</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <index id="349" parent="307" name="PRIMARY">
+    <column id="351" parent="307" name="updated_at">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+      <Position>13</Position>
+      <StoredType>timestamp|0s</StoredType>
+    </column>
+    <index id="352" parent="307" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="350" parent="307" name="PRIMARY">
+    <key id="353" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="351" parent="308" name="id">
+    <column id="354" parent="308" name="id">
       <AutoIncrement>2</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="352" parent="308" name="avatar_file_id">
+    <column id="355" parent="308" name="avatar_file_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="353" parent="308" name="username">
+    <column id="356" parent="308" name="username">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="354" parent="308" name="password">
+    <column id="357" parent="308" name="password">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="355" parent="308" name="email">
+    <column id="358" parent="308" name="email">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="356" parent="308" name="created_at">
+    <column id="359" parent="308" name="created_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>6</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="357" parent="308" name="updated_at">
+    <column id="360" parent="308" name="updated_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
       <Position>7</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <index id="358" parent="308" name="PRIMARY">
+    <index id="361" parent="308" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="359" parent="308" name="idx_username">
+    <index id="362" parent="308" name="idx_username">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="360" parent="308" name="idx_email">
+    <index id="363" parent="308" name="idx_email">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="361" parent="308" name="PRIMARY">
+    <key id="364" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="362" parent="308" name="idx_username">
+    <key id="365" parent="308" name="idx_username">
       <UnderlyingIndexName>idx_username</UnderlyingIndexName>
     </key>
-    <key id="363" parent="308" name="idx_email">
+    <key id="366" parent="308" name="idx_email">
       <UnderlyingIndexName>idx_email</UnderlyingIndexName>
     </key>
   </database-model>

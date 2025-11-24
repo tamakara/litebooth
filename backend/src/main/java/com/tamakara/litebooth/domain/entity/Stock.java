@@ -9,37 +9,19 @@ import lombok.Data;
 import java.time.Instant;
 
 @Data
-@TableName("`order`")
-public class Order {
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+@TableName("stock")
+public class Stock {
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     @TableField(value = "status")
     private String status;
 
-    @TableField(value = "user_id")
-    private Long userId;
-
-    @TableField(value = "user_mail")
-    private String userMail;
-
     @TableField(value = "item_id")
     private Long itemId;
 
-    @TableField(value = "item_name")
-    private String itemName;
-
-    @TableField(value = "item_price")
-    private Double itemPrice;
-
-    @TableField(value = "quantity")
-    private Long quantity;
-
-    @TableField(value = "total_price")
-    private Double totalPrice;
-
-    @TableField(value = "pay_method")
-    private String payMethod;
+    @TableField(value = "order_id")
+    private Long orderId;
 
     @TableField(value = "content")
     private String content;

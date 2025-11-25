@@ -83,7 +83,7 @@ CREATE TABLE `order`
     `quantity`    BIGINT       NOT NULL,
     `total_price` DOUBLE       NOT NULL,
     `pay_method`  VARCHAR(255) NOT NULL,
-    `content`     TEXT      DEFAULT NULL,
+    `stock_id`    BIGINT    DEFAULT NULL,
     `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
@@ -94,7 +94,7 @@ CREATE TABLE `stock`
     `id`         BIGINT       NOT NULL,
     `status`     VARCHAR(255) NOT NULL,
     `item_id`    BIGINT       NOT NULL,
-    `order_id`   BIGINT       NOT NULL,
+    `order_id`   BIGINT    DEFAULT NULL,
     `content`    TEXT         NOT NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

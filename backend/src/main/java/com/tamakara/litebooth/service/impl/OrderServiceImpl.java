@@ -14,6 +14,7 @@ import com.tamakara.litebooth.mapper.UserMapper;
 import com.tamakara.litebooth.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +25,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private final StockMapper stockMapper;
 
     @Override
+    @Transactional
     public OrderVO createOrder(Long userId, OrderFormDTO orderFormDTO) {
         User user = userMapper.selectById(userId);
         if (user == null) {
@@ -65,6 +67,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
+    @Transactional
     public void cancelOrder(Long userId, Long orderId) {
         Order order = orderMapper.selectById(orderId);
         if (order == null || !order.getUserId().equals(userId)) {
@@ -79,6 +82,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
+    @Transactional
     public void payOrder(Long userId, Long orderId) {
         Order order = orderMapper.selectById(orderId);
         order.setStatus("待发货");
@@ -89,16 +93,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         if (item.getIsAutoDelivery()) {
             deliveryOrder(0L, orderId);
         }
-
     }
 
     @Override
+    @Transactional
     public void deliveryOrder(Long userId, Long orderId) {
         Order order = orderMapper.selectById(orderId);
         order.setStatus("已发货");
-
         Stock stock = stockMapper.selectByItemId(order.getItemId());
-        order.setContent(stock.getContent());
+        order.setStockId(stock.getId());
+        stock.setOrderId(order.getId());
+        stockMapper.updateById(stock);
         orderMapper.updateById(order);
     }
 }

@@ -33,6 +33,7 @@ const onCancelOrderClick = async () => {
 const onPayOrderClick = async () => {
   await item.payOrder()
   orderDialogVisible.value = false
+  await router.push({name: 'user'})
 }
 
 onMounted(() => {

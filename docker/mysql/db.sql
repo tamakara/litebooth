@@ -36,7 +36,6 @@ CREATE TABLE `item`
     `is_auto_delivery` BOOLEAN      NOT NULL,
     `name`             VARCHAR(255) NOT NULL,
     `price`            DOUBLE       NOT NULL,
-    `stock`            BIGINT       NOT NULL,
     `group`            VARCHAR(255) NOT NULL,
     `cover`            BIGINT       NULL,
     `description`      TEXT         NOT NULL,
@@ -83,11 +82,9 @@ CREATE TABLE `order`
     `quantity`    BIGINT       NOT NULL,
     `total_price` DOUBLE       NOT NULL,
     `pay_method`  VARCHAR(255) NOT NULL,
-    `stock_id`    BIGINT    DEFAULT NULL,
     `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY (`stock_id`)
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE `stock`
@@ -99,6 +96,6 @@ CREATE TABLE `stock`
     `content`    TEXT         NOT NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY (`order_id`)
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
+

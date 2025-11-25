@@ -41,9 +41,6 @@ public class Order {
     @TableField(value = "pay_method")
     private String payMethod;
 
-    @TableField(value = "stock_id")
-    private Long stockId;
-
     @TableField(value = "created_at")
     private Instant createdAt;
 

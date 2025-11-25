@@ -37,7 +37,7 @@ const onPayOrderClick = async () => {
 }
 
 onMounted(() => {
-  item.fetchItemInfo(router.currentRoute.value.params.id)
+  item.fetchItem(router.currentRoute.value.params.id)
 })
 </script>
 

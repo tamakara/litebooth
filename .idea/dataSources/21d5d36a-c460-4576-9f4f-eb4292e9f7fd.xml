@@ -1438,137 +1438,133 @@ user_service_db|schema||user_service_user||UPDATE|G</Grants>
       <Position>10</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="350" parent="307" name="stock_id">
-      <Position>11</Position>
-      <StoredType>bigint|0s</StoredType>
-    </column>
-    <column id="351" parent="307" name="created_at">
+    <column id="350" parent="307" name="created_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <Position>11</Position>
+      <StoredType>timestamp|0s</StoredType>
+    </column>
+    <column id="351" parent="307" name="updated_at">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
       <Position>12</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="352" parent="307" name="updated_at">
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
-      <Position>13</Position>
-      <StoredType>timestamp|0s</StoredType>
-    </column>
-    <index id="353" parent="307" name="PRIMARY">
+    <index id="352" parent="307" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="354" parent="307" name="PRIMARY">
+    <key id="353" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="355" parent="308" name="id">
+    <column id="354" parent="308" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="356" parent="308" name="status">
+    <column id="355" parent="308" name="status">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="357" parent="308" name="item_id">
+    <column id="356" parent="308" name="item_id">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="358" parent="308" name="order_id">
+    <column id="357" parent="308" name="order_id">
       <Position>4</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="359" parent="308" name="content">
+    <column id="358" parent="308" name="content">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="360" parent="308" name="created_at">
+    <column id="359" parent="308" name="created_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>6</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="361" parent="308" name="updated_at">
+    <column id="360" parent="308" name="updated_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
       <Position>7</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <index id="362" parent="308" name="PRIMARY">
+    <index id="361" parent="308" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="363" parent="308" name="PRIMARY">
+    <key id="362" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="364" parent="309" name="id">
+    <column id="363" parent="309" name="id">
       <AutoIncrement>2</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="365" parent="309" name="avatar_file_id">
+    <column id="364" parent="309" name="avatar_file_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="366" parent="309" name="username">
+    <column id="365" parent="309" name="username">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="367" parent="309" name="password">
+    <column id="366" parent="309" name="password">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="368" parent="309" name="email">
+    <column id="367" parent="309" name="email">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="369" parent="309" name="created_at">
+    <column id="368" parent="309" name="created_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>6</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="370" parent="309" name="updated_at">
+    <column id="369" parent="309" name="updated_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
       <Position>7</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <index id="371" parent="309" name="PRIMARY">
+    <index id="370" parent="309" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="372" parent="309" name="idx_username">
+    <index id="371" parent="309" name="idx_username">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="373" parent="309" name="idx_email">
+    <index id="372" parent="309" name="idx_email">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="374" parent="309" name="PRIMARY">
+    <key id="373" parent="309" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="375" parent="309" name="idx_username">
+    <key id="374" parent="309" name="idx_username">
       <UnderlyingIndexName>idx_username</UnderlyingIndexName>
     </key>
-    <key id="376" parent="309" name="idx_email">
+    <key id="375" parent="309" name="idx_email">
       <UnderlyingIndexName>idx_email</UnderlyingIndexName>
     </key>
   </database-model>

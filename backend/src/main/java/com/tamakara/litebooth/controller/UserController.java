@@ -59,7 +59,7 @@ public class UserController {
             @RequestParam(value = "pageNumber", defaultValue = "1") Long pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "10") Long pageSize
     ) {
-        OrderListVO vo = userService.getOrderListVO(userId,pageNumber,pageSize);
+        OrderListVO vo = userService.getOrderListVO(userId, pageNumber, pageSize);
         return ResponseEntity.ok(vo);
     }
 }

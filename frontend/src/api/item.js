@@ -6,6 +6,6 @@ export function getItemCardListVO(searchForm) {
     })
 }
 
-export function getItemInfoVO(itemId) {
-    return http.get(`/item/getItemInfoVO/${itemId}`)
+export function getItemVO(itemId) {
+    return http.get(`/item/getItemVO/${itemId}`)
 }

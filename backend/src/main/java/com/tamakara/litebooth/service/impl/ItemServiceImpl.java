@@ -6,8 +6,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.entity.Item;
 import com.tamakara.litebooth.domain.pojo.ItemCard;
 import com.tamakara.litebooth.domain.vo.item.ItemCardListVO;
-import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
+import com.tamakara.litebooth.domain.vo.item.ItemVO;
 import com.tamakara.litebooth.mapper.ItemMapper;
+import com.tamakara.litebooth.mapper.StockMapper;
 import com.tamakara.litebooth.service.FileService;
 import com.tamakara.litebooth.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.List;
 public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements ItemService {
     private final ItemMapper itemMapper;
     private final FileService fileService;
+    private final StockMapper stockMapper;
 
     @Override
     public ItemCardListVO getItemCardListVO(String keyword, String group, Long pageNumber, Long pageSize) {
@@ -48,18 +50,18 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
     }
 
     @Override
-    public ItemInfoVO getItemInfoVO(Long itemId) {
+    public ItemVO getItemVO(Long itemId) {
         Item item = itemMapper.selectById(itemId);
         if (item == null) {
             throw new IllegalArgumentException("Item not found");
         }
-        ItemInfoVO vo = new ItemInfoVO();
+        ItemVO vo = new ItemVO();
         vo.setId(item.getId());
         vo.setName(item.getName());
         vo.setGroup(item.getGroup());
         vo.setCover(fileService.getFileUrl(item.getCover(), 86400));
         vo.setPrice(item.getPrice());
-        vo.setStock(item.getStock());
+        vo.setStock(stockMapper.selectCountByItemId(item.getId(), "未发货"));
         vo.setDescription(item.getDescription());
         return vo;
     }

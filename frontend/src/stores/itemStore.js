@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {getItemInfoVO} from "@/api/item.js";
+import {getItemVO} from "@/api/item.js";
 import {cancelOrder, createOrder, payOrder} from "@/api/order.js";
 
 export const useItemStore = defineStore('item', {
@@ -33,10 +33,10 @@ export const useItemStore = defineStore('item', {
     }),
     getters: {},
     actions: {
-        async fetchItemInfo(itemId) {
+        async fetchItem(itemId) {
             this.loading = true
             try {
-                const response = await getItemInfoVO(itemId)
+                const response = await getItemVO(itemId)
                 this.itemInfo = response.data
                 this.orderForm.itemId = this.itemInfo.id
             } catch (error) {

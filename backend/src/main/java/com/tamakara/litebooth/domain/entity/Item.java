@@ -26,9 +26,6 @@ public class Item {
     @TableField(value = "price")
     private Double price;
 
-    @TableField(value = "stock")
-    private Long stock;
-
     @TableField(value = "`group`")
     private String group;
 

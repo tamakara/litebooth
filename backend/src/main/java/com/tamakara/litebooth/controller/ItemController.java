@@ -1,7 +1,7 @@
 package com.tamakara.litebooth.controller;
 
 import com.tamakara.litebooth.domain.vo.item.ItemCardListVO;
-import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
+import com.tamakara.litebooth.domain.vo.item.ItemVO;
 import com.tamakara.litebooth.service.ItemService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -26,11 +26,11 @@ public class ItemController {
         return ResponseEntity.ok(vo);
     }
 
-    @GetMapping("/getItemInfoVO/{itemId}")
-    public ResponseEntity<ItemInfoVO> getItemInfoVO(
+    @GetMapping("/getItemVO/{itemId}")
+    public ResponseEntity<ItemVO> getItemVO(
             @PathVariable("itemId") Long itemId
     ) {
-        ItemInfoVO vo = itemService.getItemInfoVO(itemId);
+        ItemVO vo = itemService.getItemVO(itemId);
         return ResponseEntity.ok(vo);
     }
 }

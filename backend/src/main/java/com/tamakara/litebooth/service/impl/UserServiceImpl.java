@@ -1,11 +1,11 @@
 package com.tamakara.litebooth.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.dto.LoginFormDTO;
 import com.tamakara.litebooth.domain.dto.RegisterFormDTO;
 import com.tamakara.litebooth.domain.entity.Order;
+import com.tamakara.litebooth.domain.entity.Stock;
 import com.tamakara.litebooth.domain.entity.User;
 import com.tamakara.litebooth.domain.vo.order.OrderVO;
 import com.tamakara.litebooth.domain.vo.user.LoginVO;
@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -108,7 +109,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         orderMapper.selectPageByUserId(page, userId);
         List<OrderVO> orderVOList = page.getRecords().stream().map(order -> {
             OrderVO vo = new OrderVO();
-            String content = stockMapper.selectById(order.getStockId()).getContent();
+
+            List<Stock> stockList = stockMapper.selectListByOrderId(order.getId());
+            List<String> contentList = stockList.stream().map(Stock::getContent).toList();
+
             vo.setId(order.getId().toString());
             vo.setStatus(order.getStatus());
             vo.setUserMail(user.getEmail());
@@ -117,7 +121,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             vo.setQuantity(order.getQuantity());
             vo.setPayMethod(order.getPayMethod());
             vo.setTotalPrice(order.getTotalPrice());
-            vo.setContent(content);
+            vo.setContentList(contentList);
             vo.setCreatedAt(order.getCreatedAt());
             vo.setUpdatedAt(order.getUpdatedAt());
             return vo;

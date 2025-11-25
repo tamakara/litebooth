@@ -15,7 +15,7 @@ const emailEdit = reactive({oldEmail: '', newEmail: '', code: ''})
 const passwordEdit = reactive({oldPassword: '', newPassword: '', code: ''})
 
 const cardDialogVisible = ref(false)
-const currentCardContent = ref('')
+const currentCardContentList = ref('')
 
 watchEffect(() => {
   if (user.profile) {
@@ -95,7 +95,7 @@ const statusType = (s) => s && s.includes('待') ? 'warning' : (s && s.includes(
 
 // 显示卡密
 const showCard = (order) => {
-  currentCardContent.value = order?.content || '暂无卡密信息'
+  currentCardContentList.value = order?.contentList || '暂无卡密信息'
   cardDialogVisible.value = true
 }
 
@@ -219,7 +219,7 @@ const handlePageChange = () => {
 
       <!-- 卡密弹窗 -->
       <el-dialog v-model="cardDialogVisible" title="卡密内容" width="500px">
-        <pre class="card-content">{{ currentCardContent }}</pre>
+        <pre v-for="content in currentCardContentList" class="card-content">{{ content }}</pre>
         <template #footer>
           <el-button type="primary" @click="cardDialogVisible = false">关闭</el-button>
         </template>

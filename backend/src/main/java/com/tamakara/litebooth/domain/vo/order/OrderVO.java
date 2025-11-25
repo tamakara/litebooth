@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +19,7 @@ public class OrderVO {
     private Long quantity;
     private String payMethod;
     private Double totalPrice;
-    private String content;
+    private List<String> contentList;
     private Instant createdAt;
     private Instant updatedAt;
 }

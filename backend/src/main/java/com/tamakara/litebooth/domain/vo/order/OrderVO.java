@@ -18,5 +18,7 @@ public class OrderVO {
     private Long quantity;
     private String payMethod;
     private Double totalPrice;
+    private String content;
     private Instant createdAt;
+    private Instant updatedAt;
 }

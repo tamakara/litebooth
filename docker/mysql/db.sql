@@ -86,7 +86,8 @@ CREATE TABLE `order`
     `stock_id`    BIGINT    DEFAULT NULL,
     `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`stock_id`)
 ) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE `stock`
@@ -98,5 +99,6 @@ CREATE TABLE `stock`
     `content`    TEXT         NOT NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`order_id`)
 ) DEFAULT CHARSET = utf8mb4;

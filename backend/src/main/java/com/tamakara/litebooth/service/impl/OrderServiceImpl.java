@@ -99,9 +99,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Transactional
     public void deliveryOrder(Long userId, Long orderId) {
         Order order = orderMapper.selectById(orderId);
-        order.setStatus("已发货");
         Stock stock = stockMapper.selectByItemId(order.getItemId());
         order.setStockId(stock.getId());
+        order.setStatus("已发货");
+        stock.setStatus("已发货");
         stock.setOrderId(order.getId());
         stockMapper.updateById(stock);
         orderMapper.updateById(order);

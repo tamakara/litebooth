@@ -2,6 +2,7 @@ package com.tamakara.litebooth.controller;
 
 import com.tamakara.litebooth.domain.dto.LoginFormDTO;
 import com.tamakara.litebooth.domain.dto.RegisterFormDTO;
+import com.tamakara.litebooth.domain.vo.user.OrderListVO;
 import com.tamakara.litebooth.domain.vo.user.LoginVO;
 import com.tamakara.litebooth.domain.vo.user.ProfileVO;
 import com.tamakara.litebooth.domain.vo.user.RegisterVO;
@@ -50,5 +51,15 @@ public class UserController {
     ) {
         String avatarUrl = userService.updateAvatar(userId, file);
         return ResponseEntity.ok(avatarUrl);
+    }
+
+    @GetMapping("/getOrderListVO")
+    public ResponseEntity<OrderListVO> getOrderListVO(
+            @RequestAttribute("userId") Long userId,
+            @RequestParam(value = "pageNumber", defaultValue = "1") Long pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10") Long pageSize
+    ) {
+        OrderListVO vo = userService.getOrderListVO(userId,pageNumber,pageSize);
+        return ResponseEntity.ok(vo);
     }
 }

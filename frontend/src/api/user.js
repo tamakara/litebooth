@@ -20,3 +20,8 @@ export function updateAvatar(file) {
     formData.append('file', file);
     return http.put('/user/updateAvatar', formData)
 }
+
+export function getOrderListVO(form) {
+    return http.get('/user/getOrderListVO', form)
+}
+

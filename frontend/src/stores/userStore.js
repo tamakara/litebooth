@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {getProfileVO, login, register, updateAvatar} from "@/api/user.js";
+import {getOrderListVO, getProfileVO, login, register, updateAvatar} from "@/api/user.js";
 
 export const useUserStore = defineStore('user', {
     state: () => ({
@@ -7,9 +7,18 @@ export const useUserStore = defineStore('user', {
         profile: {
             username: '',
             email: '',
-            avatar: ''
+            avatar: '',
         },
-        orders:[],
+        orderList: {
+            orders: [],
+            pageNumber: 1,
+            pageSize: 10,
+            total: 0,
+        },
+        searchForm: {
+            pageNumber: 1,
+            pageSize: 10,
+        },
         loading: false,
         error: ''
     }),
@@ -56,10 +65,9 @@ export const useUserStore = defineStore('user', {
             }
         },
 
-        async getOrders() {
-            // const res = await getOrders()
-            // this.orders = res.data
-
+        async getOrderList() {
+            const res = await getOrderListVO(this.searchForm)
+            this.orderList = res.data
         },
 
         async updateAvatar(newAvatarFile) {
@@ -68,8 +76,7 @@ export const useUserStore = defineStore('user', {
         },
 
         updateEmail(newEmail) {
-            // if (!this.profile) return
-            // this.profile = {...this.profile, ...payload}
+
         },
 
         logout() {

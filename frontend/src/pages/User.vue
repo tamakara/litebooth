@@ -1,21 +1,30 @@
 <script setup>
-import {reactive, watchEffect, computed, ref} from 'vue'
+import {reactive, watchEffect, computed, ref, onMounted} from 'vue'
 import {useUserStore} from '../stores/userStore'
 import {ElMessage} from 'element-plus'
 
 const user = useUserStore()
 
-const fileInput = ref(null)
+const orderList = computed(() => user.orderList)
+const searchForm = computed(() => user.searchForm)
 
+const fileInput = ref(null)
 const emailDialogVisible = ref(false)
 const passwordDialogVisible = ref(false)
 const emailEdit = reactive({oldEmail: '', newEmail: '', code: ''})
 const passwordEdit = reactive({oldPassword: '', newPassword: '', code: ''})
 
+const cardDialogVisible = ref(false)
+const currentCardContent = ref('')
+
 watchEffect(() => {
   if (user.profile) {
     emailEdit.oldEmail = user.profile.email || ''
   }
+})
+
+onMounted(async () => {
+  await user.getOrderList()
 })
 
 const triggerAvatar = () => {
@@ -63,7 +72,7 @@ const submitEmailChange = () => {
     ElMessage.error('请输入验证码')
     return
   }
-  user.updateEmail(mailEdit.newEmail)
+  user.updateEmail(emailEdit.newEmail)
   ElMessage.success('邮箱已更新')
   emailDialogVisible.value = false
 }
@@ -81,13 +90,20 @@ const submitPasswordChange = () => {
   passwordDialogVisible.value = false
 }
 
-const myOrders = computed(() => {
-  if (!user.isLogin) return []
-  const email = user.profile?.email?.toLowerCase() || ''
-  return user.orders.filter(o => o.user.email.toLowerCase() === email)
-})
-const fmt = (d) => new Date(d).toLocaleString()
-const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') ? 'success' : 'info')
+const fmt = (d) => d ? new Date(d).toLocaleString() : ''
+const statusType = (s) => s && s.includes('待') ? 'warning' : (s && s.includes('完成') ? 'success' : 'info')
+
+// 显示卡密
+const showCard = (order) => {
+  currentCardContent.value = order?.content || '暂无卡密信息'
+  cardDialogVisible.value = true
+}
+
+// 分页变更处理
+const handlePageChange = () => {
+  if (!user.isLogin) return
+  user.getOrderList()
+}
 </script>
 
 <template>
@@ -98,12 +114,11 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
         <template #header>基本资料</template>
         <div class="profile">
           <div class="avatar-col">
-            <el-avatar :size="80" :src="user.profile?.avatar" class="avatar-preview" @click="triggerAvatar" />
+            <el-avatar :size="80" :src="user.profile?.avatar" class="avatar-preview" @click="triggerAvatar"/>
             <div class="avatar-hint">点击更换头像</div>
             <input ref="fileInput" type="file" accept="image/*" class="hidden-file" @change="onAvatarChange"/>
           </div>
           <div class="fields">
-
             <div class="info-row">
               <div class="label">用户名</div>
               <div class="value">{{ user.profile?.username }}</div>
@@ -171,42 +186,44 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
 
       <el-card class="panel">
         <template #header>历史订单</template>
-        <el-empty v-if="!myOrders.length" description="暂无订单"/>
+        <el-empty v-if="! orderList.orders.length" description="暂无订单"/>
         <div v-else class="order-list">
-          <div v-for="o in myOrders" :key="o.id" class="order-item">
+          <div v-for="o in orderList.orders" :key="o.id" class="order-item">
             <div class="order-head">
               <div class="left">
-                <div class="ono">订单号：<span class="mono">{{ o.number }}</span></div>
-                <div class="date">付款日期：{{ fmt(o.createdAt) }}</div>
+                <div class="ono">订单号：<span class="mono">{{ o.id }}</span></div>
+                <div class="date">创建时间：{{ fmt(o.createdAt) }}</div>
+                <div class="field">商品名称：{{ o.itemName }}</div>
+                <div class="field">数量：{{ o.quantity }}</div>
+                <div class="field">支付方式：{{ o.payMethod }}</div>
               </div>
               <div class="right">
                 <el-tag :type="statusType(o.status)">{{ o.status }}</el-tag>
-                <div class="amount">合计：¥ {{ o.amount.toFixed(2) }}</div>
+                <div class="amount">合计：¥ {{ Number(o.totalPrice || 0).toFixed(2) }}</div>
+                <el-button type="primary" size="small" @click="showCard(o)">显示卡密</el-button>
               </div>
             </div>
-            <el-table :data="o.items" size="small" class="items" :border="false" :stripe="true">
-              <el-table-column label="商品" min-width="220">
-                <template #default="{ row }">
-                  <div class="item">
-                    <el-image :src="row.cover" fit="cover" class="thumb"/>
-                    <div>
-                      <div class="name">{{ row.name }}</div>
-                      <div class="sku mono">{{ row.sku }}</div>
-                    </div>
-                  </div>
-                </template>
-              </el-table-column>
-              <el-table-column label="单价" width="120">
-                <template #default="{ row }">¥ {{ row.price.toFixed(2) }}</template>
-              </el-table-column>
-              <el-table-column prop="qty" label="数量" width="100"/>
-              <el-table-column label="小计" width="120">
-                <template #default="{ row }">¥ {{ (row.price * row.qty).toFixed(2) }}</template>
-              </el-table-column>
-            </el-table>
           </div>
         </div>
+        <!-- 分页组件 -->
+        <div v-if="orderList.total > 0" class="pagination-wrapper">
+          <el-pagination
+              layout="prev, pager, next"
+              :current-page="searchForm.pageNumber"
+              :page-size="searchForm.pageSize"
+              :total="orderList.total"
+              @current-change="handlePageChange"
+          />
+        </div>
       </el-card>
+
+      <!-- 卡密弹窗 -->
+      <el-dialog v-model="cardDialogVisible" title="卡密内容" width="500px">
+        <pre class="card-content">{{ currentCardContent }}</pre>
+        <template #footer>
+          <el-button type="primary" @click="cardDialogVisible = false">关闭</el-button>
+        </template>
+      </el-dialog>
     </template>
 
     <el-result v-else icon="info" title="未登录" sub-title="请点击右上角头像进行登录"/>
@@ -304,9 +321,8 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
 .order-head {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
-  margin-bottom: 8px;
 }
 
 .order-head .left {
@@ -323,44 +339,39 @@ const statusType = (s) => s.includes('待') ? 'warning' : (s.includes('完成') 
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
-.thumb {
-  width: 72px;
-  height: 48px;
-  border-radius: 6px;
-  margin-right: 10px;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.name {
-  font-weight: 600;
-}
-
-.sku {
-  color: #6b7280;
-  font-size: 12px;
-}
-
 .right {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
 }
 
 .amount {
   font-weight: 700;
 }
 
-.items :deep(.el-table__inner-wrapper) {
-  border-radius: 6px;
-  overflow: hidden;
+.pagination-wrapper {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
 }
 
 .plain-value {
   color: #606266;
+}
+
+.card-content {
+  max-height: 320px;
+  overflow: auto;
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.field {
+  font-size: 13px;
+  color: #4b5563;
 }
 </style>

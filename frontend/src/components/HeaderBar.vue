@@ -1,8 +1,8 @@
 <script setup>
 import {computed, ref} from 'vue'
 import {useRouter} from 'vue-router'
-import {useUserStore} from '../stores/userStore'
-import {useHomeStore} from '../stores/homeStore'
+import {useUserStore} from '../stores/userStore.js'
+import {useHomeStore} from '../stores/homeStore.js'
 import AuthDialog from './AuthDialog.vue'
 import defaultAvatar from '../assets/default_avatar.png'
 
@@ -10,7 +10,7 @@ const router = useRouter()
 const user = useUserStore()
 const home = useHomeStore()
 
-const searchForm = computed(() => home.searchForm)
+const queryForm = computed(() => home.itemCardQueryForm)
 
 const showAuth = ref(false)
 const onLoginSuccess = () => {
@@ -18,7 +18,7 @@ const onLoginSuccess = () => {
 }
 
 const handleSearch = () => {
-  searchForm.pageNum = 1
+  queryForm.value.pageNum = 1
   home.fetchItemInfo()
 }
 </script>
@@ -31,7 +31,7 @@ const handleSearch = () => {
     </div>
     <div class="nav-center">
       <el-input
-          v-model="searchForm.keyword"
+          v-model="queryForm.keyword"
           placeholder="搜索商品名称"
           clearable
           class="global-search"
@@ -167,7 +167,6 @@ const handleSearch = () => {
   transform: translateY(1px);
 }
 
-/* 放大输入框视觉高度与字号，匹配用户区块高度 */
 .global-search :deep(.el-input__wrapper) {
   height: 46px;
 }
@@ -176,7 +175,6 @@ const handleSearch = () => {
   font-size: 16px;
 }
 
-/* 追加区按钮与输入框等高 */
 .global-search :deep(.el-input-group__append .el-button) {
   height: 46px;
   font-size: 16px;

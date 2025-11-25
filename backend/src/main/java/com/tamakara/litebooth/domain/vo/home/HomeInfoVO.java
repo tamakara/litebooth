@@ -10,8 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HomeInfoVO {
-    private String announcement;
     private String title;
     private String subtitle;
+    private String announcement;
     private List<String> groups;
 }

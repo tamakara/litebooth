@@ -7,7 +7,7 @@ import com.tamakara.litebooth.domain.dto.RegisterFormDTO;
 import com.tamakara.litebooth.domain.entity.Order;
 import com.tamakara.litebooth.domain.entity.Stock;
 import com.tamakara.litebooth.domain.entity.User;
-import com.tamakara.litebooth.domain.vo.order.OrderVO;
+import com.tamakara.litebooth.domain.vo.order.OrderInfoVO;
 import com.tamakara.litebooth.domain.vo.user.LoginVO;
 import com.tamakara.litebooth.domain.vo.user.OrderListVO;
 import com.tamakara.litebooth.domain.vo.user.ProfileVO;
@@ -107,8 +107,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = userMapper.selectById(userId);
         Page<Order> page = new Page<>(pageNumber, pageSize);
         orderMapper.selectPageByUserId(page, userId);
-        List<OrderVO> orderVOList = page.getRecords().stream().map(order -> {
-            OrderVO vo = new OrderVO();
+        List<OrderInfoVO> orderVOList = page.getRecords().stream().map(order -> {
+            OrderInfoVO vo = new OrderInfoVO();
 
             List<Stock> stockList = stockMapper.selectListByOrderId(order.getId());
             List<String> contentList = stockList.stream().map(Stock::getContent).toList();
@@ -120,7 +120,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             vo.setItemPrice(order.getItemPrice());
             vo.setQuantity(order.getQuantity());
             vo.setPayMethod(order.getPayMethod());
-            vo.setTotalPrice(order.getTotalPrice());
+            vo.setAmount(order.getAmount());
             vo.setContentList(contentList);
             vo.setCreatedAt(order.getCreatedAt());
             vo.setUpdatedAt(order.getUpdatedAt());

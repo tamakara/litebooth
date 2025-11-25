@@ -35,8 +35,8 @@ public class Order {
     @TableField(value = "quantity")
     private Long quantity;
 
-    @TableField(value = "total_price")
-    private Double totalPrice;
+    @TableField(value = "amount")
+    private Double amount;
 
     @TableField(value = "pay_method")
     private String payMethod;

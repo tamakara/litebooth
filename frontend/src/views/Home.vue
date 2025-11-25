@@ -1,42 +1,36 @@
 <script setup>
-import {onMounted, computed} from 'vue'
-import {useHomeStore} from '../stores/homeStore'
-import Announcement from '../components/Announcement.vue'
+import {onMounted, computed, toRefs} from 'vue'
+import {useHomeStore} from '../stores/homeStore.js'
 import ItemCard from '../components/ItemCard.vue'
 
 const home = useHomeStore()
 
-const homeInfo = computed(() => home.homeInfo)
-const searchForm = computed(() => home.searchForm)
-const itemCardList = computed(() => home.itemCardList)
+const {homeInfo, itemCardQueryForm: queryForm, itemCardListPage: listPage} = toRefs(home)
+const itemCardList = computed(() => listPage.value.itemCardList)
+const total = computed(() => listPage.value.total)
 
-const handlePageChange = (page) => {
-  searchForm.value.pageNumber = page
-  home.fetchItemInfo()
+const updateQuery = (payload) => {
+  Object.assign(queryForm, payload)
+  home.fetchItemCardListPageVO()
 }
 
-const handleSizeChange = (size) => {
-  searchForm.value.pageSize = size
-  searchForm.value.pageNumber = 1
-  home.fetchItemInfo()
-}
+const handlePageChange = (page) => updateQuery({pageNum: page})
+const handleSizeChange = (size) => updateQuery({pageSize: size, pageNum: 1})
+const handleGroupChange = (group) => updateQuery({group, pageNum: 1})
 
-const handleGroupChange = (group) => {
-  searchForm.value.group = group
-  searchForm.value.pageNumber = 1
-  home.fetchItemInfo()
-}
-
-onMounted(() => {
-  home.fetchHomeInfo()
-  home.fetchItemInfo()
+onMounted(async () => {
+  await home.fetchHomeInfo()
+  await home.fetchItemCardListPageVO()
 })
 </script>
 
 <template>
-  <Announcement v-if="homeInfo.announcement">
-    {{ homeInfo.announcement }}
-  </Announcement>
+  <div class="announcement" v-if="homeInfo.announcement">
+    <h4 class="anno-title">公告</h4>
+    <div class="anno-text">
+      {{ homeInfo.announcement }}
+    </div>
+  </div>
 
   <section class="hero">
     <h1>{{ homeInfo.title }}</h1>
@@ -48,7 +42,7 @@ onMounted(() => {
         v-for="g in homeInfo.groups"
         :key="g"
         class="grp-btn"
-        :type="searchForm.group === g ? 'primary' : 'default'"
+        :type="queryForm.group === g ? 'primary' : 'default'"
         @click="handleGroupChange(g)"
     >
       {{ g }}
@@ -57,7 +51,7 @@ onMounted(() => {
 
   <section class="item-grid">
     <ItemCard
-        v-for="it in itemCardList.items"
+        v-for="it in itemCardList"
         :key="it.id"
         :item="it"
     />
@@ -67,9 +61,9 @@ onMounted(() => {
     <el-pagination
         background
         layout="prev, pager, next"
-        :total="itemCardList.total"
-        :current-page="searchForm.pageNumber"
-        :page-size="searchForm.pageSize"
+        :total="total"
+        :current-page="queryForm.pageNum"
+        :page-size="queryForm.pageSize"
         @current-change="handlePageChange"
         @size-change="handleSizeChange"
     />
@@ -77,6 +71,29 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.announcement {
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.anno-title {
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.anno-text {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #343a40;
+}
+
 .hero {
   text-align: center;
   margin-bottom: 12px;

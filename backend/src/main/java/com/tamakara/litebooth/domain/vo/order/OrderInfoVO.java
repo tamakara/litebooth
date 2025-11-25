@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderVO {
+public class OrderInfoVO {
     private String id;
     private String status;
     private String userMail;
@@ -18,7 +18,7 @@ public class OrderVO {
     private Double itemPrice;
     private Long quantity;
     private String payMethod;
-    private Double totalPrice;
+    private Double amount;
     private List<String> contentList;
     private Instant createdAt;
     private Instant updatedAt;

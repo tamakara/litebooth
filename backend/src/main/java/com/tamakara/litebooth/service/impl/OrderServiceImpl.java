@@ -1,9 +1,9 @@
 package com.tamakara.litebooth.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tamakara.litebooth.domain.dto.OrderFormDTO;
+import com.tamakara.litebooth.domain.dto.OrderQueryFormDTO;
 import com.tamakara.litebooth.domain.entity.*;
-import com.tamakara.litebooth.domain.vo.order.OrderVO;
+import com.tamakara.litebooth.domain.vo.order.OrderInfoVO;
 import com.tamakara.litebooth.mapper.*;
 import com.tamakara.litebooth.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private final StockMapper stockMapper;
     @Override
     @Transactional
-    public OrderVO createOrder(Long userId, OrderFormDTO orderFormDTO) {
+    public OrderInfoVO createOrder(Long userId, OrderQueryFormDTO orderFormDTO) {
         User user = userMapper.selectById(userId);
         if (user == null) {
             throw new RuntimeException("用户不存在");
@@ -38,21 +38,21 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setItemName(item.getName());
         order.setItemPrice(item.getPrice());
         order.setQuantity(orderFormDTO.getQuantity());
-        order.setTotalPrice(item.getPrice() * orderFormDTO.getQuantity());
+        order.setAmount(item.getPrice() * orderFormDTO.getQuantity());
         order.setPayMethod(orderFormDTO.getPayMethod());
 
         orderMapper.insert(order);
 
         order = orderMapper.selectById(order.getId());
 
-        OrderVO vo = new OrderVO();
+        OrderInfoVO vo = new OrderInfoVO();
         vo.setId(String.valueOf(order.getId()));
         vo.setUserMail(order.getUserMail());
         vo.setStatus(order.getStatus());
         vo.setItemName(order.getItemName());
         vo.setItemPrice(order.getItemPrice());
         vo.setQuantity(order.getQuantity());
-        vo.setTotalPrice(order.getTotalPrice());
+        vo.setAmount(order.getAmount());
         vo.setPayMethod(order.getPayMethod());
         vo.setCreatedAt(order.getCreatedAt());
 

@@ -29,6 +29,19 @@ CREATE TABLE `file`
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
 
+CREATE TABLE `home_info`
+(
+    `id`           BIGINT       NOT NULL AUTO_INCREMENT,
+    `title`        VARCHAR(255) NOT NULL,
+    `subtitle`     VARCHAR(255) NOT NULL,
+    `announcement` TEXT         NOT NULL,
+    `created_at`   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`   TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) DEFAULT CHARSET = utf8mb4;
+INSERT INTO `home_info` (`id`, `title`, `subtitle`, `announcement`)
+VALUES (1, '标题', '副标题', '');
+
 CREATE TABLE `item`
 (
     `id`               BIGINT       NOT NULL AUTO_INCREMENT,
@@ -50,16 +63,24 @@ VALUES (2, true, false, '示例商品 2', 2.22, 2, '2', 2, 'b');
 INSERT INTO `item` (`id`, `is_active`, `is_auto_delivery`, `name`, `price`, `stock`, `group`, `cover`, `description`)
 VALUES (3, true, true, '示例商品 3', 3.33, 3, '3', 2, 'c');
 
-CREATE TABLE `home_info`
+
+CREATE TABLE `order`
 (
-    `id`           BIGINT       NOT NULL AUTO_INCREMENT,
-    `announcement` TEXT         NOT NULL,
-    `title`        VARCHAR(255) NOT NULL,
-    `subtitle`     VARCHAR(255) NOT NULL,
+    `id`         BIGINT       NOT NULL,
+    `status`     VARCHAR(255) NOT NULL,
+    `user_id`    BIGINT       NOT NULL,
+    `user_mail`  VARCHAR(255) NOT NULL,
+    `item_id`    BIGINT       NOT NULL,
+    `item_name`  VARCHAR(255) NOT NULL,
+    `item_price` DOUBLE       NOT NULL,
+    `quantity`   BIGINT       NOT NULL,
+    `amount`     DOUBLE       NOT NULL,
+    `pay_method` VARCHAR(255) NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
-INSERT INTO `home_info` (`id`, `announcement`, `title`, `subtitle`)
-VALUES (0, '', '标题', '副标题');
+
 
 CREATE TABLE `group`
 (
@@ -69,23 +90,6 @@ CREATE TABLE `group`
 ) DEFAULT CHARSET = utf8mb4;
 INSERT INTO `group` (`id`, `name`)
 VALUES (0, '全部');
-
-CREATE TABLE `order`
-(
-    `id`          BIGINT       NOT NULL,
-    `status`      VARCHAR(255) NOT NULL,
-    `user_id`     BIGINT       NOT NULL,
-    `user_mail`   VARCHAR(255) NOT NULL,
-    `item_id`     BIGINT       NOT NULL,
-    `item_name`   VARCHAR(255) NOT NULL,
-    `item_price`  DOUBLE       NOT NULL,
-    `quantity`    BIGINT       NOT NULL,
-    `total_price` DOUBLE       NOT NULL,
-    `pay_method`  VARCHAR(255) NOT NULL,
-    `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE `stock`
 (

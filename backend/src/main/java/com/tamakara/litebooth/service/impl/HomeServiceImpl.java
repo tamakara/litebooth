@@ -6,7 +6,7 @@ import com.tamakara.litebooth.domain.entity.Group;
 import com.tamakara.litebooth.domain.entity.HomeInfo;
 import com.tamakara.litebooth.domain.vo.home.HomeInfoVO;
 import com.tamakara.litebooth.mapper.GroupMapper;
-import com.tamakara.litebooth.mapper.HomeMapper;
+import com.tamakara.litebooth.mapper.HomeInfoMapper;
 import com.tamakara.litebooth.service.HomeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,13 +15,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class HomeServiceImpl extends ServiceImpl<HomeMapper, HomeInfo> implements HomeService {
-    private final HomeMapper homeMapper;
+public class HomeServiceImpl extends ServiceImpl<HomeInfoMapper, HomeInfo> implements HomeService {
+    private final HomeInfoMapper homeInfoMapper;
     private final GroupMapper groupMapper;
 
     @Override
     public HomeInfoVO getHomeInfoVO() {
-        HomeInfo homeInfo = homeMapper.selectById(0L);
+        HomeInfo homeInfo = homeInfoMapper.selectById(1L);
         List<Group> groups = groupMapper.selectList(new LambdaQueryWrapper<>());
 
         HomeInfoVO vo = new HomeInfoVO();

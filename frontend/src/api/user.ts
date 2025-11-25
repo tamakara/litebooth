@@ -1,5 +1,5 @@
 import http from "@/api/http.js";
-import passwordEncrypt from "@/utils/passwordEncrypt.js";
+import {passwordEncrypt} from "@/utils";
 
 export function login(form) {
     form.password = passwordEncrypt(form.password)
@@ -15,13 +15,13 @@ export function getProfileVO() {
     return http.get('/user/getProfileVO')
 }
 
+export function getOrderListVO(form) {
+    return http.get('/user/getOrderListVO', form)
+}
+
 export function updateAvatar(file) {
     const formData = new FormData();
     formData.append('file', file);
     return http.put('/user/updateAvatar', formData)
-}
-
-export function getOrderListVO(form) {
-    return http.get('/user/getOrderListVO', form)
 }
 

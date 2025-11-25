@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemVO {
-    private Long id;
+public class ItemInfoVO {
+    private String id;
     private String name;
     private String group;
     private String cover;

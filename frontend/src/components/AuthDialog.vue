@@ -1,6 +1,6 @@
 <script setup>
 import {ref, reactive, watch} from 'vue'
-import {useUserStore} from '../stores/userStore'
+import {useUserStore} from '../stores/userStore.js'
 import { ElMessage } from 'element-plus'
 
 const props = defineProps({visible: {type: Boolean, default: false}})

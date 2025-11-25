@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {getOrderListVO, getProfileVO, login, register, updateAvatar} from "@/api/user.js";
+import {getOrderListVO, getProfileVO, login, register, updateAvatar} from "@/api/user.ts";
 
 export const useUserStore = defineStore('user', {
     state: () => ({

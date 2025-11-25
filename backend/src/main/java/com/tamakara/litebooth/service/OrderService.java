@@ -1,12 +1,12 @@
 package com.tamakara.litebooth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tamakara.litebooth.domain.dto.OrderFormDTO;
+import com.tamakara.litebooth.domain.dto.OrderQueryFormDTO;
 import com.tamakara.litebooth.domain.entity.Order;
-import com.tamakara.litebooth.domain.vo.order.OrderVO;
+import com.tamakara.litebooth.domain.vo.order.OrderInfoVO;
 
 public interface OrderService extends IService<Order> {
-    OrderVO createOrder(Long userId, OrderFormDTO orderFormDTO);
+    OrderInfoVO createOrder(Long userId, OrderQueryFormDTO orderFormDTO);
 
     void cancelOrder(Long userId, Long orderId);
 

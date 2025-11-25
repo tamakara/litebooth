@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.entity.Item;
-import com.tamakara.litebooth.domain.pojo.ItemCard;
-import com.tamakara.litebooth.domain.vo.item.ItemCardListVO;
-import com.tamakara.litebooth.domain.vo.item.ItemVO;
+import com.tamakara.litebooth.domain.pojo.ItemCardVO;
+import com.tamakara.litebooth.domain.vo.item.ItemCardListPageVO;
+import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
 import com.tamakara.litebooth.mapper.ItemMapper;
 import com.tamakara.litebooth.mapper.StockMapper;
 import com.tamakara.litebooth.service.FileService;
@@ -24,7 +24,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
     private final StockMapper stockMapper;
 
     @Override
-    public ItemCardListVO getItemCardListVO(String keyword, String group, Long pageNumber, Long pageSize) {
+    public ItemCardListPageVO getItemCardListVO(String keyword, String group, Long pageNumber, Long pageSize) {
         Page<Item> page = new Page<>(pageNumber, pageSize);
         LambdaQueryWrapper<Item> wrapper =
                 new LambdaQueryWrapper<Item>()
@@ -33,11 +33,11 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
                         .eq(!group.equals("全部"), Item::getGroup, group);
         itemMapper.selectPage(page, wrapper);
 
-        List<ItemCard> items = page
+        List<ItemCardVO> items = page
                 .getRecords()
                 .stream()
                 .map(item ->
-                        new ItemCard(
+                        new ItemCardVO(
                                 item.getId(),
                                 item.getName(),
                                 item.getPrice(),
@@ -46,17 +46,17 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
                         )
                 ).toList();
 
-        return new ItemCardListVO(items, page.getCurrent(), page.getSize(), page.getTotal());
+        return new ItemCardListPageVO(items, page.getCurrent(), page.getSize(), page.getTotal());
     }
 
     @Override
-    public ItemVO getItemVO(Long itemId) {
+    public ItemInfoVO getItemVO(Long itemId) {
         Item item = itemMapper.selectById(itemId);
         if (item == null) {
             throw new IllegalArgumentException("Item not found");
         }
-        ItemVO vo = new ItemVO();
-        vo.setId(item.getId());
+        ItemInfoVO vo = new ItemInfoVO();
+        vo.setId(item.getId().toString());
         vo.setName(item.getName());
         vo.setGroup(item.getGroup());
         vo.setCover(fileService.getFileUrl(item.getCover(), 86400));

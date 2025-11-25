@@ -1,6 +1,6 @@
 <script setup>
 import {reactive, watchEffect, computed, ref, onMounted} from 'vue'
-import {useUserStore} from '../stores/userStore'
+import {useUserStore} from '../stores/userStore.js'
 import {ElMessage} from 'element-plus'
 
 const user = useUserStore()
@@ -193,6 +193,7 @@ const handlePageChange = () => {
               <div class="left">
                 <div class="ono">订单号：<span class="mono">{{ o.id }}</span></div>
                 <div class="date">创建时间：{{ fmt(o.createdAt) }}</div>
+                <div class="date">付款时间：{{ fmt(o.createdAt) }}</div>
                 <div class="field">商品名称：{{ o.itemName }}</div>
                 <div class="field">数量：{{ o.quantity }}</div>
                 <div class="field">支付方式：{{ o.payMethod }}</div>

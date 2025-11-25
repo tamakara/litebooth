@@ -2,11 +2,11 @@ package com.tamakara.litebooth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tamakara.litebooth.domain.entity.Item;
-import com.tamakara.litebooth.domain.vo.item.ItemCardListVO;
-import com.tamakara.litebooth.domain.vo.item.ItemVO;
+import com.tamakara.litebooth.domain.vo.item.ItemCardListPageVO;
+import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
 
 public interface ItemService extends IService<Item> {
-    ItemCardListVO getItemCardListVO(String keyword, String group, Long pageNumber, Long pageSize);
+    ItemCardListPageVO getItemCardListVO(String keyword, String group, Long pageNumber, Long pageSize);
 
-    ItemVO getItemVO(Long itemId);
+    ItemInfoVO getItemVO(Long itemId);
 }

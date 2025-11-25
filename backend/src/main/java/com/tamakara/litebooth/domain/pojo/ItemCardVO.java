@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemCard {
+public class ItemCardVO {
     private Long id;
     private String name;
     private Double price;

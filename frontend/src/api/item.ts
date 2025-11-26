@@ -1,8 +1,8 @@
 import http from "./http.js";
 import {AxiosResponse} from "axios";
 
-export function fetchItemCardListPageVO(form: ItemCardQueryFormDTO): Promise<AxiosResponse<ItemCardListPageVO>> {
-    return http.get('/item/vo/ItemCardListPageVO', {
+export function fetchItemCardPageVO(form: ItemCardPageQueryFormDTO): Promise<AxiosResponse<ItemCardPageVO>> {
+    return http.get('/item/vo/ItemCardPageVO', {
         params: form
     })
 }

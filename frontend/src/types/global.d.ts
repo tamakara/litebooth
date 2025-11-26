@@ -1,11 +1,11 @@
-declare interface HomeVO {
+declare interface HomeInfoVO {
     title: string;
     subtitle: string;
     announcement: string;
     groups: string[];
 }
 
-declare interface ItemCardQueryFormDTO {
+declare interface ItemCardPageQueryFormDTO {
     keyword: string;
     group: string;
     pageNum: number;
@@ -20,7 +20,7 @@ declare interface ItemCardVO {
     cover: string;
 }
 
-declare interface ItemCardListPageVO {
+declare interface ItemCardPageVO {
     itemCardList: ItemCardVO[];
     pageNum: number;
     pageSize: number;
@@ -37,13 +37,13 @@ declare interface ItemInfoVO {
     description: string;
 }
 
-declare interface OrderQueryFormDTO {
+declare interface OrderCreateFormDTO {
     itemId: string;
     quantity: number;
     payMethod: string;
 }
 
-declare interface OrderInfo {
+declare interface OrderInfoVO {
     id: string;
     status: string;
     userMail: string;
@@ -55,6 +55,36 @@ declare interface OrderInfo {
     contentList: string[];
     createdAt: string;
     updatedAt: string;
+}
+
+declare interface LoginFormDTO {
+    username: string;
+    password: string;
+}
+
+declare interface RegisterFormDTO {
+    username: string;
+    password: string;
+    email: string;
+    code: string;
+}
+
+declare interface OrderInfoPageVO {
+    orderInfoList: OrderInfoVO[];
+    pageNum: number;
+    pageSize: number;
+    total: number;
+}
+
+declare interface OrderInfoPageQueryFormDTO {
+    pageNum: number;
+    pageSize: number;
+}
+
+declare interface ProfileVO {
+    avatar: string;
+    username: string;
+    email: string;
 }
 
 

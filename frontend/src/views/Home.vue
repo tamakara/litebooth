@@ -5,13 +5,13 @@ import ItemCard from '../components/ItemCard.vue'
 
 const home = useHomeStore()
 
-const {homeInfo, itemCardQueryForm: queryForm, itemCardListPage: listPage} = toRefs(home)
+const {homeInfo, itemCardQueryForm: queryForm, itemCardPage: listPage} = toRefs(home)
 const itemCardList = computed(() => listPage.value.itemCardList)
 const total = computed(() => listPage.value.total)
 
 const updateQuery = (payload) => {
   Object.assign(queryForm, payload)
-  home.fetchItemCardListPageVO()
+  home.fetchItemCardPageVO()
 }
 
 const handlePageChange = (page) => updateQuery({pageNum: page})
@@ -19,8 +19,8 @@ const handleSizeChange = (size) => updateQuery({pageSize: size, pageNum: 1})
 const handleGroupChange = (group) => updateQuery({group, pageNum: 1})
 
 onMounted(async () => {
-  await home.fetchHomeInfo()
-  await home.fetchItemCardListPageVO()
+  await home.fetchHomeInfoVO()
+  await home.fetchItemCardPageVO()
 })
 </script>
 

@@ -5,8 +5,8 @@ import {ElMessage} from 'element-plus'
 
 const user = useUserStore()
 
-const orderList = computed(() => user.orderList)
-const searchForm = computed(() => user.searchForm)
+const orderList = computed(() => user.orderInfoPage)
+const searchForm = computed(() => user.queryForm)
 
 const fileInput = ref(null)
 const emailDialogVisible = ref(false)
@@ -24,7 +24,7 @@ watchEffect(() => {
 })
 
 onMounted(async () => {
-  await user.getOrderList()
+  await user.fetchOrderInfoPageVO()
 })
 
 const triggerAvatar = () => {
@@ -102,7 +102,7 @@ const showCard = (order) => {
 // 分页变更处理
 const handlePageChange = () => {
   if (!user.isLogin) return
-  user.getOrderList()
+  user.fetchOrderInfoPageVO()
 }
 </script>
 
@@ -186,9 +186,9 @@ const handlePageChange = () => {
 
       <el-card class="panel">
         <template #header>历史订单</template>
-        <el-empty v-if="! orderList.orders.length" description="暂无订单"/>
+        <el-empty v-if="! orderList.orderInfoList.length" description="暂无订单"/>
         <div v-else class="order-list">
-          <div v-for="o in orderList.orders" :key="o.id" class="order-item">
+          <div v-for="o in orderList.orderInfoList" :key="o.id" class="order-item">
             <div class="order-head">
               <div class="left">
                 <div class="ono">订单号：<span class="mono">{{ o.id }}</span></div>
@@ -200,7 +200,7 @@ const handlePageChange = () => {
               </div>
               <div class="right">
                 <el-tag :type="statusType(o.status)">{{ o.status }}</el-tag>
-                <div class="amount">合计：¥ {{ Number(o.totalPrice || 0).toFixed(2) }}</div>
+                <div class="amount">合计：¥ {{ Number(o.amount || 0).toFixed(2) }}</div>
                 <el-button type="primary" size="small" @click="showCard(o)">显示卡密</el-button>
               </div>
             </div>
@@ -210,7 +210,7 @@ const handlePageChange = () => {
         <div v-if="orderList.total > 0" class="pagination-wrapper">
           <el-pagination
               layout="prev, pager, next"
-              :current-page="searchForm.pageNumber"
+              :current-page="searchForm.pageNum"
               :page-size="searchForm.pageSize"
               :total="orderList.total"
               @current-change="handlePageChange"

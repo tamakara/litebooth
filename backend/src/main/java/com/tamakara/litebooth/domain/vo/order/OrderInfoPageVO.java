@@ -1,6 +1,5 @@
-package com.tamakara.litebooth.domain.vo.item;
+package com.tamakara.litebooth.domain.vo.order;
 
-import com.tamakara.litebooth.domain.pojo.ItemCardVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +9,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemCardListPageVO {
-    private List<ItemCardVO> itemCardList;
-    private Long pageNumber;
+public class OrderInfoPageVO {
+    private List<OrderInfoVO> orderInfoList;
+    private Long pageNum;
     private Long pageSize;
     private Long total;
 }

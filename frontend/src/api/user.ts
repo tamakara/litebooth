@@ -1,22 +1,19 @@
 import http from "@/api/http.js";
 import {passwordEncrypt} from "@/utils";
+import {AxiosResponse} from "axios";
 
-export function login(form) {
+export function login(form: LoginFormDTO) {
     form.password = passwordEncrypt(form.password)
     return http.post('/user/login', form)
 }
 
-export function register(form) {
+export function register(form: RegisterFormDTO) {
     form.password = passwordEncrypt(form.password)
     return http.post('/user/register', form)
 }
 
-export function getProfileVO() {
-    return http.get('/user/getProfileVO')
-}
-
-export function getOrderListVO(form) {
-    return http.get('/user/getOrderListVO', form)
+export function fetchProfileVO(): Promise<AxiosResponse<ProfileVO>> {
+    return http.get('/user/vo/ProfileVO')
 }
 
 export function updateAvatar(file) {

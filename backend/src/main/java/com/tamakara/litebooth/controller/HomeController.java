@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     private final HomeService homeService;
 
-    @GetMapping("/fetchHomeInfoVO")
-    public ResponseEntity<HomeInfoVO> fetchHomeInfoVO() {
+    @GetMapping("/vo/HomeInfoVO")
+    public ResponseEntity<HomeInfoVO> getHomeInfoVO() {
         HomeInfoVO vo = homeService.getHomeInfoVO();
         return ResponseEntity.ok(vo);
     }

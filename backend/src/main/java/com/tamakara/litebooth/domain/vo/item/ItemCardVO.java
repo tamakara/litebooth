@@ -1,4 +1,4 @@
-package com.tamakara.litebooth.domain.pojo;
+package com.tamakara.litebooth.domain.vo.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

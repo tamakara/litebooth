@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 import {fetchHomeInfoVO} from "@/api/home";
-import {fetchItemCardListPageVO} from "@/api/item";
+import {fetchItemCardListPageVO, fetchItemCardPageVO} from "@/api/item";
 
 export const useHomeStore = defineStore('home', {
     state: () => ({
@@ -16,7 +16,7 @@ export const useHomeStore = defineStore('home', {
             pageNum: 1,
             pageSize: 20
         },
-        itemCardListPage: {
+        itemCardPage: {
             itemCardList: [] as ItemCardVO[],
             pageNum: 1,
             pageSize: 20,
@@ -26,7 +26,7 @@ export const useHomeStore = defineStore('home', {
     }),
     getters: {},
     actions: {
-        async fetchHomeInfo() {
+        async fetchHomeInfoVO() {
             this.loading = true
             try {
                 const res = await fetchHomeInfoVO()
@@ -35,11 +35,11 @@ export const useHomeStore = defineStore('home', {
                 this.loading = false
             }
         },
-        async fetchItemCardListPageVO() {
+        async fetchItemCardPageVO() {
             this.loading = true
             try {
-                const res = await fetchItemCardListPageVO(this.itemCardQueryForm)
-                this.itemCardListPage = res.data
+                const res = await fetchItemCardPageVO(this.itemCardQueryForm)
+                this.itemCardPage = res.data
             } finally {
                 this.loading = false
             }

@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.entity.Item;
-import com.tamakara.litebooth.domain.pojo.ItemCardVO;
-import com.tamakara.litebooth.domain.vo.item.ItemCardListPageVO;
+import com.tamakara.litebooth.domain.vo.item.ItemCardVO;
+import com.tamakara.litebooth.domain.vo.item.ItemCardPageVO;
 import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
 import com.tamakara.litebooth.mapper.ItemMapper;
 import com.tamakara.litebooth.mapper.StockMapper;
@@ -24,8 +24,8 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
     private final StockMapper stockMapper;
 
     @Override
-    public ItemCardListPageVO getItemCardListVO(String keyword, String group, Long pageNumber, Long pageSize) {
-        Page<Item> page = new Page<>(pageNumber, pageSize);
+    public ItemCardPageVO getItemCardListVO(String keyword, String group, Long pageNum, Long pageSize) {
+        Page<Item> page = new Page<>(pageNum, pageSize);
         LambdaQueryWrapper<Item> wrapper =
                 new LambdaQueryWrapper<Item>()
                         .eq(Item::getIsActive, true)
@@ -46,7 +46,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
                         )
                 ).toList();
 
-        return new ItemCardListPageVO(items, page.getCurrent(), page.getSize(), page.getTotal());
+        return new ItemCardPageVO(items, page.getCurrent(), page.getSize(), page.getTotal());
     }
 
     @Override

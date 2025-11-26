@@ -1,13 +1,9 @@
 package com.tamakara.litebooth.domain.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class OrderQueryFormDTO {
+public class OrderCreateFormDTO {
     private String itemId;
     private Long quantity;
     private String payMethod;

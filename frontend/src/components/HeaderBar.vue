@@ -5,6 +5,7 @@ import {useUserStore} from '../stores/userStore.js'
 import {useHomeStore} from '../stores/homeStore.js'
 import AuthDialog from './AuthDialog.vue'
 import defaultAvatar from '../assets/default_avatar.png'
+import {fetchItemInfoVO} from "@/api/item.js";
 
 const router = useRouter()
 const user = useUserStore()
@@ -19,7 +20,7 @@ const onLoginSuccess = () => {
 
 const handleSearch = () => {
   queryForm.value.pageNum = 1
-  home.fetchItemInfo()
+  home.fetchItemInfoVO()
 }
 </script>
 

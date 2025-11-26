@@ -3,6 +3,7 @@ import {useItemStore} from '@/stores/itemStore.js'
 import {onMounted, ref, toRefs} from 'vue'
 import {useRouter} from 'vue-router'
 import OrderDialog from '@/components/OrderDialog.vue'
+import {fetchItemInfoVO} from "@/api/item.js";
 
 const item = useItemStore()
 const router = useRouter()

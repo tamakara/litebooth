@@ -1,7 +1,8 @@
 package com.tamakara.litebooth.controller;
 
-import com.tamakara.litebooth.domain.dto.OrderQueryFormDTO;
+import com.tamakara.litebooth.domain.dto.OrderCreateFormDTO;
 import com.tamakara.litebooth.domain.vo.order.OrderInfoVO;
+import com.tamakara.litebooth.domain.vo.order.OrderInfoPageVO;
 import com.tamakara.litebooth.service.OrderService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class OrderController {
     @PostMapping("/createOrder")
     public ResponseEntity<OrderInfoVO> createOrder(
             @RequestAttribute("userId") Long userId,
-            @RequestBody OrderQueryFormDTO orderFormDTO
+            @RequestBody OrderCreateFormDTO orderFormDTO
     ) {
         OrderInfoVO vo = orderService.createOrder(userId, orderFormDTO);
         return ResponseEntity.ok(vo);
@@ -42,6 +43,14 @@ public class OrderController {
         return ResponseEntity.ok().build();
     }
 
-
+    @GetMapping("/vo/OrderInfoPageVO")
+    public ResponseEntity<OrderInfoPageVO> getOrderInfoPageVO(
+            @RequestAttribute("userId") Long userId,
+            @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum,
+            @RequestParam(value = "pageSize", defaultValue = "10") Long pageSize
+    ) {
+        OrderInfoPageVO vo = orderService.getOrderInfoPageVO(userId, pageNum, pageSize);
+        return ResponseEntity.ok(vo);
+    }
 
 }

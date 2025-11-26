@@ -1,7 +1,7 @@
 import http from "@/api/http";
 import {AxiosResponse} from "axios";
 
-export function createOrder(form: OrderQueryFormDTO): Promise<AxiosResponse<OrderInfo>> {
+export function createOrder(form: OrderCreateFormDTO): Promise<AxiosResponse<OrderInfoVO>> {
     return http.post('/order/createOrder', form)
 }
 
@@ -11,4 +11,8 @@ export function cancelOrder(orderId: string) {
 
 export function payOrder(orderId: string) {
     return http.post(`/order/payOrder/${orderId}`)
+}
+
+export function fetchOrderInfoPageVO(form: OrderInfoPageQueryFormDTO): Promise<AxiosResponse<OrderInfoPageVO>> {
+    return http.get('/order/vo/OrderInfoPageVO', {params: form})
 }

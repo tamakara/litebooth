@@ -22,3 +22,16 @@ export function updateAvatar(file) {
     return http.put('/user/updateAvatar', formData)
 }
 
+export function sendEmailCode(form) {
+    return http.put('/user/updateEmail', form)
+}
+
+
+export function updateEmail(form) {
+    return http.put('/user/updateEmail', form)
+}
+
+export function updatePassword(form) {
+    return http.put('/user/updatePassword', form)
+}
+

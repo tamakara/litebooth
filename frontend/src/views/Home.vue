@@ -1,7 +1,7 @@
 <script setup>
 import {onMounted, computed, toRefs} from 'vue'
-import {useHomeStore} from '../stores/homeStore.js'
-import ItemCard from '../components/ItemCard.vue'
+import {useHomeStore} from '@/stores/homeStore.ts'
+import ItemCard from '@/components/ItemCard.vue'
 
 const home = useHomeStore()
 

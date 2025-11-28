@@ -4,32 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化类型定义、页面逻辑">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化接口定义">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/EmailUpdateDialog.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/PasswordUpdateDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/OrderQueryFormDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/OrderCreateFormDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/RegisterFormDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/RegisterFormDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/pojo/ItemCardVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/item/ItemCardVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/item/ItemCardListPageVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/item/ItemCardPageVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/user/OrderListVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/order/OrderInfoPageVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/ItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/ItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/ItemServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/home.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/item.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/item.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/order.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/api/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/homeStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/homeStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/OrderDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/OrderInfoDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/userStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/userStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/global.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Item.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/User.vue" afterDir="false" />
@@ -151,7 +133,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="Spring Boot.LiteboothApplication">
     <configuration name="db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/docker/mysql/db.sql" />
       <script-mode>FILE</script-mode>
@@ -244,7 +226,10 @@
       <workItem from="1764075658771" duration="3038000" />
       <workItem from="1764078714223" duration="17607000" />
       <workItem from="1764100471217" duration="3962000" />
-      <workItem from="1764113589934" duration="6061000" />
+      <workItem from="1764113589934" duration="6188000" />
+      <workItem from="1764133418308" duration="27000" />
+      <workItem from="1764195230718" duration="4346000" />
+      <workItem from="1764279270130" duration="9148000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -454,7 +439,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764104427612</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="优化接口定义">
+      <option name="closed" value="true" />
+      <created>1764133276877</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1764133276877</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,7 +487,8 @@
     <MESSAGE value="完成历史订单展示" />
     <MESSAGE value="完成复数商品发货" />
     <MESSAGE value="优化类型定义、页面逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化类型定义、页面逻辑" />
+    <MESSAGE value="优化接口定义" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化接口定义" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

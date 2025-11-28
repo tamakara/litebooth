@@ -1,10 +1,10 @@
 import {defineStore} from 'pinia'
-import {fetchProfileVO, login, register, updateAvatar} from "@/api/user";
+import {fetchProfileVO, login, register, updateAvatar, updateEmail, updatePassword} from "@/api/user";
 import {fetchOrderInfoPageVO} from "@/api/order";
 
 export const useUserStore = defineStore('user', {
     state: () => ({
-        token: '' as string,
+        token: '',
         profile: {
             username: '',
             email: '',
@@ -62,6 +62,15 @@ export const useUserStore = defineStore('user', {
             }
         },
 
+        logout() {
+            this.token = ''
+            this.profile = {
+                username: '',
+                email: '',
+                avatar: '',
+            }
+        },
+
         async fetchOrderInfoPageVO() {
             this.loading = true
             try {
@@ -77,13 +86,17 @@ export const useUserStore = defineStore('user', {
             this.profile.avatar = res.data
         },
 
-        updateEmail(newEmail) {
-
+        async updateEmail(form) {
+            await updateEmail(form)
+            const res = await fetchProfileVO()
+            this.profile = res.data
         },
 
-        logout() {
-            this.token = ''
-            this.profile = null
-        }
+
+        async updatePassword(form) {
+            await updatePassword(form)
+            const res = await fetchProfileVO()
+            this.profile = res.data
+        },
     }
 })

@@ -2,13 +2,12 @@
 import {useItemStore} from '@/stores/itemStore.js'
 import {onMounted, ref, toRefs} from 'vue'
 import {useRouter} from 'vue-router'
-import OrderDialog from '@/components/OrderDialog.vue'
-import {fetchItemInfoVO} from "@/api/item.js";
+import OrderInfoDialog from '@/components/OrderInfoDialog.vue'
 
 const item = useItemStore()
 const router = useRouter()
 
-const {itemInfo, orderQueryForm:queryForm, orderInfo, loading} = toRefs(item)
+const {itemInfo, orderQueryForm: queryForm, orderInfo, loading} = toRefs(item)
 
 const orderDialogVisible = ref(false)
 
@@ -110,11 +109,11 @@ onMounted(async () => {
     </el-card>
 
     <!-- 订单弹窗 -->
-    <OrderDialog
-      v-model:visible="orderDialogVisible"
-      :order-info="orderInfo"
-      @cancel="onCancelOrderClick"
-      @pay="onPayOrderClick"
+    <OrderInfoDialog
+        v-model:visible="orderDialogVisible"
+        :order-info="orderInfo"
+        @cancel="onCancelOrderClick"
+        @pay="onPayOrderClick"
     />
   </div>
 </template>

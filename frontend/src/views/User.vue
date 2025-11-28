@@ -1,35 +1,29 @@
 <script setup>
-import {reactive, watchEffect, computed, ref, onMounted} from 'vue'
-import {useUserStore} from '../stores/userStore.js'
+import {computed, onMounted, ref, toRefs} from 'vue'
+import {useUserStore} from '@/stores/userStore.ts'
 import {ElMessage} from 'element-plus'
+import EmailUpdateDialog from '@/components/EmailUpdateDialog.vue'
+import PasswordUpdateDialog from '@/components/PasswordUpdateDialog.vue'
+import {formatDate} from "@/utils/index.js";
 
 const user = useUserStore()
 
-const orderList = computed(() => user.orderInfoPage)
-const searchForm = computed(() => user.queryForm)
+const {orderInfoPage, queryForm} = toRefs(user)
+
+const orderInfoList = computed(() => orderInfoPage.value.orderInfoList)
+const total = computed(() => orderInfoPage.value.total)
 
 const fileInput = ref(null)
+
 const emailDialogVisible = ref(false)
 const passwordDialogVisible = ref(false)
-const emailEdit = reactive({oldEmail: '', newEmail: '', code: ''})
-const passwordEdit = reactive({oldPassword: '', newPassword: '', code: ''})
-
-const cardDialogVisible = ref(false)
-const currentCardContentList = ref('')
-
-watchEffect(() => {
-  if (user.profile) {
-    emailEdit.oldEmail = user.profile.email || ''
-  }
-})
-
-onMounted(async () => {
-  await user.fetchOrderInfoPageVO()
-})
+const contentListDialogVisible = ref(false)
+const currentContentList = ref([])
 
 const triggerAvatar = () => {
-  fileInput.value?.click()
+  fileInput.value.click()
 }
+
 const onAvatarChange = async (e) => {
   const file = e.target.files?.[0]
   if (!file) return
@@ -39,71 +33,46 @@ const onAvatarChange = async (e) => {
 }
 
 const openEmailDialog = () => {
-  if (!user.isLogin) return
-  emailEdit.oldEmail = user.profile?.email || ''
-  emailEdit.newEmail = ''
-  emailEdit.code = ''
   emailDialogVisible.value = true
 }
 
 const openPasswordDialog = () => {
-  if (!user.isLogin) return
-  passwordEdit.oldPassword = ''
-  passwordEdit.newPassword = ''
-  passwordEdit.code = ''
   passwordDialogVisible.value = true
 }
 
-const sendEmailCode = (scene) => {
-  ElMessage.success(`验证码已发送（${scene}）`)
-}
-
-const submitEmailChange = () => {
-  if (!user.profile) return
-  if (emailEdit.oldEmail !== user.profile.email) {
-    ElMessage.error('旧邮箱不匹配')
-    return
-  }
-  if (!emailEdit.newEmail) {
-    ElMessage.error('请输入新邮箱')
-    return
-  }
-  if (!emailEdit.code) {
-    ElMessage.error('请输入验证码')
-    return
-  }
-  user.updateEmail(emailEdit.newEmail)
+const handleEmailSubmit = async (form) => {
+  await user.updateEmail(form)
   ElMessage.success('邮箱已更新')
   emailDialogVisible.value = false
 }
 
-const submitPasswordChange = () => {
-  if (!passwordEdit.oldPassword || !passwordEdit.newPassword) {
-    ElMessage.error('请填写旧密码与新密码')
-    return
-  }
-  if (!passwordEdit.code) {
-    ElMessage.error('请输入邮箱验证码')
-    return
-  }
+const handlePasswordSubmit = async (form) => {
+  await user.updatePassword(form)
   ElMessage.success('密码已更新')
   passwordDialogVisible.value = false
 }
 
-const fmt = (d) => d ? new Date(d).toLocaleString() : ''
+const openContentListDialog = (contentList) => {
+  currentContentList.value = contentList
+  contentListDialogVisible.value = true
+}
+
+const handlePageChange = async () => {
+  if (!user.isLogin) return
+  await user.fetchOrderInfoPageVO()
+}
+
+const handleSendEmailCode = (email,type) => {
+  // TODO: 在这里实现发送邮箱验证码的逻辑（例如调用 user 相关的 API）
+  // user.sendEmailCode({ newEmail })
+}
+
+
 const statusType = (s) => s && s.includes('待') ? 'warning' : (s && s.includes('完成') ? 'success' : 'info')
 
-// 显示卡密
-const showCard = (order) => {
-  currentCardContentList.value = order?.contentList || '暂无卡密信息'
-  cardDialogVisible.value = true
-}
-
-// 分页变更处理
-const handlePageChange = () => {
-  if (!user.isLogin) return
-  user.fetchOrderInfoPageVO()
-}
+onMounted(async () => {
+  await user.fetchOrderInfoPageVO()
+})
 </script>
 
 <template>
@@ -139,61 +108,28 @@ const handlePageChange = () => {
         </div>
       </el-card>
 
-      <el-dialog v-model="emailDialogVisible" title="修改邮箱" width="420px">
-        <el-form label-width="90px">
-          <el-form-item label="旧邮箱">
-            <div class="plain-value">{{ emailEdit.oldEmail }}</div>
-          </el-form-item>
-          <el-form-item label="新邮箱">
-            <el-input v-model="emailEdit.newEmail" placeholder="输入新邮箱"/>
-          </el-form-item>
-          <el-form-item label="验证码">
-            <el-input v-model="emailEdit.code" placeholder="输入验证码">
-              <template #append>
-                <el-button @click="sendEmailCode('邮箱修改')">发送</el-button>
-              </template>
-            </el-input>
-          </el-form-item>
-        </el-form>
-        <template #footer>
-          <el-button @click="emailDialogVisible=false">取消</el-button>
-          <el-button type="primary" @click="submitEmailChange">确定</el-button>
-        </template>
-      </el-dialog>
-
-      <!-- 密码编辑弹窗 -->
-      <el-dialog v-model="passwordDialogVisible" title="修改密码" width="420px">
-        <el-form label-width="90px">
-          <el-form-item label="旧密码">
-            <el-input v-model="passwordEdit.oldPassword" type="password" placeholder="输入旧密码"/>
-          </el-form-item>
-          <el-form-item label="新密码">
-            <el-input v-model="passwordEdit.newPassword" type="password" placeholder="输入新密码"/>
-          </el-form-item>
-          <el-form-item label="验证码">
-            <el-input v-model="passwordEdit.code" placeholder="邮箱验证码">
-              <template #append>
-                <el-button @click="sendEmailCode('密码修改')">发送</el-button>
-              </template>
-            </el-input>
-          </el-form-item>
-        </el-form>
-        <template #footer>
-          <el-button @click="passwordDialogVisible=false">取消</el-button>
-          <el-button type="primary" @click="submitPasswordChange">确定</el-button>
-        </template>
-      </el-dialog>
+      <EmailUpdateDialog
+          v-model:visible="emailDialogVisible"
+          :old-email="user.profile.email"
+          @submit="handleEmailSubmit"
+          @send-code="handleSendEmailCode"
+      />
+      <PasswordUpdateDialog
+          v-model:visible="passwordDialogVisible"
+          @submit="handlePasswordSubmit"
+          @send-code="handleSendEmailCode"
+      />
 
       <el-card class="panel">
         <template #header>历史订单</template>
-        <el-empty v-if="! orderList.orderInfoList.length" description="暂无订单"/>
+        <el-empty v-if="! orderInfoList.length" description="暂无订单"/>
         <div v-else class="order-list">
-          <div v-for="o in orderList.orderInfoList" :key="o.id" class="order-item">
+          <div v-for="o in orderInfoList" :key="o.id" class="order-item">
             <div class="order-head">
               <div class="left">
                 <div class="ono">订单号：<span class="mono">{{ o.id }}</span></div>
-                <div class="date">创建时间：{{ fmt(o.createdAt) }}</div>
-                <div class="date">付款时间：{{ fmt(o.createdAt) }}</div>
+                <div class="date">创建时间：{{ formatDate(o.createdAt) }}</div>
+                <div class="date">付款时间：{{ formatDate(o.createdAt) }}</div>
                 <div class="field">商品名称：{{ o.itemName }}</div>
                 <div class="field">数量：{{ o.quantity }}</div>
                 <div class="field">支付方式：{{ o.payMethod }}</div>
@@ -201,28 +137,29 @@ const handlePageChange = () => {
               <div class="right">
                 <el-tag :type="statusType(o.status)">{{ o.status }}</el-tag>
                 <div class="amount">合计：¥ {{ Number(o.amount || 0).toFixed(2) }}</div>
-                <el-button type="primary" size="small" @click="showCard(o)">显示卡密</el-button>
+                <el-button type="primary" size="small" @click="openContentListDialog(o.contentList)">显示卡密
+                </el-button>
               </div>
             </div>
           </div>
         </div>
         <!-- 分页组件 -->
-        <div v-if="orderList.total > 0" class="pagination-wrapper">
+        <div v-if="total > 0" class="pagination-wrapper">
           <el-pagination
               layout="prev, pager, next"
-              :current-page="searchForm.pageNum"
-              :page-size="searchForm.pageSize"
-              :total="orderList.total"
+              :current-page="queryForm.pageNum"
+              :page-size="queryForm.pageSize"
+              :total="total"
               @current-change="handlePageChange"
           />
         </div>
       </el-card>
 
       <!-- 卡密弹窗 -->
-      <el-dialog v-model="cardDialogVisible" title="卡密内容" width="500px">
-        <pre v-for="content in currentCardContentList" class="card-content">{{ content }}</pre>
+      <el-dialog v-model="contentListDialogVisible" title="卡密内容" width="500px">
+        <pre v-for="content in currentContentList" class="card-content">{{ content }}</pre>
         <template #footer>
-          <el-button type="primary" @click="cardDialogVisible = false">关闭</el-button>
+          <el-button type="primary" @click="contentListDialogVisible = false">关闭</el-button>
         </template>
       </el-dialog>
     </template>
@@ -355,10 +292,6 @@ const handlePageChange = () => {
   margin-top: 12px;
   display: flex;
   justify-content: center;
-}
-
-.plain-value {
-  color: #606266;
 }
 
 .card-content {

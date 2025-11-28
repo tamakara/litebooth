@@ -51,4 +51,20 @@ public class UserController {
         String avatarUrl = userService.updateAvatar(userId, file);
         return ResponseEntity.ok(avatarUrl);
     }
+
+//    @PutMapping("/updateEmail")
+//    public ResponseEntity<String> updateEmail(
+//            @RequestAttribute("userId") Long userId
+//    ) {
+//        String avatarUrl = userService.updateEmail(userId, file);
+//        return ResponseEntity.ok(avatarUrl);
+//    }
+//
+//    @PutMapping("/updatePassword")
+//    public ResponseEntity<String> updatePassword(
+//            @RequestAttribute("userId") Long userId
+//    ) {
+//        String avatarUrl = userService.updatePassword(userId, file);
+//        return ResponseEntity.ok(avatarUrl);
+//    }
 }

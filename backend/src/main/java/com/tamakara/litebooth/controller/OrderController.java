@@ -18,20 +18,10 @@ public class OrderController {
 
     @PostMapping("/createOrder")
     public ResponseEntity<OrderInfoVO> createOrder(
-            @RequestAttribute("userId") Long userId,
             @RequestBody OrderCreateFormDTO orderFormDTO
     ) {
         OrderInfoVO vo = orderService.createOrder(userId, orderFormDTO);
         return ResponseEntity.ok(vo);
-    }
-
-    @DeleteMapping("/cancelOrder/{orderId}")
-    public ResponseEntity<Void> cancelOrder(
-            @RequestAttribute("userId") Long userId,
-            @PathVariable("orderId") Long orderId
-    ) {
-        orderService.cancelOrder(userId, orderId);
-        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/payOrder/{orderId}")
@@ -45,7 +35,6 @@ public class OrderController {
 
     @GetMapping("/vo/OrderInfoPageVO")
     public ResponseEntity<OrderInfoPageVO> getOrderInfoPageVO(
-            @RequestAttribute("userId") Long userId,
             @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum,
             @RequestParam(value = "pageSize", defaultValue = "10") Long pageSize
     ) {

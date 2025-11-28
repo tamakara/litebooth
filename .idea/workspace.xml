@@ -4,17 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化接口定义">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/EmailUpdateDialog.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/PasswordUpdateDialog.vue" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化组件">
+      <change afterPath="$PROJECT_DIR$/frontend/src/stores/orderStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/Order.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/OrderDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/OrderInfoDialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/userStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/userStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/LoginFormDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/RegisterFormDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/user/LoginVO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/user/ProfileVO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/user/RegisterVO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/util/JwtUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/http.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/http.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/order.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/user.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AuthDialog.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/EmailUpdateDialog.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ItemCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ItemCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PasswordUpdateDialog.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/config/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/config/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/homeStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/homeStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/itemStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/itemStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/userStore.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Item.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/User.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/User.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +254,7 @@
       <workItem from="1764113589934" duration="6188000" />
       <workItem from="1764133418308" duration="27000" />
       <workItem from="1764195230718" duration="4346000" />
-      <workItem from="1764279270130" duration="9148000" />
+      <workItem from="1764279270130" duration="15333000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -447,7 +472,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764133276877</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="优化组件">
+      <option name="closed" value="true" />
+      <created>1764333434956</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1764333434956</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +521,8 @@
     <MESSAGE value="完成复数商品发货" />
     <MESSAGE value="优化类型定义、页面逻辑" />
     <MESSAGE value="优化接口定义" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化接口定义" />
+    <MESSAGE value="优化组件" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化组件" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

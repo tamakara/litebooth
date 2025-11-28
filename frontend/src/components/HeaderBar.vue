@@ -1,43 +1,53 @@
 <script setup>
-import {computed, ref} from 'vue'
+import {toRefs} from 'vue'
 import {useRouter} from 'vue-router'
-import {useUserStore} from '../stores/userStore.js'
-import {useHomeStore} from '../stores/homeStore.js'
-import AuthDialog from './AuthDialog.vue'
-import defaultAvatar from '../assets/default_avatar.png'
-import {fetchItemInfoVO} from "@/api/item.js";
+import {useHomeStore} from '@/stores/homeStore.ts'
 
 const router = useRouter()
-const user = useUserStore()
 const home = useHomeStore()
 
-const queryForm = computed(() => home.itemCardQueryForm)
+const {itemCardQueryForm: queryForm} = toRefs(home)
 
-const showAuth = ref(false)
-const onLoginSuccess = () => {
-  showAuth.value = false
-}
-
-const handleSearch = () => {
+const handleSearch = async () => {
   queryForm.value.pageNum = 1
-  home.fetchItemInfoVO()
+  await home.fetchItemCardPageVO()
 }
 </script>
 
 <template>
   <el-header class="app-header">
-    <div class="nav-left" @click="router.push('/')">
-      <span class="logo-dot"></span>
-      <span class="brand-name">LiteBooth</span>
+    <div class="nav-left">
+      <div class="brand" @click="router.push('/')">
+        <span class="logo-dot"></span>
+        <span class="brand-name">LiteBooth</span>
+      </div>
+      <nav class="nav-links">
+        <span
+            class="nav-link"
+            role="button"
+            @click="router.push('/')"
+        >
+          首页
+        </span>
+        <span
+            class="nav-link"
+            role="button"
+            @click="router.push('/order')"
+        >
+          订单查询
+        </span>
+      </nav>
     </div>
-    <div class="nav-center">
+
+    <div class="nav-right">
       <el-input
+          v-if="router.currentRoute.value.name==='home'"
           v-model="queryForm.keyword"
+          @keydown.enter="handleSearch"
+          class="global-search"
           placeholder="搜索商品名称"
           clearable
-          class="global-search"
           size="large"
-          @keydown.enter="handleSearch"
       >
         <template #append>
           <el-button
@@ -50,30 +60,6 @@ const handleSearch = () => {
         </template>
       </el-input>
     </div>
-    <div class="nav-right">
-      <template v-if="user.isLogin">
-        <div class="user-box" role="button" @click="router.push('/user')">
-          <el-avatar
-              :size="40"
-              class="avatar"
-              :src="user.profile?.avatar || defaultAvatar"
-          />
-          <span class="username">{{ user.username }}</span>
-        </div>
-      </template>
-      <template v-else>
-        <div
-            class="user-box"
-            role="button"
-            aria-label="未登录，点击登录"
-            @click="showAuth = true"
-        >
-          <el-avatar :size="40" class="avatar" :src="defaultAvatar"/>
-          <span class="username">未登录</span>
-        </div>
-      </template>
-    </div>
-    <AuthDialog v-model:visible="showAuth" @success="onLoginSuccess"/>
   </el-header>
 </template>
 
@@ -90,9 +76,16 @@ const handleSearch = () => {
   background: #ffffff;
   border-bottom: 1px solid #e2e5e9;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  gap: 24px;
 }
 
 .nav-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.brand {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -101,21 +94,35 @@ const handleSearch = () => {
   cursor: pointer;
 }
 
-.nav-center {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.nav-right {
+.nav-links {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
+.nav-link {
+  font-size: 15px;
+  color: #4b5563;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #111827;
+  background: #f3f4f6;
+}
+
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .global-search {
   width: 560px;
-  max-width: 65%;
+  max-width: 100%;
   border-radius: 10px;
 }
 
@@ -130,42 +137,6 @@ const handleSearch = () => {
   border-radius: 50%;
   background: linear-gradient(135deg, #409eff, #67c23a);
   box-shadow: 0 0 0 6px rgba(64, 158, 255, 0.18);
-}
-
-.avatar {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-}
-
-.username {
-  font-weight: 600;
-  color: #333;
-  cursor: pointer;
-  max-width: 160px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.user-box {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 14px 6px 8px;
-  border: 1px solid #e5e7eb;
-  border-radius: 999px;
-  background: #fff;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.user-box:hover {
-  border-color: #cfd4dc;
-  background: #f9fafb;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-}
-
-.user-box:active {
-  transform: translateY(1px);
 }
 
 .global-search :deep(.el-input__wrapper) {
@@ -187,9 +158,14 @@ const handleSearch = () => {
     padding: 10px 16px;
   }
 
-  .nav-center {
-    order: 3;
+  .nav-left {
     width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: center;
   }
 
   .global-search {

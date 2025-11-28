@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 import {fetchItemInfoVO} from "@/api/item";
-import {cancelOrder, createOrder, payOrder} from "@/api/order";
+import { createOrder, payOrder, cancelOrder } from "@/api/order";
 
 export const useItemStore = defineStore('item', {
     state: () => ({
@@ -13,10 +13,14 @@ export const useItemStore = defineStore('item', {
             stock: 0,
             description: '',
         },
-        orderQueryForm: {
+        orderCreateForm: {
             itemId: '',
             quantity: 1,
-            payMethod: 'wxpay'
+            payMethod: 'wxpay',
+            // 新增字段：收货邮箱、订单查询密码、图形验证码
+            email: '',
+            queryPassword: '',
+            captchaCode: '',
         },
         orderInfo: {
             id: '',
@@ -38,19 +42,15 @@ export const useItemStore = defineStore('item', {
             try {
                 const res = await fetchItemInfoVO(itemId)
                 this.itemInfo = res.data
-                this.orderQueryForm.itemId = this.itemInfo.id
+                this.orderCreateForm.itemId = this.itemInfo.id
             } finally {
                 this.loading = false
             }
         },
 
         async createOrder() {
-            const res = await createOrder(this.orderQueryForm)
+            const res = await createOrder(this.orderCreateForm)
             this.orderInfo = res.data
-        },
-
-        async cancelOrder() {
-            await cancelOrder(this.orderInfo.id)
         },
 
         async payOrder() {

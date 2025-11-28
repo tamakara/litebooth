@@ -1,10 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import {useRouter} from 'vue-router'
 import {ShoppingCart} from '@element-plus/icons-vue'
 
-const props = defineProps({
-  item: {type: Object, required: true}
-})
+const props = defineProps<{
+  item: ItemCardVO
+}>()
+
 const router = useRouter()
 const onClick = () => {
   router.push('/item/' + props.item.id)

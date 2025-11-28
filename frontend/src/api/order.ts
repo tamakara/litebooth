@@ -5,10 +5,6 @@ export function createOrder(form: OrderCreateFormDTO): Promise<AxiosResponse<Ord
     return http.post('/order/createOrder', form)
 }
 
-export function cancelOrder(orderId: string) {
-    return http.delete(`/order/cancelOrder/${orderId}`)
-}
-
 export function payOrder(orderId: string) {
     return http.post(`/order/payOrder/${orderId}`)
 }

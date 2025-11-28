@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {onMounted, computed, toRefs} from 'vue'
 import {useHomeStore} from '@/stores/homeStore.ts'
 import ItemCard from '@/components/ItemCard.vue'
@@ -9,14 +9,14 @@ const {homeInfo, itemCardQueryForm: queryForm, itemCardPage: listPage} = toRefs(
 const itemCardList = computed(() => listPage.value.itemCardList)
 const total = computed(() => listPage.value.total)
 
-const updateQuery = (payload) => {
+const updateQuery = async (payload) => {
   Object.assign(queryForm, payload)
-  home.fetchItemCardPageVO()
+  await home.fetchItemCardPageVO()
 }
 
+const handleGroupChange = (group) => updateQuery({group, pageNum: 1})
 const handlePageChange = (page) => updateQuery({pageNum: page})
 const handleSizeChange = (size) => updateQuery({pageSize: size, pageNum: 1})
-const handleGroupChange = (group) => updateQuery({group, pageNum: 1})
 
 onMounted(async () => {
   await home.fetchHomeInfoVO()

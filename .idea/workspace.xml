@@ -5,41 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化组件">
-      <change afterPath="$PROJECT_DIR$/frontend/src/stores/orderStore.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/Order.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/CaptchaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/captcha/CaptchaInfoVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/CaptchaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/CaptchaServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/api/captcha.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/LoginFormDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/RegisterFormDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/user/LoginVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/user/ProfileVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/user/RegisterVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/UserMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/UserServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/util/JwtUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/OrderCreateFormDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/OrderCreateFormDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/order/OrderInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/order/OrderInfoVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/OrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/http.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/http.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/order.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/user.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AuthDialog.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/EmailUpdateDialog.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ItemCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ItemCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/PasswordUpdateDialog.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/config/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/config/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/homeStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/homeStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/tamakara/litebooth/LiteboothApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/tamakara/litebooth/LiteboothApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/OrderInfoDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/OrderInfoDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/config/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/itemStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/itemStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/userStore.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/global.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Item.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/User.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,9 +41,10 @@
       <list>
         <option value="Vue Composition API Component" />
         <option value="JavaScript File" />
-        <option value="Class" />
-        <option value="Interface" />
         <option value="TypeScript File" />
+        <option value="package-info" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -94,44 +85,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.docker: Compose 部署.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.LiteboothApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.11.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.10.1&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/suhxhee/Code/IDEA/litebooth/frontend/src/api&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.customization.CustomizationConfigurable&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker.redis: Compose 部署.executor": "Run",
+    "Docker.docker: Compose 部署.executor": "Run",
+    "JUnit.LiteboothApplicationTests.test.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.LiteboothApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "24.11.0",
+    "javascript.nodejs.core.library.typings.version": "24.10.1",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/suhxhee/Code/IDEA/octopus-master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.customization.CustomizationConfigurable",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ],
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\api" />
@@ -145,6 +138,7 @@
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.tamakara.litebooth.controller" />
       <recent name="com.tamakara.litebooth.domain.dto" />
       <recent name="com.tamakara.litebooth.mapper" />
       <recent name="com.tamakara.litebooth.domain.vo" />
@@ -158,11 +152,27 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.LiteboothApplication">
+  <component name="RunManager" selected="Docker.docker.redis: Compose 部署">
     <configuration name="db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/docker/mysql/db.sql" />
       <script-mode>FILE</script-mode>
       <method v="2" />
+    </configuration>
+    <configuration name="LiteboothApplicationTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tamakara.litebooth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tamakara.litebooth" />
+      <option name="MAIN_CLASS_NAME" value="com.tamakara.litebooth.LiteboothApplicationTests" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="LiteboothApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="backend" />
@@ -186,6 +196,19 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker.redis: Compose 部署" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="redis" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
@@ -198,13 +221,17 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.docker.redis: Compose 部署" />
       <item itemvalue="Docker.docker: Compose 部署" />
+      <item itemvalue="JUnit.LiteboothApplicationTests.test" />
       <item itemvalue="npm.dev" />
       <item itemvalue="Spring Boot.LiteboothApplication" />
       <item itemvalue="数据库脚本.db.sql" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker.redis: Compose 部署" />
+        <item itemvalue="JUnit.LiteboothApplicationTests.test" />
         <item itemvalue="数据库脚本.db.sql" />
         <item itemvalue="Docker.docker: Compose 部署" />
       </list>
@@ -255,6 +282,7 @@
       <workItem from="1764133418308" duration="27000" />
       <workItem from="1764195230718" duration="4346000" />
       <workItem from="1764279270130" duration="15333000" />
+      <workItem from="1764402875528" duration="13712000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />

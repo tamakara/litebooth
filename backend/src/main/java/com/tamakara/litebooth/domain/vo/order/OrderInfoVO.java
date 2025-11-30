@@ -13,7 +13,8 @@ import java.util.List;
 public class OrderInfoVO {
     private String id;
     private String status;
-    private String userMail;
+    private String queryEmail;
+    private String queryPassword;
     private String itemName;
     private Double itemPrice;
     private Long quantity;

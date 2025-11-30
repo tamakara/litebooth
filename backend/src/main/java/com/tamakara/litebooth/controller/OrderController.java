@@ -20,26 +20,25 @@ public class OrderController {
     public ResponseEntity<OrderInfoVO> createOrder(
             @RequestBody OrderCreateFormDTO orderFormDTO
     ) {
-        OrderInfoVO vo = orderService.createOrder(userId, orderFormDTO);
+        OrderInfoVO vo = orderService.createOrder(orderFormDTO);
         return ResponseEntity.ok(vo);
     }
 
     @PostMapping("/payOrder/{orderId}")
     public ResponseEntity<Void> payOrder(
-            @RequestAttribute("userId") Long userId,
             @PathVariable("orderId") Long orderId
     ) {
-        orderService.payOrder(userId, orderId);
+        orderService.payOrder(orderId);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/vo/OrderInfoPageVO")
-    public ResponseEntity<OrderInfoPageVO> getOrderInfoPageVO(
-            @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum,
-            @RequestParam(value = "pageSize", defaultValue = "10") Long pageSize
-    ) {
-        OrderInfoPageVO vo = orderService.getOrderInfoPageVO(userId, pageNum, pageSize);
-        return ResponseEntity.ok(vo);
-    }
+//    @GetMapping("/vo/OrderInfoPageVO")
+//    public ResponseEntity<OrderInfoPageVO> getOrderInfoPageVO(
+//            @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum,
+//            @RequestParam(value = "pageSize", defaultValue = "10") Long pageSize
+//    ) {
+//        OrderInfoPageVO vo = orderService.getOrderInfoPageVO(pageNum, pageSize);
+//        return ResponseEntity.ok(vo);
+//    }
 
 }

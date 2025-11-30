@@ -5,20 +5,6 @@ FLUSH PRIVILEGES;
 
 USE litebooth;
 
-CREATE TABLE `user`
-(
-    `id`             BIGINT       NOT NULL AUTO_INCREMENT,
-    `avatar_file_id` BIGINT       NOT NULL,
-    `username`       VARCHAR(255) NOT NULL,
-    `password`       VARCHAR(255) NOT NULL,
-    `email`          VARCHAR(255) NOT NULL,
-    `created_at`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `idx_username` (`username`),
-    UNIQUE KEY `idx_email` (`email`)
-) DEFAULT CHARSET = utf8mb4;
-
 CREATE TABLE `file`
 (
     `id`         BIGINT       NOT NULL AUTO_INCREMENT,
@@ -66,18 +52,18 @@ VALUES (3, true, true, '示例商品 3', 3.33, 3, '3', 2, 'c');
 
 CREATE TABLE `order`
 (
-    `id`         BIGINT       NOT NULL,
-    `status`     VARCHAR(255) NOT NULL,
-    `user_id`    BIGINT       NOT NULL,
-    `user_mail`  VARCHAR(255) NOT NULL,
-    `item_id`    BIGINT       NOT NULL,
-    `item_name`  VARCHAR(255) NOT NULL,
-    `item_price` DOUBLE       NOT NULL,
-    `quantity`   BIGINT       NOT NULL,
-    `amount`     DOUBLE       NOT NULL,
-    `pay_method` VARCHAR(255) NOT NULL,
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `id`             BIGINT       NOT NULL,
+    `status`         VARCHAR(255) NOT NULL,
+    `query_email`    VARCHAR(255) NOT NULL,
+    `query_password` VARCHAR(255) NOT NULL,
+    `item_id`        BIGINT       NOT NULL,
+    `item_name`      VARCHAR(255) NOT NULL,
+    `item_price`     DOUBLE       NOT NULL,
+    `quantity`       BIGINT       NOT NULL,
+    `amount`         DOUBLE       NOT NULL,
+    `pay_method`     VARCHAR(255) NOT NULL,
+    `created_at`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
 

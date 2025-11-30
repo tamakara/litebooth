@@ -19,25 +19,20 @@ import java.util.List;
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
     private final OrderMapper orderMapper;
     private final ItemMapper itemMapper;
-    private final UserMapper userMapper;
     private final StockMapper stockMapper;
+
     @Override
     @Transactional
-    public OrderInfoVO createOrder(Long userId, OrderCreateFormDTO orderFormDTO) {
-        User user = userMapper.selectById(userId);
-        if (user == null) {
-            throw new RuntimeException("用户不存在");
-        }
-
+    public OrderInfoVO createOrder(OrderCreateFormDTO orderFormDTO) {
         Item item = itemMapper.selectById(orderFormDTO.getItemId());
         if (item == null) {
             throw new RuntimeException("商品不存在");
         }
 
         Order order = new Order();
-        order.setUserId(userId);
-        order.setUserMail(user.getEmail());
         order.setStatus("未支付");
+        order.setQueryEmail(orderFormDTO.getQueryEmail());
+        order.setQueryPassword(orderFormDTO.getQueryPassword());
         order.setItemId(item.getId());
         order.setItemName(item.getName());
         order.setItemPrice(item.getPrice());
@@ -51,7 +46,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
         OrderInfoVO vo = new OrderInfoVO();
         vo.setId(String.valueOf(order.getId()));
-        vo.setUserMail(order.getUserMail());
+        vo.setQueryEmail(order.getQueryEmail());
+        vo.setQueryPassword(order.getQueryPassword());
         vo.setStatus(order.getStatus());
         vo.setItemName(order.getItemName());
         vo.setItemPrice(order.getItemPrice());
@@ -63,24 +59,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         return vo;
     }
 
-    @Override
-    @Transactional
-    public void cancelOrder(Long userId, Long orderId) {
-        Order order = orderMapper.selectById(orderId);
-        if (order == null || !order.getUserId().equals(userId)) {
-            throw new RuntimeException("订单不存在或无权限取消");
-        }
-
-        if (!"未支付".equals(order.getStatus())) {
-            throw new RuntimeException("只有未支付的订单才能取消");
-        }
-
-        orderMapper.deleteById(orderId);
-    }
 
     @Override
     @Transactional
-    public void payOrder(Long userId, Long orderId) {
+    public void payOrder(Long orderId) {
         Order order = orderMapper.selectById(orderId);
         order.setStatus("待发货");
         orderMapper.updateById(order);
@@ -88,13 +70,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         Item item = itemMapper.selectById(order.getItemId());
 
         if (item.getIsAutoDelivery()) {
-            deliveryOrder(0L, orderId);
+            deliveryOrder(orderId);
         }
     }
 
     @Override
     @Transactional
-    public void deliveryOrder(Long userId, Long orderId) {
+    public void deliveryOrder(Long orderId) {
         Order order = orderMapper.selectById(orderId);
 
         Long quantity = order.getQuantity();
@@ -110,32 +92,31 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
 
-    @Override
-    @Transactional(readOnly = true)
-    public OrderInfoPageVO getOrderInfoPageVO(Long userId, Long pageNum, Long pageSize) {
-        User user = userMapper.selectById(userId);
-        Page<Order> page = new Page<>(pageNum, pageSize);
-        orderMapper.selectPageByUserId(page, userId);
-        List<OrderInfoVO> orderVOList = page.getRecords().stream().map(order -> {
-            OrderInfoVO vo = new OrderInfoVO();
-
-            List<Stock> stockList = stockMapper.selectListByOrderId(order.getId());
-            List<String> contentList = stockList.stream().map(Stock::getContent).toList();
-
-            vo.setId(order.getId().toString());
-            vo.setStatus(order.getStatus());
-            vo.setUserMail(user.getEmail());
-            vo.setItemName(order.getItemName());
-            vo.setItemPrice(order.getItemPrice());
-            vo.setQuantity(order.getQuantity());
-            vo.setPayMethod(order.getPayMethod());
-            vo.setAmount(order.getAmount());
-            vo.setContentList(contentList);
-            vo.setCreatedAt(order.getCreatedAt());
-            vo.setUpdatedAt(order.getUpdatedAt());
-            return vo;
-        }).toList();
-
-        return new OrderInfoPageVO(orderVOList, page.getCurrent(), page.getSize(), page.getTotal());
-    }
+//    @Override
+//    @Transactional(readOnly = true)
+//    public OrderInfoPageVO getOrderInfoPageVO(Long pageNum, Long pageSize) {
+//        Page<Order> page = new Page<>(pageNum, pageSize);
+//        orderMapper.selectPageByUserId(page, userId);
+//        List<OrderInfoVO> orderVOList = page.getRecords().stream().map(order -> {
+//            OrderInfoVO vo = new OrderInfoVO();
+//
+//            List<Stock> stockList = stockMapper.selectListByOrderId(order.getId());
+//            List<String> contentList = stockList.stream().map(Stock::getContent).toList();
+//
+//            vo.setId(order.getId().toString());
+//            vo.setStatus(order.getStatus());
+//            vo.setUserMail(user.getEmail());
+//            vo.setItemName(order.getItemName());
+//            vo.setItemPrice(order.getItemPrice());
+//            vo.setQuantity(order.getQuantity());
+//            vo.setPayMethod(order.getPayMethod());
+//            vo.setAmount(order.getAmount());
+//            vo.setContentList(contentList);
+//            vo.setCreatedAt(order.getCreatedAt());
+//            vo.setUpdatedAt(order.getUpdatedAt());
+//            return vo;
+//        }).toList();
+//
+//        return new OrderInfoPageVO(orderVOList, page.getCurrent(), page.getSize(), page.getTotal());
+//    }
 }

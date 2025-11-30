@@ -1409,12 +1409,12 @@ user_service_db|schema||user_service_user||UPDATE|G</Grants>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="344" parent="307" name="user_id">
+    <column id="344" parent="307" name="query_email">
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StoredType>bigint|0s</StoredType>
+      <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="345" parent="307" name="user_mail">
+    <column id="345" parent="307" name="query_password">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>

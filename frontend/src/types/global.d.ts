@@ -41,12 +41,17 @@ declare interface OrderCreateFormDTO {
     itemId: string;
     quantity: number;
     payMethod: string;
+    queryEmail: string;
+    queryPassword: string;
+    captchaKey: string;
+    captchaCode: string;
 }
 
 declare interface OrderInfoVO {
     id: string;
     status: string;
-    userMail: string;
+    queryEmail: string;
+    queryPassword: string;
     itemName: string;
     itemPrice: number;
     quantity: number;
@@ -55,18 +60,6 @@ declare interface OrderInfoVO {
     contentList: string[];
     createdAt: string;
     updatedAt: string;
-}
-
-declare interface LoginFormDTO {
-    username: string;
-    password: string;
-}
-
-declare interface RegisterFormDTO {
-    username: string;
-    password: string;
-    email: string;
-    code: string;
 }
 
 declare interface OrderInfoPageVO {
@@ -81,10 +74,9 @@ declare interface OrderInfoPageQueryFormDTO {
     pageSize: number;
 }
 
-declare interface ProfileVO {
-    avatar: string;
-    username: string;
-    email: string;
+declare interface CaptchaInfoVO {
+    captchaKey: string;
+    imageBase64: string;
 }
 
 

@@ -7,13 +7,11 @@ import com.tamakara.litebooth.domain.vo.order.OrderInfoVO;
 import com.tamakara.litebooth.domain.vo.order.OrderInfoPageVO;
 
 public interface OrderService extends IService<Order> {
-    OrderInfoVO createOrder(Long userId, OrderCreateFormDTO orderFormDTO);
+    OrderInfoVO createOrder( OrderCreateFormDTO orderFormDTO);
 
-    void cancelOrder(Long userId, Long orderId);
+    void payOrder( Long orderId);
 
-    void payOrder(Long userId, Long orderId);
+    void deliveryOrder( Long orderId);
 
-    void deliveryOrder(Long userId, Long orderId);
-
-    OrderInfoPageVO getOrderInfoPageVO(Long userId , Long pageNum, Long pageSize);
+//    OrderInfoPageVO getOrderInfoPageVO(Long pageNum, Long pageSize);
 }

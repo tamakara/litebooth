@@ -17,11 +17,11 @@ public class Order {
     @TableField(value = "status")
     private String status;
 
-    @TableField(value = "user_id")
-    private Long userId;
+    @TableField(value = "query_email")
+    private String queryEmail;
 
-    @TableField(value = "user_mail")
-    private String userMail;
+    @TableField(value = "query_password")
+    private String queryPassword;
 
     @TableField(value = "item_id")
     private Long itemId;

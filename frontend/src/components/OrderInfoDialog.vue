@@ -1,19 +1,13 @@
-<script setup>
+<script setup lang="ts">
 import {computed} from 'vue'
 import {formatDate} from "@/utils/index.js";
 
-const props = defineProps({
-  visible: {
-    type: Boolean,
-    required: true
-  },
-  orderInfo: {
-    type: Object,
-    required: true
-  }
-})
+const props = defineProps<{
+  visible: boolean
+  orderInfo: UnwrapRef<OrderInfoVO>
+}>()
 
-const emit = defineEmits(['update:visible', 'cancel', 'pay'])
+const emit = defineEmits(['update:visible', 'pay'])
 
 const dialogVisible = computed({
   get: () => props.visible,
@@ -21,10 +15,6 @@ const dialogVisible = computed({
 })
 
 const orderCreatedAtFormatted = computed(() => formatDate(props.orderInfo.createdAt))
-
-const handleCancel = () => {
-  emit('cancel')
-}
 
 const handlePay = () => {
   emit('pay')
@@ -49,7 +39,6 @@ const handlePay = () => {
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="danger" @click="handleCancel">取消订单</el-button>
         <el-button type="primary" @click="handlePay">去付款</el-button>
       </span>
     </template>

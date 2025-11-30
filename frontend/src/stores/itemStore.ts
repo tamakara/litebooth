@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia'
 import {fetchItemInfoVO} from "@/api/item";
-import { createOrder, payOrder, cancelOrder } from "@/api/order";
+import {createOrder, payOrder} from "@/api/order";
+import {fetchCaptchaInfoVO} from "@/api/captcha";
 
 export const useItemStore = defineStore('item', {
     state: () => ({
@@ -13,13 +14,17 @@ export const useItemStore = defineStore('item', {
             stock: 0,
             description: '',
         },
+        captchaInfo: {
+            captchaKey: '',
+            imageBase64: '',
+        },
         orderCreateForm: {
             itemId: '',
             quantity: 1,
             payMethod: 'wxpay',
-            // 新增字段：收货邮箱、订单查询密码、图形验证码
-            email: '',
+            queryEmail: '',
             queryPassword: '',
+            captchaKey: '',
             captchaCode: '',
         },
         orderInfo: {
@@ -37,12 +42,23 @@ export const useItemStore = defineStore('item', {
     }),
     getters: {},
     actions: {
+        async fetchCaptchaInfoVO() {
+            this.loading = true
+            try {
+                const res = await fetchCaptchaInfoVO()
+                this.captchaInfo = res.data
+                this.orderCreateForm.captchaKey = res.data.captchaKey
+            } finally {
+                this.loading = false
+            }
+        },
+
         async fetchItemInfoVO(itemId: string) {
             this.loading = true
             try {
                 const res = await fetchItemInfoVO(itemId)
                 this.itemInfo = res.data
-                this.orderCreateForm.itemId = this.itemInfo.id
+                this.orderCreateForm.itemId = res.data.id
             } finally {
                 this.loading = false
             }

@@ -28,9 +28,20 @@ services:
     restart: always
     command: server /data --console-address ":9001"
 
+  redis:
+    image: redis:7
+    container_name: redis-server
+    restart: always
+    ports:
+      - "172.31.241.156:6379:6379"
+    volumes:
+      - redis_data:/data
+    command: [ "redis-server"]
+
 volumes:
   mysql-data:
   minio_data:
+  redis_data:
 
 networks:
   litebooth-network:

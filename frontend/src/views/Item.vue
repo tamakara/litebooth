@@ -7,16 +7,17 @@ import OrderInfoDialog from '@/components/OrderInfoDialog.vue'
 const item = useItemStore()
 const router = useRouter()
 
-const {itemInfo, orderCreateForm: orderCreateForm, orderInfo, loading} = toRefs(item)
-
+const {itemInfo, captchaInfo, orderCreateForm, orderInfo, loading} = toRefs(item)
 const orderDialogVisible = ref(false)
-
-// 表单引用与校验规则
 const formRef = ref()
 
 const rules = {
   email: [
-    {required: true, message: '请输入收货邮箱', trigger: 'blur'},
+    {
+      message: '请输入收货邮箱',
+      trigger: 'blur',
+      required: true,
+    },
     {
       type: 'email',
       message: '邮箱格式不正确',
@@ -24,19 +25,28 @@ const rules = {
     }
   ],
   queryPassword: [
-    {required: true, message: '请输入订单查询密码', trigger: 'blur'},
-    {min: 4, message: '查询密码至少 4 位', trigger: 'blur'}
+    {
+      message: '请输入订单查询密码',
+      trigger: 'blur',
+      required: true,
+    },
+    {
+      message: '查询密码至少 4 位',
+      trigger: 'blur',
+      min: 4,
+    }
   ],
   captchaCode: [
-    {required: true, message: '请输入图形验证码', trigger: 'blur'}
+    {
+      message: '请输入图形验证码',
+      trigger: 'blur',
+      required: true,
+    }
   ],
 }
 
-// 简单的验证码图片地址（假设后端提供了对应接口）
-const captchaUrl = ref(`/api/captcha?ts=${Date.now()}`)
-
-const refreshCaptcha = () => {
-  captchaUrl.value = `/api/captcha?ts=${Date.now()}`
+const refreshCaptcha = async () => {
+  await item.fetchCaptchaInfoVO()
 }
 
 const onBuyClick = async () => {
@@ -53,11 +63,6 @@ const onBuyClick = async () => {
   })
 }
 
-const onCancelOrderClick = async () => {
-  await item.cancelOrder()
-  orderDialogVisible.value = false
-}
-
 const onPayOrderClick = async () => {
   await item.payOrder()
   orderDialogVisible.value = false
@@ -66,7 +71,7 @@ const onPayOrderClick = async () => {
 
 onMounted(async () => {
   await item.fetchItemInfoVO(router.currentRoute.value.params.id)
-  refreshCaptcha()
+  await item.fetchCaptchaInfoVO()
 })
 </script>
 
@@ -126,7 +131,7 @@ onMounted(async () => {
 
             <el-form-item label="收货邮箱" prop="email">
               <el-input
-                  v-model="orderCreateForm.email"
+                  v-model="orderCreateForm.queryEmail"
                   placeholder="请输入收货邮箱"
                   :disabled="itemInfo.stock === 0"
               />
@@ -150,7 +155,7 @@ onMounted(async () => {
                 />
                 <el-image
                     class="captcha-img"
-                    :src="captchaUrl"
+                    :src="'data:image/png;base64,' + captchaInfo.imageBase64"
                     alt="点击刷新验证码"
                     @click="refreshCaptcha"
                     fit="cover"
@@ -190,7 +195,6 @@ onMounted(async () => {
     <OrderInfoDialog
         v-model:visible="orderDialogVisible"
         :order-info="orderInfo"
-        @cancel="onCancelOrderClick"
         @pay="onPayOrderClick"
     />
   </div>
@@ -267,17 +271,6 @@ onMounted(async () => {
   color: #10b981;
 }
 
-.form-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.label {
-  width: 80px;
-  color: #555;
-}
-
 .pay-row {
   margin-top: 4px;
 }
@@ -287,7 +280,6 @@ onMounted(async () => {
   padding: 8px 22px;
 }
 
-/* 商品描述 */
 .desc-body {
   padding: 4px 0;
 }

@@ -12,16 +12,17 @@ const orderDialogVisible = ref(false)
 const formRef = ref()
 
 const rules = {
-  email: [
+
+  queryEmail: [
     {
-      message: '请输入收货邮箱',
-      trigger: 'blur',
       required: true,
+      message: "请输入邮箱",
+      trigger: ['blur', 'change']
     },
     {
-      type: 'email',
-      message: '邮箱格式不正确',
-      trigger: ['blur', 'change']
+      type: "email",
+      message: "邮箱格式不正确",
+      trigger: ["blur", "change"]
     }
   ],
   queryPassword: [
@@ -129,7 +130,7 @@ onMounted(async () => {
               </el-radio-group>
             </el-form-item>
 
-            <el-form-item label="收货邮箱" prop="email">
+            <el-form-item label="收货邮箱" prop="queryEmail">
               <el-input
                   v-model="orderCreateForm.queryEmail"
                   placeholder="请输入收货邮箱"
@@ -146,7 +147,7 @@ onMounted(async () => {
               />
             </el-form-item>
 
-            <el-form-item label="图形验证码" prop="captchaCode">
+            <el-form-item label="验证码" prop="captchaCode">
               <div class="captcha-row">
                 <el-input
                     v-model="orderCreateForm.captchaCode"
@@ -158,7 +159,7 @@ onMounted(async () => {
                     :src="'data:image/png;base64,' + captchaInfo.imageBase64"
                     alt="点击刷新验证码"
                     @click="refreshCaptcha"
-                    fit="cover"
+                    fit="contain"
                 />
               </div>
             </el-form-item>

@@ -4,31 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化组件">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/CaptchaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/captcha/CaptchaInfoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/CaptchaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/CaptchaServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/api/captcha.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="删除用户模块，添加验证码功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/OrderCreateFormDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/OrderCreateFormDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/order/OrderInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/order/OrderInfoVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/OrderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/tamakara/litebooth/LiteboothApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/tamakara/litebooth/LiteboothApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/mysql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/OrderInfoDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/OrderInfoDialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/config/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/itemStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/itemStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/global.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Item.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +130,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Docker.docker.redis: Compose 部署">
+  <component name="RunManager" selected="Spring Boot.LiteboothApplication">
     <configuration name="db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/docker/mysql/db.sql" />
       <script-mode>FILE</script-mode>
@@ -282,7 +260,7 @@
       <workItem from="1764133418308" duration="27000" />
       <workItem from="1764195230718" duration="4346000" />
       <workItem from="1764279270130" duration="15333000" />
-      <workItem from="1764402875528" duration="13712000" />
+      <workItem from="1764402875528" duration="17214000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -508,7 +486,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764333434956</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="删除用户模块，添加验证码功能">
+      <option name="closed" value="true" />
+      <created>1764487724240</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1764487724241</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -550,7 +536,8 @@
     <MESSAGE value="优化类型定义、页面逻辑" />
     <MESSAGE value="优化接口定义" />
     <MESSAGE value="优化组件" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化组件" />
+    <MESSAGE value="删除用户模块，添加验证码功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除用户模块，添加验证码功能" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,22 +1,20 @@
 package com.tamakara.litebooth.service.impl;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.dto.OrderCreateFormDTO;
 import com.tamakara.litebooth.domain.entity.*;
 import com.tamakara.litebooth.domain.vo.order.OrderInfoVO;
-import com.tamakara.litebooth.domain.vo.order.OrderInfoPageVO;
 import com.tamakara.litebooth.mapper.*;
+import com.tamakara.litebooth.service.CaptchaService;
 import com.tamakara.litebooth.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
+    private final CaptchaService captchaService;
     private final OrderMapper orderMapper;
     private final ItemMapper itemMapper;
     private final StockMapper stockMapper;
@@ -27,6 +25,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         Item item = itemMapper.selectById(orderFormDTO.getItemId());
         if (item == null) {
             throw new RuntimeException("商品不存在");
+        }
+
+        Boolean ok = captchaService.verifyCaptcha(orderFormDTO.getCaptchaKey(), orderFormDTO.getCaptchaCode());
+        if (!ok) {
+            throw new RuntimeException("验证码错误");
         }
 
         Order order = new Order();

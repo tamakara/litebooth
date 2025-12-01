@@ -3,12 +3,14 @@ import {useItemStore} from '@/stores/itemStore.js'
 import {onMounted, ref, toRefs} from 'vue'
 import {useRouter} from 'vue-router'
 import OrderInfoDialog from '@/components/OrderInfoDialog.vue'
+import ContentDialog from '@/components/ContentDialog.vue'
 
 const item = useItemStore()
 const router = useRouter()
 
 const {itemInfo, captchaInfo, orderCreateForm, orderInfo, loading} = toRefs(item)
 const orderDialogVisible = ref(false)
+const contentVisible = ref(false)
 const formRef = ref()
 
 const rules = {
@@ -63,7 +65,10 @@ const onBuyClick = async () => {
 
 const onPayOrderClick = async () => {
   await item.payOrder()
-  await router.push({name: 'user'})
+}
+
+const onViewContentClick = async () => {
+  contentVisible.value = true
 }
 
 onMounted(async () => {
@@ -193,6 +198,13 @@ onMounted(async () => {
         v-model:visible="orderDialogVisible"
         :order-info="orderInfo"
         @pay="onPayOrderClick"
+        @viewContent="onViewContentClick"
+    />
+
+    <!-- 卡密弹窗 -->
+    <ContentDialog
+        v-model:visible="contentVisible"
+        :content-list="orderInfo.contentList"
     />
   </div>
 </template>

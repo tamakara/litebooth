@@ -38,6 +38,7 @@ export const useItemStore = defineStore('item', {
             amount: 0,
             payMethod: 'wxpay',
             createdAt: '',
+            contentList: [] as string[],
         },
         loading: false,
     }),

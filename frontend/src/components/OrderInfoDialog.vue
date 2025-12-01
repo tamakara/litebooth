@@ -7,7 +7,7 @@ const props = defineProps<{
   orderInfo: UnwrapRef<OrderInfoVO>
 }>()
 
-const emit = defineEmits(['update:visible', 'pay', 'view-card'])
+const emit = defineEmits(['update:visible', 'pay', 'view-content'])
 
 const dialogVisible = computed({
   get: () => props.visible,

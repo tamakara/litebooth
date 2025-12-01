@@ -5,7 +5,7 @@ export function createOrder(form: OrderCreateFormDTO): Promise<AxiosResponse<Ord
     return http.post('/order/createOrder', form)
 }
 
-export function payOrder(orderId: string) {
+export function payOrder(orderId: string): Promise<AxiosResponse<OrderInfoVO>> {
     return http.post(`/order/payOrder/${orderId}`)
 }
 

@@ -11,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
@@ -46,18 +49,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         orderMapper.insert(order);
 
         order = orderMapper.selectById(order.getId());
-
-        OrderInfoVO vo = new OrderInfoVO();
-        vo.setId(String.valueOf(order.getId()));
-        vo.setQueryEmail(order.getQueryEmail());
-        vo.setQueryPassword(order.getQueryPassword());
-        vo.setStatus(order.getStatus());
-        vo.setItemName(order.getItemName());
-        vo.setItemPrice(order.getItemPrice());
-        vo.setQuantity(order.getQuantity());
-        vo.setAmount(order.getAmount());
-        vo.setPayMethod(order.getPayMethod());
-        vo.setCreatedAt(order.getCreatedAt());
+        OrderInfoVO vo = new OrderInfoVO(order, null);
 
         return vo;
     }
@@ -65,33 +57,44 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
     @Override
     @Transactional
-    public void payOrder(Long orderId) {
+    public OrderInfoVO payOrder(Long orderId) {
         Order order = orderMapper.selectById(orderId);
         order.setStatus("待发货");
         orderMapper.updateById(order);
 
         Item item = itemMapper.selectById(order.getItemId());
 
+        OrderInfoVO vo;
+
         if (item.getIsAutoDelivery()) {
-            deliveryOrder(orderId);
+            vo = deliveryOrder(orderId);
+        } else {
+            vo = new OrderInfoVO(order, null);
         }
+
+        return vo;
     }
 
     @Override
     @Transactional
-    public void deliveryOrder(Long orderId) {
+    public OrderInfoVO deliveryOrder(Long orderId) {
         Order order = orderMapper.selectById(orderId);
 
         Long quantity = order.getQuantity();
+        List<String> contentList = new ArrayList<>();
         while (quantity-- > 0) {
             Stock stock = stockMapper.selectByItemId(order.getItemId());
             stock.setOrderId(orderId);
             stock.setStatus("已发货");
             stockMapper.updateById(stock);
+            contentList.add(stock.getContent());
         }
 
         order.setStatus("已发货");
         orderMapper.updateById(order);
+
+        OrderInfoVO vo = new OrderInfoVO(order, contentList);
+        return vo;
     }
 
 

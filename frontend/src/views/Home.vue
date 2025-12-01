@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {onMounted, computed, toRefs} from 'vue'
-import {useHomeStore} from '@/stores/homeStore.ts'
+import {useHomeStore} from '@/stores/homeStore'
 import ItemCard from '@/components/ItemCard.vue'
 
 const home = useHomeStore()
@@ -9,14 +9,14 @@ const {homeInfo, itemCardQueryForm: queryForm, itemCardPage: listPage} = toRefs(
 const itemCardList = computed(() => listPage.value.itemCardList)
 const total = computed(() => listPage.value.total)
 
-const updateQuery = async (payload) => {
-  Object.assign(queryForm, payload)
+const updateQuery = async (payload: object) => {
+  Object.assign(queryForm.value, payload)
   await home.fetchItemCardPageVO()
 }
 
-const handleGroupChange = (group) => updateQuery({group, pageNum: 1})
-const handlePageChange = (page) => updateQuery({pageNum: page})
-const handleSizeChange = (size) => updateQuery({pageSize: size, pageNum: 1})
+const handleGroupChange = (group: string) => updateQuery({group: group, pageNum: 1})
+const handlePageChange = (page: number) => updateQuery({pageNum: page})
+const handleSizeChange = (size: number) => updateQuery({pageSize: size, pageNum: 1})
 
 onMounted(async () => {
   await home.fetchHomeInfoVO()
@@ -60,7 +60,7 @@ onMounted(async () => {
   <div class="pager-wrap">
     <el-pagination
         background
-        layout="prev, pager, next"
+        layout="sizes,prev, pager, next"
         :total="total"
         :current-page="queryForm.pageNum"
         :page-size="queryForm.pageSize"

@@ -1,5 +1,6 @@
 package com.tamakara.litebooth.domain.vo.order;
 
+import com.tamakara.litebooth.domain.entity.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,4 +24,19 @@ public class OrderInfoVO {
     private List<String> contentList;
     private Instant createdAt;
     private Instant updatedAt;
+
+    public OrderInfoVO(Order order, List<String> contentList) {
+        this.id = order.getId().toString();
+        this.status = order.getStatus();
+        this.queryEmail = order.getQueryEmail();
+        this.queryPassword = order.getQueryPassword();
+        this.itemName = order.getItemName();
+        this.itemPrice = order.getItemPrice();
+        this.quantity = order.getQuantity();
+        this.payMethod = order.getPayMethod();
+        this.amount = order.getAmount();
+        this.contentList = contentList;
+        this.createdAt = order.getCreatedAt();
+        this.updatedAt = order.getUpdatedAt();
+    }
 }

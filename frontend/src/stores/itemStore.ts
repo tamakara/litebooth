@@ -30,7 +30,8 @@ export const useItemStore = defineStore('item', {
         orderInfo: {
             id: '',
             status: '未付款',
-            userMail: '',
+            queryEmail: '',
+            queryPassword: '',
             itemName: '',
             itemPrice: 0,
             quantity: 0,
@@ -70,7 +71,21 @@ export const useItemStore = defineStore('item', {
         },
 
         async payOrder() {
-            await payOrder(this.orderInfo.id)
-        }
+            const res = await payOrder(this.orderInfo.id)
+            this.orderInfo = res.data
+        },
+
+        clearOrderCreateForm() {
+            this.orderCreateForm = {
+                itemId: '',
+                quantity: 1,
+                payMethod: 'wxpay',
+                queryEmail: '',
+                queryPassword: '',
+                captchaKey: '',
+                captchaCode: '',
+            }
+        },
+
     }
 })

@@ -25,11 +25,11 @@ public class OrderController {
     }
 
     @PostMapping("/payOrder/{orderId}")
-    public ResponseEntity<Void> payOrder(
+    public ResponseEntity<OrderInfoVO> payOrder(
             @PathVariable("orderId") Long orderId
     ) {
-        orderService.payOrder(orderId);
-        return ResponseEntity.ok().build();
+        OrderInfoVO vo =  orderService.payOrder(orderId);
+        return ResponseEntity.ok(vo);
     }
 
 //    @GetMapping("/vo/OrderInfoPageVO")

@@ -51,22 +51,18 @@ const refreshCaptcha = async () => {
 }
 
 const onBuyClick = async () => {
-  if (!formRef.value) {
-    await item.createOrder()
-    orderDialogVisible.value = true
-    return
-  }
+  if (!formRef.value) return
 
-  await formRef.value.validate(async (valid) => {
-    if (!valid) return
-    await item.createOrder()
-    orderDialogVisible.value = true
-  })
+  const valid = await formRef.value.validate()
+  if (!valid) return
+
+  await item.createOrder()
+  item.clearOrderCreateForm()
+  orderDialogVisible.value = true
 }
 
 const onPayOrderClick = async () => {
   await item.payOrder()
-  orderDialogVisible.value = false
   await router.push({name: 'user'})
 }
 

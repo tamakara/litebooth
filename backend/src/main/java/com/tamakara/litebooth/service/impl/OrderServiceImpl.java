@@ -1,8 +1,11 @@
 package com.tamakara.litebooth.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.dto.OrderCreateFormDTO;
+import com.tamakara.litebooth.domain.dto.OrderInfoPageQueryFormDTO;
 import com.tamakara.litebooth.domain.entity.*;
+import com.tamakara.litebooth.domain.vo.order.OrderInfoPageVO;
 import com.tamakara.litebooth.domain.vo.order.OrderInfoVO;
 import com.tamakara.litebooth.mapper.*;
 import com.tamakara.litebooth.service.CaptchaService;
@@ -24,27 +27,27 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
     @Override
     @Transactional
-    public OrderInfoVO createOrder(OrderCreateFormDTO orderFormDTO) {
-        Item item = itemMapper.selectById(orderFormDTO.getItemId());
+    public OrderInfoVO createOrder(OrderCreateFormDTO createFormDTO) {
+        Item item = itemMapper.selectById(createFormDTO.getItemId());
         if (item == null) {
             throw new RuntimeException("商品不存在");
         }
 
-        Boolean ok = captchaService.verifyCaptcha(orderFormDTO.getCaptchaKey(), orderFormDTO.getCaptchaCode());
+        Boolean ok = captchaService.verifyCaptcha(createFormDTO.getCaptchaKey(), createFormDTO.getCaptchaCode());
         if (!ok) {
             throw new RuntimeException("验证码错误");
         }
 
         Order order = new Order();
         order.setStatus("未支付");
-        order.setQueryEmail(orderFormDTO.getQueryEmail());
-        order.setQueryPassword(orderFormDTO.getQueryPassword());
+        order.setQueryEmail(createFormDTO.getQueryEmail());
+        order.setQueryPassword(createFormDTO.getQueryPassword());
         order.setItemId(item.getId());
         order.setItemName(item.getName());
         order.setItemPrice(item.getPrice());
-        order.setQuantity(orderFormDTO.getQuantity());
-        order.setAmount(item.getPrice() * orderFormDTO.getQuantity());
-        order.setPayMethod(orderFormDTO.getPayMethod());
+        order.setQuantity(createFormDTO.getQuantity());
+        order.setAmount(item.getPrice() * createFormDTO.getQuantity());
+        order.setPayMethod(createFormDTO.getPayMethod());
 
         orderMapper.insert(order);
 
@@ -98,31 +101,21 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
 
-//    @Override
-//    @Transactional(readOnly = true)
-//    public OrderInfoPageVO getOrderInfoPageVO(Long pageNum, Long pageSize) {
-//        Page<Order> page = new Page<>(pageNum, pageSize);
-//        orderMapper.selectPageByUserId(page, userId);
-//        List<OrderInfoVO> orderVOList = page.getRecords().stream().map(order -> {
-//            OrderInfoVO vo = new OrderInfoVO();
-//
-//            List<Stock> stockList = stockMapper.selectListByOrderId(order.getId());
-//            List<String> contentList = stockList.stream().map(Stock::getContent).toList();
-//
-//            vo.setId(order.getId().toString());
-//            vo.setStatus(order.getStatus());
-//            vo.setUserMail(user.getEmail());
-//            vo.setItemName(order.getItemName());
-//            vo.setItemPrice(order.getItemPrice());
-//            vo.setQuantity(order.getQuantity());
-//            vo.setPayMethod(order.getPayMethod());
-//            vo.setAmount(order.getAmount());
-//            vo.setContentList(contentList);
-//            vo.setCreatedAt(order.getCreatedAt());
-//            vo.setUpdatedAt(order.getUpdatedAt());
-//            return vo;
-//        }).toList();
-//
-//        return new OrderInfoPageVO(orderVOList, page.getCurrent(), page.getSize(), page.getTotal());
-//    }
+    @Override
+    @Transactional(readOnly = true)
+    public OrderInfoPageVO getOrderInfoPageVO(OrderInfoPageQueryFormDTO queryFormDTO) {
+        Page<Order> page = orderMapper.selectPageByQueryForm(queryFormDTO);
+
+        List<OrderInfoVO> orderVOList = page
+                .getRecords()
+                .stream()
+                .map(order -> {
+                    List<Stock> stockList = stockMapper.selectListByOrderId(order.getId());
+                    List<String> contentList = stockList.stream().map(Stock::getContent).toList();
+                    return new OrderInfoVO(order, contentList);
+                }).toList();
+
+        OrderInfoPageVO vo = new OrderInfoPageVO(orderVOList, page.getCurrent(), page.getSize(), page.getTotal());
+        return vo;
+    }
 }

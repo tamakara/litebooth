@@ -1,6 +1,7 @@
 package com.tamakara.litebooth.controller;
 
 import com.tamakara.litebooth.domain.dto.OrderCreateFormDTO;
+import com.tamakara.litebooth.domain.dto.OrderInfoPageQueryFormDTO;
 import com.tamakara.litebooth.domain.vo.order.OrderInfoVO;
 import com.tamakara.litebooth.domain.vo.order.OrderInfoPageVO;
 import com.tamakara.litebooth.service.OrderService;
@@ -18,9 +19,9 @@ public class OrderController {
 
     @PostMapping("/createOrder")
     public ResponseEntity<OrderInfoVO> createOrder(
-            @RequestBody OrderCreateFormDTO orderFormDTO
+            @RequestBody OrderCreateFormDTO createFormDTO
     ) {
-        OrderInfoVO vo = orderService.createOrder(orderFormDTO);
+        OrderInfoVO vo = orderService.createOrder(createFormDTO);
         return ResponseEntity.ok(vo);
     }
 
@@ -28,17 +29,16 @@ public class OrderController {
     public ResponseEntity<OrderInfoVO> payOrder(
             @PathVariable("orderId") Long orderId
     ) {
-        OrderInfoVO vo =  orderService.payOrder(orderId);
+        OrderInfoVO vo = orderService.payOrder(orderId);
         return ResponseEntity.ok(vo);
     }
 
-//    @GetMapping("/vo/OrderInfoPageVO")
-//    public ResponseEntity<OrderInfoPageVO> getOrderInfoPageVO(
-//            @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum,
-//            @RequestParam(value = "pageSize", defaultValue = "10") Long pageSize
-//    ) {
-//        OrderInfoPageVO vo = orderService.getOrderInfoPageVO(pageNum, pageSize);
-//        return ResponseEntity.ok(vo);
-//    }
+    @GetMapping("/vo/OrderInfoPageVO")
+    public ResponseEntity<OrderInfoPageVO> getOrderInfoPageVO(
+            @ModelAttribute OrderInfoPageQueryFormDTO queryFormDTO
+    ) {
+        OrderInfoPageVO vo = orderService.getOrderInfoPageVO(queryFormDTO);
+        return ResponseEntity.ok(vo);
+    }
 
 }

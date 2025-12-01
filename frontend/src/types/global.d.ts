@@ -70,6 +70,10 @@ declare interface OrderInfoPageVO {
 }
 
 declare interface OrderInfoPageQueryFormDTO {
+    queryMode: string;
+    orderId?: string;
+    queryEmail?: string;
+    queryPassword?: string;
     pageNum: number;
     pageSize: number;
 }
@@ -78,5 +82,3 @@ declare interface CaptchaInfoVO {
     captchaKey: string;
     imageBase64: string;
 }
-
-

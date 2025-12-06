@@ -38,12 +38,12 @@ public class Order {
     @TableField(value = "amount")
     private Double amount;
 
-    @TableField(value = "pay_method")
-    private String payMethod;
+    @TableField(value = "payment_method")
+    private String paymentMethod;
 
     @TableField(value = "created_at")
     private Instant createdAt;
 
-    @TableField(value = "updated_at")
-    private Instant updatedAt;
+    @TableField(value = "payment_at")
+    private Instant paymentAt;
 }

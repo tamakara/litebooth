@@ -47,7 +47,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setItemPrice(item.getPrice());
         order.setQuantity(createFormDTO.getQuantity());
         order.setAmount(item.getPrice() * createFormDTO.getQuantity());
-        order.setPayMethod(createFormDTO.getPayMethod());
+        order.setPaymentMethod(createFormDTO.getPayMethod());
 
         orderMapper.insert(order);
 

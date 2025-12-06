@@ -19,11 +19,11 @@ public class OrderInfoVO {
     private String itemName;
     private Double itemPrice;
     private Long quantity;
-    private String payMethod;
+    private String paymentMethod;
     private Double amount;
     private List<String> contentList;
     private Instant createdAt;
-    private Instant updatedAt;
+    private Instant paymentAt;
 
     public OrderInfoVO(Order order, List<String> contentList) {
         this.id = order.getId().toString();
@@ -33,10 +33,10 @@ public class OrderInfoVO {
         this.itemName = order.getItemName();
         this.itemPrice = order.getItemPrice();
         this.quantity = order.getQuantity();
-        this.payMethod = order.getPayMethod();
+        this.paymentMethod = order.getPaymentMethod();
         this.amount = order.getAmount();
         this.contentList = contentList;
         this.createdAt = order.getCreatedAt();
-        this.updatedAt = order.getUpdatedAt();
+        this.paymentAt = order.getPaymentAt();
     }
 }

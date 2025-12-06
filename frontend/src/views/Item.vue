@@ -27,6 +27,7 @@ const rules = {
       trigger: ["blur", "change"]
     }
   ],
+
   queryPassword: [
     {
       message: '请输入订单查询密码',
@@ -107,74 +108,81 @@ onMounted(async () => {
               ref="formRef"
               :model="orderCreateForm"
               :rules="rules"
-              label-width="90px"
+              label-position="top"
+              label-width="auto"
           >
-            <el-form-item label="购买数量" prop="quantity">
-              <el-input-number
-                  v-if="itemInfo.stock > 0"
-                  v-model="orderCreateForm.quantity"
-                  :min="1"
-                  :max="itemInfo.stock"
-              />
-              <el-input-number
-                  v-else
-                  v-model="orderCreateForm.quantity"
-                  :min="0"
-                  :max="0"
-              />
-            </el-form-item>
-
-            <el-form-item label="支付方式" prop="payMethod">
-              <el-radio-group v-model="orderCreateForm.payMethod" :disabled="itemInfo.stock === 0">
-                <el-radio label="wxpay">微信</el-radio>
-                <el-radio label="alipay">支付宝</el-radio>
-              </el-radio-group>
-            </el-form-item>
-
-            <el-form-item label="收货邮箱" prop="queryEmail">
-              <el-input
-                  v-model="orderCreateForm.queryEmail"
-                  placeholder="请输入收货邮箱"
-                  :disabled="itemInfo.stock === 0"
-              />
-            </el-form-item>
-
-            <el-form-item label="查询密码" prop="queryPassword">
-              <el-input
-                  v-model="orderCreateForm.queryPassword"
-                  placeholder="用于查询订单，请妥善保管"
-                  show-password
-                  :disabled="itemInfo.stock === 0"
-              />
-            </el-form-item>
-
-            <el-form-item label="验证码" prop="captchaCode">
-              <div class="captcha-row">
+            <div class="order-form-grid">
+              <!-- 第一行：邮箱 | 购买数量 -->
+              <el-form-item label="收货邮箱" prop="queryEmail">
                 <el-input
-                    v-model="orderCreateForm.captchaCode"
-                    placeholder="请输入右侧验证码"
+                    v-model="orderCreateForm.queryEmail"
+                    placeholder="请输入收货邮箱"
                     :disabled="itemInfo.stock === 0"
                 />
-                <el-image
-                    class="captcha-img"
-                    :src="'data:image/png;base64,' + captchaInfo.imageBase64"
-                    alt="点击刷新验证码"
-                    @click="refreshCaptcha"
-                    fit="contain"
-                />
-              </div>
-            </el-form-item>
+              </el-form-item>
 
-            <div class="pay-row">
-              <el-button
-                  class="order-btn"
-                  type="primary"
-                  size="large"
-                  :disabled="itemInfo.stock === 0"
-                  @click="onBuyClick"
-              >
-                下单
-              </el-button>
+              <el-form-item label="购买数量" prop="quantity">
+                <el-input-number
+                    v-if="itemInfo.stock > 0"
+                    v-model="orderCreateForm.quantity"
+                    :min="1"
+                    :max="itemInfo.stock"
+                />
+                <el-input-number
+                    v-else
+                    v-model="orderCreateForm.quantity"
+                    :min="0"
+                    :max="0"
+                />
+              </el-form-item>
+
+              <!-- 第二行：查询密码 | 验证码 -->
+              <el-form-item label="查询密码" prop="queryPassword">
+                <el-input
+                    v-model="orderCreateForm.queryPassword"
+                    placeholder="用于查询订单，请妥善保管"
+                    show-password
+                    :disabled="itemInfo.stock === 0"
+                />
+              </el-form-item>
+
+              <el-form-item label="验证码" prop="captchaCode">
+                <div class="captcha-row">
+                  <el-input
+                      v-model="orderCreateForm.captchaCode"
+                      placeholder="请输入右侧验证码"
+                      :disabled="itemInfo.stock === 0"
+                  />
+                  <el-image
+                      class="captcha-img"
+                      :src="'data:image/png;base64,' + captchaInfo.imageBase64"
+                      alt="点击刷新验证码"
+                      @click="refreshCaptcha"
+                      fit="contain"
+                  />
+                </div>
+              </el-form-item>
+
+              <!-- 第三行：支付方式（整行） -->
+              <el-form-item label="支付方式" prop="payMethod" class="order-form-pay-method">
+                <el-radio-group v-model="orderCreateForm.payMethod" :disabled="itemInfo.stock === 0">
+                  <el-radio label="wxpay">微信</el-radio>
+                  <el-radio label="alipay">支付宝</el-radio>
+                </el-radio-group>
+              </el-form-item>
+
+              <!-- 第四行：下单按钮（整行） -->
+              <div class="order-form-actions">
+                <el-button
+                    class="order-btn"
+                    type="primary"
+                    size="large"
+                    :disabled="itemInfo.stock === 0"
+                    @click="onBuyClick"
+                >
+                  下单
+                </el-button>
+              </div>
             </div>
           </el-form>
         </div>
@@ -258,8 +266,8 @@ onMounted(async () => {
 }
 
 .item-name {
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 30px; /* 原来 26px，略微放大 */
+  font-weight: 700; /* 保持较粗 */
 }
 
 .price-row {
@@ -269,19 +277,15 @@ onMounted(async () => {
 }
 
 .price {
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 30px; /* 原来 26px，放大一些 */
+  font-weight: 800; /* 更醒目 */
   color: #ef4444;
 }
 
 .stock-line {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 18px; /* 原来 15px，放大 */
+  font-weight: 600; /* 略微加粗 */
   color: #10b981;
-}
-
-.pay-row {
-  margin-top: 4px;
 }
 
 .order-btn {
@@ -308,11 +312,32 @@ onMounted(async () => {
 }
 
 .captcha-img {
-  width: 110px;
+  width: 200px;
   height: 36px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 2px;
   border: 1px solid #e5e7eb;
+}
+
+.order-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+  row-gap: 4px;
+}
+
+.order-form-grid :deep(.el-form-item__label) {
+  margin-bottom: 2px;
+  padding-bottom: 0;
+}
+
+.order-form-pay-method {
+  grid-column: 1 / -1;
+}
+
+.order-form-actions {
+  grid-column: 1 / -1;
+  margin-top: 4px;
 }
 
 @media (max-width: 768px) {
@@ -322,6 +347,10 @@ onMounted(async () => {
 
   .cover-col {
     width: 100%;
+  }
+
+  .order-form-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

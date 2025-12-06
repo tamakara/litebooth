@@ -56,10 +56,10 @@ declare interface OrderInfoVO {
     itemPrice: number;
     quantity: number;
     amount: number;
-    payMethod: string;
+    paymentMethod: string;
     contentList?: string[];
     createdAt: string;
-    updatedAt?: string;
+    paymentAt?: string;
 }
 
 declare interface OrderInfoPageVO {

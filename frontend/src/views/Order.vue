@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, onMounted, ref, toRefs} from 'vue'
-import {orderStore} from '@/stores/orderStore.ts'
+import {orderStore} from '@/stores/orderStore'
 import {formatDate} from "@/utils/index.js";
 
 const order = orderStore()
@@ -32,7 +32,6 @@ const onSearch = async () => {
 
 const onReset = async () => {
   order.resetQueryForm()
-  queryForm.value.queryMode = 'orderId'
   await order.fetchOrderInfoPageVO()
 }
 
@@ -120,10 +119,10 @@ onMounted(async () => {
           <div class="left">
             <div class="ono">订单号：<span class="mono">{{ o.id }}</span></div>
             <div class="date">创建时间：{{ formatDate(o.createdAt) }}</div>
-            <div class="date">付款时间：{{ formatDate(o.updatedAt) }}</div>
+            <div class="date">付款时间：{{ formatDate(o.paymentAt || null) }}</div>
             <div class="field">商品名称：{{ o.itemName }}</div>
             <div class="field">数量：{{ o.quantity }}</div>
-            <div class="field">支付方式：{{ o.payMethod }}</div>
+            <div class="field">支付方式：{{ o.paymentMethod }}</div>
           </div>
           <div class="right">
             <el-tag :type="statusType(o.status)">{{ o.status }}</el-tag>

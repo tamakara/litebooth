@@ -61,9 +61,9 @@ CREATE TABLE `order`
     `item_price`     DOUBLE       NOT NULL,
     `quantity`       BIGINT       NOT NULL,
     `amount`         DOUBLE       NOT NULL,
-    `pay_method`     VARCHAR(255) NOT NULL,
+    `payment_method` VARCHAR(255) NOT NULL,
     `created_at`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `payment_at`   TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
 

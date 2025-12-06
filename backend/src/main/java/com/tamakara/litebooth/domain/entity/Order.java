@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.tamakara.litebooth.domain.enums.OrderStatus;
+import com.tamakara.litebooth.domain.enums.PaymentMethod;
 import lombok.Data;
 
 import java.time.Instant;
@@ -15,7 +17,7 @@ public class Order {
     private Long id;
 
     @TableField(value = "status")
-    private String status;
+    private OrderStatus status;
 
     @TableField(value = "query_email")
     private String queryEmail;
@@ -39,7 +41,7 @@ public class Order {
     private Double amount;
 
     @TableField(value = "payment_method")
-    private String paymentMethod;
+    private PaymentMethod paymentMethod;
 
     @TableField(value = "created_at")
     private Instant createdAt;

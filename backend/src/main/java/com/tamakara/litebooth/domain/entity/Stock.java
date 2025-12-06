@@ -15,8 +15,8 @@ public class Stock {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @TableField(value = "status")
-    private String status;
+    @TableField(value = "is_sold")
+    private Boolean isSold;
 
     @TableField(value = "item_id")
     private Long itemId;

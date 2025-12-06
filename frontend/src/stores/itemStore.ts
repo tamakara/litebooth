@@ -2,6 +2,7 @@ import {defineStore} from 'pinia'
 import {fetchItemInfoVO} from "@/api/item";
 import {createOrder, payOrder} from "@/api/order";
 import {fetchCaptchaInfoVO} from "@/api/captcha";
+import {OrderStatus, PaymentMethod} from "@/types/enums";
 
 export const useItemStore = defineStore('item', {
     state: () => ({
@@ -21,7 +22,7 @@ export const useItemStore = defineStore('item', {
         orderCreateForm: {
             itemId: '',
             quantity: 1,
-            payMethod: 'wxpay',
+            paymentMethod: PaymentMethod.WXPAY,
             queryEmail: '',
             queryPassword: '',
             captchaKey: '',
@@ -29,16 +30,17 @@ export const useItemStore = defineStore('item', {
         },
         orderInfo: {
             id: '',
-            status: '未付款',
+            status: OrderStatus.UNPAID,
             queryEmail: '',
             queryPassword: '',
             itemName: '',
             itemPrice: 0,
             quantity: 0,
             amount: 0,
-            payMethod: 'wxpay',
+            paymentMethod: PaymentMethod.WXPAY,
+            contentList: null,
             createdAt: '',
-            contentList: [] as string[],
+            paymentAt: null,
         },
         loading: false,
     }),
@@ -80,7 +82,7 @@ export const useItemStore = defineStore('item', {
             this.orderCreateForm = {
                 itemId: '',
                 quantity: 1,
-                payMethod: 'wxpay',
+                paymentMethod: PaymentMethod.WXPAY,
                 queryEmail: '',
                 queryPassword: '',
                 captchaKey: '',

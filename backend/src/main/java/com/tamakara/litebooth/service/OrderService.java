@@ -15,7 +15,5 @@ public interface OrderService extends IService<Order> {
 
     OrderInfoVO payOrder(Long orderId);
 
-    OrderInfoVO deliveryOrder(Long orderId);
-
     OrderInfoPageVO getOrderInfoPageVO(OrderInfoPageQueryFormDTO queryFormDTO);
 }

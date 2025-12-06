@@ -2,14 +2,13 @@
 import {computed, onMounted, ref, toRefs} from 'vue'
 import {orderStore} from '@/stores/orderStore'
 import {formatDate} from "@/utils/index.js";
+import {OrderStatus, OrderStatusText, PaymentMethodText} from "@/types/enums";
 
 const order = orderStore()
 
 const {orderInfoPage, queryForm} = toRefs(order)
-
 const orderInfoList = computed(() => orderInfoPage.value.orderInfoList)
 const total = computed(() => orderInfoPage.value.total)
-
 const contentListDialogVisible = ref(false)
 const currentContentList = ref<string[]>([])
 
@@ -122,13 +121,13 @@ onMounted(async () => {
             <div class="date">付款时间：{{ formatDate(o.paymentAt || null) }}</div>
             <div class="field">商品名称：{{ o.itemName }}</div>
             <div class="field">数量：{{ o.quantity }}</div>
-            <div class="field">支付方式：{{ o.paymentMethod }}</div>
+            <div class="field">支付方式：{{ PaymentMethodText[o.paymentMethod] }}</div>
           </div>
           <div class="right">
-            <el-tag :type="statusType(o.status)">{{ o.status }}</el-tag>
+            <el-tag :type="statusType(o.status)">{{ OrderStatusText[o.status] }}</el-tag>
             <div class="amount">合计：¥ {{ Number(o.amount || 0).toFixed(2) }}</div>
             <el-button
-                v-if="o.status==='未支付'"
+                v-if="o.status===OrderStatus.UNPAID"
                 type="primary"
                 size="small"
                 @click="handlePay(o.id)"
@@ -136,10 +135,10 @@ onMounted(async () => {
               付款
             </el-button>
             <el-button
-                v-else-if="o.status==='已发货'"
+                v-else-if="o.status===OrderStatus.FINISHED"
                 type="primary"
                 size="small"
-                @click="openContentListDialog(o.contentList)"
+                @click="openContentListDialog(o.contentList as string[])"
             >
               查看卡密
             </el-button>

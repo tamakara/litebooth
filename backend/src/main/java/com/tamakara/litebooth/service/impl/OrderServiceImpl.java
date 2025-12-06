@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.dto.OrderCreateFormDTO;
 import com.tamakara.litebooth.domain.dto.OrderInfoPageQueryFormDTO;
 import com.tamakara.litebooth.domain.entity.*;
+import com.tamakara.litebooth.domain.enums.OrderStatus;
 import com.tamakara.litebooth.domain.vo.order.OrderInfoPageVO;
 import com.tamakara.litebooth.domain.vo.order.OrderInfoVO;
 import com.tamakara.litebooth.mapper.*;
@@ -14,8 +15,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +42,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         }
 
         Order order = new Order();
-        order.setStatus("未支付");
+        order.setStatus(OrderStatus.UNPAID);
         order.setQueryEmail(createFormDTO.getQueryEmail());
         order.setQueryPassword(createFormDTO.getQueryPassword());
         order.setItemId(item.getId());
@@ -47,9 +50,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setItemPrice(item.getPrice());
         order.setQuantity(createFormDTO.getQuantity());
         order.setAmount(item.getPrice() * createFormDTO.getQuantity());
-        order.setPaymentMethod(createFormDTO.getPayMethod());
+        order.setPaymentMethod(createFormDTO.getPaymentMethod());
 
         orderMapper.insert(order);
+
+        Long quantity = order.getQuantity();
+        while (quantity-- > 0) {
+            Stock stock = stockMapper.selectByItemId(order.getItemId());
+            stock.setOrderId(order.getId());
+            stock.setIsSold(true);
+            stockMapper.updateById(stock);
+        }
 
         order = orderMapper.selectById(order.getId());
         OrderInfoVO vo = new OrderInfoVO(order, null);
@@ -57,49 +68,24 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         return vo;
     }
 
-
     @Override
     @Transactional
     public OrderInfoVO payOrder(Long orderId) {
         Order order = orderMapper.selectById(orderId);
-        order.setStatus("待发货");
+        order.setStatus(OrderStatus.FINISHED);
+        order.setPaymentAt(Instant.now());
         orderMapper.updateById(order);
 
-        Item item = itemMapper.selectById(order.getItemId());
-
-        OrderInfoVO vo;
-
-        if (item.getIsAutoDelivery()) {
-            vo = deliveryOrder(orderId);
-        } else {
-            vo = new OrderInfoVO(order, null);
-        }
-
-        return vo;
-    }
-
-    @Override
-    @Transactional
-    public OrderInfoVO deliveryOrder(Long orderId) {
-        Order order = orderMapper.selectById(orderId);
-
-        Long quantity = order.getQuantity();
-        List<String> contentList = new ArrayList<>();
-        while (quantity-- > 0) {
-            Stock stock = stockMapper.selectByItemId(order.getItemId());
-            stock.setOrderId(orderId);
-            stock.setStatus("已发货");
-            stockMapper.updateById(stock);
-            contentList.add(stock.getContent());
-        }
-
-        order.setStatus("已发货");
-        orderMapper.updateById(order);
+        List<Stock> stockList = stockMapper.selectListByOrderId(orderId);
+        List<String> contentList = stockList
+                .stream()
+                .map(Stock::getContent)
+                .toList();
 
         OrderInfoVO vo = new OrderInfoVO(order, contentList);
+
         return vo;
     }
-
 
     @Override
     @Transactional(readOnly = true)

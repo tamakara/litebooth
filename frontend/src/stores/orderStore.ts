@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia'
 import {fetchOrderInfoPageVO, payOrder as payOrderApi} from "@/api/order";
+import {OrderInfoPageQueryFormDTO, OrderInfoVO} from "@/types";
 
 export const orderStore = defineStore('order', {
     state: () => ({

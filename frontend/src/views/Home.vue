@@ -5,9 +5,9 @@ import ItemCard from '@/components/ItemCard.vue'
 
 const home = useHomeStore()
 
-const {homeInfo, itemCardQueryForm: queryForm, itemCardPage: listPage} = toRefs(home)
-const itemCardList = computed(() => listPage.value.itemCardList)
-const total = computed(() => listPage.value.total)
+const {homeInfo, itemCardQueryForm: queryForm, itemCardPage} = toRefs(home)
+const itemCardList = computed(() => itemCardPage.value.itemCardList)
+const total = computed(() => itemCardPage.value.total)
 
 const updateQuery = async (payload: object) => {
   Object.assign(queryForm.value, payload)
@@ -51,16 +51,16 @@ onMounted(async () => {
 
   <section class="item-grid">
     <ItemCard
-        v-for="it in itemCardList"
-        :key="it.id"
-        :item="it"
+        v-for="i in itemCardList"
+        :key="i.id"
+        :item="i"
     />
   </section>
 
   <div class="pager-wrap">
     <el-pagination
         background
-        layout="sizes,prev, pager, next"
+        layout="sizes, prev, pager, next"
         :total="total"
         :current-page="queryForm.pageNum"
         :page-size="queryForm.pageSize"

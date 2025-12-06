@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia'
 import {fetchHomeInfoVO} from "@/api/home";
 import {fetchItemCardPageVO} from "@/api/item";
+import {ItemCardVO} from "@/types";
 
 export const useHomeStore = defineStore('home', {
     state: () => ({

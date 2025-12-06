@@ -1,6 +1,8 @@
 package com.tamakara.litebooth.domain.vo.order;
 
 import com.tamakara.litebooth.domain.entity.Order;
+import com.tamakara.litebooth.domain.enums.OrderStatus;
+import com.tamakara.litebooth.domain.enums.PaymentMethod;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,13 +15,13 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderInfoVO {
     private String id;
-    private String status;
+    private OrderStatus status;
     private String queryEmail;
     private String queryPassword;
     private String itemName;
     private Double itemPrice;
     private Long quantity;
-    private String paymentMethod;
+    private PaymentMethod paymentMethod;
     private Double amount;
     private List<String> contentList;
     private Instant createdAt;

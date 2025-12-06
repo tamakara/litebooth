@@ -12,7 +12,7 @@ public interface StockMapper extends BaseMapper<Stock> {
     default Stock selectByItemId(Long itemId) {
         return this.selectOne(new LambdaQueryWrapper<Stock>()
                 .eq(Stock::getItemId, itemId)
-                .eq(Stock::getStatus, "未发货")
+                .eq(Stock::getIsSold, false)
                 .last("limit 1")
         );
     }
@@ -23,10 +23,10 @@ public interface StockMapper extends BaseMapper<Stock> {
         );
     }
 
-    default Long selectCountByItemId(Long itemId, String status) {
+    default Long selectCountByItemId(Long itemId, Boolean isSold) {
         return this.selectCount(new LambdaQueryWrapper<Stock>()
                 .eq(Stock::getItemId, itemId)
-                .eq(status != null, Stock::getStatus, status)
+                .eq(isSold != null, Stock::getIsSold, isSold)
         );
     }
 

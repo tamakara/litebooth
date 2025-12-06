@@ -1,5 +1,6 @@
 import http from "@/api/http";
 import {AxiosResponse} from "axios";
+import {OrderCreateFormDTO, OrderInfoPageQueryFormDTO, OrderInfoPageVO, OrderInfoVO} from "@/types";
 
 export function createOrder(form: OrderCreateFormDTO): Promise<AxiosResponse<OrderInfoVO>> {
     return http.post('/order/createOrder', form)

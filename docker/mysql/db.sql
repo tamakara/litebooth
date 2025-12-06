@@ -30,30 +30,28 @@ VALUES (1, '标题', '副标题', '');
 
 CREATE TABLE `item`
 (
-    `id`               BIGINT       NOT NULL AUTO_INCREMENT,
-    `is_active`        BOOLEAN      NOT NULL,
-    `is_auto_delivery` BOOLEAN      NOT NULL,
-    `name`             VARCHAR(255) NOT NULL,
-    `price`            DOUBLE       NOT NULL,
-    `group`            VARCHAR(255) NOT NULL,
-    `cover`            BIGINT       NULL,
-    `description`      TEXT         NOT NULL,
-    `created_at`       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `id`          BIGINT       NOT NULL AUTO_INCREMENT,
+    `is_active`   BOOLEAN      NOT NULL,
+    `name`        VARCHAR(255) NOT NULL,
+    `price`       DOUBLE       NOT NULL,
+    `group`       VARCHAR(255) NOT NULL,
+    `cover`       BIGINT       NULL,
+    `description` TEXT         NOT NULL,
+    `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
-INSERT INTO `item` (`id`, `is_active`, `is_auto_delivery`, `name`, `price`, `stock`, `group`, `cover`, `description`)
-VALUES (1, true, true, '示例商品 1', 1.11, 1, '1', 2, 'a');
-INSERT INTO `item` (`id`, `is_active`, `is_auto_delivery`, `name`, `price`, `stock`, `group`, `cover`, `description`)
-VALUES (2, true, false, '示例商品 2', 2.22, 2, '2', 2, 'b');
-INSERT INTO `item` (`id`, `is_active`, `is_auto_delivery`, `name`, `price`, `stock`, `group`, `cover`, `description`)
-VALUES (3, true, true, '示例商品 3', 3.33, 3, '3', 2, 'c');
-
+INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `group`, `cover`, `description`)
+VALUES (1, true, '示例商品 1', 1.11, '1', 2, 'a');
+INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `group`, `cover`, `description`)
+VALUES (2, true, '示例商品 2', 2.22, '2', 2, 'b');
+INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `group`, `cover`, `description`)
+VALUES (3, true, '示例商品 3', 3.33, '3', 2, 'c');
 
 CREATE TABLE `order`
 (
     `id`             BIGINT       NOT NULL,
-    `status`         VARCHAR(255) NOT NULL,
+    `status`         VARCHAR(20)  NOT NULL,
     `query_email`    VARCHAR(255) NOT NULL,
     `query_password` VARCHAR(255) NOT NULL,
     `item_id`        BIGINT       NOT NULL,
@@ -61,12 +59,11 @@ CREATE TABLE `order`
     `item_price`     DOUBLE       NOT NULL,
     `quantity`       BIGINT       NOT NULL,
     `amount`         DOUBLE       NOT NULL,
-    `payment_method` VARCHAR(255) NOT NULL,
+    `payment_method` VARCHAR(20)  NOT NULL,
     `created_at`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `payment_at`   TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    `payment_at`     TIMESTAMP DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
-
 
 CREATE TABLE `group`
 (
@@ -79,11 +76,11 @@ VALUES (0, '全部');
 
 CREATE TABLE `stock`
 (
-    `id`         BIGINT       NOT NULL,
-    `status`     VARCHAR(255) NOT NULL,
-    `item_id`    BIGINT       NOT NULL,
+    `id`         BIGINT  NOT NULL,
+    `is_sold`    BOOLEAN NOT NULL,
+    `item_id`    BIGINT  NOT NULL,
     `order_id`   BIGINT    DEFAULT NULL,
-    `content`    TEXT         NOT NULL,
+    `content`    TEXT    NOT NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)

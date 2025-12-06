@@ -14,12 +14,11 @@ const contentVisible = ref(false)
 const formRef = ref()
 
 const rules = {
-
   queryEmail: [
     {
-      required: true,
       message: "请输入邮箱",
-      trigger: ['blur', 'change']
+      trigger: ['blur', 'change'],
+      required: true,
     },
     {
       type: "email",
@@ -27,7 +26,6 @@ const rules = {
       trigger: ["blur", "change"]
     }
   ],
-
   queryPassword: [
     {
       message: '请输入订单查询密码',
@@ -70,6 +68,10 @@ const onPayOrderClick = async () => {
 
 const onViewContentClick = async () => {
   contentVisible.value = true
+}
+
+const onResetClick = () => {
+  item.clearOrderCreateForm()
 }
 
 onMounted(async () => {
@@ -165,9 +167,9 @@ onMounted(async () => {
 
               <!-- 第三行：支付方式（整行） -->
               <el-form-item label="支付方式" prop="payMethod" class="order-form-pay-method">
-                <el-radio-group v-model="orderCreateForm.payMethod" :disabled="itemInfo.stock === 0">
-                  <el-radio label="wxpay">微信</el-radio>
-                  <el-radio label="alipay">支付宝</el-radio>
+                <el-radio-group v-model="orderCreateForm.paymentMethod" :disabled="itemInfo.stock === 0">
+                  <el-radio label="WXPAY">微信</el-radio>
+                  <el-radio label="ALIPAY">支付宝</el-radio>
                 </el-radio-group>
               </el-form-item>
 
@@ -181,6 +183,14 @@ onMounted(async () => {
                     @click="onBuyClick"
                 >
                   下单
+                </el-button>
+                <el-button
+                    class="order-btn"
+                    size="large"
+                    :disabled="itemInfo.stock === 0"
+                    @click="onResetClick"
+                >
+                  重置
                 </el-button>
               </div>
             </div>

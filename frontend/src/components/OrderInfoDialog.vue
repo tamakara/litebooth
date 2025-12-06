@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import {computed} from 'vue'
+import {computed, ref, UnwrapRef} from 'vue'
 import {formatDate} from '@/utils/index.js'
+import {OrderInfoVO} from "@/types";
+import {OrderStatus, OrderStatusText, PaymentMethodText} from "@/types/enums";
 
 const props = defineProps<{
   visible: boolean
@@ -15,13 +17,11 @@ const dialogVisible = computed({
 })
 
 const orderCreatedAtFormatted = computed(() => formatDate(props.orderInfo.createdAt))
+const orderPaymentAtFormatted = computed(() => formatDate(props.orderInfo.paymentAt))
 
-const isUnpaid = computed(() => props.orderInfo.status === '未支付')
-const isPending = computed(() => props.orderInfo.status === '待发货')
-const isDelivered = computed(() => props.orderInfo.status === '已发货' || props.orderInfo.status === '已完成')
-
-const showViewContentButton = computed(() => isPending.value || isDelivered.value)
-const isViewContentDisabled = computed(() => isPending.value)
+const isUnpaid = computed(() => props.orderInfo.status === OrderStatus.UNPAID)
+const isExpired = computed(() => props.orderInfo.status === OrderStatus.EXPIRED)
+const isFinished = computed(() => props.orderInfo.status === OrderStatus.FINISHED)
 
 const handlePay = () => {
   emit('pay')
@@ -32,7 +32,6 @@ const handleClose = () => {
 }
 
 const handleViewContent = () => {
-  if (isViewContentDisabled.value) return
   emit('view-content')
 }
 </script>
@@ -47,7 +46,7 @@ const handleViewContent = () => {
         </div>
         <div class="order-row">
           <span class="label">状态</span>
-          <span class="value">{{ orderInfo.status }}</span>
+          <span class="value">{{ OrderStatusText[orderInfo.status] }}</span>
         </div>
         <div class="order-row">
           <span class="label">商品名称</span>
@@ -67,11 +66,15 @@ const handleViewContent = () => {
         </div>
         <div class="order-row">
           <span class="label">支付方式</span>
-          <span class="value">{{ orderInfo.payMethod === 'wxpay' ? '微信' : '支付宝' }}</span>
+          <span class="value">{{ PaymentMethodText[orderInfo.paymentMethod] }}</span>
         </div>
         <div class="order-row">
           <span class="label">创建时间</span>
           <span class="value">{{ orderCreatedAtFormatted }}</span>
+        </div>
+        <div class="order-row">
+          <span class="label">付款时间</span>
+          <span class="value">{{ orderPaymentAtFormatted }}</span>
         </div>
       </div>
     </div>
@@ -86,15 +89,14 @@ const handleViewContent = () => {
           付款
         </el-button>
         <el-button
-            v-if="showViewContentButton"
+            v-else-if=" isFinished"
             type="primary"
             plain
-            :disabled="isViewContentDisabled"
             @click="handleViewContent"
         >
           查看卡密
         </el-button>
-           <el-button @click="handleClose">关闭</el-button>
+        <el-button @click="handleClose">关闭</el-button>
       </span>
     </template>
   </el-dialog>

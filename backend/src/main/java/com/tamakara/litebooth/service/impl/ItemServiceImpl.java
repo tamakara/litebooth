@@ -61,7 +61,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
         vo.setGroup(item.getGroup());
         vo.setCover(fileService.getFileUrl(item.getCover(), 86400));
         vo.setPrice(item.getPrice());
-        vo.setStock(stockMapper.selectCountByItemId(item.getId(), "未发货"));
+        vo.setStock(stockMapper.selectCountByItemId(item.getId(), false));
         vo.setDescription(item.getDescription());
         return vo;
     }

@@ -12,6 +12,8 @@ import com.tamakara.litebooth.mapper.*;
 import com.tamakara.litebooth.service.CaptchaService;
 import com.tamakara.litebooth.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +25,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
-    private final CaptchaService captchaService;
+    private final StringRedisTemplate redisTemplate;
     private final OrderMapper orderMapper;
     private final ItemMapper itemMapper;
     private final StockMapper stockMapper;
@@ -36,10 +38,19 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             throw new RuntimeException("商品不存在");
         }
 
-        Boolean ok = captchaService.verifyCaptcha(createFormDTO.getCaptchaKey(), createFormDTO.getCaptchaCode());
-        if (!ok) {
-            throw new RuntimeException("验证码错误");
+        String token = "captcha:token:" + createFormDTO.getCaptchaToken();
+        if (!redisTemplate.hasKey(token)) {
+            throw new RuntimeException("验证码未校验或已失效");
         }
+
+        String key = "captcha:key:" +redisTemplate.opsForValue().get("captcha:token:" + createFormDTO.getCaptchaToken());
+        if (!redisTemplate.hasKey(key)) {
+            throw new RuntimeException("验证码不存在");
+        }
+
+        redisTemplate.delete(key);
+        redisTemplate.delete(token);
+
 
         Order order = new Order();
         order.setStatus(OrderStatus.UNPAID);

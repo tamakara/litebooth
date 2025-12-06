@@ -1,6 +1,6 @@
 <script setup>
 import {useItemStore} from '@/stores/itemStore.js'
-import {onMounted, ref, toRefs} from 'vue'
+import {computed, onMounted, ref, toRefs} from 'vue'
 import {useRouter} from 'vue-router'
 import OrderInfoDialog from '@/components/OrderInfoDialog.vue'
 import ContentDialog from '@/components/ContentDialog.vue'
@@ -12,6 +12,18 @@ const {itemInfo, captchaInfo, orderCreateForm, orderInfo, loading} = toRefs(item
 const orderDialogVisible = ref(false)
 const contentVisible = ref(false)
 const formRef = ref()
+
+const verifyCaptcha = async (_rule, value) => {
+  if (!value) return Promise.resolve()
+
+  const ok = await item.verifyCaptchaCode()
+
+  if (ok) {
+    return Promise.resolve()
+  } else {
+    return Promise.reject('验证码错误')
+  }
+}
 
 const rules = {
   queryEmail: [
@@ -43,6 +55,9 @@ const rules = {
       message: '请输入图形验证码',
       trigger: 'blur',
       required: true,
+    },
+    {
+      validator: verifyCaptcha
     }
   ],
 }
@@ -54,8 +69,10 @@ const refreshCaptcha = async () => {
 const onBuyClick = async () => {
   if (!formRef.value) return
 
-  const valid = await formRef.value.validate()
-  if (!valid) return
+  const formValid = await formRef.value.validate()
+  if (!formValid) return
+
+  await item.verifyCaptchaCode()
 
   await item.createOrder()
   item.clearOrderCreateForm()

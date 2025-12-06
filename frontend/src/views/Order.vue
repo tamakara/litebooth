@@ -44,8 +44,7 @@ onMounted(async () => {
 </script>
 
 <template>
-
-  <el-card class="panel order-page">
+  <el-card class="panel page">
     <template #header>订单查询</template>
 
     <!-- 查询方式 -->
@@ -169,8 +168,11 @@ onMounted(async () => {
 
 <style scoped>
 
-.order-page {
-  margin-top: 24px;
+.page {
+  max-width: 980px;
+  margin: 32px auto 0;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .search-mode-toggle {

@@ -77,6 +77,7 @@ const handleSearch = async () => {
   border-bottom: 1px solid #e2e5e9;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   gap: 24px;
+  margin-bottom: 32px;
 }
 
 .nav-left {

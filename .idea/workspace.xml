@@ -5,16 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化状态值，添加枚举类">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/CaptchaDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/enums/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/enums/OrderStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/CaptchaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/CaptchaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/OrderCreateFormDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/OrderCreateFormDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/CaptchaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/CaptchaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/CaptchaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/CaptchaServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/mysql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/mysql/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/OrderInfoDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/OrderInfoDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/captcha.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/captcha.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/itemStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/itemStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/types/enums/order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/enums/order.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/types/captcha.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/captcha.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/types/order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/order.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Item.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Order.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Order.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,9 +33,9 @@
         <option value="JavaScript File" />
         <option value="package-info" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
         <option value="TypeScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -278,7 +282,7 @@
       <workItem from="1764653586477" duration="14115000" />
       <workItem from="1764943374845" duration="2000" />
       <workItem from="1765038141303" duration="1139000" />
-      <workItem from="1765039310215" duration="7133000" />
+      <workItem from="1765039310215" duration="12674000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -560,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765043893386</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="优化状态值，添加枚举类">
+      <option name="closed" value="true" />
+      <created>1765046475412</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1765046475412</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

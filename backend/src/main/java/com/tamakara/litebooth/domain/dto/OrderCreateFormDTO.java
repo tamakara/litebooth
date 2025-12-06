@@ -10,6 +10,5 @@ public class OrderCreateFormDTO {
     private PaymentMethod paymentMethod;
     private String queryEmail;
     private String queryPassword;
-    private String captchaKey;
-    private String captchaCode;
+    private String captchaToken;
 }

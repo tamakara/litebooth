@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia'
 import {fetchItemInfoVO} from "@/api/item";
 import {createOrder, payOrder} from "@/api/order";
-import {fetchCaptchaInfoVO} from "@/api/captcha";
+import {fetchCaptchaInfoVO, verifyCaptchaCode} from "@/api/captcha";
 import {OrderStatus, PaymentMethod} from "@/types/enums";
 
 export const useItemStore = defineStore('item', {
@@ -25,8 +25,8 @@ export const useItemStore = defineStore('item', {
             paymentMethod: PaymentMethod.WXPAY,
             queryEmail: '',
             queryPassword: '',
-            captchaKey: '',
             captchaCode: '',
+            captchaToken: '',
         },
         orderInfo: {
             id: '',
@@ -51,10 +51,25 @@ export const useItemStore = defineStore('item', {
             try {
                 const res = await fetchCaptchaInfoVO()
                 this.captchaInfo = res.data
-                this.orderCreateForm.captchaKey = res.data.captchaKey
             } finally {
                 this.loading = false
             }
+        },
+
+        async verifyCaptchaCode() {
+            const res = await verifyCaptchaCode({
+                captchaKey: this.captchaInfo.captchaKey,
+                captchaCode: this.orderCreateForm.captchaCode
+            })
+
+            const captchaToken = res.data
+
+            if (captchaToken) {
+                this.orderCreateForm.captchaToken = captchaToken
+                return true
+            }
+
+            return false
         },
 
         async fetchItemInfoVO(itemId: string) {
@@ -85,8 +100,8 @@ export const useItemStore = defineStore('item', {
                 paymentMethod: PaymentMethod.WXPAY,
                 queryEmail: '',
                 queryPassword: '',
-                captchaKey: '',
                 captchaCode: '',
+                captchaToken: '',
             }
         },
 

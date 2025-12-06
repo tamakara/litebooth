@@ -6,8 +6,7 @@ export interface OrderCreateFormDTO {
     paymentMethod: PaymentMethod;
     queryEmail: string;
     queryPassword: string;
-    captchaKey: string;
-    captchaCode: string;
+    captchaToken: string;
 }
 
 export interface OrderInfoVO {

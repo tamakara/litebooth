@@ -25,19 +25,19 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="announcement" v-if="homeInfo.announcement">
+  <section class="announcement" v-if="homeInfo.announcement">
     <h4 class="anno-title">公告</h4>
     <div class="anno-text">
       {{ homeInfo.announcement }}
     </div>
-  </div>
+  </section>
 
   <section class="hero">
     <h1>{{ homeInfo.title }}</h1>
     <p>{{ homeInfo.subtitle }}</p>
   </section>
 
-  <div class="group-bar">
+  <section class="group-bar">
     <el-button
         v-for="g in homeInfo.groups"
         :key="g"
@@ -47,7 +47,7 @@ onMounted(async () => {
     >
       {{ g }}
     </el-button>
-  </div>
+  </section>
 
   <section class="item-grid">
     <ItemCard

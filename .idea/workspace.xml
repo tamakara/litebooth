@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成验证码校验">
-      <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilotDiffState.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化项目结构，添加管理端模块">
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ContentDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ContentDialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/Order.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Order.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/mysql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker/mysql/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/apps/web-ele/src/router/routes/modules/item.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,59 +66,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.docker.redis: Compose 部署.executor": "Run",
-    "Docker.docker: Compose 部署.executor": "Run",
-    "JUnit.LiteboothApplicationTests.test.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.LiteboothApplication.executor": "Run",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "master",
-    "javascript.nodejs.core.library.configured.version": "24.11.0",
-    "javascript.nodejs.core.library.typings.version": "24.10.1",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/suhxhee/Code/IDEA/octopus-master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Run",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "com.github.copilot.settings.chat.ChatConfigurable",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker.redis: Compose 部署.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker: Compose 部署.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LiteboothApplicationTests.test.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.LiteboothApplication.executor&quot;: &quot;Run&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.11.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.10.1&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/suhxhee/Code/IDEA/litebooth/frontend-admin/apps/web-ele/src/router/routes/modules&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\suhxhee\\Code\\IDEA\\litebooth\\frontend-admin\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ],
-    "vue.recent.templates": [
-      "Vue Composition API Component"
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\apps\web-ele\src\router\routes\modules" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\api" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\assets" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\backend\src\main\java\com\tamakara\litebooth\controller" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\backend\src\main\java\com\tamakara\litebooth" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\backend" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\types\enums" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\types" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src" />
@@ -139,7 +140,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="Spring Boot.LiteboothApplication">
     <configuration name="db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/docker/mysql/db.sql" />
       <script-mode>FILE</script-mode>
@@ -197,7 +198,7 @@
       <method v="2" />
     </configuration>
     <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <package-json value="$PROJECT_DIR$/frontend-user/package.json" />
       <command value="run" />
       <scripts>
         <script value="dev" />
@@ -277,7 +278,12 @@
       <workItem from="1765038141303" duration="1139000" />
       <workItem from="1765039310215" duration="12828000" />
       <workItem from="1765052195078" duration="281000" />
-      <workItem from="1765115812044" duration="2606000" />
+      <workItem from="1765115812044" duration="3492000" />
+      <workItem from="1765121842978" duration="624000" />
+      <workItem from="1765122482299" duration="244000" />
+      <workItem from="1765122740720" duration="508000" />
+      <workItem from="1765123265694" duration="10105000" />
+      <workItem from="1765134043949" duration="1065000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -575,7 +581,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765052071853</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="优化ContentDialog">
+      <option name="closed" value="true" />
+      <created>1765120961748</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1765120961748</updated>
+    </task>
+    <task id="LOCAL-00039" summary="优化项目结构，添加管理端模块">
+      <option name="closed" value="true" />
+      <created>1765131775848</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1765131775848</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,8 +615,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="封装首页数据" />
-    <MESSAGE value="完成首页信息对接" />
     <MESSAGE value="完成商品查询接口" />
     <MESSAGE value="完成商品查询接口对接" />
     <MESSAGE value="修复商品查询" />
@@ -618,7 +638,9 @@
     <MESSAGE value="优化表单样式" />
     <MESSAGE value="优化状态值，添加枚举类" />
     <MESSAGE value="完成验证码校验" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成验证码校验" />
+    <MESSAGE value="优化ContentDialog" />
+    <MESSAGE value="优化项目结构，添加管理端模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化项目结构，添加管理端模块" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

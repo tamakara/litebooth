@@ -20,7 +20,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>frontend</module>
+        <module>frontend-user</module>
+        <module>frontend-admin</module>
         <module>backend</module>
     </modules>
 </project>

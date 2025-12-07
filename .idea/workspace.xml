@@ -4,21 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化状态值，添加枚举类">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/CaptchaDTO.java" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成验证码校验">
+      <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilotDiffState.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/CaptchaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/CaptchaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/OrderCreateFormDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/OrderCreateFormDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/CaptchaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/CaptchaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/CaptchaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/CaptchaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/captcha.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/captcha.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HeaderBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/itemStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/itemStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/types/captcha.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/captcha.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/types/order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/order.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Item.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ContentDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ContentDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Order.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Order.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,6 +107,9 @@
     ]
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\api" />
@@ -146,7 +139,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.LiteboothApplication">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/docker/mysql/db.sql" />
       <script-mode>FILE</script-mode>
@@ -282,7 +275,9 @@
       <workItem from="1764653586477" duration="14115000" />
       <workItem from="1764943374845" duration="2000" />
       <workItem from="1765038141303" duration="1139000" />
-      <workItem from="1765039310215" duration="12674000" />
+      <workItem from="1765039310215" duration="12828000" />
+      <workItem from="1765052195078" duration="281000" />
+      <workItem from="1765115812044" duration="2606000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -572,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765046475412</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="完成验证码校验">
+      <option name="closed" value="true" />
+      <created>1765052071853</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1765052071853</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +593,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完成头像更新功能" />
     <MESSAGE value="封装首页数据" />
     <MESSAGE value="完成首页信息对接" />
     <MESSAGE value="完成商品查询接口" />
@@ -615,7 +617,8 @@
     <MESSAGE value="完成订单查询页面" />
     <MESSAGE value="优化表单样式" />
     <MESSAGE value="优化状态值，添加枚举类" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化状态值，添加枚举类" />
+    <MESSAGE value="完成验证码校验" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成验证码校验" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

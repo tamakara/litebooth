@@ -3,6 +3,7 @@ import {computed, onMounted, ref, toRefs} from 'vue'
 import {orderStore} from '@/stores/orderStore'
 import {formatDate} from "@/utils/index.js";
 import {OrderStatus, OrderStatusText, PaymentMethodText} from "@/types/enums";
+import ContentDialog from '@/components/ContentDialog.vue'
 
 const order = orderStore()
 
@@ -158,12 +159,10 @@ onMounted(async () => {
   </el-card>
 
   <!-- 卡密弹窗 -->
-  <el-dialog v-model="contentListDialogVisible" title="卡密内容" width="500px">
-    <pre v-for="content in currentContentList" :key="content" class="card-content">{{ content }}</pre>
-    <template #footer>
-      <el-button type="primary" @click="contentListDialogVisible = false">关闭</el-button>
-    </template>
-  </el-dialog>
+  <ContentDialog
+    v-model:visible="contentListDialogVisible"
+    :content-list="currentContentList"
+  />
 </template>
 
 <style scoped>

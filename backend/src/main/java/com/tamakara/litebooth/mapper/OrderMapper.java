@@ -3,7 +3,7 @@ package com.tamakara.litebooth.mapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.tamakara.litebooth.domain.dto.OrderInfoPageQueryFormDTO;
+import com.tamakara.litebooth.domain.dto.order.OrderInfoPageQueryFormDTO;
 import com.tamakara.litebooth.domain.entity.Order;
 import org.apache.ibatis.annotations.Mapper;
 

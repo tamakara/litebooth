@@ -86,3 +86,16 @@ CREATE TABLE `stock`
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
 
+CREATE TABLE `admin_info`
+(
+    `id`         BIGINT       NOT NULL AUTO_INCREMENT,
+    `avatar`     BIGINT       NOT NULL,
+    `username`   VARCHAR(255) NOT NULL,
+    `password`   VARCHAR(255) NOT NULL,
+    `nickname`   VARCHAR(255) NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) DEFAULT CHARSET = utf8mb4;
+INSERT INTO `admin_info` (`id`, `avatar`, `username`, `password`, `nickname`)
+VALUES (1, '0', 'admin', 'admin', 'admin');

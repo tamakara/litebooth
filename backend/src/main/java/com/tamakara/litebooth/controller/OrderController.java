@@ -1,7 +1,7 @@
 package com.tamakara.litebooth.controller;
 
-import com.tamakara.litebooth.domain.dto.OrderCreateFormDTO;
-import com.tamakara.litebooth.domain.dto.OrderInfoPageQueryFormDTO;
+import com.tamakara.litebooth.domain.dto.order.OrderCreateFormDTO;
+import com.tamakara.litebooth.domain.dto.order.OrderInfoPageQueryFormDTO;
 import com.tamakara.litebooth.domain.vo.order.OrderInfoVO;
 import com.tamakara.litebooth.domain.vo.order.OrderInfoPageVO;
 import com.tamakara.litebooth.service.OrderService;

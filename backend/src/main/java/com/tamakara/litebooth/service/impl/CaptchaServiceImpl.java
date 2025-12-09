@@ -2,7 +2,7 @@ package com.tamakara.litebooth.service.impl;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
-import com.tamakara.litebooth.domain.dto.CaptchaDTO;
+import com.tamakara.litebooth.domain.dto.captcha.CaptchaDTO;
 import com.tamakara.litebooth.domain.vo.captcha.CaptchaInfoVO;
 import com.tamakara.litebooth.service.CaptchaService;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,10 @@
 package com.tamakara.litebooth.controller;
 
 import com.tamakara.litebooth.domain.dto.auth.LoginFormDTO;
+import com.tamakara.litebooth.domain.dto.auth.RefreshTokenDTO;
 import com.tamakara.litebooth.domain.vo.auth.AdminInfoVO;
 import com.tamakara.litebooth.domain.vo.auth.LoginVO;
+import com.tamakara.litebooth.domain.vo.auth.RefreshTokenVO;
 import com.tamakara.litebooth.service.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,15 @@ public class AuthController {
             @RequestBody LoginFormDTO loginFormDTO
     ) {
         LoginVO vo = authService.login(loginFormDTO);
+        return ResponseEntity.ok(vo);
+    }
+
+
+    @PostMapping("/refresh-token")
+    public ResponseEntity<RefreshTokenVO> refreshToken(
+            @RequestBody RefreshTokenDTO refreshTokenDTO
+    ) {
+        RefreshTokenVO vo = authService.refreshToken(refreshTokenDTO);
         return ResponseEntity.ok(vo);
     }
 

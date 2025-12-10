@@ -30,3 +30,9 @@ minio:
   access-key: root
   secret-key: 0d000721
   bucket-name: litebooth
+  url-expires: 86400
+
+token:
+  secret: tamakara
+  access-token-expires: 86400
+  refresh-token-expires: 2592000

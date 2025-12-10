@@ -17,5 +17,5 @@ public class AdminInfoVO {
     private String nickname;
     private String accessToken;
     private String refreshToken;
-    private LocalDateTime expires;
+    private Instant expires;
 }

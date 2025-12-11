@@ -4,39 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成认证功能">
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/admin.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/item.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/order.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/shop.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/stock.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/views/admin/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/views/item/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/views/order/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/views/shop/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/views/stock/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完善后台页面">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/docker/mysql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker/mysql/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/HomeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/ShopInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/home/HomeInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/shop/ShopInfoVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/HomeInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/ShopInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/HomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/ShopService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/HomeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/ShopServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/mock/asyncRoutes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/mock/login.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/mock/refreshToken.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-admin/src/components/ReIcon/src/offlineIcon.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/components/ReIcon/src/offlineIcon.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/src/router/modules/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/home.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/welcome/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/home/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-user/src/api/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/api/shop.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-user/src/stores/homeStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/stores/homeStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-user/src/types/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/types/home.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-user/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/router/modules/admin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/admin.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +83,7 @@
     "javascript.nodejs.core.library.configured.version": "24.11.0",
     "javascript.nodejs.core.library.typings.version": "24.10.1",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/suhxhee/Code/IDEA/litebooth/frontend-admin/src/views/admin",
+    "last_opened_file_path": "C:/Users/suhxhee/Code/IDEA/litebooth/frontend-admin/src/views/stock",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -142,18 +113,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\admin" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\order" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\stock" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\shop" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\apps\web-ele\src\router\routes\modules" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\order" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\components" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\item\utils" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\group\utils" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\home" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\backend" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\types\enums" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\types" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.tamakara.litebooth.controller" />
@@ -170,7 +141,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.backend">
+  <component name="RunManager" selected="npm.frontend-admin">
     <configuration name="db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/docker/mysql/db.sql" />
       <script-mode>FILE</script-mode>
@@ -330,7 +301,8 @@
       <workItem from="1765193683651" duration="5540000" />
       <workItem from="1765291780500" duration="7931000" />
       <workItem from="1765371094604" duration="3979000" />
-      <workItem from="1765375110248" duration="11082000" />
+      <workItem from="1765375110248" duration="15557000" />
+      <workItem from="1765474150884" duration="1534000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -684,11 +656,40 @@
       <option name="project" value="LOCAL" />
       <updated>1765374733671</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="完成路由和菜单配置">
+      <option name="closed" value="true" />
+      <created>1765455464036</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1765455464036</updated>
+    </task>
+    <task id="LOCAL-00046" summary="完善后台页面">
+      <option name="closed" value="true" />
+      <created>1765475716499</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1765475716499</updated>
+    </task>
+    <task id="LOCAL-00047" summary="完善后台页面">
+      <option name="closed" value="true" />
+      <created>1765475735473</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1765475735473</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="additionalRoots">
+      <list>
+        <option value="$PROJECT_DIR$/frontend-admin/build" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -702,8 +703,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复商品查询" />
-    <MESSAGE value="创建商品详情页面" />
     <MESSAGE value="完成商品详情页面对接" />
     <MESSAGE value="完成创建订单接口" />
     <MESSAGE value="完成取消订单功能" />
@@ -727,7 +726,9 @@
     <MESSAGE value="优化项目结构，添加管理端模块" />
     <MESSAGE value="更换后台模板，完成后台登录功能" />
     <MESSAGE value="完成认证功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成认证功能" />
+    <MESSAGE value="完成路由和菜单配置" />
+    <MESSAGE value="完善后台页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善后台页面" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

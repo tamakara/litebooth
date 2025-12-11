@@ -8,7 +8,8 @@ import EpShop from "~icons/ep/shop?raw";
 import EpGoodsFilled from "~icons/ep/goods-filled?raw";
 import EpBox from "~icons/ep/box?raw";
 import EpList from "~icons/ep/list?raw";
-import EpLock from "~icons/ep/lock?raw";
+import EpSetting from "~icons/ep/setting?raw";
+import EpMenu from "~icons/ep/menu?raw";
 
 // https://icon-sets.iconify.design/ri/?keyword=ri
 import RiSearchLine from "~icons/ri/search-line?raw";
@@ -25,7 +26,8 @@ const icons = [
   ["ep/goods-filled", EpGoodsFilled],
   ["ep/box", EpBox],
   ["ep/list", EpList],
-  ["ep/lock", EpLock],
+  ["ep/setting", EpSetting],
+  ["ep/menu", EpMenu],
 ];
 
 // 本地菜单图标，后端在路由的 icon 中返回对应的图标字符串并且前端在此处使用 addIcon 添加即可渲染菜单图标

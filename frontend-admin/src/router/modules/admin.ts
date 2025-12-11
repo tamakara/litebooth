@@ -1,9 +1,9 @@
 export default {
   path: "/admin",
   meta: {
-    icon: "ep/lock",
+    icon: "ep/setting",
     title: "后台管理",
-    rank: 5,
+    rank: 6,
   },
   children: [
     {

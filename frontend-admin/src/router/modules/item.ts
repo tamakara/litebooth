@@ -3,7 +3,7 @@ export default {
   meta: {
     icon: "ep/goods-filled",
     title: "商品管理",
-    rank: 2,
+    rank: 3,
   },
   children: [
     {

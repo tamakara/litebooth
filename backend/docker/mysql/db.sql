@@ -15,7 +15,7 @@ CREATE TABLE `file`
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE `home_info`
+CREATE TABLE `shop_info`
 (
     `id`           BIGINT       NOT NULL AUTO_INCREMENT,
     `title`        VARCHAR(255) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE `home_info`
     `updated_at`   TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
-INSERT INTO `home_info` (`id`, `title`, `subtitle`, `announcement`)
+INSERT INTO `shop_info` (`id`, `title`, `subtitle`, `announcement`)
 VALUES (1, '标题', '副标题', '');
 
 CREATE TABLE `item`

@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -41,8 +42,14 @@ public class AuthServiceImpl implements AuthService {
     private Integer MINIO_URL_EXPIRES;
 
     @Override
+    @Transactional
     public LoginVO login(LoginFormDTO loginFormDTO) {
         AdminInfo adminInfo = adminInfoMapper.selectById(1L);
+
+        if (!loginFormDTO.getUsername().equals(adminInfo.getUsername())
+                || !loginFormDTO.getPassword().equals(adminInfo.getPassword())) {
+            throw new RuntimeException("用户名或密码错误");
+        }
 
         String avatarUrl = fileService.getFileUrl(adminInfo.getAvatar(), MINIO_URL_EXPIRES);
 
@@ -72,6 +79,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    @Transactional
     public RefreshTokenVO refreshToken(RefreshTokenDTO refreshTokenDTO) {
         Boolean exist = redisTemplate.opsForSet()
                 .isMember("refresh:admin", refreshTokenDTO.getRefreshToken());

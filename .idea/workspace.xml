@@ -4,16 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="更换后台模板，完成后台登录功能">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/auth/RefreshTokenDTO.java" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成认证功能">
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/admin.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/item.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/order.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/shop.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/stock.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/views/admin/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/views/item/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/views/order/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/views/shop/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/views/stock/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/auth/AdminInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/auth/AdminInfoVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/auth/RefreshTokenVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/auth/RefreshTokenVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/docker/mysql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker/mysql/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/HomeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/ShopInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/home/HomeInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/shop/ShopInfoVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/HomeInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/ShopInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/HomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/ShopService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/HomeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/ShopServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/mock/asyncRoutes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/mock/login.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/mock/refreshToken.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/components/ReIcon/src/offlineIcon.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/components/ReIcon/src/offlineIcon.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/router/modules/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/home.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/welcome/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/home/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/api/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/api/shop.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/stores/homeStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/stores/homeStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/types/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/types/home.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +50,9 @@
         <option value="JavaScript File" />
         <option value="package-info" />
         <option value="Enum" />
-        <option value="TypeScript File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -70,59 +93,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.docker.redis: Compose 部署.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker: Compose 部署.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LiteboothApplicationTests.test.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.LiteboothApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.backend.executor&quot;: &quot;Run&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.11.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.10.1&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/suhxhee/Code/IDEA/litebooth/frontend-admin/apps/web-ele/src/router/routes/modules&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.frontend-admin.executor&quot;: &quot;Run&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\suhxhee\\Code\\IDEA\\litebooth\\frontend-admin\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker.redis: Compose 部署.executor": "Run",
+    "Docker.docker: Compose 部署.executor": "Run",
+    "JUnit.LiteboothApplicationTests.test.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.LiteboothApplication.executor": "Run",
+    "Spring Boot.backend.executor": "Run",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "24.11.0",
+    "javascript.nodejs.core.library.typings.version": "24.10.1",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/suhxhee/Code/IDEA/litebooth/frontend-admin/src/views/admin",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "npm.frontend-admin.executor": "Run",
+    "npm.frontend-user.executor": "Run",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "editor.preferences.completion",
+    "ts.external.directory.path": "C:\\Users\\suhxhee\\Code\\IDEA\\litebooth\\frontend-admin\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ],
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\admin" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\order" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\stock" />
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\shop" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\apps\web-ele\src\router\routes\modules" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\api" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\assets" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\backend" />
@@ -305,7 +329,8 @@
       <workItem from="1765191775653" duration="1085000" />
       <workItem from="1765193683651" duration="5540000" />
       <workItem from="1765291780500" duration="7931000" />
-      <workItem from="1765371094604" duration="3570000" />
+      <workItem from="1765371094604" duration="3979000" />
+      <workItem from="1765375110248" duration="11082000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -651,7 +676,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765300388197</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="完成认证功能">
+      <option name="closed" value="true" />
+      <created>1765374733671</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1765374733671</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -669,7 +702,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完成商品查询接口对接" />
     <MESSAGE value="修复商品查询" />
     <MESSAGE value="创建商品详情页面" />
     <MESSAGE value="完成商品详情页面对接" />
@@ -694,7 +726,8 @@
     <MESSAGE value="优化ContentDialog" />
     <MESSAGE value="优化项目结构，添加管理端模块" />
     <MESSAGE value="更换后台模板，完成后台登录功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="更换后台模板，完成后台登录功能" />
+    <MESSAGE value="完成认证功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成认证功能" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

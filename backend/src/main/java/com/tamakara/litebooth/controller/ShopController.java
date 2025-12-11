@@ -1,7 +1,7 @@
 package com.tamakara.litebooth.controller;
 
-import com.tamakara.litebooth.domain.vo.home.HomeInfoVO;
-import com.tamakara.litebooth.service.HomeService;
+import com.tamakara.litebooth.domain.vo.shop.ShopInfoVO;
+import com.tamakara.litebooth.service.ShopService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "首页接口")
+@Tag(name = "店铺接口")
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/shop")
 @RequiredArgsConstructor
-public class HomeController {
-    private final HomeService homeService;
+public class ShopController {
+    private final ShopService shopService;
 
-    @GetMapping("/vo/HomeInfoVO")
-    public ResponseEntity<HomeInfoVO> getHomeInfoVO() {
-        HomeInfoVO vo = homeService.getHomeInfoVO();
+    @GetMapping("/vo/ShopInfoVO")
+    public ResponseEntity<ShopInfoVO> getShopInfoVO() {
+        ShopInfoVO vo = shopService.getShopInfoVO();
         return ResponseEntity.ok(vo);
     }
 }

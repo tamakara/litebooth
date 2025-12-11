@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {fetchHomeInfoVO} from "@/api/home";
+import {fetchShopInfoVO} from "@/api/shop";
 import {fetchItemCardPageVO} from "@/api/item";
 import {ItemCardVO} from "@/types";
 
@@ -27,10 +27,10 @@ export const useHomeStore = defineStore('home', {
     }),
     getters: {},
     actions: {
-        async fetchHomeInfoVO() {
+        async fetchShopInfoVO() {
             this.loading = true
             try {
-                const res = await fetchHomeInfoVO()
+                const res = await fetchShopInfoVO()
                 this.homeInfo = res.data
             } finally {
                 this.loading = false

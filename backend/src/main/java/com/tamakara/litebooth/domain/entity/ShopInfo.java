@@ -9,8 +9,8 @@ import lombok.Data;
 import java.time.Instant;
 
 @Data
-@TableName("home_info")
-public class HomeInfo {
+@TableName("shop_info")
+public class ShopInfo {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 

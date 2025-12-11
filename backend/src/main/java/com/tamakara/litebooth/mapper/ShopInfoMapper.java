@@ -1,9 +1,9 @@
 package com.tamakara.litebooth.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tamakara.litebooth.domain.entity.HomeInfo;
+import com.tamakara.litebooth.domain.entity.ShopInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface HomeInfoMapper extends BaseMapper<HomeInfo> {
+public interface ShopInfoMapper extends BaseMapper<ShopInfo> {
 }

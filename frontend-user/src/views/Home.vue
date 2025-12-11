@@ -19,7 +19,7 @@ const handlePageChange = (page: number) => updateQuery({pageNum: page})
 const handleSizeChange = (size: number) => updateQuery({pageSize: size, pageNum: 1})
 
 onMounted(async () => {
-  await home.fetchHomeInfoVO()
+  await home.fetchShopInfoVO()
   await home.fetchItemCardPageVO()
 })
 </script>

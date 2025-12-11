@@ -1,4 +1,4 @@
-export interface HomeInfoVO {
+export interface ShopInfoVO {
     title: string;
     subtitle: string;
     announcement: string;

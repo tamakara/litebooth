@@ -3,15 +3,18 @@ package com.tamakara.litebooth.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.tamakara.litebooth.domain.entity.Group;
 import com.tamakara.litebooth.domain.entity.Item;
 import com.tamakara.litebooth.domain.vo.item.ItemCardVO;
 import com.tamakara.litebooth.domain.vo.item.ItemCardPageVO;
 import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
+import com.tamakara.litebooth.mapper.GroupMapper;
 import com.tamakara.litebooth.mapper.ItemMapper;
 import com.tamakara.litebooth.mapper.StockMapper;
 import com.tamakara.litebooth.service.FileService;
 import com.tamakara.litebooth.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +25,19 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
     private final ItemMapper itemMapper;
     private final FileService fileService;
     private final StockMapper stockMapper;
+    private final GroupMapper groupMapper;
+
+    @Value("${minio.url-expires}")
+    private Integer MINIO_URL_EXPIRES;
+
+    @Override
+    public List<String> getGroupListVO() {
+        List<Group> groups = groupMapper.selectList(new LambdaQueryWrapper<>());
+        return groups
+                .stream()
+                .map(Group::getName)
+                .toList();
+    }
 
     @Override
     public ItemCardPageVO getItemCardListVO(String keyword, String group, Long pageNum, Long pageSize) {
@@ -42,7 +58,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
                                 item.getName(),
                                 item.getPrice(),
                                 item.getGroup(),
-                                fileService.getFileUrl(item.getCover(), 86400)
+                                fileService.getFileUrl(item.getCover(), MINIO_URL_EXPIRES)
                         )
                 ).toList();
 
@@ -59,7 +75,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
         vo.setId(item.getId().toString());
         vo.setName(item.getName());
         vo.setGroup(item.getGroup());
-        vo.setCover(fileService.getFileUrl(item.getCover(), 86400));
+        vo.setCover(fileService.getFileUrl(item.getCover(), MINIO_URL_EXPIRES));
         vo.setPrice(item.getPrice());
         vo.setStock(stockMapper.selectCountByItemId(item.getId(), false));
         vo.setDescription(item.getDescription());

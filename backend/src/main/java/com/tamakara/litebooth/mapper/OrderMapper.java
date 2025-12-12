@@ -13,7 +13,7 @@ public interface OrderMapper extends BaseMapper<Order> {
         return selectPage(
                 new Page<>(form.getPageNum(), form.getPageSize()),
                 new LambdaQueryWrapper<Order>()
-                        .eq("orderId".equals(form.getQueryMode()), Order::getId, form.getOrderId())
+                        .eq("orderId".equals(form.getQueryMode()), Order::getId, Long.parseLong(form.getOrderId()))
                         .eq("queryEmail".equals(form.getQueryMode()), Order::getQueryEmail, form.getQueryEmail())
                         .eq("queryEmail".equals(form.getQueryMode()), Order::getQueryPassword, form.getQueryPassword())
 

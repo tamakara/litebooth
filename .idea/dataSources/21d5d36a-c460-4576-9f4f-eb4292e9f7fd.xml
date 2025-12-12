@@ -1469,83 +1469,93 @@ user_service_db|schema||user_service_user||UPDATE|G</Grants>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="356" parent="308" name="title">
+    <column id="356" parent="308" name="logo">
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StoredType>varchar(255)|0s</StoredType>
+      <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="357" parent="308" name="subtitle">
+    <column id="357" parent="308" name="logo_title">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="358" parent="308" name="announcement">
+    <column id="358" parent="308" name="home_title">
       <NotNull>1</NotNull>
       <Position>4</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="359" parent="308" name="home_subtitle">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="360" parent="308" name="home_announcement">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="359" parent="308" name="created_at">
+    <column id="361" parent="308" name="created_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-      <Position>5</Position>
+      <Position>7</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="360" parent="308" name="updated_at">
+    <column id="362" parent="308" name="updated_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
-      <Position>6</Position>
+      <Position>8</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <index id="361" parent="308" name="PRIMARY">
+    <index id="363" parent="308" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="362" parent="308" name="PRIMARY">
+    <key id="364" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="363" parent="309" name="id">
+    <column id="365" parent="309" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="364" parent="309" name="is_sold">
+    <column id="366" parent="309" name="is_sold">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>tinyint(1)|0s</StoredType>
     </column>
-    <column id="365" parent="309" name="item_id">
+    <column id="367" parent="309" name="item_id">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="366" parent="309" name="order_id">
+    <column id="368" parent="309" name="order_id">
       <Position>4</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="367" parent="309" name="content">
+    <column id="369" parent="309" name="content">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="368" parent="309" name="created_at">
+    <column id="370" parent="309" name="created_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>6</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="369" parent="309" name="updated_at">
+    <column id="371" parent="309" name="updated_at">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
       <Position>7</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <index id="370" parent="309" name="PRIMARY">
+    <index id="372" parent="309" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="371" parent="309" name="PRIMARY">
+    <key id="373" parent="309" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

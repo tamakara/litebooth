@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderInfoPageQueryFormDTO {
     private String queryMode;
-    private Long orderId;
+    private String orderId;
     private String queryEmail;
     private String queryPassword;
     private Long pageNum;

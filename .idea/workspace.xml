@@ -4,10 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完善后台页面">
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化首页内容显示">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/FileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/shop/ShopInfoUpdateFormDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/api/shop.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/21d5d36a-c460-4576-9f4f-eb4292e9f7fd.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/src/components/ReIcon/src/offlineIcon.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/components/ReIcon/src/offlineIcon.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/src/router/modules/admin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/router/modules/admin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/docker/mysql/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker/mysql/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/order/OrderInfoPageQueryFormDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/order/OrderInfoPageQueryFormDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/ShopInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/entity/ShopInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/shop/ShopInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/shop/ShopInfoVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/OrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/ShopService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/ShopService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/FileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/FileServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/ItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/ItemServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/ShopServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/ShopServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/shop/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/shop/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/api/item.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/api/item.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/components/HeaderBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/components/HeaderBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/stores/homeStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/stores/homeStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/types/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/types/home.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/types/item.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/types/item.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +46,8 @@
         <option value="package-info" />
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="TypeScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -83,7 +107,7 @@
     "javascript.nodejs.core.library.configured.version": "24.11.0",
     "javascript.nodejs.core.library.typings.version": "24.10.1",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/suhxhee/Code/IDEA/litebooth/frontend-admin/src/views/stock",
+    "last_opened_file_path": "C:/Users/suhxhee/Code/IDEA/litebooth/frontend-admin/src/views/shop",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -95,7 +119,7 @@
     "project.structure.last.edited": "模块",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.completion",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.mcp.McpConfigurable",
     "ts.external.directory.path": "C:\\Users\\suhxhee\\Code\\IDEA\\litebooth\\frontend-admin\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -113,18 +137,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\shop" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\stock" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\order" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\components" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\item\utils" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\group\utils" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\shop" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend-admin\src\views\home" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\backend" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\types\enums" />
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\types" />
-      <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.tamakara.litebooth.controller" />
@@ -141,7 +165,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="npm.frontend-admin">
+  <component name="RunManager" selected="Spring Boot.backend">
     <configuration name="db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/docker/mysql/db.sql" />
       <script-mode>FILE</script-mode>
@@ -302,7 +326,11 @@
       <workItem from="1765291780500" duration="7931000" />
       <workItem from="1765371094604" duration="3979000" />
       <workItem from="1765375110248" duration="15557000" />
-      <workItem from="1765474150884" duration="1534000" />
+      <workItem from="1765474150884" duration="1721000" />
+      <workItem from="1765476027416" duration="20000" />
+      <workItem from="1765556041618" duration="4471000" />
+      <workItem from="1765560704935" duration="332000" />
+      <workItem from="1765561046810" duration="6120000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目目录">
       <option name="closed" value="true" />
@@ -680,7 +708,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765475735473</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="完善后台页面">
+      <option name="closed" value="true" />
+      <created>1765475835091</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1765475835091</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

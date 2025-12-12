@@ -14,14 +14,20 @@ public class ShopInfo {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @TableField(value = "title")
-    private String title;
+    @TableField(value = "logo")
+    private Long logo;
 
-    @TableField(value = "subtitle")
-    private String subtitle;
+    @TableField(value = "logo_title")
+    private String logoTitle;
 
-    @TableField(value = "announcement")
-    private String announcement;
+    @TableField(value = "home_title")
+    private String homeTitle;
+
+    @TableField(value = "home_subtitle")
+    private String homeSubtitle;
+
+    @TableField(value = "home_announcement")
+    private String homeAnnouncement;
 
     @TableField(value = "created_at")
     private Instant createdAt;

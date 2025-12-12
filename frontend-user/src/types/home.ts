@@ -1,8 +1,9 @@
 export interface ShopInfoVO {
-    title: string;
-    subtitle: string;
-    announcement: string;
-    groups: string[];
+    logo: string;
+    logoTitle: string;
+    homeTitle: string;
+    homeSubtitle: string;
+    homeAnnouncement: string;
 }
 
 

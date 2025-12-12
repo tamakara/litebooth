@@ -28,7 +28,6 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, File> implements Fi
             minIOUtil.upload(file.getHash(), multipartFile);
 
         fileMapper.insert(file);
-
         return file.getId();
     }
 

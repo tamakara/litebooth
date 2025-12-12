@@ -8,12 +8,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(name = "商品接口")
 @RestController
 @RequestMapping("/item")
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemService itemService;
+
+    @GetMapping("/vo/GroupListVO")
+    public ResponseEntity<List<String>> getGroupListVO() {
+        List<String> vo = itemService.getGroupListVO();
+        return ResponseEntity.ok(vo);
+    }
 
     @GetMapping("/vo/ItemCardPageVO")
     public ResponseEntity<ItemCardPageVO> getItemCardListVO(

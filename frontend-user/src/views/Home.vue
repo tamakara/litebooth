@@ -5,7 +5,7 @@ import ItemCard from '@/components/ItemCard.vue'
 
 const home = useHomeStore()
 
-const {homeInfo, itemCardQueryForm: queryForm, itemCardPage} = toRefs(home)
+const {shopInfo: homeInfo, groupList: groups, itemCardQueryForm: queryForm, itemCardPage} = toRefs(home)
 const itemCardList = computed(() => itemCardPage.value.itemCardList)
 const total = computed(() => itemCardPage.value.total)
 
@@ -19,27 +19,27 @@ const handlePageChange = (page: number) => updateQuery({pageNum: page})
 const handleSizeChange = (size: number) => updateQuery({pageSize: size, pageNum: 1})
 
 onMounted(async () => {
-  await home.fetchShopInfoVO()
+  await home.fetchGroupListVO()
   await home.fetchItemCardPageVO()
 })
 </script>
 
 <template>
-  <section class="announcement" v-if="homeInfo.announcement">
+  <section class="announcement" v-if="homeInfo.homeAnnouncement">
     <h4 class="anno-title">公告</h4>
     <div class="anno-text">
-      {{ homeInfo.announcement }}
+      {{ homeInfo.homeAnnouncement }}
     </div>
   </section>
 
   <section class="hero">
-    <h1>{{ homeInfo.title }}</h1>
-    <p>{{ homeInfo.subtitle }}</p>
+    <h1 v-if="homeInfo.homeTitle">{{ homeInfo.homeTitle }}</h1>
+    <p v-if="homeInfo.homeSubtitle">{{ homeInfo.homeSubtitle }}</p>
   </section>
 
   <section class="group-bar">
     <el-button
-        v-for="g in homeInfo.groups"
+        v-for="g in groups"
         :key="g"
         class="grp-btn"
         :type="queryForm.group === g ? 'primary' : 'default'"
@@ -75,14 +75,14 @@ onMounted(async () => {
   background: #fff;
   border: 2px solid #e5e7eb;
   border-radius: 8px;
-  padding: 20px 24px;
+  padding: 24px 24px;
   margin: 16px 0;
   width: 100%;
   box-sizing: border-box;
 }
 
 .anno-title {
-  margin-bottom: 8px;
+  margin: 8px 0;
   font-size: 20px;
   font-weight: 800;
   color: #111827;

@@ -1,15 +1,13 @@
-package com.tamakara.litebooth.domain.vo.shop;
+package com.tamakara.litebooth.domain.dto.shop;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShopInfoVO {
+public class ShopInfoUpdateFormDTO {
     private String logo;
     private String logoTitle;
     private String homeTitle;

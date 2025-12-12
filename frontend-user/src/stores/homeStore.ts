@@ -1,16 +1,18 @@
 import {defineStore} from 'pinia'
 import {fetchShopInfoVO} from "@/api/shop";
-import {fetchItemCardPageVO} from "@/api/item";
+import {fetchGroupListVO, fetchItemCardPageVO} from "@/api/item";
 import {ItemCardVO} from "@/types";
 
 export const useHomeStore = defineStore('home', {
     state: () => ({
-        homeInfo: {
-            title: '',
-            subtitle: '',
-            announcement: '',
-            groups: ['全部'],
+        shopInfo: {
+            logo: '',
+            logoTitle: '',
+            homeTitle: '',
+            homeSubtitle: '',
+            homeAnnouncement: '',
         },
+        groupList: ['全部'],
         itemCardQueryForm: {
             keyword: '',
             group: '全部',
@@ -31,7 +33,16 @@ export const useHomeStore = defineStore('home', {
             this.loading = true
             try {
                 const res = await fetchShopInfoVO()
-                this.homeInfo = res.data
+                this.shopInfo = res.data
+            } finally {
+                this.loading = false
+            }
+        },
+        async fetchGroupListVO() {
+            this.loading = true
+            try {
+                const res = await fetchGroupListVO()
+                this.groupList = res.data
             } finally {
                 this.loading = false
             }

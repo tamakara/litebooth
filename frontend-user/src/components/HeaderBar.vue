@@ -6,7 +6,7 @@ import {useHomeStore} from '@/stores/homeStore.ts'
 const router = useRouter()
 const home = useHomeStore()
 
-const {itemCardQueryForm: queryForm} = toRefs(home)
+const {shopInfo, itemCardQueryForm: queryForm} = toRefs(home)
 
 const handleSearch = async () => {
   queryForm.value.pageNum = 1
@@ -18,8 +18,14 @@ const handleSearch = async () => {
   <el-header class="app-header">
     <div class="nav-left">
       <div class="brand" @click="router.push('/')">
-        <span class="logo-dot"></span>
-        <span class="brand-name">LiteBooth</span>
+        <img
+          class="logo"
+          v-if="shopInfo.logo"
+          :src="shopInfo.logo"
+          :alt="shopInfo.logoTitle || 'logo'"
+          loading="lazy"
+        />
+        <span class="logo-title">{{ shopInfo.logoTitle }}</span>
       </div>
       <nav class="nav-links">
         <span
@@ -127,17 +133,18 @@ const handleSearch = async () => {
   border-radius: 10px;
 }
 
-.brand-name {
-  font-size: 22px;
-  letter-spacing: 0.3px;
+.logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 4px rgba(64, 158, 255, 0.18);
+  flex-shrink: 0;
 }
 
-.logo-dot {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #409eff, #67c23a);
-  box-shadow: 0 0 0 6px rgba(64, 158, 255, 0.18);
+.logo-title {
+  font-size: 22px;
+  letter-spacing: 0.3px;
 }
 
 .global-search :deep(.el-input__wrapper) {
@@ -172,6 +179,12 @@ const handleSearch = async () => {
   .global-search {
     width: 100%;
     max-width: 100%;
+  }
+
+  .logo {
+    width: 26px;
+    height: 26px;
+    box-shadow: 0 0 0 3px rgba(64, 158, 255, 0.18);
   }
 }
 </style>

@@ -29,3 +29,6 @@ export interface ItemInfoVO {
     stock: number;
     description: string;
 }
+
+export type GroupListVO = string[]
+

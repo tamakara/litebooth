@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.dto.shop.ShopInfoUpdateFormDTO;
 import com.tamakara.litebooth.domain.entity.File;
 import com.tamakara.litebooth.domain.entity.ShopInfo;
+import com.tamakara.litebooth.domain.vo.shop.ShopInfoUpdateFormVO;
 import com.tamakara.litebooth.domain.vo.shop.ShopInfoVO;
 import com.tamakara.litebooth.mapper.ShopInfoMapper;
 import com.tamakara.litebooth.service.FileService;
@@ -28,7 +29,7 @@ public class ShopServiceImpl extends ServiceImpl<ShopInfoMapper, ShopInfo> imple
     public ShopInfoVO getShopInfoVO() {
         ShopInfo homeInfo = shopInfoMapper.selectById(1L);
 
-        String url = homeInfo.getLogo() == null ? "" : fileService.getFileUrl(homeInfo.getLogo(), MINIO_URL_EXPIRES);
+        String url = fileService.getFileUrl(homeInfo.getLogo(), MINIO_URL_EXPIRES);
 
         ShopInfoVO vo = new ShopInfoVO();
         vo.setLogo(url);
@@ -41,12 +42,30 @@ public class ShopServiceImpl extends ServiceImpl<ShopInfoMapper, ShopInfo> imple
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public ShopInfoUpdateFormVO getShopInfoUpdateFormVO() {
+        ShopInfo homeInfo = shopInfoMapper.selectById(1L);
+
+        ShopInfoUpdateFormVO vo = new ShopInfoUpdateFormVO();
+        String url = fileService.getFileUrl(homeInfo.getLogo(), MINIO_URL_EXPIRES);
+        vo.setLogo(homeInfo.getLogo().toString());
+        vo.setLogoUrl(url);
+        vo.setLogoTitle(homeInfo.getLogoTitle());
+        vo.setHomeTitle(homeInfo.getHomeTitle());
+        vo.setHomeSubtitle(homeInfo.getHomeSubtitle());
+        vo.setHomeAnnouncement(homeInfo.getHomeAnnouncement());
+
+        return vo;
+    }
+
+    @Override
+    @Transactional
     public void updateShopInfo(ShopInfoUpdateFormDTO shopInfoUpdateFormDTO) {
         ShopInfo homeInfo = shopInfoMapper.selectById(1L);
 
         Long logo = Long.valueOf(shopInfoUpdateFormDTO.getLogo());
         boolean exists = fileService.exists(new LambdaQueryWrapper<File>().eq(File::getId, logo));
-        if (!exists){
+        if (!exists) {
             throw new RuntimeException("Logo文件不存在");
         }
 

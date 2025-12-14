@@ -1,6 +1,7 @@
 package com.tamakara.litebooth.controller;
 
 import com.tamakara.litebooth.domain.dto.shop.ShopInfoUpdateFormDTO;
+import com.tamakara.litebooth.domain.vo.shop.ShopInfoUpdateFormVO;
 import com.tamakara.litebooth.domain.vo.shop.ShopInfoVO;
 import com.tamakara.litebooth.service.ShopService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,6 +19,12 @@ public class ShopController {
     @GetMapping("/vo/ShopInfoVO")
     public ResponseEntity<ShopInfoVO> getShopInfoVO() {
         ShopInfoVO vo = shopService.getShopInfoVO();
+        return ResponseEntity.ok(vo);
+    }
+
+    @GetMapping("/vo/ShopInfoUpdateFormVO")
+    public ResponseEntity<ShopInfoUpdateFormVO> getShopInfoUpdateFormVO() {
+        ShopInfoUpdateFormVO vo = shopService.getShopInfoUpdateFormVO();
         return ResponseEntity.ok(vo);
     }
 

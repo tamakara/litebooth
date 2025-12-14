@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import {ElButton, ElForm, ElFormItem, ElImage, ElInput, ElMessage, ElUpload} from "element-plus";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 
-import {uploadShopLogo, type ShopInfoUpdateFormDTO, updateShopInfo} from "@/api/shop";
+import {
+  uploadShopLogo,
+  type ShopInfoUpdateFormDTO,
+  updateShopInfo,
+  getShopInfoUpdateForm,
+  type ShopInfoUpdateFormVO
+} from "@/api/shop";
 
 const formRef = ref<InstanceType<typeof ElForm> | null>(null);
 
@@ -56,6 +62,34 @@ const customUploadRequest = (options: any) => {
     });
 };
 
+// 页面加载时获取当前店铺信息并回显到表单
+const loading = ref(false);
+
+const loadShopInfo = async () => {
+  loading.value = true;
+  try {
+    const data = await getShopInfoUpdateForm();
+    const vo = data as unknown as ShopInfoUpdateFormVO;
+    form.value = {
+      logo: vo.logo || "",
+      logoTitle: vo.logoTitle || "",
+      homeTitle: vo.homeTitle || "",
+      homeSubtitle: vo.homeSubtitle || "",
+      homeAnnouncement: vo.homeAnnouncement || ""
+    };
+    logoPreviewUrl.value = vo.logoUrl
+  } catch (e) {
+    console.error(e);
+    ElMessage.error("加载店铺信息失败");
+  } finally {
+    loading.value = false;
+  }
+};
+
+onMounted(() => {
+  loadShopInfo();
+});
+
 // 提交表单
 const handleSubmit = () => {
   formRef.value?.validate(async valid => {
@@ -102,7 +136,7 @@ const handleReset = () => {
             accept="image/*"
           >
             <el-image
-              :src="logoPreviewUrl || 'https://via.placeholder.com/80x80?text=Logo'"
+              :src="logoPreviewUrl "
               style="width: 80px; height: 80px; border-radius: 50%; border: 1px dashed #d9d9d9; cursor: pointer; object-fit: cover;"
               fit="cover"
             />
@@ -135,7 +169,7 @@ const handleReset = () => {
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="handleSubmit">保存</el-button>
+          <el-button type="primary" @click="handleSubmit" :loading="loading">保存</el-button>
           <el-button @click="handleReset">重置</el-button>
         </el-form-item>
       </el-form>

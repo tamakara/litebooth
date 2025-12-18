@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderInfoPageVO {
-    private List<OrderInfoVO> orderInfoList;
+    private List<OrderInfoVO> records;
     private Long pageNum;
     private Long pageSize;
     private Long total;

@@ -16,7 +16,3 @@ export type ShopInfoUpdateFormVO = {
 };
 
 export type FormItemProps = ShopInfoUpdateFormDTO;
-
-export interface FormProps {
-  formInline: FormItemProps;
-}

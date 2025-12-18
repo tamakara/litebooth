@@ -11,7 +11,7 @@ export const orderStore = defineStore('order', {
             avatar: '',
         },
         orderInfoPage: {
-            orderInfoList: [] as OrderInfoVO[],
+            records: [] as OrderInfoVO[],
             pageNum: 1,
             pageSize: 10,
             total: 0,

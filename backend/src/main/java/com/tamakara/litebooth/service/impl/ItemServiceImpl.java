@@ -3,6 +3,7 @@ package com.tamakara.litebooth.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.tamakara.litebooth.domain.dto.item.ItemPageQueryFormDTO;
 import com.tamakara.litebooth.domain.entity.Group;
 import com.tamakara.litebooth.domain.entity.Item;
 import com.tamakara.litebooth.domain.vo.item.ItemCardVO;
@@ -40,7 +41,12 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
     }
 
     @Override
-    public ItemCardPageVO getItemCardListVO(String keyword, String group, Long pageNum, Long pageSize) {
+    public ItemCardPageVO getItemCardPageVO(ItemPageQueryFormDTO itemPageQueryFormDTO) {
+        String keyword = itemPageQueryFormDTO.getKeyword();
+        String group = itemPageQueryFormDTO.getGroup();
+        Long pageNum = itemPageQueryFormDTO.getPageNum();
+        Long pageSize = itemPageQueryFormDTO.getPageSize();
+
         Page<Item> page = new Page<>(pageNum, pageSize);
         LambdaQueryWrapper<Item> wrapper =
                 new LambdaQueryWrapper<Item>()
@@ -49,7 +55,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
                         .eq(!group.equals("全部"), Item::getGroup, group);
         itemMapper.selectPage(page, wrapper);
 
-        List<ItemCardVO> items = page
+        List<ItemCardVO> records = page
                 .getRecords()
                 .stream()
                 .map(item ->
@@ -62,7 +68,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
                         )
                 ).toList();
 
-        return new ItemCardPageVO(items, page.getCurrent(), page.getSize(), page.getTotal());
+        return new ItemCardPageVO(records, page.getCurrent(), page.getSize(), page.getTotal());
     }
 
     @Override

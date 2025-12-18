@@ -8,7 +8,7 @@ import ContentDialog from '@/components/ContentDialog.vue'
 const order = orderStore()
 
 const {orderInfoPage, queryForm} = toRefs(order)
-const orderInfoList = computed(() => orderInfoPage.value.orderInfoList)
+const orderInfoList = computed(() => orderInfoPage.value.records)
 const total = computed(() => orderInfoPage.value.total)
 const contentListDialogVisible = ref(false)
 const currentContentList = ref<string[]>([])

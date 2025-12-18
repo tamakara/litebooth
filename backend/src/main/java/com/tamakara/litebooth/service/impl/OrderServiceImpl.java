@@ -99,7 +99,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public OrderInfoPageVO getOrderInfoPageVO(OrderInfoPageQueryFormDTO queryFormDTO) {
         Page<Order> page = orderMapper.selectPageByQueryForm(queryFormDTO);
 
-        List<OrderInfoVO> orderVOList = page
+        List<OrderInfoVO> records = page
                 .getRecords()
                 .stream()
                 .map(order -> {
@@ -108,7 +108,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
                     return new OrderInfoVO(order, contentList);
                 }).toList();
 
-        OrderInfoPageVO vo = new OrderInfoPageVO(orderVOList, page.getCurrent(), page.getSize(), page.getTotal());
+        OrderInfoPageVO vo = new OrderInfoPageVO(records, page.getCurrent(), page.getSize(), page.getTotal());
         return vo;
     }
 }

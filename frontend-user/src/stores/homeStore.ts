@@ -20,7 +20,7 @@ export const useHomeStore = defineStore('home', {
             pageSize: 20
         },
         itemCardPage: {
-            itemCardList: [] as ItemCardVO[],
+            records: [] as ItemCardVO[],
             pageNum: 1,
             pageSize: 20,
             total: 0

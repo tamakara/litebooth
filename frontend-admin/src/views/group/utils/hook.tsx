@@ -3,16 +3,25 @@ import { message } from "@/utils/message";
 import { getGroupList, createGroup, updateGroup, deleteGroup } from "@/api/group";
 import { addDialog } from "@/components/ReDialog";
 import { reactive, ref, onMounted, h } from "vue";
-import type { FormItemProps } from "../utils/types";
+import { PaginationProps } from "@pureadmin/table";
+import type { FormItemProps, GroupPageQueryFormDTO } from "../utils/types";
 
 export function useGroup() {
-  const form = reactive({
-    name: ""
+  const form = reactive<GroupPageQueryFormDTO>({
+    name: "",
+    pageNum: 1,
+    pageSize: 10
   });
 
   const formRef = ref();
   const dataList = ref([]);
   const loading = ref(true);
+  const pagination = reactive<PaginationProps>({
+    total: 0,
+    pageSize: 10,
+    currentPage: 1,
+    background: true
+  });
 
   const columns: TableColumnList = [
     {
@@ -46,8 +55,11 @@ export function useGroup() {
   async function onSearch() {
     loading.value = true;
     try {
-      const { data } = await getGroupList(form);
-      dataList.value = data;
+      const data = await getGroupList(form);
+      dataList.value = data.records;
+      pagination.total = data.total;
+      pagination.pageSize = data.pageSize;
+      pagination.currentPage = data.pageNum;
     } catch (e) {
       console.error(e);
       message("获取商品组列表失败", { type: "error" });
@@ -55,6 +67,16 @@ export function useGroup() {
     } finally {
       loading.value = false;
     }
+  }
+
+  function handleSizeChange(val: number) {
+    form.pageSize = val;
+    onSearch();
+  }
+
+  function handleCurrentChange(val: number) {
+    form.pageNum = val;
+    onSearch();
   }
 
   function openDialog(title = "新增", row?: FormItemProps) {
@@ -77,7 +99,7 @@ export function useGroup() {
         FormRef.validate(valid => {
           if (valid) {
             if (title === "新增") {
-              createGroup(curData)
+              createGroup(curData.name)
                 .then(() => {
                   message(`您新增了商品组名称为${curData.name}的这条数据`, {
                     type: "success"
@@ -89,7 +111,7 @@ export function useGroup() {
                   message("新增商品组失败", { type: "error" });
                 });
             } else {
-              updateGroup(curData)
+              updateGroup(curData as any)
                 .then(() => {
                   message(`您修改了商品组名称为${curData.name}的这条数据`, {
                     type: "success"
@@ -129,10 +151,13 @@ export function useGroup() {
     loading,
     columns,
     dataList,
+    pagination,
     onSearch,
     resetForm,
     openDialog,
     handleDelete,
-    handleSelectionChange
+    handleSelectionChange,
+    handleSizeChange,
+    handleCurrentChange
   };
 }

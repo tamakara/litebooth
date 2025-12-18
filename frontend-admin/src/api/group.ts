@@ -1,27 +1,19 @@
-import { http } from "@/utils/http";
+import {http} from "@/utils/http";
+import {GroupPageQueryFormDTO, GroupPageVO, GroupUpdateFormDTO, GroupVO} from "@/views/group/utils/types";
 
-export type Group = {
-  id?: number;
-  name: string;
+
+export const getGroupList = (queryForm: GroupPageQueryFormDTO) => {
+  return http.request<GroupPageVO>("get", "/admin/getOrderInfoPageVO", {params: queryForm});
 };
 
-export type GroupResult = {
-  success: boolean;
-  data: Group[];
+export const createGroup = (name: string) => {
+  return http.request<GroupVO>("post", `/admin/createGroup/${name}`);
 };
 
-export const getGroupList = (params?: object) => {
-  return http.request<GroupResult>("get", "/group/list", { params });
+export const updateGroup = (updateForm: GroupUpdateFormDTO) => {
+  return http.request<GroupVO>("put", "/admin/updateGroup", {data: updateForm});
 };
 
-export const createGroup = (data: object) => {
-  return http.request<GroupResult>("post", "/group/create", { data });
-};
-
-export const updateGroup = (data: object) => {
-  return http.request<GroupResult>("put", "/group/update", { data });
-};
-
-export const deleteGroup = (id: number) => {
-  return http.request<GroupResult>("delete", `/group/delete/${id}`);
+export const deleteGroup = (id: string) => {
+  return http.request<void>("delete", `/admin/deleteGroup/${id}`);
 };

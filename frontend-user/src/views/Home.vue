@@ -6,7 +6,7 @@ import ItemCard from '@/components/ItemCard.vue'
 const home = useHomeStore()
 
 const {shopInfo: homeInfo, groupList: groups, itemCardQueryForm: queryForm, itemCardPage} = toRefs(home)
-const itemCardList = computed(() => itemCardPage.value.itemCardList)
+const itemCardList = computed(() => itemCardPage.value.records)
 const total = computed(() => itemCardPage.value.total)
 
 const updateQuery = async (payload: object) => {

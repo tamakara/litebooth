@@ -1,5 +1,6 @@
 package com.tamakara.litebooth.controller;
 
+import com.tamakara.litebooth.domain.dto.item.ItemPageQueryFormDTO;
 import com.tamakara.litebooth.domain.vo.item.ItemCardPageVO;
 import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
 import com.tamakara.litebooth.service.ItemService;
@@ -24,13 +25,10 @@ public class ItemController {
     }
 
     @GetMapping("/vo/ItemCardPageVO")
-    public ResponseEntity<ItemCardPageVO> getItemCardListVO(
-            @RequestParam(value = "keyword", defaultValue = "") String keyword,
-            @RequestParam(value = "group", defaultValue = "全部") String group,
-            @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum,
-            @RequestParam(value = "pageSize", defaultValue = "20") Long pageSize
+    public ResponseEntity<ItemCardPageVO> getItemCardPageVO(
+            @ModelAttribute ItemPageQueryFormDTO itemPageQueryFormDTO
     ) {
-        ItemCardPageVO vo = itemService.getItemCardListVO(keyword, group, pageNum, pageSize);
+        ItemCardPageVO vo = itemService.getItemCardPageVO(itemPageQueryFormDTO);
         return ResponseEntity.ok(vo);
     }
 

@@ -1,4 +1,4 @@
-package com.tamakara.litebooth.domain.vo.item;
+package com.tamakara.litebooth.domain.vo.group;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemCardPageVO {
-    private List<ItemCardVO> records;
+public class GroupPageVO {
+    private List<GroupVO> records;
     private Long pageNum;
     private Long pageSize;
     private Long total;

@@ -25,7 +25,7 @@ export interface OrderInfoVO {
 }
 
 export interface OrderInfoPageVO {
-    orderInfoList: OrderInfoVO[];
+    records: OrderInfoVO[];
     pageNum: number;
     pageSize: number;
     total: number;

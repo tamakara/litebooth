@@ -1,17 +1,15 @@
-package com.tamakara.litebooth.domain.vo.item;
+package com.tamakara.litebooth.domain.dto.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemCardPageVO {
-    private List<ItemCardVO> records;
+public class ItemPageQueryFormDTO {
+    private String keyword;
+    private String group;
     private Long pageNum;
     private Long pageSize;
-    private Long total;
 }

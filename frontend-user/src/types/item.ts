@@ -14,7 +14,7 @@ export interface ItemCardVO {
 }
 
 export interface ItemCardPageVO {
-    itemCardList: ItemCardVO[];
+    records: ItemCardVO[];
     pageNum: number;
     pageSize: number;
     total: number;

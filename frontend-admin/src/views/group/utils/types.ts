@@ -1,9 +1,33 @@
-interface FormItemProps {
+export interface FormItemProps {
   id?: number;
   name: string;
 }
-interface FormProps {
+
+export interface FormProps {
   formInline: FormItemProps;
 }
 
-export type { FormItemProps, FormProps };
+export interface GroupVO {
+  id: number;
+  name: string;
+}
+
+export interface GroupUpdateFormDTO {
+  id: number;
+  name: string;
+}
+
+export interface GroupPageQueryFormDTO {
+  name: string;
+  pageNum: number;
+  pageSize: number;
+}
+
+export interface GroupPageVO {
+  records: GroupVO[];
+  pageNum: number;
+  pageSize: number;
+  total: number;
+}
+
+

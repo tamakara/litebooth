@@ -21,11 +21,14 @@ const {
   loading,
   columns,
   dataList,
+  pagination,
   onSearch,
   resetForm,
   openDialog,
   handleDelete,
-  handleSelectionChange
+  handleSelectionChange,
+  handleSizeChange,
+  handleCurrentChange
 } = useGroup();
 
 function onFullscreen() {
@@ -94,11 +97,15 @@ function onFullscreen() {
           :size="size"
           :data="dataList"
           :columns="dynamicColumns"
+          :pagination="pagination"
+          :paginationSmall="size === 'small' ? true : false"
           :header-cell-style="{
             background: 'var(--el-fill-color-light)',
             color: 'var(--el-text-color-primary)'
           }"
           @selection-change="handleSelectionChange"
+          @page-size-change="handleSizeChange"
+          @page-current-change="handleCurrentChange"
         >
           <template #operation="{ row }">
             <el-button

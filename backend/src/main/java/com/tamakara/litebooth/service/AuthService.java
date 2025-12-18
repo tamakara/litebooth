@@ -6,6 +6,8 @@ import com.tamakara.litebooth.domain.vo.auth.LoginVO;
 import com.tamakara.litebooth.domain.vo.auth.RefreshTokenVO;
 
 public interface AuthService {
+
     LoginVO login(LoginFormDTO loginFormDTO);
+
     RefreshTokenVO refreshToken(RefreshTokenDTO refreshTokenDTO);
 }

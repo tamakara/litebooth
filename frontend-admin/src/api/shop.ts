@@ -1,21 +1,5 @@
 import { http } from "@/utils/http";
-
-export type ShopInfoUpdateFormDTO = {
-  logo: string;
-  logoTitle: string;
-  homeTitle: string;
-  homeSubtitle: string;
-  homeAnnouncement: string;
-};
-
-export type ShopInfoUpdateFormVO = {
-  logo: string;
-  logoUrl: string;
-  logoTitle: string;
-  homeTitle: string;
-  homeSubtitle: string;
-  homeAnnouncement: string;
-};
+import type { ShopInfoUpdateFormDTO, ShopInfoUpdateFormVO } from "@/views/shop/utils/types";
 
 /** 上传店铺Logo，返回文件ID字符串 */
 export const uploadShopLogo = (file: File) => {
@@ -31,10 +15,10 @@ export const uploadShopLogo = (file: File) => {
 
 /** 获取当前店铺信息表单数据 */
 export const getShopInfoUpdateForm = () => {
-  return http.request<ShopInfoUpdateFormVO>("get", "/shop/vo/ShopInfoUpdateFormVO");
+  return http.request<ShopInfoUpdateFormVO>("get", "/admin/vo/ShopInfoUpdateFormVO");
 };
 
 /** 更新店铺信息 */
 export const updateShopInfo = (data: ShopInfoUpdateFormDTO) => {
-  return http.request<boolean>("put", "/shop/updateShopInfo", { data });
+  return http.request<boolean>("put", "/admin/updateShopInfo", { data });
 };

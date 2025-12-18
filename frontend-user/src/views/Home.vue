@@ -27,9 +27,8 @@ onMounted(async () => {
 <template>
   <section class="announcement" v-if="homeInfo.homeAnnouncement">
     <h4 class="anno-title">公告</h4>
-    <div class="anno-text">
-      {{ homeInfo.homeAnnouncement }}
-    </div>
+    <div class="anno-text" v-html="homeInfo.homeAnnouncement"/>
+
   </section>
 
   <section class="hero">

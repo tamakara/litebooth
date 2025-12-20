@@ -38,12 +38,12 @@ type AdminInfoVO = UserResult
 
 /** 登录 */
 export const getLogin = (data?: object) => {
-  return http.request<AdminInfoVO>("post", "/admin/login", {data});
+  return http.request<AdminInfoVO>("post", "/auth/login", {data});
 };
 
 type RefreshTokenVO = RefreshTokenResult
 
 /** 刷新`token` */
 export const refreshTokenApi = (data?: object) => {
-  return http.request<RefreshTokenVO>("post", "/admin/refresh-token", {data});
+  return http.request<RefreshTokenVO>("post", "/auth/refresh-token", {data});
 };

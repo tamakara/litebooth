@@ -1,4 +1,4 @@
-package com.tamakara.litebooth.controller;
+package com.tamakara.litebooth.controller.user;
 
 import com.tamakara.litebooth.domain.dto.captcha.CaptchaDTO;
 import com.tamakara.litebooth.domain.vo.captcha.CaptchaInfoVO;
@@ -8,11 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "验证码接口")
+@Tag(name = "用户端验证码模块接口")
 @RestController
-@RequestMapping("/captcha")
+@RequestMapping("/user/captcha")
 @RequiredArgsConstructor
-public class CaptchaController {
+public class UserCaptchaController {
     private final CaptchaService captchaService;
 
     @GetMapping("/vo/CaptchaInfoVO")

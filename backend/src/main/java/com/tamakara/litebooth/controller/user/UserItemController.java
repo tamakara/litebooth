@@ -1,4 +1,4 @@
-package com.tamakara.litebooth.controller;
+package com.tamakara.litebooth.controller.user;
 
 import com.tamakara.litebooth.domain.dto.item.ItemPageQueryFormDTO;
 import com.tamakara.litebooth.domain.vo.item.ItemCardPageVO;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "商品接口")
+@Tag(name = "用户端商品模块接口")
 @RestController
-@RequestMapping("/item")
+@RequestMapping("/user/item")
 @RequiredArgsConstructor
-public class ItemController {
+public class UserItemController {
     private final ItemService itemService;
 
     @GetMapping("/vo/GroupListVO")

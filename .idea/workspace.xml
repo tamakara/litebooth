@@ -4,16 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成商品组管理">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/config/MybatisPlusConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilotDiffState.xml" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="修复分页功能">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/admin/AdminAuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/admin/AdminGroupController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/admin/AdminItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/admin/AdminShopController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/GroupServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/GroupServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/AdminController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/CaptchaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/user/UserCaptchaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/user/UserItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/user/UserOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/user/UserShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/api/group.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/api/group.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/api/shop.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/api/shop.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/api/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/api/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/group/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/group/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/group/utils/hook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/group/utils/hook.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +145,7 @@
       <recent name="C:\Users\suhxhee\Code\IDEA\litebooth\frontend\src\types" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.tamakara.litebooth.controller.admin" />
       <recent name="com.tamakara.litebooth.controller" />
       <recent name="com.tamakara.litebooth.domain.dto" />
       <recent name="com.tamakara.litebooth.mapper" />
@@ -332,15 +342,7 @@
       <workItem from="1766094383960" duration="208000" />
       <workItem from="1766261635194" duration="355000" />
       <workItem from="1766262007661" duration="3202000" />
-      <workItem from="1766265225901" duration="601000" />
-    </task>
-    <task id="LOCAL-00004" summary="添加README">
-      <option name="closed" value="true" />
-      <created>1762678142572</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1762678142572</updated>
+      <workItem from="1766265225901" duration="3685000" />
     </task>
     <task id="LOCAL-00005" summary="优化前端页面">
       <option name="closed" value="true" />
@@ -726,7 +728,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766086242082</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="修复分页功能">
+      <option name="closed" value="true" />
+      <created>1766265840006</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1766265840006</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -749,7 +759,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完成商品发货基本功能" />
     <MESSAGE value="完善stock与order绑定" />
     <MESSAGE value="完成历史订单展示" />
     <MESSAGE value="完成复数商品发货" />
@@ -774,7 +783,8 @@
     <MESSAGE value="完成店铺管理功能" />
     <MESSAGE value="完善token鉴权" />
     <MESSAGE value="完成商品组管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成商品组管理" />
+    <MESSAGE value="修复分页功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复分页功能" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

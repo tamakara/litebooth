@@ -7,6 +7,7 @@ import Delete from "~icons/ep/delete";
 import EditPen from "~icons/ep/edit-pen";
 import Refresh from "~icons/ep/refresh";
 import AddFill from "~icons/ri/add-circle-line";
+import PureTable from "@pureadmin/table";
 
 defineOptions({
   name: "Group"
@@ -68,7 +69,6 @@ function onFullscreen() {
     <PureTableBar
       title="商品组管理"
       :columns="columns"
-      :tableRef="tableRef?.getTableRef()"
       @refresh="onSearch"
       @fullscreen="onFullscreen"
     >
@@ -88,14 +88,12 @@ function onFullscreen() {
           :adaptiveConfig="{ offsetBottom: 45 }"
           align-whole="center"
           row-key="id"
-          showOverflowTooltip
           table-layout="auto"
           :loading="loading"
           :size="size"
           :data="dataList"
           :columns="dynamicColumns"
           :pagination="pagination"
-          :paginationSmall="size === 'small' ? true : false"
           :header-cell-style="{
             background: 'var(--el-fill-color-light)',
             color: 'var(--el-text-color-primary)'
@@ -103,6 +101,7 @@ function onFullscreen() {
           @selection-change="handleSelectionChange"
           @page-size-change="handleSizeChange"
           @page-current-change="handleCurrentChange"
+
         >
           <template #operation="{ row }">
             <el-button

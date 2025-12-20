@@ -1,16 +1,16 @@
 import editForm from "../form.vue";
-import { message } from "@/utils/message";
-import { getGroupList, createGroup, updateGroup, deleteGroup } from "@/api/group";
-import { addDialog } from "@/components/ReDialog";
-import { reactive, ref, onMounted, h } from "vue";
-import { PaginationProps } from "@pureadmin/table";
-import type { FormItemProps, GroupPageQueryFormDTO } from "../utils/types";
+import {message} from "@/utils/message";
+import {getGroupList, createGroup, updateGroup, deleteGroup} from "@/api/group";
+import {addDialog} from "@/components/ReDialog";
+import {reactive, ref, onMounted, h} from "vue";
+import {PaginationProps} from "@pureadmin/table";
+import type {FormItemProps, GroupPageQueryFormDTO} from "../utils/types";
 
 export function useGroup() {
   const form = reactive<GroupPageQueryFormDTO>({
     name: "",
     pageNum: 1,
-    pageSize: 10
+    pageSize: 20
   });
 
   const formRef = ref();
@@ -18,9 +18,10 @@ export function useGroup() {
   const loading = ref(true);
   const pagination = reactive<PaginationProps>({
     total: 0,
-    pageSize: 10,
+    pageSize: 20,
     currentPage: 1,
-    background: true
+    background: true,
+    pageSizes:[10,20,50,100],
   });
 
   const columns: TableColumnList = [
@@ -62,7 +63,7 @@ export function useGroup() {
       pagination.currentPage = data.pageNum;
     } catch (e) {
       console.error(e);
-      message("获取商品组列表失败", { type: "error" });
+      message("获取商品组列表失败", {type: "error"});
       dataList.value = [];
     } finally {
       loading.value = false;
@@ -92,8 +93,8 @@ export function useGroup() {
       draggable: true,
       fullscreenIcon: true,
       closeOnClickModal: false,
-      contentRenderer: () => h(editForm, { ref: formRef } as any),
-      beforeSure: (done, { options }) => {
+      contentRenderer: () => h(editForm, {ref: formRef} as any),
+      beforeSure: (done, {options}) => {
         const FormRef = formRef.value.getRef();
         const curData = options.props.formInline as FormItemProps;
         FormRef.validate(valid => {
@@ -108,7 +109,7 @@ export function useGroup() {
                   onSearch(); // 刷新表格数据
                 })
                 .catch(() => {
-                  message("新增商品组失败", { type: "error" });
+                  message("新增商品组失败", {type: "error"});
                 });
             } else {
               updateGroup(curData as any)
@@ -120,7 +121,7 @@ export function useGroup() {
                   onSearch(); // 刷新表格数据
                 })
                 .catch(() => {
-                  message("修改商品组失败", { type: "error" });
+                  message("修改商品组失败", {type: "error"});
                 });
             }
           }
@@ -138,7 +139,7 @@ export function useGroup() {
         onSearch();
       })
       .catch(() => {
-        message("删除商品组失败", { type: "error" });
+        message("删除商品组失败", {type: "error"});
       });
   }
 

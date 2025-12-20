@@ -1,4 +1,4 @@
-package com.tamakara.litebooth.controller;
+package com.tamakara.litebooth.controller.user;
 
 import com.tamakara.litebooth.domain.dto.order.OrderCreateFormDTO;
 import com.tamakara.litebooth.domain.dto.order.OrderInfoPageQueryFormDTO;
@@ -10,11 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "订单接口")
+@Tag(name = "用户端订单模块接口")
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/user/order")
 @RequiredArgsConstructor
-public class OrderController {
+public class UserOrderController {
     private final OrderService orderService;
 
     @PostMapping("/createOrder")

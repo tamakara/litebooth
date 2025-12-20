@@ -1,4 +1,4 @@
-package com.tamakara.litebooth.controller;
+package com.tamakara.litebooth.controller.user;
 
 import com.tamakara.litebooth.domain.vo.shop.ShopInfoVO;
 import com.tamakara.litebooth.service.ShopService;
@@ -7,11 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "店铺接口")
+@Tag(name = "用户端店铺模块接口")
 @RestController
-@RequestMapping("/shop")
+@RequestMapping("/user/shop")
 @RequiredArgsConstructor
-public class ShopController {
+public class UserShopController {
     private final ShopService shopService;
 
     @GetMapping("/vo/ShopInfoVO")

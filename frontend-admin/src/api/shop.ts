@@ -15,10 +15,10 @@ export const uploadShopLogo = (file: File) => {
 
 /** 获取当前店铺信息表单数据 */
 export const getShopInfoUpdateForm = () => {
-  return http.request<ShopInfoUpdateFormVO>("get", "/admin/vo/ShopInfoUpdateFormVO");
+  return http.request<ShopInfoUpdateFormVO>("get", "/shop/vo/ShopInfoUpdateFormVO");
 };
 
 /** 更新店铺信息 */
 export const updateShopInfo = (data: ShopInfoUpdateFormDTO) => {
-  return http.request<boolean>("put", "/admin/updateShopInfo", { data });
+  return http.request<boolean>("put", "/shop/updateShopInfo", { data });
 };

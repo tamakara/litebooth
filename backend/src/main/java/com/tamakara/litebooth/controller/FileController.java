@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@Tag(name = "文件接口")
+@Tag(name = "文件模块接口")
 @RestController
 @RequestMapping("/file")
 @RequiredArgsConstructor

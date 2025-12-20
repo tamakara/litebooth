@@ -13,6 +13,7 @@ import com.tamakara.litebooth.service.AuthService;
 import com.tamakara.litebooth.service.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
     private final GroupMapper groupMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public GroupPageVO getOrderInfoPageVO(GroupPageQueryFormDTO groupPageQueryFormDTO) {
         String name = groupPageQueryFormDTO.getName();
         Long pageNum = groupPageQueryFormDTO.getPageNum();
@@ -30,7 +32,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
         Page<Group> page = new Page<>(pageNum, pageSize);
         LambdaQueryWrapper<Group> wrapper =
                 new LambdaQueryWrapper<Group>()
-                        .eq(!"".equals(name), Group::getName, name);
+                        .like(!"".equals(name), Group::getName, name);
         groupMapper.selectPage(page, wrapper);
 
         List<GroupVO> records = page
@@ -42,9 +44,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
                                 group.getName()
                         )
                 ).toList();
-
         return new GroupPageVO(records, page.getCurrent(), page.getSize(), page.getTotal());
-
     }
 
     @Override

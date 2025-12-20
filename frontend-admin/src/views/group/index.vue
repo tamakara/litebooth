@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useGroup } from "./utils/hook";
-import { PureTableBar } from "@/components/RePureTableBar";
-import { useRenderIcon } from "@/components/ReIcon/src/hooks";
-
-
+import {ref} from "vue";
+import {useGroup} from "./utils/hook";
+import {PureTableBar} from "@/components/RePureTableBar";
+import {useRenderIcon} from "@/components/ReIcon/src/hooks";
 import Delete from "~icons/ep/delete";
 import EditPen from "~icons/ep/edit-pen";
 import Refresh from "~icons/ep/refresh";
@@ -32,7 +30,6 @@ const {
 } = useGroup();
 
 function onFullscreen() {
-  // 重置表格高度
   tableRef.value.setAdaptive();
 }
 </script>

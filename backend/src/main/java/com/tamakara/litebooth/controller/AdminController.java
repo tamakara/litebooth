@@ -35,7 +35,6 @@ public class AdminController {
         return ResponseEntity.ok(vo);
     }
 
-
     @PostMapping("/refresh-token")
     public ResponseEntity<RefreshTokenVO> refreshToken(
             @RequestBody RefreshTokenDTO refreshTokenDTO
@@ -43,7 +42,6 @@ public class AdminController {
         RefreshTokenVO vo = authService.refreshToken(refreshTokenDTO);
         return ResponseEntity.ok(vo);
     }
-
 
     @GetMapping("/vo/ShopInfoUpdateFormVO")
     public ResponseEntity<ShopInfoUpdateFormVO> getShopInfoUpdateFormVO(
@@ -68,7 +66,6 @@ public class AdminController {
         GroupPageVO vo = groupService.getOrderInfoPageVO(groupPageQueryFormDTO);
         return ResponseEntity.ok(vo);
     }
-
 
     @PostMapping("/createGroup/{name}")
     public ResponseEntity<GroupVO> createGroup(

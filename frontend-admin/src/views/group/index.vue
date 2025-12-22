@@ -43,9 +43,9 @@ function onFullscreen() {
       :model="form"
       class="search-form bg-bg_color w-full pl-8 pt-[12px] overflow-auto"
     >
-      <el-form-item label="名称：" prop="name">
+      <el-form-item label="名称：" prop="keyword">
         <el-input
-          v-model="form.name"
+          v-model="form.keyword"
           placeholder="请输入商品组名称"
           clearable
           class="w-[180px]!"
@@ -85,7 +85,7 @@ function onFullscreen() {
         <pure-table
           ref="tableRef"
           adaptive
-          :adaptiveConfig="{ offsetBottom: 45 }"
+          :adaptiveConfig="{ offsetBottom: 130 }"
           align-whole="center"
           row-key="id"
           table-layout="auto"
@@ -138,12 +138,8 @@ function onFullscreen() {
 </template>
 
 <style lang="scss" scoped>
-:deep(.el-table__inner-wrapper::before) {
-  height: 0;
-}
-
-.main-content {
-  margin: 24px 24px 0 !important;
+.main {
+  overflow: hidden;
 }
 
 .search-form {

@@ -1,5 +1,5 @@
 export interface FormItemProps {
-  id?: number;
+  id?: string;
   name: string;
 }
 
@@ -18,7 +18,7 @@ export interface GroupUpdateFormDTO {
 }
 
 export interface GroupPageQueryFormDTO {
-  name: string;
+  keyword: string;
   pageNum: number;
   pageSize: number;
 }

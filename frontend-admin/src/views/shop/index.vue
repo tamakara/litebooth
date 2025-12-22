@@ -31,8 +31,8 @@ const {
         label-width="100px"
         label-position="right"
       >
-        <!-- Logo 头像上传 -->
-        <el-form-item label="店铺 Logo" prop="logo">
+        <!-- Logo上传 -->
+        <el-form-item label="店铺Logo" prop="logoFileId">
           <el-upload
             class="avatar-uploader"
             :action="''"
@@ -52,7 +52,7 @@ const {
           </span>
         </el-form-item>
 
-        <el-form-item label="Logo 标题" prop="logoTitle">
+        <el-form-item label="店铺名称" prop="logoTitle">
           <el-input v-model="form.logoTitle" placeholder="请输入 Logo 标题" />
         </el-form-item>
 

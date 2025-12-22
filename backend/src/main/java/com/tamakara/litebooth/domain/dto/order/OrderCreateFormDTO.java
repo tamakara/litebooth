@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderCreateFormDTO {
-    private String itemId;
+    private Long itemId;
     private Long quantity;
     private PaymentMethod paymentMethod;
     private String queryEmail;

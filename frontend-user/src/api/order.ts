@@ -11,5 +11,5 @@ export function payOrder(orderId: string): Promise<AxiosResponse<OrderInfoVO>> {
 }
 
 export function fetchOrderInfoPageVO(form: OrderInfoPageQueryFormDTO): Promise<AxiosResponse<OrderInfoPageVO>> {
-    return http.get('/order/vo/OrderInfoPageVO', {params: form})
+    return http.get('/order/getOrderInfoPageVO', {params: form})
 }

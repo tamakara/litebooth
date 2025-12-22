@@ -9,7 +9,6 @@ import com.tamakara.litebooth.domain.entity.Group;
 import com.tamakara.litebooth.domain.vo.group.GroupPageVO;
 import com.tamakara.litebooth.domain.vo.group.GroupVO;
 import com.tamakara.litebooth.mapper.GroupMapper;
-import com.tamakara.litebooth.service.AuthService;
 import com.tamakara.litebooth.service.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,16 +22,31 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
     private final GroupMapper groupMapper;
 
     @Override
+    public List<GroupVO> getGroupListVO() {
+        List<Group> groups = groupMapper.selectList(new LambdaQueryWrapper<>());
+        return groups
+                .stream()
+                .map(group ->
+                        new GroupVO(
+                                group.getId(),
+                                group.getName()
+                        )
+                )
+                .toList();
+    }
+
+
+    @Override
     @Transactional(readOnly = true)
     public GroupPageVO getOrderInfoPageVO(GroupPageQueryFormDTO groupPageQueryFormDTO) {
-        String name = groupPageQueryFormDTO.getName();
+        String keyword = groupPageQueryFormDTO.getKeyword();
         Long pageNum = groupPageQueryFormDTO.getPageNum();
         Long pageSize = groupPageQueryFormDTO.getPageSize();
 
         Page<Group> page = new Page<>(pageNum, pageSize);
         LambdaQueryWrapper<Group> wrapper =
                 new LambdaQueryWrapper<Group>()
-                        .like(!"".equals(name), Group::getName, name);
+                        .like(!"".equals(keyword), Group::getName, keyword);
         groupMapper.selectPage(page, wrapper);
 
         List<GroupVO> records = page
@@ -40,7 +54,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
                 .stream()
                 .map(group ->
                         new GroupVO(
-                                group.getId().toString(),
+                                group.getId(),
                                 group.getName()
                         )
                 ).toList();
@@ -54,7 +68,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
         groupMapper.insert(group);
 
         GroupVO vo = new GroupVO();
-        vo.setId(group.getId().toString());
+        vo.setId(group.getId());
         vo.setName(group.getName());
 
         return vo;
@@ -67,7 +81,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
         groupMapper.updateById(group);
 
         GroupVO vo = new GroupVO();
-        vo.setId(group.getId().toString());
+        vo.setId(group.getId());
         vo.setName(group.getName());
 
         return vo;

@@ -10,7 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShopInfoVO {
-    private String logo;
+    private Long logoFileId;
+    private String logoFileUrl;
     private String logoTitle;
     private String homeTitle;
     private String homeSubtitle;

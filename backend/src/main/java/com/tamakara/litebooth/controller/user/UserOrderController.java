@@ -33,7 +33,7 @@ public class UserOrderController {
         return ResponseEntity.ok(vo);
     }
 
-    @GetMapping("/vo/OrderInfoPageVO")
+    @GetMapping("/getOrderInfoPageVO")
     public ResponseEntity<OrderInfoPageVO> getOrderInfoPageVO(
             @ModelAttribute OrderInfoPageQueryFormDTO queryFormDTO
     ) {

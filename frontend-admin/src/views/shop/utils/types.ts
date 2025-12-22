@@ -1,14 +1,14 @@
 export type ShopInfoUpdateFormDTO = {
-  logo: string;
+  logoFileId: number;
   logoTitle: string;
   homeTitle: string;
   homeSubtitle: string;
   homeAnnouncement: string;
 };
 
-export type ShopInfoUpdateFormVO = {
-  logo: string;
-  logoUrl: string;
+export type ShopInfoVO = {
+  logoFileId: number;
+  logoFileUrl: string;
   logoTitle: string;
   homeTitle: string;
   homeSubtitle: string;

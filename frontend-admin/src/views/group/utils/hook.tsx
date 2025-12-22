@@ -8,7 +8,7 @@ import type {FormItemProps, GroupPageQueryFormDTO} from "../utils/types";
 
 export function useGroup() {
   const form = reactive<GroupPageQueryFormDTO>({
-    name: "",
+    keyword: "",
     pageNum: 1,
     pageSize: 20
   });

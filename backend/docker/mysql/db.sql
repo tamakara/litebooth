@@ -18,7 +18,7 @@ CREATE TABLE `file`
 CREATE TABLE `shop_info`
 (
     `id`                BIGINT       NOT NULL AUTO_INCREMENT,
-    `logo`              BIGINT       NOT NULL,
+    `logo_file_id`      BIGINT       NOT NULL,
     `logo_title`        VARCHAR(255) NOT NULL,
     `home_title`        VARCHAR(255) NOT NULL,
     `home_subtitle`     VARCHAR(255) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE `shop_info`
     `updated_at`        TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
-INSERT INTO `shop_info` (`id`, `logo`, `logo_title`, `home_title`, `home_subtitle`, `home_announcement`)
+INSERT INTO `shop_info` (`id`, `logo_file_id`, `logo_title`, `home_title`, `home_subtitle`, `home_announcement`)
 VALUES (1, 1, 'LiteBooth', '', '', '');
 
 CREATE TABLE `item`

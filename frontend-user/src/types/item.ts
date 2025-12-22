@@ -1,6 +1,6 @@
 export interface ItemCardPageQueryFormDTO {
     keyword: string;
-    group: string;
+    groupId: number;
     pageNum: number;
     pageSize: number;
 }
@@ -9,7 +9,6 @@ export interface ItemCardVO {
     id: number;
     name: string;
     price: number;
-    group: string;
     cover: string;
 }
 
@@ -21,14 +20,16 @@ export interface ItemCardPageVO {
 }
 
 export interface ItemInfoVO {
-    id: string;
+    id: number;
     name: string;
-    group: string;
     cover: string;
     price: number;
     stock: number;
     description: string;
 }
 
-export type GroupListVO = string[]
+export interface GroupVO{
+    id: number;
+    name: string;
+}
 

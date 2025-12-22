@@ -14,8 +14,8 @@ public class ShopInfo {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @TableField(value = "logo")
-    private Long logo;
+    @TableField(value = "logo_file_id")
+    private Long logoFileId;
 
     @TableField(value = "logo_title")
     private String logoTitle;

@@ -9,8 +9,6 @@ import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
 import java.util.List;
 
 public interface ItemService extends IService<Item> {
-    List<String> getGroupListVO();
-
     ItemCardPageVO getItemCardPageVO(ItemPageQueryFormDTO itemPageQueryFormDTO);
 
     ItemInfoVO getItemVO(Long itemId);

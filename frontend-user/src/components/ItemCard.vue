@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useRouter} from 'vue-router'
 import {ShoppingCart} from '@element-plus/icons-vue'
+import {ItemCardVO} from "@/types";
 
 const props = defineProps<{
   item: ItemCardVO
@@ -19,9 +20,6 @@ const onClick = () => {
     </div>
     <div class="card-body">
       <div class="title">{{ props.item.name }}</div>
-      <div class="group-chip">
-        <el-tag size="small" type="info" effect="plain">{{ props.item.group }}</el-tag>
-      </div>
       <div class="meta">
         <span class="price">¥ {{ props.item.price }}</span>
         <el-button class="order-btn" type="primary" @click="onClick">
@@ -83,10 +81,6 @@ const onClick = () => {
   font-size: 18px;
   line-height: 1.35;
   min-height: 42px;
-}
-
-.group-chip {
-  display: flex;
 }
 
 .meta {

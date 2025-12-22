@@ -7,9 +7,8 @@ import {OrderStatus, PaymentMethod} from "@/types/enums";
 export const useItemStore = defineStore('item', {
     state: () => ({
         itemInfo: {
-            id: '',
+            id: 0,
             name: '',
-            group: '',
             cover: '',
             price: 0.00,
             stock: 0,
@@ -20,7 +19,7 @@ export const useItemStore = defineStore('item', {
             imageBase64: '',
         },
         orderCreateForm: {
-            itemId: '',
+            itemId: 0,
             quantity: 1,
             paymentMethod: PaymentMethod.WXPAY,
             queryEmail: '',
@@ -38,9 +37,9 @@ export const useItemStore = defineStore('item', {
             quantity: 0,
             amount: 0,
             paymentMethod: PaymentMethod.WXPAY,
-            contentList: null,
+            contentList: [''],
             createdAt: '',
-            paymentAt: null,
+            paymentAt: '',
         },
         loading: false,
     }),
@@ -95,7 +94,7 @@ export const useItemStore = defineStore('item', {
 
         clearOrderCreateForm() {
             this.orderCreateForm = {
-                itemId: '',
+                itemId: 0,
                 quantity: 1,
                 paymentMethod: PaymentMethod.WXPAY,
                 queryEmail: '',

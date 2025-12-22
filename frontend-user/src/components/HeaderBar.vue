@@ -20,9 +20,8 @@ const handleSearch = async () => {
       <div class="brand" @click="router.push('/')">
         <img
           class="logo"
-          v-if="shopInfo.logo"
-          :src="shopInfo.logo"
-          :alt="shopInfo.logoTitle || 'logo'"
+          :src="shopInfo.logoFileUrl"
+          :alt="shopInfo.logoTitle"
           loading="lazy"
         />
         <span class="logo-title">{{ shopInfo.logoTitle }}</span>

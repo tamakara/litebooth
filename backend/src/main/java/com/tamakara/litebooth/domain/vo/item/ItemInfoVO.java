@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class ItemInfoVO {
     private String id;
     private String name;
-    private String group;
     private String cover;
     private Double price;
     private Long stock;

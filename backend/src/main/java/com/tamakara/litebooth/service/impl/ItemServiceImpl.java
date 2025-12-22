@@ -4,12 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.dto.item.ItemPageQueryFormDTO;
-import com.tamakara.litebooth.domain.entity.Group;
 import com.tamakara.litebooth.domain.entity.Item;
-import com.tamakara.litebooth.domain.vo.item.ItemCardVO;
 import com.tamakara.litebooth.domain.vo.item.ItemCardPageVO;
+import com.tamakara.litebooth.domain.vo.item.ItemCardVO;
 import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
-import com.tamakara.litebooth.mapper.GroupMapper;
 import com.tamakara.litebooth.mapper.ItemMapper;
 import com.tamakara.litebooth.mapper.StockMapper;
 import com.tamakara.litebooth.service.FileService;
@@ -26,24 +24,14 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
     private final ItemMapper itemMapper;
     private final FileService fileService;
     private final StockMapper stockMapper;
-    private final GroupMapper groupMapper;
 
     @Value("${minio.url-expires}")
     private Integer MINIO_URL_EXPIRES;
 
     @Override
-    public List<String> getGroupListVO() {
-        List<Group> groups = groupMapper.selectList(new LambdaQueryWrapper<>());
-        return groups
-                .stream()
-                .map(Group::getName)
-                .toList();
-    }
-
-    @Override
     public ItemCardPageVO getItemCardPageVO(ItemPageQueryFormDTO itemPageQueryFormDTO) {
         String keyword = itemPageQueryFormDTO.getKeyword();
-        String group = itemPageQueryFormDTO.getGroup();
+        Long groupId = itemPageQueryFormDTO.getGroupId();
         Long pageNum = itemPageQueryFormDTO.getPageNum();
         Long pageSize = itemPageQueryFormDTO.getPageSize();
 
@@ -52,7 +40,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
                 new LambdaQueryWrapper<Item>()
                         .eq(Item::getIsActive, true)
                         .like(Item::getName, keyword)
-                        .eq(!group.equals("全部"), Item::getGroup, group);
+                        .eq(groupId != 0, Item::getGroupId, groupId);
         itemMapper.selectPage(page, wrapper);
 
         List<ItemCardVO> records = page
@@ -63,7 +51,6 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
                                 item.getId(),
                                 item.getName(),
                                 item.getPrice(),
-                                item.getGroup(),
                                 fileService.getFileUrl(item.getCover(), MINIO_URL_EXPIRES)
                         )
                 ).toList();
@@ -75,12 +62,11 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
     public ItemInfoVO getItemVO(Long itemId) {
         Item item = itemMapper.selectById(itemId);
         if (item == null) {
-            throw new IllegalArgumentException("Item not found");
+            throw new IllegalArgumentException("找不到商品");
         }
         ItemInfoVO vo = new ItemInfoVO();
         vo.setId(item.getId().toString());
         vo.setName(item.getName());
-        vo.setGroup(item.getGroup());
         vo.setCover(fileService.getFileUrl(item.getCover(), MINIO_URL_EXPIRES));
         vo.setPrice(item.getPrice());
         vo.setStock(stockMapper.selectCountByItemId(item.getId(), false));

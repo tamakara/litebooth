@@ -1,7 +1,7 @@
 import {OrderStatus, PaymentMethod} from "@/types/enums/order";
 
 export interface OrderCreateFormDTO {
-    itemId: string;
+    itemId: number;
     quantity: number;
     paymentMethod: PaymentMethod;
     queryEmail: string;
@@ -19,9 +19,9 @@ export interface OrderInfoVO {
     quantity: number;
     amount: number;
     paymentMethod: PaymentMethod;
-    contentList: string[] | null;
+    contentList: string[];
     createdAt: string;
-    paymentAt: string | null;
+    paymentAt: string;
 }
 
 export interface OrderInfoPageVO {
@@ -33,9 +33,9 @@ export interface OrderInfoPageVO {
 
 export interface OrderInfoPageQueryFormDTO {
     queryMode: string;
-    orderId?: string;
-    queryEmail?: string;
-    queryPassword?: string;
+    orderId: string;
+    queryEmail: string;
+    queryPassword: string;
     pageNum: number;
     pageSize: number;
 }

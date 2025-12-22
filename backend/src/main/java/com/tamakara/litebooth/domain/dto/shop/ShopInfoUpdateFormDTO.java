@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShopInfoUpdateFormDTO {
-    private String logo;
+    private Long logoFileId;
     private String logoTitle;
     private String homeTitle;
     private String homeSubtitle;

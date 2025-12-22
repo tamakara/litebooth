@@ -1469,7 +1469,7 @@ user_service_db|schema||user_service_user||UPDATE|G</Grants>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
     </column>
-    <column id="356" parent="308" name="logo">
+    <column id="356" parent="308" name="logo_file_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>bigint|0s</StoredType>

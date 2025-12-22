@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserShopController {
     private final ShopService shopService;
 
-    @GetMapping("/vo/ShopInfoVO")
+    @GetMapping("/ShopInfoVO")
     public ResponseEntity<ShopInfoVO> getShopInfoVO() {
         ShopInfoVO vo = shopService.getShopInfoVO();
         return ResponseEntity.ok(vo);
     }
-
 }

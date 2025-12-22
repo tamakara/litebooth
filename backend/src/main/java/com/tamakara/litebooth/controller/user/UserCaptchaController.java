@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserCaptchaController {
     private final CaptchaService captchaService;
 
-    @GetMapping("/vo/CaptchaInfoVO")
+    @GetMapping("/getCaptchaInfoVO")
     public ResponseEntity<CaptchaInfoVO> getCaptchaInfoVO() {
         CaptchaInfoVO vo = captchaService.getCaptchaInfoVO();
         return ResponseEntity.ok(vo);

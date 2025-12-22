@@ -41,7 +41,7 @@ onMounted(async () => {
         v-for="g in groups"
         :key="g"
         class="grp-btn"
-        :type="queryForm.group === g ? 'primary' : 'default'"
+        :type="queryForm.groupId === g.id ? 'primary' : 'default'"
         @click="handleGroupChange(g)"
     >
       {{ g }}

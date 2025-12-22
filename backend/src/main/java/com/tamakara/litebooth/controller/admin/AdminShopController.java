@@ -2,6 +2,7 @@ package com.tamakara.litebooth.controller.admin;
 
 import com.tamakara.litebooth.domain.dto.shop.ShopInfoUpdateFormDTO;
 import com.tamakara.litebooth.domain.vo.shop.ShopInfoUpdateFormVO;
+import com.tamakara.litebooth.domain.vo.shop.ShopInfoVO;
 import com.tamakara.litebooth.service.ShopService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +16,9 @@ import org.springframework.web.bind.annotation.*;
 public class AdminShopController {
     private final ShopService shopService;
 
-    @GetMapping("/vo/ShopInfoUpdateFormVO")
-    public ResponseEntity<ShopInfoUpdateFormVO> getShopInfoUpdateFormVO(
-
-    ) {
-        ShopInfoUpdateFormVO vo = shopService.getShopInfoUpdateFormVO();
+    @GetMapping("/getShopInfoVO")
+    public ResponseEntity<ShopInfoVO> getShopInfoVO() {
+        ShopInfoVO vo = shopService.getShopInfoVO();
         return ResponseEntity.ok(vo);
     }
 

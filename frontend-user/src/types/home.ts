@@ -1,5 +1,6 @@
 export interface ShopInfoVO {
-    logo: string;
+    logoFileId: number;
+    logoFileUrl: string;
     logoTitle: string;
     homeTitle: string;
     homeSubtitle: string;

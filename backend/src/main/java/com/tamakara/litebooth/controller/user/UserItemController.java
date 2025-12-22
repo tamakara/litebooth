@@ -18,13 +18,7 @@ import java.util.List;
 public class UserItemController {
     private final ItemService itemService;
 
-    @GetMapping("/vo/GroupListVO")
-    public ResponseEntity<List<String>> getGroupListVO() {
-        List<String> vo = itemService.getGroupListVO();
-        return ResponseEntity.ok(vo);
-    }
-
-    @GetMapping("/vo/ItemCardPageVO")
+    @GetMapping("/getItemCardPageVO")
     public ResponseEntity<ItemCardPageVO> getItemCardPageVO(
             @ModelAttribute ItemPageQueryFormDTO itemPageQueryFormDTO
     ) {
@@ -32,7 +26,7 @@ public class UserItemController {
         return ResponseEntity.ok(vo);
     }
 
-    @GetMapping("/vo/ItemInfoVO/{itemId}")
+    @GetMapping("/getItemInfoVO/{itemId}")
     public ResponseEntity<ItemInfoVO> getItemVO(
             @PathVariable("itemId") Long itemId
     ) {

@@ -1,4 +1,4 @@
-package com.tamakara.litebooth.controller;
+package com.tamakara.litebooth.controller.admin;
 
 import com.tamakara.litebooth.service.FileService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -9,16 +9,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Tag(name = "文件模块接口")
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/admin/file")
 @RequiredArgsConstructor
-public class FileController {
+public class AdminFileController {
     private final FileService fileService;
 
     @PostMapping("/uploadFile")
-    public ResponseEntity<String> updateFile(
+    public ResponseEntity<Long> updateFile(
             @RequestParam("file") MultipartFile file
     ) {
         Long fileId = fileService.uploadFile(file);
-        return ResponseEntity.ok(fileId.toString());
+        return ResponseEntity.ok(fileId);
     }
 }

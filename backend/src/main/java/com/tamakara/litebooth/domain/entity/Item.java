@@ -23,8 +23,8 @@ public class Item {
     @TableField(value = "price")
     private Double price;
 
-    @TableField(value = "`group`")
-    private String group;
+    @TableField(value = "group_id")
+    private Long groupId;
 
     @TableField(value = "cover")
     private Long cover;

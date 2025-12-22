@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GroupPageQueryFormDTO {
-    private String name;
+    private String keyword;
     private Long pageNum;
     private Long pageSize;
 }

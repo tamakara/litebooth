@@ -26,8 +26,8 @@ public class Item {
     @TableField(value = "group_id")
     private Long groupId;
 
-    @TableField(value = "cover")
-    private Long cover;
+    @TableField(value = "cover_file_id")
+    private Long coverFileId;
 
     @TableField(value = "description")
     private String description;

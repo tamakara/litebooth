@@ -4,10 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tamakara.litebooth.domain.dto.item.ItemPageQueryFormDTO;
+import com.tamakara.litebooth.domain.entity.Group;
 import com.tamakara.litebooth.domain.entity.Item;
-import com.tamakara.litebooth.domain.vo.item.ItemCardPageVO;
-import com.tamakara.litebooth.domain.vo.item.ItemCardVO;
-import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
+import com.tamakara.litebooth.domain.vo.item.*;
 import com.tamakara.litebooth.mapper.ItemMapper;
 import com.tamakara.litebooth.mapper.StockMapper;
 import com.tamakara.litebooth.service.FileService;
@@ -59,7 +58,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
     }
 
     @Override
-    public ItemInfoVO getItemVO(Long itemId) {
+    public ItemInfoVO getItemInfoVO(Long itemId) {
         Item item = itemMapper.selectById(itemId);
         if (item == null) {
             throw new IllegalArgumentException("找不到商品");
@@ -72,5 +71,39 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
         vo.setStock(stockMapper.selectCountByItemId(item.getId(), false));
         vo.setDescription(item.getDescription());
         return vo;
+    }
+
+    @Override
+    public ItemPageVO getItemPageVO(ItemPageQueryFormDTO itemPageQueryFormDTO) {
+        String keyword = itemPageQueryFormDTO.getKeyword();
+        Long groupId = itemPageQueryFormDTO.getGroupId();
+        Long pageNum = itemPageQueryFormDTO.getPageNum();
+        Long pageSize = itemPageQueryFormDTO.getPageSize();
+
+        Page<Item> page = new Page<>(pageNum, pageSize);
+        LambdaQueryWrapper<Item> wrapper =
+                new LambdaQueryWrapper<Item>()
+                        .like(groupId != 0, Item::getGroupId, groupId)
+                        .like(!"".equals(keyword), Item::getName, keyword);
+        itemMapper.selectPage(page, wrapper);
+
+        List<ItemVO> record = page
+                .getRecords()
+                .stream()
+                .map(item -> {
+                    ItemVO vo = new ItemVO();
+                    vo.setId(item.getId());
+                    vo.setGroupId(item.getGroupId());
+                    vo.setIsActive(item.getIsActive());
+                    vo.setName(item.getName());
+                    vo.setPrice(item.getPrice());
+                    vo.setCoverFileId(item.getCoverId());
+                    vo.setCoverFileUrl(fileService.getFileUrl(item.getCoverId(), MINIO_URL_EXPIRES));
+                    vo.setDescription(item.getDescription());
+
+                    return vo;
+                }).toList();
+
+        return new ItemPageVO(record, page.getCurrent(), page.getSize(), page.getTotal());
     }
 }

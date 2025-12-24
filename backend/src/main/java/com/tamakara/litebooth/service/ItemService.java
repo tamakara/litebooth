@@ -5,11 +5,14 @@ import com.tamakara.litebooth.domain.dto.item.ItemPageQueryFormDTO;
 import com.tamakara.litebooth.domain.entity.Item;
 import com.tamakara.litebooth.domain.vo.item.ItemCardPageVO;
 import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
+import com.tamakara.litebooth.domain.vo.item.ItemPageVO;
 
 import java.util.List;
 
 public interface ItemService extends IService<Item> {
     ItemCardPageVO getItemCardPageVO(ItemPageQueryFormDTO itemPageQueryFormDTO);
 
-    ItemInfoVO getItemVO(Long itemId);
+    ItemInfoVO getItemInfoVO(Long itemId);
+
+    ItemPageVO getItemPageVO(ItemPageQueryFormDTO itemPageQueryFormDTO);
 }

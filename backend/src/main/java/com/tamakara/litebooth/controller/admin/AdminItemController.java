@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.*;
 public class AdminItemController {
     private final ItemService itemService;
 
-//    @GetMapping("/getItemPageVO")
-//    public ResponseEntity<ItemPageVO> getItemPageVO(
-//          @ModelAttribute ItemPageQueryFormDTO itemPageQueryFormDTO
-//    ) {
-//
-//        return ResponseEntity.ok().build();
-//    }
-//
+    @GetMapping("/getItemPageVO")
+    public ResponseEntity<ItemPageVO> getItemPageVO(
+          @ModelAttribute ItemPageQueryFormDTO itemPageQueryFormDTO
+    ) {
+
+        return ResponseEntity.ok().build();
+    }
+
 //    @PostMapping("/createGroup")
 //    public ResponseEntity<GroupVO> createItem(
 //

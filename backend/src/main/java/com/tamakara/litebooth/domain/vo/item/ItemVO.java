@@ -10,13 +10,14 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemVO {
-    private String id;
+    private Long id;
+    private Long groupId;
+    private String groupName;
     private Boolean isActive;
     private String name;
     private Double price;
-    private String group;
-    private String cover;
-    private String coverUrl;
+    private Long coverFileId;
+    private String coverFileUrl;
     private String description;
     private Instant createdAt;
 }

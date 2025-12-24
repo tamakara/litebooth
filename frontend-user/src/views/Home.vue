@@ -14,7 +14,7 @@ const updateQuery = async (payload: object) => {
   await home.fetchItemCardPageVO()
 }
 
-const handleGroupChange = (group: string) => updateQuery({group: group, pageNum: 1})
+const handleGroupChange = (groupId: number) => updateQuery({group: groupId, pageNum: 1})
 const handlePageChange = (page: number) => updateQuery({pageNum: page})
 const handleSizeChange = (size: number) => updateQuery({pageSize: size, pageNum: 1})
 
@@ -42,7 +42,7 @@ onMounted(async () => {
         :key="g"
         class="grp-btn"
         :type="queryForm.groupId === g.id ? 'primary' : 'default'"
-        @click="handleGroupChange(g)"
+        @click="handleGroupChange(g.id)"
     >
       {{ g }}
     </el-button>

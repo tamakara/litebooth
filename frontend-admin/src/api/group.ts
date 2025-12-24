@@ -1,8 +1,12 @@
 import {http} from "@/utils/http";
 import {GroupPageQueryFormDTO, GroupPageVO, GroupUpdateFormDTO, GroupVO} from "@/views/group/utils/types";
 
+export const getAllGroups = () => {
+  return http.request<GroupVO[]>("get", "/group/getGroupListVO");
+};
+
 export const getGroupList = (queryForm: GroupPageQueryFormDTO) => {
-  return http.request<GroupPageVO>("get", "/group/getOrderInfoPageVO", {params: queryForm});
+  return http.request<GroupPageVO>("get", "/group/getGroupPageVO", {params: queryForm});
 };
 
 export const createGroup = (name: string) => {
@@ -17,6 +21,4 @@ export const deleteGroup = (id: string) => {
   return http.request<void>("delete", `/group/deleteGroup/${id}`);
 };
 
-export const getAllGroups = () => {
-  return http.request<GroupVO[]>("get", "/group/list");
-};
+

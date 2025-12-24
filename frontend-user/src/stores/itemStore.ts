@@ -9,7 +9,7 @@ export const useItemStore = defineStore('item', {
         itemInfo: {
             id: 0,
             name: '',
-            cover: '',
+            coverFileUrl: '',
             price: 0.00,
             stock: 0,
             description: '',

@@ -16,7 +16,7 @@ const onClick = () => {
 <template>
   <el-card class="card">
     <div class="cover-box">
-      <el-image :src="props.item.cover" fit="cover" class="cover"/>
+      <el-image :src="props.item.coverFileUrl" fit="cover" class="cover"/>
     </div>
     <div class="card-body">
       <div class="title">{{ props.item.name }}</div>

@@ -51,8 +51,8 @@ function onFullscreen() {
           class="w-[180px]!"
         />
       </el-form-item>
-      <el-form-item label="商品组：" prop="group">
-        <el-select v-model="form.group" placeholder="请选择商品组" clearable class="w-[180px]!">
+      <el-form-item label="商品组：" prop="groupId">
+        <el-select v-model="form.groupId" placeholder="请选择商品组" clearable class="w-[180px]!">
           <el-option
             v-for="item in groupOptions"
             :key="item.id"

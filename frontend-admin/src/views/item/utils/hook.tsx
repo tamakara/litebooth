@@ -11,7 +11,7 @@ import type { GroupVO } from "@/views/group/utils/types";
 export function useItem() {
   const form = reactive<ItemPageQueryFormDTO>({
     keyword: "",
-    group: "",
+    groupId:0,
     pageNum: 1,
     pageSize: 20
   });

@@ -27,10 +27,10 @@ public class UserItemController {
     }
 
     @GetMapping("/getItemInfoVO/{itemId}")
-    public ResponseEntity<ItemInfoVO> getItemVO(
+    public ResponseEntity<ItemInfoVO> getItemInfoVO(
             @PathVariable("itemId") Long itemId
     ) {
-        ItemInfoVO vo = itemService.getItemVO(itemId);
+        ItemInfoVO vo = itemService.getItemInfoVO(itemId);
         return ResponseEntity.ok(vo);
     }
 }

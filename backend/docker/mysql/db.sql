@@ -32,22 +32,22 @@ VALUES (1, 1, 'LiteBooth', '', '', '');
 
 CREATE TABLE `item`
 (
-    `id`          BIGINT       NOT NULL AUTO_INCREMENT,
-    `is_active`   BOOLEAN      NOT NULL,
-    `name`        VARCHAR(255) NOT NULL,
-    `price`       DOUBLE       NOT NULL,
-    `group`       VARCHAR(255) NOT NULL,
-    `cover`       BIGINT       NULL,
-    `description` TEXT         NOT NULL,
-    `created_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `id`            BIGINT       NOT NULL AUTO_INCREMENT,
+    `is_active`     BOOLEAN      NOT NULL,
+    `name`          VARCHAR(255) NOT NULL,
+    `price`         DOUBLE       NOT NULL,
+    `group`         VARCHAR(255) NOT NULL,
+    `cover_file_id` BIGINT       NULL,
+    `description`   TEXT         NOT NULL,
+    `created_at`    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`    TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4;
-INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `group`, `cover`, `description`)
+INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `group`, `cover_file_id`, `description`)
 VALUES (1, true, '示例商品 1', 1.11, '1', 2, 'a');
-INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `group`, `cover`, `description`)
+INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `group`, `cover_file_id`, `description`)
 VALUES (2, true, '示例商品 2', 2.22, '2', 2, 'b');
-INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `group`, `cover`, `description`)
+INSERT INTO `item` (`id`, `is_active`, `name`, `price`, `group`, `cover_file_id`, `description`)
 VALUES (3, true, '示例商品 3', 3.33, '3', 2, 'c');
 
 CREATE TABLE `order`

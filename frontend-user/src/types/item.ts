@@ -9,7 +9,7 @@ export interface ItemCardVO {
     id: number;
     name: string;
     price: number;
-    cover: string;
+    coverFileUrl: string;
 }
 
 export interface ItemCardPageVO {
@@ -22,7 +22,7 @@ export interface ItemCardPageVO {
 export interface ItemInfoVO {
     id: number;
     name: string;
-    cover: string;
+    coverFileUrl: string;
     price: number;
     stock: number;
     description: string;

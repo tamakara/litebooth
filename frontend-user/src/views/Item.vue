@@ -104,10 +104,10 @@ onMounted(async () => {
       <div class="main-body">
         <div class="cover-col">
           <el-image
-              :src="itemInfo.cover"
+              :src="itemInfo.coverFileUrl"
               fit="cover"
               class="cover-img"
-              :preview-src-list="[itemInfo.cover]"
+              :preview-src-list="[itemInfo.coverFileUrl]"
           />
         </div>
 

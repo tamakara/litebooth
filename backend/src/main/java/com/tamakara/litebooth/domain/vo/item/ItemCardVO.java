@@ -11,5 +11,5 @@ public class ItemCardVO {
     private Long id;
     private String name;
     private Double price;
-    private String cover;
+    private String coverFileUrl;
 }

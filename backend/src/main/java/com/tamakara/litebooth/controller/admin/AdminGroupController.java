@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(name = "管理端商品组模块接口")
 @RestController
 @RequestMapping("/admin/group")
@@ -17,11 +19,17 @@ import org.springframework.web.bind.annotation.*;
 public class AdminGroupController {
     private final GroupService groupService;
 
-    @GetMapping("/getOrderInfoPageVO")
-    public ResponseEntity<GroupPageVO> getOrderInfoPageVO(
+    @GetMapping("/getGroupListVO")
+    public ResponseEntity<List<GroupVO>> getGroupListVO() {
+        List<GroupVO> vo = groupService.getGroupListVO();
+        return ResponseEntity.ok(vo);
+    }
+
+    @GetMapping("/getGroupPageVO")
+    public ResponseEntity<GroupPageVO> getGroupPageVO(
             @ModelAttribute GroupPageQueryFormDTO groupPageQueryFormDTO
     ) {
-        GroupPageVO vo = groupService.getOrderInfoPageVO(groupPageQueryFormDTO);
+        GroupPageVO vo = groupService.getGroupPageVO(groupPageQueryFormDTO);
         return ResponseEntity.ok(vo);
     }
 

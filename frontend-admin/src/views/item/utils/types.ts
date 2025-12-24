@@ -28,7 +28,7 @@ export interface ItemVO {
 
 export interface ItemPageQueryFormDTO {
   keyword: string;
-  group: string;
+  groupId: number;
   pageNum: number;
   pageSize: number;
 }

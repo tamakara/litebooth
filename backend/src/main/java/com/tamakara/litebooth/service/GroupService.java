@@ -12,7 +12,7 @@ import java.util.List;
 public interface GroupService extends IService<Group> {
     List<GroupVO> getGroupListVO();
 
-    GroupPageVO getOrderInfoPageVO(GroupPageQueryFormDTO groupPageQueryFormDTO);
+    GroupPageVO getGroupPageVO(GroupPageQueryFormDTO groupPageQueryFormDTO);
 
     GroupVO createGroup(String name);
 

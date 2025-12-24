@@ -22,23 +22,18 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
     private final GroupMapper groupMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<GroupVO> getGroupListVO() {
         List<Group> groups = groupMapper.selectList(new LambdaQueryWrapper<>());
         return groups
                 .stream()
-                .map(group ->
-                        new GroupVO(
-                                group.getId(),
-                                group.getName()
-                        )
-                )
+                .map(group -> new GroupVO(group.getId(), group.getName()))
                 .toList();
     }
 
-
     @Override
     @Transactional(readOnly = true)
-    public GroupPageVO getOrderInfoPageVO(GroupPageQueryFormDTO groupPageQueryFormDTO) {
+    public GroupPageVO getGroupPageVO(GroupPageQueryFormDTO groupPageQueryFormDTO) {
         String keyword = groupPageQueryFormDTO.getKeyword();
         Long pageNum = groupPageQueryFormDTO.getPageNum();
         Long pageSize = groupPageQueryFormDTO.getPageSize();
@@ -62,6 +57,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
     }
 
     @Override
+    @Transactional
     public GroupVO createGroup(String name) {
         Group group = new Group();
         group.setName(name);
@@ -75,6 +71,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
     }
 
     @Override
+    @Transactional
     public GroupVO updateGroup(GroupUpdateFormDTO groupUpdateFormDTO) {
         Group group = groupMapper.selectById(groupUpdateFormDTO.getId());
         group.setName(groupUpdateFormDTO.getName());
@@ -88,6 +85,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
     }
 
     @Override
+    @Transactional
     public void deleteGroup(String id) {
         groupMapper.deleteById(Long.parseLong(id));
     }

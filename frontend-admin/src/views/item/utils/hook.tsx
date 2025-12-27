@@ -1,17 +1,21 @@
 import editForm from "../form.vue";
-import { message } from "@/utils/message";
-import { getItemList, createItem, updateItem, deleteItem } from "@/api/item";
-import { getAllGroups } from "@/api/group";
-import { addDialog } from "@/components/ReDialog";
-import { reactive, ref, onMounted, h } from "vue";
-import { PaginationProps } from "@pureadmin/table";
-import type { ItemFormProps, ItemPageQueryFormDTO, ItemVO } from "../utils/types";
-import type { GroupVO } from "@/views/group/utils/types";
+import {message} from "@/utils/message";
+import {getItemList, createItem, updateItem, deleteItem} from "@/api/item";
+import {addDialog} from "@/components/ReDialog";
+import {reactive, ref, onMounted, h} from "vue";
+import {PaginationProps} from "@pureadmin/table";
+import {
+  ItemCreateOrUpdateFormDTO,
+  ItemPageQueryFormDTO,
+  ItemVO
+} from "../utils/types";
+import {GroupListVO, GroupMapVO} from "@/views/group/utils/types";
+import {getGroupListVO, getGroupMapVO} from "@/api/group";
 
 export function useItem() {
   const form = reactive<ItemPageQueryFormDTO>({
     keyword: "",
-    groupId:0,
+    groupId: 0,
     pageNum: 1,
     pageSize: 20
   });
@@ -19,7 +23,8 @@ export function useItem() {
   const formRef = ref();
   const dataList = ref<ItemVO[]>([]);
   const loading = ref(true);
-  const groupOptions = ref<GroupVO[]>([]);
+  const groupList = ref<GroupListVO>([]);
+  const groupMap = ref<GroupMapVO>({});
   const pagination = reactive<PaginationProps>({
     total: 0,
     pageSize: 20,
@@ -52,7 +57,7 @@ export function useItem() {
     },
     {
       label: "商品组",
-      prop: "group",
+      prop: "groupName",
       width: 120
     },
     {
@@ -74,10 +79,19 @@ export function useItem() {
     }
   ];
 
-  async function getGroupOptions() {
+  async function getGroupList() {
     try {
-      const data = await getAllGroups();
-      groupOptions.value = data;
+      const data = await getGroupListVO();
+      groupList.value = data;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function getGroupMap() {
+    try {
+      const data = await getGroupMapVO();
+      groupMap.value = data;
     } catch (e) {
       console.error(e);
     }
@@ -93,7 +107,7 @@ export function useItem() {
       pagination.currentPage = data.pageNum;
     } catch (e) {
       console.error(e);
-      message("获取商品列表失败", { type: "error" });
+      message("获取商品列表失败", {type: "error"});
       dataList.value = [];
     } finally {
       loading.value = false;
@@ -118,45 +132,46 @@ export function useItem() {
 
   function handleDelete(row) {
     deleteItem(row.id).then(() => {
-      message("删除成功", { type: "success" });
+      message("删除成功", {type: "success"});
       onSearch();
     });
   }
 
-  function openDialog(title = "新增", row?: ItemFormProps) {
+  function openDialog(title = "新增", row?: ItemCreateOrUpdateFormDTO) {
     addDialog({
       title: `${title}商品`,
       props: {
         formInline: {
-          id: row?.id,
+          id: row?.id ?? 0,
           name: row?.name ?? "",
           price: row?.price ?? 0,
-          group: row?.group ?? "",
-          cover: row?.cover ?? null,
+          groupId: row?.groupId ?? null,
+          coverFileId: row?.coverFileId ?? null,
           description: row?.description ?? "",
-          isActive: row?.isActive ?? true
+          isActive: row?.isActive ?? false
         },
-        groupOptions: groupOptions.value
+        groupList: groupList.value,
+        coverFileUrl: row?.coverFileUrl ?? ""
       },
       width: "50%",
       draggable: true,
       fullscreenIcon: true,
       closeOnClickModal: false,
-      contentRenderer: () => h(editForm, { ref: formRef } as any),
-      beforeSure: (done, { options }) => {
+      contentRenderer: () => h(editForm, {ref: formRef} as any),
+      beforeSure: (done, {options}) => {
         const FormRef = formRef.value.getRef();
-        const curData = options.props.formInline as ItemFormProps;
+        const curData = options.props.formInline;
         FormRef.validate(valid => {
           if (valid) {
             if (title === "新增") {
               createItem(curData).then(() => {
-                message("新增成功", { type: "success" });
+                message("新增成功", {type: "success"});
                 done();
                 onSearch();
               });
             } else {
               updateItem(curData).then(() => {
-                message("修改成功", { type: "success" });
+                message("修改成功", {type: "success"});
                 done();
                 onSearch();
               });
@@ -169,7 +184,8 @@ export function useItem() {
 
   onMounted(() => {
     onSearch();
-    getGroupOptions();
+    getGroupList();
+    getGroupMap();
   });
 
   return {
@@ -178,7 +194,8 @@ export function useItem() {
     columns,
     dataList,
     pagination,
-    groupOptions,
+    groupList,
+    groupMap,
     onSearch,
     resetForm,
     openDialog,

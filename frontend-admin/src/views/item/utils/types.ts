@@ -1,27 +1,32 @@
-export interface ItemFormProps {
+import type {GroupListVO} from "@/views/group/utils/types";
+
+export interface ItemCreateOrUpdateFormDTO {
   id?: number;
+  isActive: boolean;
   name: string;
   price: number;
-  group: string;
-  cover: number;
+  groupId: number;
+  coverFileId: number;
+  coverFileUrl?: string;
   description: string;
-  isActive: boolean;
 }
 
 export interface ItemProps {
-  formInline: ItemFormProps;
-  groupOptions: any[];
+  formInline: ItemCreateOrUpdateFormDTO;
+  groupList: GroupListVO;
+  coverFileUrl: string;
 }
 
 export interface ItemVO {
   id: string;
+  isActive: boolean;
   name: string;
   price: number;
-  group: string;
-  cover: string;
-  coverUrl: string;
+  groupId: number;
+  groupName: string;
+  coverFileId: number;
+  coverFileUrl: string;
   description: string;
-  isActive: boolean;
   createdAt: string;
   updatedAt: string;
 }

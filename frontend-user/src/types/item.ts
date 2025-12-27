@@ -27,9 +27,3 @@ export interface ItemInfoVO {
     stock: number;
     description: string;
 }
-
-export interface GroupVO{
-    id: number;
-    name: string;
-}
-

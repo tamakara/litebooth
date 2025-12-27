@@ -1,11 +1,22 @@
 import {http} from "@/utils/http";
-import {GroupPageQueryFormDTO, GroupPageVO, GroupUpdateFormDTO, GroupVO} from "@/views/group/utils/types";
+import {
+  GroupListVO,
+  GroupMapVO,
+  GroupPageQueryFormDTO,
+  GroupPageVO,
+  GroupUpdateFormDTO,
+  GroupVO
+} from "@/views/group/utils/types";
 
-export const getAllGroups = () => {
-  return http.request<GroupVO[]>("get", "/group/getGroupListVO");
+export const getGroupListVO = () => {
+  return http.request<GroupListVO>("get", "/group/getGroupListVO");
 };
 
-export const getGroupList = (queryForm: GroupPageQueryFormDTO) => {
+export const getGroupMapVO = () => {
+  return http.request<GroupMapVO>("get", "/group/getGroupMapVO");
+};
+
+export const getGroupPageVO = (queryForm: GroupPageQueryFormDTO) => {
   return http.request<GroupPageVO>("get", "/group/getGroupPageVO", {params: queryForm});
 };
 

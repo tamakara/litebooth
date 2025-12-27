@@ -24,10 +24,12 @@ export interface GroupPageQueryFormDTO {
 }
 
 export interface GroupPageVO {
-  records: GroupVO[];
+  records: GroupListVO;
   pageNum: number;
   pageSize: number;
   total: number;
 }
 
+export type GroupListVO = GroupVO[];
 
+export type GroupMapVO = Record<number, string>;

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Tag(name = "管理端商品组模块接口")
 @RestController
@@ -22,6 +23,12 @@ public class AdminGroupController {
     @GetMapping("/getGroupListVO")
     public ResponseEntity<List<GroupVO>> getGroupListVO() {
         List<GroupVO> vo = groupService.getGroupListVO();
+        return ResponseEntity.ok(vo);
+    }
+
+    @GetMapping("/getGroupMapVO")
+    public ResponseEntity<Map<Long, String>> getGroupMapVO() {
+        Map<Long, String> vo = groupService.getGroupMapVO();
         return ResponseEntity.ok(vo);
     }
 

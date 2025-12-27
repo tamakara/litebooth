@@ -14,7 +14,7 @@ export const useHomeStore = defineStore('home', {
             homeSubtitle: '',
             homeAnnouncement: '',
         },
-        groupList: [{id: 0, name: '全部'}] as GroupVO[],
+        groupList: [] as GroupVO[],
         itemCardQueryForm: {
             keyword: '',
             groupId: 0,

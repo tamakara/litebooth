@@ -1,24 +1,19 @@
-package com.tamakara.litebooth.domain.vo.item;
+package com.tamakara.litebooth.domain.dto.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemVO {
+public class ItemCreateOrUpdateFormDTO {
     private Long id;
     private Boolean isActive;
     private String name;
     private Double price;
     private Long groupId;
-    private String groupName;
     private Long coverFileId;
-    private String coverFileUrl;
+    private Long coverFileUrl;
     private String description;
-    private Instant createdAt;
-    private Instant updatedAt;
 }

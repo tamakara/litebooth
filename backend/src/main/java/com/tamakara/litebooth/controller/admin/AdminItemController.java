@@ -1,7 +1,9 @@
 package com.tamakara.litebooth.controller.admin;
 
+import com.tamakara.litebooth.domain.dto.item.ItemCreateOrUpdateFormDTO;
 import com.tamakara.litebooth.domain.dto.item.ItemPageQueryFormDTO;
 import com.tamakara.litebooth.domain.vo.item.ItemPageVO;
+import com.tamakara.litebooth.domain.vo.item.ItemVO;
 import com.tamakara.litebooth.service.ItemService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -17,32 +19,33 @@ public class AdminItemController {
 
     @GetMapping("/getItemPageVO")
     public ResponseEntity<ItemPageVO> getItemPageVO(
-          @ModelAttribute ItemPageQueryFormDTO itemPageQueryFormDTO
+            @ModelAttribute ItemPageQueryFormDTO itemPageQueryFormDTO
     ) {
-
-        return ResponseEntity.ok().build();
+        ItemPageVO vo = itemService.getItemPageVO(itemPageQueryFormDTO);
+        return ResponseEntity.ok(vo);
     }
 
-//    @PostMapping("/createGroup")
-//    public ResponseEntity<GroupVO> createItem(
-//
-//    ) {
-//
-//        return ResponseEntity.ok().build();
-//    }
-//
-//    @PutMapping("/updateItem")
-//    public ResponseEntity<GroupVO> updateItem(
-//
-//    ) {
-//
-//        return ResponseEntity.ok().build();
-//    }
-//
-//    @DeleteMapping("/deleteItem/{id}")
-//    public ResponseEntity<Void> deleteItem(
-//            @PathVariable("id") String id
-//    ) {
-//        return ResponseEntity.ok().build();
-//    }
+    @PostMapping("/createItem")
+    public ResponseEntity<ItemVO> createItem(
+            @RequestBody ItemCreateOrUpdateFormDTO itemCreateOrUpdateFormDTO
+    ) {
+        ItemVO vo = itemService.createItem(itemCreateOrUpdateFormDTO);
+        return ResponseEntity.ok(vo);
+    }
+
+    @PutMapping("/updateItem")
+    public ResponseEntity<ItemVO> updateItem(
+            @RequestBody ItemCreateOrUpdateFormDTO itemCreateOrUpdateFormDTO
+    ) {
+        ItemVO vo = itemService.updateItem(itemCreateOrUpdateFormDTO);
+        return ResponseEntity.ok(vo);
+    }
+
+    @DeleteMapping("/deleteItem/{id}")
+    public ResponseEntity<Void> deleteItem(
+            @PathVariable("id") Long id
+    ) {
+        itemService.deleteItem(id);
+        return ResponseEntity.ok().build();
+    }
 }

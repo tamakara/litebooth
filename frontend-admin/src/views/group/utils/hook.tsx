@@ -1,6 +1,6 @@
 import editForm from "../form.vue";
 import {message} from "@/utils/message";
-import {getGroupList, createGroup, updateGroup, deleteGroup} from "@/api/group";
+import {createGroup, updateGroup, deleteGroup, getGroupPageVO} from "@/api/group";
 import {addDialog} from "@/components/ReDialog";
 import {reactive, ref, onMounted, h} from "vue";
 import {PaginationProps} from "@pureadmin/table";
@@ -21,7 +21,7 @@ export function useGroup() {
     pageSize: 20,
     currentPage: 1,
     background: true,
-    pageSizes:[10,20,50,100],
+    pageSizes: [10, 20, 50, 100],
   });
 
   const columns: TableColumnList = [
@@ -56,7 +56,7 @@ export function useGroup() {
   async function onSearch() {
     loading.value = true;
     try {
-      const data = await getGroupList(form);
+      const data = await getGroupPageVO(form);
       dataList.value = data.records;
       pagination.total = data.total;
       pagination.pageSize = data.pageSize;

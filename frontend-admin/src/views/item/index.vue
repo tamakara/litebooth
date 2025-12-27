@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useItem } from "./utils/hook";
-import { PureTableBar } from "@/components/RePureTableBar";
-import { useRenderIcon } from "@/components/ReIcon/src/hooks";
+import {ref} from "vue";
+import {useItem} from "./utils/hook";
+import {PureTableBar} from "@/components/RePureTableBar";
+import {useRenderIcon} from "@/components/ReIcon/src/hooks";
 import Delete from "~icons/ep/delete";
 import EditPen from "~icons/ep/edit-pen";
 import Refresh from "~icons/ep/refresh";
@@ -21,7 +21,7 @@ const {
   columns,
   dataList,
   pagination,
-  groupOptions,
+  groupList,
   onSearch,
   resetForm,
   openDialog,
@@ -54,10 +54,10 @@ function onFullscreen() {
       <el-form-item label="商品组：" prop="groupId">
         <el-select v-model="form.groupId" placeholder="请选择商品组" clearable class="w-[180px]!">
           <el-option
-            v-for="item in groupOptions"
-            :key="item.id"
-            :label="item.name"
-            :value="item.name"
+            v-for="g in groupList"
+            :key="g.id"
+            :label="g.name"
+            :value="g.id"
           />
         </el-select>
       </el-form-item>
@@ -114,8 +114,8 @@ function onFullscreen() {
           <template #cover="{ row }">
             <el-image
               style="width: 50px; height: 50px; border-radius: 4px"
-              :src="row.coverUrl || `/api/file/download/${row.cover}`"
-              :preview-src-list="[row.coverUrl || `/api/file/download/${row.cover}`]"
+              :src="row.coverFileUrl"
+              :preview-src-list="[row.coverFileUrl]"
               fit="cover"
               preview-teleported
             />

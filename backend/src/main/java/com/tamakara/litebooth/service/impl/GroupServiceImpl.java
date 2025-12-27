@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +31,15 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
                 .stream()
                 .map(group -> new GroupVO(group.getId(), group.getName()))
                 .toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Map<Long, String> getGroupMapVO() {
+        List<Group> groups = groupMapper.selectList(new LambdaQueryWrapper<>());
+        return groups
+                .stream()
+                .collect(Collectors.toMap(Group::getId, Group::getName));
     }
 
     @Override

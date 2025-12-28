@@ -1,5 +1,6 @@
 package com.tamakara.litebooth.service.impl;
 
+import com.tamakara.litebooth.domain.dto.auth.ChangePasswordDTO;
 import com.tamakara.litebooth.domain.dto.auth.LoginFormDTO;
 import com.tamakara.litebooth.domain.dto.auth.RefreshTokenDTO;
 import com.tamakara.litebooth.domain.entity.AdminInfo;
@@ -68,5 +69,16 @@ public class AuthServiceImpl implements AuthService {
         vo.setExpires(Instant.now().plusSeconds(tokenUtil.getAccessTokenExpires()));
 
         return vo;
+    }
+
+    @Override
+    @Transactional
+    public void changePassword(ChangePasswordDTO changePasswordDTO) {
+        AdminInfo adminInfo = adminInfoMapper.selectById(1L);
+        if (!adminInfo.getPassword().equals(changePasswordDTO.getOldPassword())) {
+            throw new RuntimeException("旧密码错误");
+        }
+        adminInfo.setPassword(changePasswordDTO.getNewPassword());
+        adminInfoMapper.updateById(adminInfo);
     }
 }

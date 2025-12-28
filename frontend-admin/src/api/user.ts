@@ -47,3 +47,12 @@ type RefreshTokenVO = RefreshTokenResult
 export const refreshTokenApi = (data?: object) => {
   return http.request<RefreshTokenVO>("post", "/auth/refresh-token", {data});
 };
+
+export type ChangePasswordDTO = {
+  oldPassword?: string;
+  newPassword?: string;
+};
+
+export const changePassword = (data: ChangePasswordDTO) => {
+  return http.request<void>("put", "/auth/changePassword", {data});
+};

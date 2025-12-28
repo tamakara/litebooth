@@ -1,5 +1,6 @@
 package com.tamakara.litebooth.controller.admin;
 
+import com.tamakara.litebooth.domain.dto.auth.ChangePasswordDTO;
 import com.tamakara.litebooth.domain.dto.auth.LoginFormDTO;
 import com.tamakara.litebooth.domain.dto.auth.RefreshTokenDTO;
 import com.tamakara.litebooth.domain.vo.auth.LoginVO;
@@ -32,4 +33,13 @@ public class AdminAuthController {
         RefreshTokenVO vo = authService.refreshToken(refreshTokenDTO);
         return ResponseEntity.ok(vo);
     }
+
+    @PutMapping("/changePassword")
+    public ResponseEntity<Void> changePassword(
+            @RequestBody ChangePasswordDTO changePasswordDTO
+    ) {
+        authService.changePassword(changePasswordDTO);
+        return ResponseEntity.ok().build();
+    }
+
 }

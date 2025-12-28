@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRole } from "./hook";
-import { getPickerShortcuts } from "./utils";
+import { useOrder } from "./utils/hook";
 import { PureTableBar } from "@/components/RePureTableBar";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
-
-import Delete from "~icons/ep/delete";
 import Refresh from "~icons/ep/refresh";
+import PureTable from "@pureadmin/table";
 
 defineOptions({
   name: "Order"
@@ -14,23 +12,21 @@ defineOptions({
 
 const formRef = ref();
 const tableRef = ref();
-
 const {
   form,
   loading,
   columns,
   dataList,
   pagination,
-  selectedNum,
   onSearch,
-  clearAll,
   resetForm,
-  onbatchDel,
   handleSizeChange,
-  onSelectionCancel,
-  handleCurrentChange,
-  handleSelectionChange
-} = useRole(tableRef);
+  handleCurrentChange
+} = useOrder();
+
+function onFullscreen() {
+  tableRef.value.setAdaptive();
+}
 </script>
 
 <template>
@@ -41,39 +37,25 @@ const {
       :model="form"
       class="search-form bg-bg_color w-full pl-8 pt-[12px] overflow-auto"
     >
-      <el-form-item label="所属模块" prop="module">
+      <el-form-item label="关键词：" prop="keyword">
         <el-input
-          v-model="form.module"
-          placeholder="请输入所属模块"
+          v-model="form.keyword"
+          placeholder="请输入邮箱或商品名称"
           clearable
-          class="w-[170px]!"
+          class="w-[200px]!"
         />
       </el-form-item>
-      <el-form-item label="操作状态" prop="status">
-        <el-select
-          v-model="form.status"
-          placeholder="请选择"
-          clearable
-          class="w-[150px]!"
-        >
-          <el-option label="成功" value="1" />
-          <el-option label="失败" value="0" />
+      <el-form-item label="状态：" prop="status">
+        <el-select v-model="form.status" placeholder="请选择状态" clearable class="w-[180px]!">
+          <el-option label="待付款" value="UNPAID" />
+          <el-option label="已过期" value="EXPIRED" />
+          <el-option label="已完成" value="FINISHED" />
         </el-select>
-      </el-form-item>
-      <el-form-item label="操作时间" prop="operatingTime">
-        <el-date-picker
-          v-model="form.operatingTime"
-          :shortcuts="getPickerShortcuts()"
-          type="datetimerange"
-          range-separator="至"
-          start-placeholder="开始日期时间"
-          end-placeholder="结束日期时间"
-        />
       </el-form-item>
       <el-form-item>
         <el-button
           type="primary"
-          :icon="useRenderIcon('ri:search-line')"
+          :icon="useRenderIcon('ri/search-line')"
           :loading="loading"
           @click="onSearch"
         >
@@ -86,74 +68,52 @@ const {
     </el-form>
 
     <PureTableBar
-      title="操作日志（仅演示，操作后不生效）"
+      title="订单管理"
       :columns="columns"
       @refresh="onSearch"
+      @fullscreen="onFullscreen"
     >
-      <template #buttons>
-        <el-popconfirm title="确定要删除所有日志数据吗？" @confirm="clearAll">
-          <template #reference>
-            <el-button type="danger" :icon="useRenderIcon(Delete)">
-              清空日志
-            </el-button>
-          </template>
-        </el-popconfirm>
-      </template>
       <template v-slot="{ size, dynamicColumns }">
-        <div
-          v-if="selectedNum > 0"
-          v-motion-fade
-          class="bg-[var(--el-fill-color-light)] w-full h-[46px] mb-2 pl-4 flex items-center"
-        >
-          <div class="flex-auto">
-            <span
-              style="font-size: var(--el-font-size-base)"
-              class="text-[rgba(42,46,54,0.5)] dark:text-[rgba(220,220,242,0.5)]"
-            >
-              已选 {{ selectedNum }} 项
-            </span>
-            <el-button type="primary" text @click="onSelectionCancel">
-              取消选择
-            </el-button>
-          </div>
-          <el-popconfirm title="是否确认删除?" @confirm="onbatchDel">
-            <template #reference>
-              <el-button type="danger" text class="mr-1!"> 批量删除 </el-button>
-            </template>
-          </el-popconfirm>
-        </div>
         <pure-table
           ref="tableRef"
-          row-key="id"
+          adaptive
+          :adaptiveConfig="{ offsetBottom: 130 }"
           align-whole="center"
+          row-key="id"
           table-layout="auto"
           :loading="loading"
           :size="size"
-          adaptive
-          :adaptiveConfig="{ offsetBottom: 108 }"
           :data="dataList"
           :columns="dynamicColumns"
-          :pagination="{ ...pagination, size }"
+          :pagination="pagination"
+          :paginationSmall="size === 'small'"
           :header-cell-style="{
             background: 'var(--el-fill-color-light)',
             color: 'var(--el-text-color-primary)'
           }"
-          @selection-change="handleSelectionChange"
           @page-size-change="handleSizeChange"
           @page-current-change="handleCurrentChange"
-        />
+        >
+          <template #status="{ row }">
+            <el-tag v-if="row.status === 'UNPAID'" type="warning">待付款</el-tag>
+            <el-tag v-else-if="row.status === 'EXPIRED'" type="info">已过期</el-tag>
+            <el-tag v-else-if="row.status === 'FINISHED'" type="success">已完成</el-tag>
+            <span v-else>{{ row.status }}</span>
+          </template>
+          <template #paymentMethod="{ row }">
+            <el-tag v-if="row.paymentMethod === 'WXPAY'" type="success">微信支付</el-tag>
+            <el-tag v-else-if="row.paymentMethod === 'ALIPAY'" type="primary">支付宝</el-tag>
+            <span v-else>{{ row.paymentMethod }}</span>
+          </template>
+        </pure-table>
       </template>
     </PureTableBar>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 :deep(.el-dropdown-menu__item i) {
   margin: 0;
-}
-
-.main-content {
-  margin: 24px 24px 0 !important;
 }
 
 .search-form {
@@ -162,3 +122,4 @@ const {
   }
 }
 </style>
+

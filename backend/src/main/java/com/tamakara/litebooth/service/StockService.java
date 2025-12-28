@@ -18,4 +18,8 @@ public interface StockService extends IService<Stock> {
     void batchCreateStock(Long itemId, MultipartFile file);
 
     void updateStock(StockUpdateDTO dto);
+
+    List<String> allocateStock(Long itemId, Long orderId, Long quantity);
+
+    List<String> getStockContentByOrderId(Long orderId);
 }

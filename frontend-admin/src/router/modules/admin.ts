@@ -11,7 +11,7 @@ export default {
       name: "Admin",
       component: () => import("@/views/admin/index.vue"),
       meta: {
-        title: "后台管理"
+        title: "后台设置"
       }
     }
   ]

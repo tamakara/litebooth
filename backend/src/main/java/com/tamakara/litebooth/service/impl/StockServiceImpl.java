@@ -77,4 +77,33 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements
             updateById(stock);
         }
     }
+
+    @Override
+    @Transactional
+    public List<String> allocateStock(Long itemId, Long orderId, Long quantity) {
+        List<Stock> stocks = stockMapper.selectList(new LambdaQueryWrapper<Stock>()
+                .eq(Stock::getItemId, itemId)
+                .eq(Stock::getIsSold, false)
+                .last("LIMIT " + quantity));
+
+        if (stocks.size() < quantity) {
+            throw new RuntimeException("库存不足");
+        }
+
+        List<String> contents = new ArrayList<>();
+        for (Stock stock : stocks) {
+            stock.setIsSold(true);
+            stock.setOrderId(orderId);
+            stockMapper.updateById(stock);
+            contents.add(stock.getContent());
+        }
+        return contents;
+    }
+
+    @Override
+    public List<String> getStockContentByOrderId(Long orderId) {
+        List<Stock> stocks = stockMapper.selectList(new LambdaQueryWrapper<Stock>()
+                .eq(Stock::getOrderId, orderId));
+        return stocks.stream().map(Stock::getContent).collect(Collectors.toList());
+    }
 }

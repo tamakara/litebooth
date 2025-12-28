@@ -78,7 +78,7 @@ VALUES (0, '全部');
 
 CREATE TABLE `stock`
 (
-    `id`         BIGINT  NOT NULL,
+    `id`         BIGINT  NOT NULL AUTO_INCREMENT,
     `is_sold`    BOOLEAN NOT NULL,
     `item_id`    BIGINT  NOT NULL,
     `order_id`   BIGINT    DEFAULT NULL,

@@ -14,7 +14,7 @@ const updateQuery = async (payload: object) => {
   await home.fetchItemCardPageVO()
 }
 
-const handleGroupChange = (groupId: number) => updateQuery({group: groupId, pageNum: 1})
+const handleGroupChange = (groupId: number) => updateQuery({groupId: groupId, pageNum: 1})
 const handlePageChange = (page: number) => updateQuery({pageNum: page})
 const handleSizeChange = (size: number) => updateQuery({pageSize: size, pageNum: 1})
 
@@ -39,12 +39,12 @@ onMounted(async () => {
   <section class="group-bar">
     <el-button
         v-for="g in groups"
-        :key="g"
+        :key="g.id"
         class="grp-btn"
         :type="queryForm.groupId === g.id ? 'primary' : 'default'"
         @click="handleGroupChange(g.id)"
     >
-      {{ g }}
+      {{ g.name }}
     </el-button>
   </section>
 

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRole } from "./hook";
-import { getPickerShortcuts } from "./utils";
+import { useStock } from "./utils/hook";
 import { PureTableBar } from "@/components/RePureTableBar";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
-
-import View from "~icons/ep/view";
-import Delete from "~icons/ep/delete";
 import Refresh from "~icons/ep/refresh";
+import AddFill from "~icons/ri/add-circle-line";
+import Delete from "~icons/ep/delete";
+import EditPen from "~icons/ep/edit-pen";
+import PureTable from "@pureadmin/table";
 
 defineOptions({
   name: "Stock"
@@ -15,25 +15,28 @@ defineOptions({
 
 const formRef = ref();
 const tableRef = ref();
-
 const {
   form,
   loading,
   columns,
   dataList,
+  groupList,
   pagination,
-  selectedNum,
+  stockMap,
+  stockLoadingMap,
   onSearch,
-  onDetail,
-  clearAll,
   resetForm,
-  onbatchDel,
+  handleExpandChange,
+  openAddStockDialog,
+  openEditStockDialog,
+  handleDeleteStock,
   handleSizeChange,
-  onSelectionCancel,
-  handleCellDblclick,
-  handleCurrentChange,
-  handleSelectionChange
-} = useRole(tableRef);
+  handleCurrentChange
+} = useStock();
+
+function onFullscreen() {
+  tableRef.value.setAdaptive();
+}
 </script>
 
 <template>
@@ -44,28 +47,28 @@ const {
       :model="form"
       class="search-form bg-bg_color w-full pl-8 pt-[12px] overflow-auto"
     >
-      <el-form-item label="所属模块" prop="module">
+      <el-form-item label="名称：" prop="keyword">
         <el-input
-          v-model="form.module"
-          placeholder="请输入所属模块"
+          v-model="form.keyword"
+          placeholder="请输入商品名称"
           clearable
-          class="w-[170px]!"
+          class="w-[180px]!"
         />
       </el-form-item>
-      <el-form-item label="请求时间" prop="requestTime">
-        <el-date-picker
-          v-model="form.requestTime"
-          :shortcuts="getPickerShortcuts()"
-          type="datetimerange"
-          range-separator="至"
-          start-placeholder="开始日期时间"
-          end-placeholder="结束日期时间"
-        />
+      <el-form-item label="商品组：" prop="groupId">
+        <el-select v-model="form.groupId" placeholder="请选择商品组" clearable class="w-[180px]!">
+          <el-option
+            v-for="g in groupList"
+            :key="g.id"
+            :label="g.name"
+            :value="g.id"
+          />
+        </el-select>
       </el-form-item>
       <el-form-item>
         <el-button
           type="primary"
-          :icon="useRenderIcon('ri:search-line')"
+          :icon="useRenderIcon('ri/search-line')"
           :loading="loading"
           @click="onSearch"
         >
@@ -78,74 +81,93 @@ const {
     </el-form>
 
     <PureTableBar
-      title="系统日志（仅演示，操作后不生效）"
+      title="库存管理"
       :columns="columns"
       @refresh="onSearch"
+      @fullscreen="onFullscreen"
     >
-      <template #buttons>
-        <el-popconfirm title="确定要删除所有日志数据吗？" @confirm="clearAll">
-          <template #reference>
-            <el-button type="danger" :icon="useRenderIcon(Delete)">
-              清空日志
-            </el-button>
-          </template>
-        </el-popconfirm>
-      </template>
       <template v-slot="{ size, dynamicColumns }">
-        <div
-          v-if="selectedNum > 0"
-          v-motion-fade
-          class="bg-[var(--el-fill-color-light)] w-full h-[46px] mb-2 pl-4 flex items-center"
-        >
-          <div class="flex-auto">
-            <span
-              style="font-size: var(--el-font-size-base)"
-              class="text-[rgba(42,46,54,0.5)] dark:text-[rgba(220,220,242,0.5)]"
-            >
-              已选 {{ selectedNum }} 项
-            </span>
-            <el-button type="primary" text @click="onSelectionCancel">
-              取消选择
-            </el-button>
-          </div>
-          <el-popconfirm title="是否确认删除?" @confirm="onbatchDel">
-            <template #reference>
-              <el-button type="danger" text class="mr-1!"> 批量删除 </el-button>
-            </template>
-          </el-popconfirm>
-        </div>
         <pure-table
           ref="tableRef"
-          row-key="id"
+          adaptive
+          :adaptiveConfig="{ offsetBottom: 130 }"
           align-whole="center"
+          row-key="id"
           table-layout="auto"
           :loading="loading"
           :size="size"
-          adaptive
-          :adaptiveConfig="{ offsetBottom: 108 }"
           :data="dataList"
           :columns="dynamicColumns"
-          :pagination="{ ...pagination, size }"
+          :pagination="pagination"
+          :paginationSmall="size === 'small' ? true : false"
           :header-cell-style="{
             background: 'var(--el-fill-color-light)',
             color: 'var(--el-text-color-primary)'
           }"
-          @selection-change="handleSelectionChange"
           @page-size-change="handleSizeChange"
           @page-current-change="handleCurrentChange"
-          @cell-dblclick="handleCellDblclick"
+          @expand-change="handleExpandChange"
         >
           <template #operation="{ row }">
             <el-button
-              class="reset-margin outline-hidden!"
+              class="reset-margin"
               link
               type="primary"
               :size="size"
-              :icon="useRenderIcon(View)"
-              @click="onDetail(row)"
+              :icon="useRenderIcon(AddFill)"
+              @click="openAddStockDialog(row)"
             >
-              详情
+              添加库存
             </el-button>
+          </template>
+          <template #expand="{ row }">
+            <div class="p-4">
+               <el-table
+                :data="stockMap[row.id] || []"
+                v-loading="stockLoadingMap[row.id]"
+                border
+                style="width: 100%"
+              >
+                <el-table-column prop="id" label="ID" width="80" />
+                <el-table-column prop="content" label="内容" />
+                <el-table-column prop="isSold" label="状态" width="100">
+                    <template #default="{ row: stockRow }">
+                        <el-tag :type="stockRow.isSold ? 'danger' : 'success'">
+                            {{ stockRow.isSold ? '已售出' : '未售出' }}
+                        </el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="createdAt" label="创建时间" width="180" />
+                <el-table-column label="操作" width="180">
+                  <template #default="{ row: stockRow }">
+                    <el-button
+                      link
+                      type="primary"
+                      :size="size"
+                      :icon="useRenderIcon(EditPen)"
+                      @click="openEditStockDialog(stockRow)"
+                    >
+                      修改
+                    </el-button>
+                    <el-popconfirm
+                        title="是否确认删除?"
+                        @confirm="handleDeleteStock(stockRow.id, row.id)"
+                    >
+                        <template #reference>
+                            <el-button
+                              link
+                              type="danger"
+                              :size="size"
+                              :icon="useRenderIcon(Delete)"
+                            >
+                              删除
+                            </el-button>
+                        </template>
+                    </el-popconfirm>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
           </template>
         </pure-table>
       </template>
@@ -153,13 +175,9 @@ const {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 :deep(.el-dropdown-menu__item i) {
   margin: 0;
-}
-
-.main-content {
-  margin: 24px 24px 0 !important;
 }
 
 .search-form {

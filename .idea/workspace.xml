@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成后台设置模块">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/admin/AdminHomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/dashboard/CardDataVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/dashboard/ChartDataVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/dashboard/DashboardVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/dashboard/RecentOrderVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/dashboard/TopItemVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/DashboardService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/DashboardServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-admin/src/api/home.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/OrderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/home/components/table/columns.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/home/components/table/columns.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/home/components/table/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/home/components/table/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/home/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/home/index.vue" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成首页数据看板模块">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -350,15 +337,7 @@
       <workItem from="1766813185810" duration="7671000" />
       <workItem from="1766821686135" duration="3680000" />
       <workItem from="1766918488263" duration="2270000" />
-      <workItem from="1766920802610" duration="9651000" />
-    </task>
-    <task id="LOCAL-00016" summary="完成商品详情页面对接">
-      <option name="closed" value="true" />
-      <created>1763645765049</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1763645765050</updated>
+      <workItem from="1766920802610" duration="10132000" />
     </task>
     <task id="LOCAL-00017" summary="完成创建订单接口">
       <option name="closed" value="true" />
@@ -744,7 +723,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766939060073</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="完成首页数据看板模块">
+      <option name="closed" value="true" />
+      <created>1766941863517</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1766941863517</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -767,7 +754,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完成下单与付款" />
     <MESSAGE value="完成订单付款信息显示" />
     <MESSAGE value="完成卡密内容显示" />
     <MESSAGE value="完成订单查询页面" />
@@ -792,7 +778,8 @@
     <MESSAGE value="完成仓库管理模块" />
     <MESSAGE value="完成订单管理模块" />
     <MESSAGE value="完成后台设置模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成后台设置模块" />
+    <MESSAGE value="完成首页数据看板模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成首页数据看板模块" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

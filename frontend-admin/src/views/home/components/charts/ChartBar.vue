@@ -3,12 +3,12 @@ import { useDark, useECharts } from "@pureadmin/utils";
 import { type PropType, ref, computed, watch, nextTick } from "vue";
 
 const props = defineProps({
-  requireData: {
+  data: {
     type: Array as PropType<Array<number>>,
     default: () => []
   },
-  questionData: {
-    type: Array as PropType<Array<number>>,
+  xAxisData: {
+    type: Array as PropType<Array<string>>,
     default: () => []
   }
 });
@@ -28,7 +28,7 @@ watch(
     await nextTick(); // 确保DOM更新完成后再执行
     setOptions({
       container: ".bar-card",
-      color: ["#41b6ff", "#e85f33"],
+      color: ["#41b6ff"],
       tooltip: {
         trigger: "axis",
         axisPointer: {
@@ -41,7 +41,7 @@ watch(
         right: 0
       },
       legend: {
-        data: ["需求人数", "提问数量"],
+        data: ["销售额"],
         textStyle: {
           color: "#606266",
           fontSize: "0.875rem"
@@ -51,7 +51,7 @@ watch(
       xAxis: [
         {
           type: "category",
-          data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+          data: props.xAxisData,
           axisLabel: {
             fontSize: "0.875rem"
           },
@@ -69,29 +69,18 @@ watch(
           splitLine: {
             show: false // 去网格线
           }
-          // name: "单位: 个"
         }
       ],
       series: [
         {
-          name: "需求人数",
+          name: "销售额",
           type: "bar",
-          barWidth: 10,
+          barWidth: 20,
           itemStyle: {
             color: "#41b6ff",
             borderRadius: [10, 10, 0, 0]
           },
-          data: props.requireData
-        },
-        {
-          name: "提问数量",
-          type: "bar",
-          barWidth: 10,
-          itemStyle: {
-            color: "#e86033ce",
-            borderRadius: [10, 10, 0, 0]
-          },
-          data: props.questionData
+          data: props.data
         }
       ]
     });

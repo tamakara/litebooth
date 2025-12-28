@@ -1,17 +1,32 @@
 <script setup lang="ts">
-import { ref, markRaw } from "vue";
+import { ref, onMounted } from "vue";
 import ReCol from "@/components/ReCol";
-import { useDark, randomGradient } from "./utils";
+import { useDark } from "./utils";
 import WelcomeTable from "./components/table/index.vue";
-import { ReNormalCountTo } from "@/components/ReCountTo";
-import { useRenderFlicker } from "@/components/ReFlicker";
 import { ChartBar, ChartLine, ChartRound } from "./components/charts";
 import Segmented, { type OptionsType } from "@/components/ReSegmented";
-import { chartData, barChartData, progressData, latestNewsData } from "./data";
+import { chartData as initialChartData, barChartData as initialBarChartData, progressData as initialProgressData } from "./data";
+import { getDashboardData, DashboardVO } from "@/api/home";
+import GroupLine from "~icons/ri/group-line";
+import Question from "~icons/ri/question-answer-line";
+import CheckLine from "~icons/ri/chat-check-line";
+import Smile from "~icons/ri/star-smile-line";
 
 defineOptions({
   name: "Home"
 });
+
+interface ChartDataItem {
+  icon: any;
+  bgColor: string;
+  color: string;
+  duration: number;
+  name: string;
+  value: number;
+  valueStr?: string;
+  percent: string;
+  data: number[];
+}
 
 const { isDark } = useDark();
 
@@ -24,6 +39,94 @@ const optionsBasis: Array<OptionsType> = [
     label: "本周"
   }
 ];
+
+const dashboardData = ref<DashboardVO>();
+const chartData = ref<ChartDataItem[]>(initialChartData as any);
+const barChartData = ref(initialBarChartData as any);
+const progressData = ref(initialProgressData);
+const recentOrders = ref([]);
+
+onMounted(async () => {
+  try {
+    const data = await getDashboardData();
+    dashboardData.value = data;
+
+    // Update Cards
+    chartData.value = [
+      {
+        icon: GroupLine,
+        bgColor: "#effaff",
+        color: "#41b6ff",
+        duration: 2200,
+        name: data.totalSales.name,
+        value: parseFloat(data.totalSales.value.replace(/[^\d.]/g, '')),
+        valueStr: data.totalSales.value,
+        percent: data.totalSales.percent,
+        data: data.totalSales.data
+      },
+      {
+        icon: Question,
+        bgColor: "#fff5f4",
+        color: "#e85f33",
+        duration: 1600,
+        name: data.totalOrders.name,
+        value: parseFloat(data.totalOrders.value),
+        valueStr: data.totalOrders.value,
+        percent: data.totalOrders.percent,
+        data: data.totalOrders.data
+      },
+      {
+        icon: CheckLine,
+        bgColor: "#eff8f4",
+        color: "#26ce83",
+        duration: 1500,
+        name: data.soldItems.name,
+        value: parseFloat(data.soldItems.value),
+        valueStr: data.soldItems.value,
+        percent: data.soldItems.percent,
+        data: data.soldItems.data
+      },
+      {
+        icon: Smile,
+        bgColor: "#f6f4fe",
+        color: "#7846e5",
+        duration: 100,
+        name: data.totalStock.name,
+        value: parseFloat(data.totalStock.value),
+        valueStr: data.totalStock.value,
+        percent: data.totalStock.percent,
+        data: data.totalStock.data
+      }
+    ];
+
+
+    // Update Bar Chart
+    barChartData.value = [
+      {
+        data: data.salesTrend.lastWeekData,
+        dates: data.salesTrend.dates
+      },
+      {
+        data: data.salesTrend.thisWeekData,
+        dates: data.salesTrend.dates
+      }
+    ];
+
+    // Update Top Items
+    progressData.value = data.topItems.map((item, index) => ({
+      week: item.name,
+      percentage: item.percentage,
+      duration: 100,
+      color: index % 2 === 0 ? "#41b6ff" : "#26ce83"
+    }));
+
+    // Update Recent Orders
+    recentOrders.value = data.recentOrders;
+
+  } catch (e) {
+    console.error(e);
+  }
+});
 </script>
 
 <template>
@@ -71,21 +174,15 @@ const optionsBasis: Array<OptionsType> = [
           </div>
           <div class="flex justify-between items-start mt-3">
             <div class="w-1/2">
-              <ReNormalCountTo
-                :duration="item.duration"
-                :fontSize="'1.6em'"
-                :startVal="100"
-                :endVal="item.value"
-              />
-              <p class="font-medium text-green-500">{{ item.percent }}</p>
+              <span class="text-2xl font-medium">{{ item.valueStr || item.value }}</span>
+              <p v-if="item.percent" class="font-medium text-green-500">{{ item.percent }}</p>
             </div>
             <ChartLine
-              v-if="item.data.length > 1"
+              v-if="item.data && item.data.length > 1"
               class="w-1/2!"
               :color="item.color"
               :data="item.data"
             />
-            <ChartRound v-else class="w-1/2!" />
           </div>
         </el-card>
       </re-col>
@@ -109,13 +206,13 @@ const optionsBasis: Array<OptionsType> = [
       >
         <el-card class="bar-card" shadow="never">
           <div class="flex justify-between">
-            <span class="text-md font-medium">分析概览</span>
+            <span class="text-md font-medium">销售趋势</span>
             <Segmented v-model="curWeek" :options="optionsBasis" />
           </div>
           <div class="flex justify-between items-start mt-3">
             <ChartBar
-              :requireData="barChartData[curWeek].requireData"
-              :questionData="barChartData[curWeek].questionData"
+              :data="barChartData[curWeek].data"
+              :xAxisData="barChartData[curWeek].dates"
             />
           </div>
         </el-card>
@@ -140,7 +237,7 @@ const optionsBasis: Array<OptionsType> = [
       >
         <el-card shadow="never">
           <div class="flex justify-between">
-            <span class="text-md font-medium">解决概率</span>
+            <span class="text-md font-medium">热销商品</span>
           </div>
           <div
             v-for="(item, index) in progressData"
@@ -171,7 +268,7 @@ const optionsBasis: Array<OptionsType> = [
       <re-col
         v-motion
         class="mb-[18px]"
-        :value="18"
+        :value="24"
         :xs="24"
         :initial="{
           opacity: 0,
@@ -187,59 +284,9 @@ const optionsBasis: Array<OptionsType> = [
       >
         <el-card shadow="never" class="h-[580px]">
           <div class="flex justify-between">
-            <span class="text-md font-medium">数据统计</span>
+            <span class="text-md font-medium">最新订单</span>
           </div>
-          <WelcomeTable class="mt-3" />
-        </el-card>
-      </re-col>
-
-      <re-col
-        v-motion
-        class="mb-[18px]"
-        :value="6"
-        :xs="24"
-        :initial="{
-          opacity: 0,
-          y: 100
-        }"
-        :enter="{
-          opacity: 1,
-          y: 0,
-          transition: {
-            delay: 640
-          }
-        }"
-      >
-        <el-card shadow="never">
-          <div class="flex justify-between">
-            <span class="text-md font-medium">最新动态</span>
-          </div>
-          <el-scrollbar max-height="504" class="mt-3">
-            <el-timeline>
-              <el-timeline-item
-                v-for="(item, index) in latestNewsData"
-                :key="index"
-                center
-                placement="top"
-                :icon="
-                  markRaw(
-                    useRenderFlicker({
-                      background: randomGradient({
-                        randomizeHue: true
-                      })
-                    })
-                  )
-                "
-                :timestamp="item.date"
-              >
-                <p class="text-text_color_regular text-sm">
-                  {{
-                    `新增 ${item.requiredNumber} 条问题，${item.resolveNumber} 条已解决`
-                  }}
-                </p>
-              </el-timeline-item>
-            </el-timeline>
-          </el-scrollbar>
+          <WelcomeTable class="mt-3" :data="recentOrders" />
         </el-card>
       </re-col>
     </el-row>

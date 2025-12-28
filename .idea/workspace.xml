@@ -4,15 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成订单管理模块">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/dto/auth/ChangePasswordDTO.java" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成后台设置模块">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/admin/AdminHomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/dashboard/CardDataVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/dashboard/ChartDataVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/dashboard/DashboardVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/dashboard/RecentOrderVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/domain/vo/dashboard/TopItemVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/DashboardService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/DashboardServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-admin/src/api/home.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/admin/AdminAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/controller/admin/AdminAuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/service/impl/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/src/api/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/api/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/admin/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/admin/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tamakara/litebooth/mapper/OrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/home/components/table/columns.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/home/components/table/columns.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/home/components/table/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/home/components/table/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/home/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/home/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,9 +32,9 @@
         <option value="package-info" />
         <option value="Enum" />
         <option value="Vue Composition API Component" />
-        <option value="Class" />
         <option value="TypeScript File" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -344,15 +350,7 @@
       <workItem from="1766813185810" duration="7671000" />
       <workItem from="1766821686135" duration="3680000" />
       <workItem from="1766918488263" duration="2270000" />
-      <workItem from="1766920802610" duration="6433000" />
-    </task>
-    <task id="LOCAL-00015" summary="创建商品详情页面">
-      <option name="closed" value="true" />
-      <created>1763576598547</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1763576598547</updated>
+      <workItem from="1766920802610" duration="9651000" />
     </task>
     <task id="LOCAL-00016" summary="完成商品详情页面对接">
       <option name="closed" value="true" />
@@ -738,7 +736,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766924053692</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="完成后台设置模块">
+      <option name="closed" value="true" />
+      <created>1766939060072</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1766939060073</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -761,7 +767,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="删除用户模块，添加验证码功能" />
     <MESSAGE value="完成下单与付款" />
     <MESSAGE value="完成订单付款信息显示" />
     <MESSAGE value="完成卡密内容显示" />
@@ -786,7 +791,8 @@
     <MESSAGE value="完成商品管理模块" />
     <MESSAGE value="完成仓库管理模块" />
     <MESSAGE value="完成订单管理模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成订单管理模块" />
+    <MESSAGE value="完成后台设置模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成后台设置模块" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

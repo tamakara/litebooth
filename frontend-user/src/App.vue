@@ -1,7 +1,7 @@
 <script setup>
 import HeaderBar from './components/HeaderBar.vue'
 import {onMounted} from "vue";
-import {useHomeStore} from "@/stores/homeStore.js";
+import {useHomeStore} from "@/store/homeStore";
 
 const home = useHomeStore()
 

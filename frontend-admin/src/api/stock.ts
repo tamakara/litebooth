@@ -1,4 +1,5 @@
 import { http } from "@/utils/http";
+import { Result } from "@/utils/http/types";
 
 export interface StockVO {
   id: number;
@@ -23,18 +24,18 @@ export interface StockUpdateDTO {
 }
 
 export const getStockList = (itemId: number) => {
-  return http.request<StockVO[]>("get", "/stock/getStockListVO", { params: { itemId } });
+  return http.request<Result<StockVO[]>>("get", "/admin/stocks", { params: { itemId } });
 };
 
 export const createStock = (data: StockCreateDTO) => {
-  return http.request<void>("post", "/stock/createStock", { data });
+  return http.request<Result<void>>("post", "/admin/stocks", { data });
 };
 
 export const batchCreateStock = (data: { itemId: number; file: File }) => {
   const formData = new FormData();
   formData.append("itemId", data.itemId.toString());
   formData.append("file", data.file);
-  return http.request<void>("post", "/stock/batchCreateStock", {
+  return http.request<Result<void>>("post", "/admin/stocks/batch", {
     data: formData,
     headers: {
       "Content-Type": "multipart/form-data"
@@ -43,9 +44,9 @@ export const batchCreateStock = (data: { itemId: number; file: File }) => {
 };
 
 export const updateStock = (data: StockUpdateDTO) => {
-  return http.request<void>("put", "/stock/updateStock", { data });
+  return http.request<Result<void>>("put", "/admin/stocks", { data });
 };
 
 export const deleteStock = (id: number) => {
-  return http.request<void>("delete", `/stock/deleteStock/${id}`);
+  return http.request<Result<void>>("delete", `/admin/stocks/${id}`);
 };

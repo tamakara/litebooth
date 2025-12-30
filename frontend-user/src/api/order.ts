@@ -1,15 +1,14 @@
 import http from "@/api/http";
-import {AxiosResponse} from "axios";
 import {OrderCreateFormDTO, OrderInfoPageQueryFormDTO, OrderInfoPageVO, OrderInfoVO} from "@/types";
 
-export function createOrder(form: OrderCreateFormDTO): Promise<AxiosResponse<OrderInfoVO>> {
-    return http.post('/order/createOrder', form)
+export function createOrder(form: OrderCreateFormDTO): Promise<OrderInfoVO> {
+    return http.post('/user/orders', form)
 }
 
-export function payOrder(orderId: string): Promise<AxiosResponse<OrderInfoVO>> {
-    return http.post(`/order/payOrder/${orderId}`)
+export function payOrder(orderId: string): Promise<OrderInfoVO> {
+    return http.post(`/user/orders/${orderId}/pay`)
 }
 
-export function fetchOrderInfoPageVO(form: OrderInfoPageQueryFormDTO): Promise<AxiosResponse<OrderInfoPageVO>> {
-    return http.get('/order/getOrderInfoPageVO', {params: form})
+export function fetchOrderInfoPageVO(form: OrderInfoPageQueryFormDTO): Promise<OrderInfoPageVO> {
+    return http.get('/user/orders', {params: form})
 }

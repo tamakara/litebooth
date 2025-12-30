@@ -14,7 +14,7 @@ const onClick = () => {
 </script>
 
 <template>
-  <el-card class="card">
+  <el-card class="card" @click="onClick">
     <div class="cover-box">
       <el-image :src="props.item.coverFileUrl" fit="cover" class="cover"/>
     </div>
@@ -36,17 +36,19 @@ const onClick = () => {
 <style scoped>
 .card {
   overflow: hidden;
-  border-radius: 4px;
-  border: 1px solid #d4d7dd;
+  border-radius: var(--border-radius-base);
+  border: 1px solid #e5e7eb;
   padding: 0;
   background: #ffffff;
-  box-shadow: none;
-  transition: border-color .15s ease, background-color .15s ease;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .card:hover {
-  border-color: #bfc3c9;
-  background: #f9fafb;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
 }
 
 .card :deep(.el-card__body) {
@@ -56,52 +58,58 @@ const onClick = () => {
 .cover-box {
   width: 100%;
   aspect-ratio: 1/1;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
   overflow: hidden;
-  background: #f5f5f5;
+  background: #f3f4f6;
+  position: relative;
 }
 
 .cover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .cover {
+  transform: scale(1.05);
 }
 
 .card-body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 14px 14px 16px;
+  gap: 12px;
+  padding: 16px;
 }
 
 .title {
   font-weight: 600;
-  color: #111827;
-  font-size: 18px;
-  line-height: 1.35;
-  min-height: 42px;
+  color: var(--color-text-main);
+  font-size: 16px;
+  line-height: 1.5;
+  height: 48px; /* Fixed height for 2 lines */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: auto;
 }
 
 .price {
-  color: #ff4d4f;
-  font-weight: 800;
-  font-size: 20px;
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .order-btn {
-  padding: 4px 24px;
-  line-height: 20px;
-  font-size: 14px;
-  border-radius: 6px;
-  letter-spacing: .5px;
-  font-weight: 600;
+  padding: 8px 16px;
+  font-weight: 500;
+  border-radius: 20px;
 }
 </style>
 

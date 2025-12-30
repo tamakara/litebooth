@@ -1,7 +1,7 @@
 <script setup>
 import {toRefs} from 'vue'
 import {useRouter} from 'vue-router'
-import {useHomeStore} from '@/stores/homeStore.ts'
+import {useHomeStore} from '@/store/homeStore'
 
 const router = useRouter()
 const home = useHomeStore()
@@ -76,11 +76,13 @@ const handleSearch = async () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 32px;
-  border-radius: 8px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e5e9;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 0 24px;
+  height: 72px;
+  border-radius: var(--border-radius-base);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  box-shadow: var(--shadow-sm);
   gap: 24px;
   margin-bottom: 32px;
 }
@@ -88,7 +90,7 @@ const handleSearch = async () => {
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
 }
 
 .brand {
@@ -96,94 +98,88 @@ const handleSearch = async () => {
   align-items: center;
   gap: 12px;
   font-weight: 700;
-  color: #111827;
+  color: var(--color-text-main);
   cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.brand:hover {
+  opacity: 0.8;
+}
+
+.logo {
+  height: 36px;
+  width: auto;
+}
+
+.logo-title {
+  font-size: 20px;
+  letter-spacing: -0.025em;
 }
 
 .nav-links {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  gap: 24px;
 }
 
 .nav-link {
   font-size: 15px;
-  color: #4b5563;
+  font-weight: 500;
+  color: var(--color-text-secondary);
   cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 999px;
-  transition: all 0.2s ease;
+  transition: color 0.2s;
 }
 
 .nav-link:hover {
-  color: #111827;
-  background: #f3f4f6;
+  color: var(--color-primary);
 }
 
 .nav-right {
   flex: 1;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.global-search {
-  width: 560px;
-  max-width: 100%;
-  border-radius: 10px;
-}
-
-.logo {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 0 0 4px rgba(64, 158, 255, 0.18);
-  flex-shrink: 0;
-}
-
-.logo-title {
-  font-size: 22px;
-  letter-spacing: 0.3px;
+  max-width: 400px;
 }
 
 .global-search :deep(.el-input__wrapper) {
-  height: 46px;
+  border-radius: 20px 0 0 20px;
+  box-shadow: none;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
 }
 
-.global-search :deep(.el-input__inner) {
-  font-size: 16px;
+.global-search :deep(.el-input__wrapper.is-focus) {
+  border-color: var(--color-primary);
+  background: #fff;
 }
 
-.global-search :deep(.el-input-group__append .el-button) {
-  height: 46px;
-  font-size: 16px;
+.global-search :deep(.el-input-group__append) {
+  border-radius: 0 20px 20px 0;
+  background: var(--color-primary);
+  border: none;
+  box-shadow: none;
 }
 
-@media (max-width: 920px) {
+.global-search :deep(.el-button) {
+  color: #fff;
+  border: none;
+  border-radius: 0 20px 20px 0;
+}
+
+@media (max-width: 768px) {
   .app-header {
-    flex-wrap: wrap;
-    padding: 10px 16px;
+    padding: 0 16px;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding-bottom: 16px;
   }
 
   .nav-left {
-    width: 100%;
     justify-content: space-between;
   }
 
   .nav-right {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .global-search {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .logo {
-    width: 26px;
-    height: 26px;
-    box-shadow: 0 0 0 3px rgba(64, 158, 255, 0.18);
+    max-width: none;
   }
 }
 </style>

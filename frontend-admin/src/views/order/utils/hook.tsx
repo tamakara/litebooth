@@ -1,10 +1,9 @@
 import { reactive, ref, toRaw, onMounted } from "vue";
-import { getOrderPageVO, OrderVO } from "@/api/order";
+import { getOrderPageVO, type OrderVO, type OrderPageQueryDTO } from "@/api/order";
 import { PaginationProps } from "@pureadmin/table";
-import { OrderPageQueryFormDTO } from "./types";
 
 export function useOrder() {
-  const form = reactive<OrderPageQueryFormDTO>({
+  const form = reactive<OrderPageQueryDTO>({
     keyword: "",
     status: undefined,
     pageNum: 1,
@@ -69,9 +68,12 @@ export function useOrder() {
   async function onSearch() {
     loading.value = true;
     try {
-      const data = await getOrderPageVO(toRaw(form));
-      dataList.value = data.records;
-      pagination.total = data.total;
+      const res: any = await getOrderPageVO(toRaw(form));
+      if (res.code === 200) {
+        const data = res.data;
+        dataList.value = data.records;
+        pagination.total = data.total;
+      }
     } catch (e) {
       console.error(e);
     } finally {

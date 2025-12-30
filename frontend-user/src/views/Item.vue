@@ -1,106 +1,68 @@
-<script setup>
-import {useItemStore} from '@/stores/itemStore.js'
-import {computed, onMounted, ref, toRefs} from 'vue'
+<script setup lang="ts">
+import {onMounted, ref} from 'vue'
 import {useRouter} from 'vue-router'
 import OrderInfoDialog from '@/components/OrderInfoDialog.vue'
 import ContentDialog from '@/components/ContentDialog.vue'
+import ItemDetail from '@/components/ItemDetail.vue'
+import OrderForm from '@/components/OrderForm.vue'
+import {useItemStore} from "@/store/itemStore";
+import {storeToRefs} from "pinia";
 
-const item = useItemStore()
 const router = useRouter()
+const itemStore = useItemStore()
+const {itemInfo, captchaInfo, orderCreateForm, orderInfo, loading} = storeToRefs(itemStore)
+const {fetchCaptchaInfoVO, verifyCaptchaCode, fetchItemInfoVO, createOrder, payOrder, clearOrderCreateForm} = itemStore
 
-const {itemInfo, captchaInfo, orderCreateForm, orderInfo, loading} = toRefs(item)
 const orderDialogVisible = ref(false)
 const contentVisible = ref(false)
-const formRef = ref()
 
-const verifyCaptcha = async (_rule, value) => {
-  if (!value) return Promise.resolve()
-
-  const ok = await item.verifyCaptchaCode()
-
-  if (ok) {
-    return Promise.resolve()
-  } else {
-    return Promise.reject('验证码错误')
-  }
-}
-
-const rules = {
-  queryEmail: [
-    {
-      message: "请输入邮箱",
-      trigger: ['blur', 'change'],
-      required: true,
-    },
-    {
-      type: "email",
-      message: "邮箱格式不正确",
-      trigger: ["blur", "change"]
-    }
-  ],
-  queryPassword: [
-    {
-      message: '请输入订单查询密码',
-      trigger: 'blur',
-      required: true,
-    },
-    {
-      message: '查询密码至少 4 位',
-      trigger: 'blur',
-      min: 4,
-    }
-  ],
-  captchaCode: [
-    {
-      message: '请输入图形验证码',
-      trigger: 'blur',
-      required: true,
-    },
-    {
-      validator: verifyCaptcha
-    }
-  ],
-}
-
-const refreshCaptcha = async () => {
-  await item.fetchCaptchaInfoVO()
+const verifyCaptchaWrapper = async (code: string) => {
+  orderCreateForm.value.captchaCode = code
+  return await verifyCaptchaCode()
 }
 
 const onBuyClick = async () => {
-  if (!formRef.value) return
-
-  const formValid = await formRef.value.validate()
-  if (!formValid) return
-
-  await item.verifyCaptchaCode()
-
-  await item.createOrder()
-  item.clearOrderCreateForm()
+  await createOrder()
+  clearOrderCreateForm()
   orderDialogVisible.value = true
 }
 
 const onPayOrderClick = async () => {
-  await item.payOrder()
+  if (orderInfo.value) {
+    await payOrder()
+  }
 }
 
-const onViewContentClick = async () => {
+const onViewContentClick = () => {
   contentVisible.value = true
 }
 
-const onResetClick = () => {
-  item.clearOrderCreateForm()
-}
-
 onMounted(async () => {
-  await item.fetchItemInfoVO(router.currentRoute.value.params.id)
-  await item.fetchCaptchaInfoVO()
+  const itemId = router.currentRoute.value.params.id as string
+  await fetchItemInfoVO(itemId)
+  await fetchCaptchaInfoVO()
 })
 </script>
 
 <template>
-  <div class="page" v-loading="loading">
+  <div class="page">
     <!-- 商品面板 -->
-    <el-card class="panel main-panel">
+    <el-card class="panel main-panel" v-if="loading">
+      <div class="main-body">
+        <div class="cover-col">
+          <el-skeleton animated>
+            <template #template>
+              <el-skeleton-item variant="image" style="width: 100%; height: 320px; border-radius: 8px" />
+            </template>
+          </el-skeleton>
+        </div>
+        <div class="info-col-wrapper">
+          <el-skeleton animated :rows="8" />
+        </div>
+      </div>
+    </el-card>
+
+    <el-card class="panel main-panel" v-else>
       <div class="main-body">
         <div class="cover-col">
           <el-image
@@ -111,107 +73,19 @@ onMounted(async () => {
           />
         </div>
 
-        <div class="info-col">
-          <div class="item-name">{{ itemInfo.name }}</div>
-
-          <div class="price-row">
-            <div class="price">¥ {{ Number(itemInfo.price).toFixed(2) }}</div>
-            <div class="stock-line">
-              <span v-if="itemInfo.stock > 0">库存: {{ itemInfo.stock }}</span>
-              <span v-else style="color: red; font-weight: bold;">商品缺货</span>
-            </div>
-          </div>
+        <div class="info-col-wrapper">
+          <ItemDetail :item-info="itemInfo"/>
 
           <!-- 下单表单 -->
-          <el-form
-              ref="formRef"
-              :model="orderCreateForm"
-              :rules="rules"
-              label-position="top"
-              label-width="auto"
-          >
-            <div class="order-form-grid">
-              <!-- 第一行：邮箱 | 购买数量 -->
-              <el-form-item label="收货邮箱" prop="queryEmail">
-                <el-input
-                    v-model="orderCreateForm.queryEmail"
-                    placeholder="请输入收货邮箱"
-                    :disabled="itemInfo.stock === 0"
-                />
-              </el-form-item>
-
-              <el-form-item label="购买数量" prop="quantity">
-                <el-input-number
-                    v-if="itemInfo.stock > 0"
-                    v-model="orderCreateForm.quantity"
-                    :min="1"
-                    :max="itemInfo.stock"
-                />
-                <el-input-number
-                    v-else
-                    v-model="orderCreateForm.quantity"
-                    :min="0"
-                    :max="0"
-                />
-              </el-form-item>
-
-              <!-- 第二行：查询密码 | 验证码 -->
-              <el-form-item label="查询密码" prop="queryPassword">
-                <el-input
-                    v-model="orderCreateForm.queryPassword"
-                    placeholder="用于查询订单，请妥善保管"
-                    show-password
-                    :disabled="itemInfo.stock === 0"
-                />
-              </el-form-item>
-
-              <el-form-item label="验证码" prop="captchaCode">
-                <div class="captcha-row">
-                  <el-input
-                      v-model="orderCreateForm.captchaCode"
-                      placeholder="请输入右侧验证码"
-                      :disabled="itemInfo.stock === 0"
-                  />
-                  <el-image
-                      class="captcha-img"
-                      :src="'data:image/png;base64,' + captchaInfo.imageBase64"
-                      alt="点击刷新验证码"
-                      @click="refreshCaptcha"
-                      fit="contain"
-                  />
-                </div>
-              </el-form-item>
-
-              <!-- 第三行：支付方式（整行） -->
-              <el-form-item label="支付方式" prop="payMethod" class="order-form-pay-method">
-                <el-radio-group v-model="orderCreateForm.paymentMethod" :disabled="itemInfo.stock === 0">
-                  <el-radio label="WXPAY">微信</el-radio>
-                  <el-radio label="ALIPAY">支付宝</el-radio>
-                </el-radio-group>
-              </el-form-item>
-
-              <!-- 第四行：下单按钮（整行） -->
-              <div class="order-form-actions">
-                <el-button
-                    class="order-btn"
-                    type="primary"
-                    size="large"
-                    :disabled="itemInfo.stock === 0"
-                    @click="onBuyClick"
-                >
-                  下单
-                </el-button>
-                <el-button
-                    class="order-btn"
-                    size="large"
-                    :disabled="itemInfo.stock === 0"
-                    @click="onResetClick"
-                >
-                  重置
-                </el-button>
-              </div>
-            </div>
-          </el-form>
+          <OrderForm
+              v-model="orderCreateForm"
+              :item-info="itemInfo"
+              :captcha-info="captchaInfo"
+              :verify-captcha="verifyCaptchaWrapper"
+              @refreshCaptcha="fetchCaptchaInfoVO"
+              @submit="onBuyClick"
+              @reset="clearOrderCreateForm"
+          />
         </div>
       </div>
     </el-card>
@@ -230,6 +104,7 @@ onMounted(async () => {
 
     <!-- 订单弹窗 -->
     <OrderInfoDialog
+        v-if="orderInfo"
         v-model:visible="orderDialogVisible"
         :order-info="orderInfo"
         @pay="onPayOrderClick"
@@ -238,6 +113,7 @@ onMounted(async () => {
 
     <!-- 卡密弹窗 -->
     <ContentDialog
+        v-if="orderInfo"
         v-model:visible="contentVisible"
         :content-list="orderInfo.contentList"
     />
@@ -285,39 +161,11 @@ onMounted(async () => {
   border-radius: 8px;
 }
 
-.info-col {
+.info-col-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 14px;
-}
-
-.item-name {
-  font-size: 30px; /* 原来 26px，略微放大 */
-  font-weight: 700; /* 保持较粗 */
-}
-
-.price-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.price {
-  font-size: 30px; /* 原来 26px，放大一些 */
-  font-weight: 800; /* 更醒目 */
-  color: #ef4444;
-}
-
-.stock-line {
-  font-size: 18px; /* 原来 15px，放大 */
-  font-weight: 600; /* 略微加粗 */
-  color: #10b981;
-}
-
-.order-btn {
-  font-size: 16px;
-  padding: 8px 22px;
 }
 
 .desc-body {
@@ -332,41 +180,6 @@ onMounted(async () => {
   line-height: 1.8;
 }
 
-.captcha-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.captcha-img {
-  width: 200px;
-  height: 36px;
-  cursor: pointer;
-  border-radius: 2px;
-  border: 1px solid #e5e7eb;
-}
-
-.order-form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 16px;
-  row-gap: 4px;
-}
-
-.order-form-grid :deep(.el-form-item__label) {
-  margin-bottom: 2px;
-  padding-bottom: 0;
-}
-
-.order-form-pay-method {
-  grid-column: 1 / -1;
-}
-
-.order-form-actions {
-  grid-column: 1 / -1;
-  margin-top: 4px;
-}
-
 @media (max-width: 768px) {
   .main-body {
     flex-direction: column;
@@ -374,10 +187,6 @@ onMounted(async () => {
 
   .cover-col {
     width: 100%;
-  }
-
-  .order-form-grid {
-    grid-template-columns: 1fr;
   }
 }
 </style>

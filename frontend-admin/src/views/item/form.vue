@@ -18,10 +18,15 @@ function getRef() {
 
 const customUpload = async (options) => {
   try {
-    const res = await uploadFile(options.file);
-    newFormInline.value.coverFileId = Number(res);
-    coverPreviewUrl.value = URL.createObjectURL(options.file);
-    message("上传成功", {type: "success"});
+    const res: any = await uploadFile(options.file);
+    if (res.code === 200) {
+      const fileId = res.data;
+      newFormInline.value.coverFileId = Number(fileId);
+      coverPreviewUrl.value = URL.createObjectURL(options.file);
+      message("上传成功", {type: "success"});
+    } else {
+      message(res.msg || "上传失败", {type: "error"});
+    }
   } catch (error) {
     message("上传失败", {type: "error"});
   }

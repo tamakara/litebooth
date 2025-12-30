@@ -1,14 +1,12 @@
 import {reactive, ref, h, toRaw, onMounted} from "vue";
 import {message} from "@/utils/message";
-import {getItemList} from "@/api/item";
-import {getStockList, createStock, batchCreateStock, deleteStock, updateStock, StockCreateDTO, StockUpdateDTO, StockVO} from "@/api/stock";
+import {getItemList, type ItemPageQueryFormDTO, type ItemVO} from "@/api/item";
+import {getStockList, createStock, batchCreateStock, deleteStock, updateStock, type StockCreateDTO, type StockUpdateDTO, type StockVO} from "@/api/stock";
 import {addDialog} from "@/components/ReDialog";
 import {PaginationProps} from "@pureadmin/table";
-import {ItemPageQueryFormDTO, ItemVO} from "@/views/item/utils/types";
 import EditCreateForm from "../createForm.vue";
 import StockEditForm from "../editForm.vue";
-import {GroupListVO} from "@/views/group/utils/types";
-import {getGroupListVO} from "@/api/group";
+import {type GroupListVO, getGroupListVO} from "@/api/group";
 
 export function useStock() {
   const form = reactive<ItemPageQueryFormDTO>({
@@ -59,9 +57,12 @@ export function useStock() {
   async function onSearch() {
     loading.value = true;
     try {
-      const data = await getItemList(toRaw(form));
-      dataList.value = data.records;
-      pagination.total = data.total;
+      const res: any = await getItemList(toRaw(form));
+      if (res.code === 200) {
+        const data = res.data;
+        dataList.value = data.records;
+        pagination.total = data.total;
+      }
     } catch (e) {
       console.error(e);
     } finally {
@@ -71,7 +72,10 @@ export function useStock() {
 
   async function getGroupList() {
     try {
-      groupList.value = await getGroupListVO();
+      const res: any = await getGroupListVO();
+      if (res.code === 200) {
+        groupList.value = res.data;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -86,7 +90,10 @@ export function useStock() {
   async function loadStocks(itemId: number) {
     stockLoadingMap[itemId] = true;
     try {
-      stockMap[itemId] = await getStockList(itemId);
+      const res: any = await getStockList(itemId);
+      if (res.code === 200) {
+        stockMap[itemId] = res.data;
+      }
     } catch (e) {
       console.error(e);
     } finally {
@@ -123,10 +130,14 @@ export function useStock() {
           const curData = options.props.formInline as StockCreateDTO;
           FormRef.validate(valid => {
             if (valid) {
-              createStock(curData).then(() => {
-                message("添加成功", {type: "success"});
-                done();
-                loadStocks(Number(row.id));
+              createStock(curData).then((res: any) => {
+                if (res.code === 200) {
+                  message("添加成功", {type: "success"});
+                  done();
+                  loadStocks(Number(row.id));
+                } else {
+                  message(res.msg || "添加失败", {type: "error"});
+                }
               });
             }
           });
@@ -136,10 +147,14 @@ export function useStock() {
             message("请选择文件", {type: "warning"});
             return;
           }
-          batchCreateStock({itemId: Number(row.id), file}).then(() => {
-            message("批量添加成功", {type: "success"});
-            done();
-            loadStocks(Number(row.id));
+          batchCreateStock({itemId: Number(row.id), file}).then((res: any) => {
+            if (res.code === 200) {
+              message("批量添加成功", {type: "success"});
+              done();
+              loadStocks(Number(row.id));
+            } else {
+              message(res.msg || "批量添加失败", {type: "error"});
+            }
           });
         }
       }

@@ -3,6 +3,8 @@ package com.tamakara.litebooth.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.tamakara.litebooth.common.exception.BusinessException;
+import com.tamakara.litebooth.common.result.ResultCode;
 import com.tamakara.litebooth.domain.dto.order.OrderCreateFormDTO;
 import com.tamakara.litebooth.domain.dto.order.OrderInfoPageQueryFormDTO;
 import com.tamakara.litebooth.domain.dto.order.OrderPageQueryDTO;
@@ -75,7 +77,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public OrderInfoVO createOrder(OrderCreateFormDTO createFormDTO) {
         Item item = itemService.getById(createFormDTO.getItemId());
         if (item == null) {
-            throw new RuntimeException("商品不存在");
+            throw new BusinessException(ResultCode.NOT_FOUND);
         }
 
         Order order = new Order();
@@ -106,7 +108,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             return new OrderInfoVO(order, stockService.getStockContentByOrderId(orderId));
         }
 
-        // Allocate stock
         List<String> contents = stockService.allocateStock(order.getItemId(), order.getId(), order.getQuantity());
 
         order.setStatus(OrderStatus.FINISHED);

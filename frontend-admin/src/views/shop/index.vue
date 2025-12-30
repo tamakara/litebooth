@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useShop } from "./utils/hook";
-import { formRules } from "./utils/rule";
-import { ElForm, ElFormItem, ElInput, ElButton, ElUpload, ElImage } from "element-plus";
+import {useShop} from "./utils/hook";
+import {formRules} from "./utils/rule";
+import {ElForm, ElFormItem, ElInput, ElButton, ElUpload, ElImage} from "element-plus";
+import {onMounted} from "vue";
 
 defineOptions({
   name: "Shop"
@@ -14,8 +15,14 @@ const {
   logoPreviewUrl,
   customUploadRequest,
   handleSubmit,
-  handleReset
+  handleReset,
+  loadShopInfo
 } = useShop();
+
+onMounted(() => {
+  loadShopInfo();
+});
+
 </script>
 
 <template>
@@ -53,15 +60,15 @@ const {
         </el-form-item>
 
         <el-form-item label="店铺名称" prop="logoTitle">
-          <el-input v-model="form.logoTitle" placeholder="请输入 Logo 标题" />
+          <el-input v-model="form.logoTitle" placeholder="请输入 Logo 标题"/>
         </el-form-item>
 
         <el-form-item label="首页标题" prop="homeTitle">
-          <el-input v-model="form.homeTitle" placeholder="请输入首页标题" />
+          <el-input v-model="form.homeTitle" placeholder="请输入首页标题"/>
         </el-form-item>
 
         <el-form-item label="首页副标题" prop="homeSubtitle">
-          <el-input v-model="form.homeSubtitle" placeholder="请输入首页副标题" />
+          <el-input v-model="form.homeSubtitle" placeholder="请输入首页副标题"/>
         </el-form-item>
 
         <el-form-item label="首页公告" prop="homeAnnouncement">

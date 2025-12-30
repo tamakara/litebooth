@@ -4,8 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="完成首页数据看板模块">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="2ed66d41-db26-45de-bba7-92eddaf316ec" name="更改" comment="优化项目结构">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/api/file.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/api/file.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/api/group.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/api/group.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/api/item.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/api/item.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/api/order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/api/order.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/api/shop.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/api/shop.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/api/stock.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/api/stock.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/router/modules/error.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/admin/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/admin/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/group/utils/hook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/group/utils/hook.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/group/utils/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/group/utils/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/item/form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/item/form.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/item/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/item/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/item/utils/hook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/item/utils/hook.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/item/utils/rule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/item/utils/rule.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/item/utils/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/item/utils/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/login/utils/rule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/login/utils/rule.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/order/utils/hook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/order/utils/hook.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/order/utils/types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/shop/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/shop/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/shop/utils/hook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/shop/utils/hook.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/shop/utils/rule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/shop/utils/rule.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-admin/src/views/stock/utils/hook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-admin/src/views/stock/utils/hook.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/hooks/useCaptcha.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/hooks/useOrder.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/store/itemStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/store/itemStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/types/order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/types/order.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-user/src/views/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-user/src/views/Item.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +95,7 @@
     &quot;Docker.docker.redis: Compose 部署.executor&quot;: &quot;Run&quot;,
     &quot;Docker.docker: Compose 部署.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.LiteboothApplicationTests.test.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.backend [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.backend [deploy].executor&quot;: &quot;Run&quot;,
     &quot;Maven.litebooth [clean,package,-U].executor&quot;: &quot;Run&quot;,
     &quot;Maven.litebooth [clean].executor&quot;: &quot;Run&quot;,
@@ -96,7 +125,7 @@
     &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\suhxhee\\Code\\IDEA\\litebooth\\frontend-admin\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -337,47 +366,9 @@
       <workItem from="1766813185810" duration="7671000" />
       <workItem from="1766821686135" duration="3680000" />
       <workItem from="1766918488263" duration="2270000" />
-      <workItem from="1766920802610" duration="10132000" />
-    </task>
-    <task id="LOCAL-00017" summary="完成创建订单接口">
-      <option name="closed" value="true" />
-      <created>1763672587152</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1763672587152</updated>
-    </task>
-    <task id="LOCAL-00018" summary="完成取消订单功能">
-      <option name="closed" value="true" />
-      <created>1763830469641</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1763830469641</updated>
-    </task>
-    <task id="LOCAL-00019" summary="完成支付接口">
-      <option name="closed" value="true" />
-      <created>1763932934152</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1763932934152</updated>
-    </task>
-    <task id="LOCAL-00020" summary="完成支付接口">
-      <option name="closed" value="true" />
-      <created>1763932953659</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1763932953659</updated>
-    </task>
-    <task id="LOCAL-00021" summary="完成商品发货基本功能">
-      <option name="closed" value="true" />
-      <created>1764027196379</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1764027196379</updated>
+      <workItem from="1766920802610" duration="10526000" />
+      <workItem from="1767073438974" duration="13957000" />
+      <workItem from="1767095964434" duration="57000" />
     </task>
     <task id="LOCAL-00022" summary="完善stock与order绑定">
       <option name="closed" value="true" />
@@ -731,7 +722,47 @@
       <option name="project" value="LOCAL" />
       <updated>1766941863517</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="优化README">
+      <option name="closed" value="true" />
+      <created>1766942124373</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1766942124373</updated>
+    </task>
+    <task id="LOCAL-00067" summary="优化项目结构">
+      <option name="closed" value="true" />
+      <created>1767080479678</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1767080479681</updated>
+    </task>
+    <task id="LOCAL-00068" summary="优化项目结构">
+      <option name="closed" value="true" />
+      <created>1767095820499</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1767095820500</updated>
+    </task>
+    <task id="LOCAL-00069" summary="优化项目结构">
+      <option name="closed" value="true" />
+      <created>1767095853474</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1767095853475</updated>
+    </task>
+    <task id="LOCAL-00070" summary="优化项目结构">
+      <option name="closed" value="true" />
+      <created>1767096021416</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1767096021416</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -754,7 +785,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完成订单付款信息显示" />
     <MESSAGE value="完成卡密内容显示" />
     <MESSAGE value="完成订单查询页面" />
     <MESSAGE value="优化表单样式" />
@@ -771,7 +801,6 @@
     <MESSAGE value="完善token鉴权" />
     <MESSAGE value="完成商品组管理" />
     <MESSAGE value="修复分页功能" />
-    <MESSAGE value="优化项目结构" />
     <MESSAGE value="优化页面样式，规范命名" />
     <MESSAGE value="规范命名" />
     <MESSAGE value="完成商品管理模块" />
@@ -779,7 +808,9 @@
     <MESSAGE value="完成订单管理模块" />
     <MESSAGE value="完成后台设置模块" />
     <MESSAGE value="完成首页数据看板模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成首页数据看板模块" />
+    <MESSAGE value="优化README" />
+    <MESSAGE value="优化项目结构" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化项目结构" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

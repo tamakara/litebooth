@@ -43,7 +43,7 @@ function onFullscreen() {
       :model="form"
       class="search-form bg-bg_color w-full pl-8 pt-[12px] overflow-auto"
     >
-      <el-form-item label="名称：" prop="name">
+      <el-form-item label="名称：" prop="keyword">
         <el-input
           v-model="form.keyword"
           placeholder="请输入商品名称"

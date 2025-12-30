@@ -1,36 +1,34 @@
 package com.tamakara.litebooth.controller.user;
 
+import com.tamakara.litebooth.common.result.Result;
 import com.tamakara.litebooth.domain.dto.item.ItemPageQueryFormDTO;
 import com.tamakara.litebooth.domain.vo.item.ItemCardPageVO;
 import com.tamakara.litebooth.domain.vo.item.ItemInfoVO;
 import com.tamakara.litebooth.service.ItemService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "用户端商品模块接口")
 @RestController
-@RequestMapping("/user/item")
+@RequestMapping("/user/items")
 @RequiredArgsConstructor
 public class UserItemController {
     private final ItemService itemService;
 
-    @GetMapping("/getItemCardPageVO")
-    public ResponseEntity<ItemCardPageVO> getItemCardPageVO(
+    @GetMapping
+    public Result<ItemCardPageVO> listItems(
             @ModelAttribute ItemPageQueryFormDTO itemPageQueryFormDTO
     ) {
         ItemCardPageVO vo = itemService.getItemCardPageVO(itemPageQueryFormDTO);
-        return ResponseEntity.ok(vo);
+        return Result.success(vo);
     }
 
-    @GetMapping("/getItemInfoVO/{itemId}")
-    public ResponseEntity<ItemInfoVO> getItemInfoVO(
+    @GetMapping("/{itemId}")
+    public Result<ItemInfoVO> getItem(
             @PathVariable("itemId") Long itemId
     ) {
         ItemInfoVO vo = itemService.getItemInfoVO(itemId);
-        return ResponseEntity.ok(vo);
+        return Result.success(vo);
     }
 }

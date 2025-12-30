@@ -1,4 +1,5 @@
 import { http } from "@/utils/http";
+import { Result } from "@/utils/http/types";
 
 export interface OrderVO {
   id: number;
@@ -29,6 +30,6 @@ export interface OrderPageQueryDTO {
 }
 
 export const getOrderPageVO = (data: OrderPageQueryDTO) => {
-  return http.request<OrderPageVO>("post", "/order/getOrderPageVO", { data });
+  return http.request<Result<OrderPageVO>>("post", "/admin/orders/search", { data });
 };
 

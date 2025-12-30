@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class ItemPageQueryFormDTO {
     private String keyword;
     private Long groupId;
-    private Long pageNum;
-    private Long pageSize;
+    private Long pageNum = 1L;
+    private Long pageSize = 10L;
 }

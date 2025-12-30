@@ -1,17 +1,25 @@
 <script setup lang="ts">
-import {onMounted, computed, toRefs} from 'vue'
-import {useHomeStore} from '@/stores/homeStore'
+import {onMounted, computed, toRefs, ref} from 'vue'
+import {useHomeStore} from '@/store/homeStore'
 import ItemCard from '@/components/ItemCard.vue'
+import HomeAnnouncement from '@/components/HomeAnnouncement.vue'
+import HomeHero from '@/components/HomeHero.vue'
 
 const home = useHomeStore()
 
 const {shopInfo: homeInfo, groupList: groups, itemCardQueryForm: queryForm, itemCardPage} = toRefs(home)
 const itemCardList = computed(() => itemCardPage.value.records)
 const total = computed(() => itemCardPage.value.total)
+const loading = ref(false)
 
 const updateQuery = async (payload: object) => {
-  Object.assign(queryForm.value, payload)
-  await home.fetchItemCardPageVO()
+  loading.value = true
+  try {
+    Object.assign(queryForm.value, payload)
+    await home.fetchItemCardPageVO()
+  } finally {
+    loading.value = false
+  }
 }
 
 const handleGroupChange = (groupId: number) => updateQuery({groupId: groupId, pageNum: 1})
@@ -19,22 +27,23 @@ const handlePageChange = (page: number) => updateQuery({pageNum: page})
 const handleSizeChange = (size: number) => updateQuery({pageSize: size, pageNum: 1})
 
 onMounted(async () => {
-  await home.fetchGroupListVO()
-  await home.fetchItemCardPageVO()
+  loading.value = true
+  try {
+    await home.fetchGroupListVO()
+    await home.fetchItemCardPageVO()
+  } finally {
+    loading.value = false
+  }
 })
 </script>
 
 <template>
-  <section class="announcement" v-if="homeInfo.homeAnnouncement">
-    <h4 class="anno-title">公告</h4>
-    <div class="anno-text" v-html="homeInfo.homeAnnouncement"/>
+  <HomeAnnouncement :announcement="homeInfo.homeAnnouncement"/>
 
-  </section>
-
-  <section class="hero">
-    <h1 v-if="homeInfo.homeTitle">{{ homeInfo.homeTitle }}</h1>
-    <p v-if="homeInfo.homeSubtitle">{{ homeInfo.homeSubtitle }}</p>
-  </section>
+  <HomeHero
+      :title="homeInfo.homeTitle"
+      :subtitle="homeInfo.homeSubtitle"
+  />
 
   <section class="group-bar">
     <el-button
@@ -43,12 +52,30 @@ onMounted(async () => {
         class="grp-btn"
         :type="queryForm.groupId === g.id ? 'primary' : 'default'"
         @click="handleGroupChange(g.id)"
+        round
     >
       {{ g.name }}
     </el-button>
   </section>
 
-  <section class="item-grid">
+  <section class="item-grid" v-if="loading">
+    <el-card v-for="n in 8" :key="n" class="card-skeleton">
+      <el-skeleton animated>
+        <template #template>
+          <el-skeleton-item variant="image" style="width: 100%; aspect-ratio: 1/1" />
+          <div style="padding: 14px">
+            <el-skeleton-item variant="h3" style="width: 50%" />
+            <div style="display: flex; justify-content: space-between; margin-top: 16px; height: 32px; align-items: center">
+              <el-skeleton-item variant="text" style="width: 30%" />
+              <el-skeleton-item variant="button" style="width: 30%; border-radius: 20px" />
+            </div>
+          </div>
+        </template>
+      </el-skeleton>
+    </el-card>
+  </section>
+
+  <section class="item-grid" v-else>
     <ItemCard
         v-for="i in itemCardList"
         :key="i.id"
@@ -70,47 +97,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.announcement {
-  background: #fff;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 24px 24px;
-  margin: 16px 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.anno-title {
-  margin: 8px 0;
-  font-size: 20px;
-  font-weight: 800;
-  color: #111827;
-}
-
-.anno-text {
-  font-size: 16px;
-  line-height: 1.75;
-  color: #343a40;
-}
-
-.hero {
-  text-align: center;
-  margin-bottom: 12px;
-}
-
-.hero h1 {
-  margin: 0 0 6px;
-  font-size: 28px;
-  color: #111827;
-  line-height: 1.65;
-}
-
-.hero p {
-  margin: 0;
-  color: #6b7280;
-  line-height: 2.2;
-}
-
 .group-bar {
   display: flex;
   justify-content: center;
@@ -156,5 +142,10 @@ onMounted(async () => {
   margin: 24px 0 8px;
   display: flex;
   justify-content: center;
+}
+
+.card-skeleton {
+  border-radius: 12px;
+  overflow: hidden;
 }
 </style>

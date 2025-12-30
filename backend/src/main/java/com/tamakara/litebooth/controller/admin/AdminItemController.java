@@ -1,51 +1,52 @@
 package com.tamakara.litebooth.controller.admin;
 
+import com.tamakara.litebooth.common.result.Result;
 import com.tamakara.litebooth.domain.dto.item.ItemCreateOrUpdateFormDTO;
 import com.tamakara.litebooth.domain.dto.item.ItemPageQueryFormDTO;
 import com.tamakara.litebooth.domain.vo.item.ItemPageVO;
 import com.tamakara.litebooth.domain.vo.item.ItemVO;
 import com.tamakara.litebooth.service.ItemService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "管理端商品模块接口")
 @RestController
-@RequestMapping("/admin/item")
+@RequestMapping("/admin/items")
 @RequiredArgsConstructor
 public class AdminItemController {
     private final ItemService itemService;
 
-    @GetMapping("/getItemPageVO")
-    public ResponseEntity<ItemPageVO> getItemPageVO(
+    @GetMapping
+    public Result<ItemPageVO> listItems(
             @ModelAttribute ItemPageQueryFormDTO itemPageQueryFormDTO
     ) {
         ItemPageVO vo = itemService.getItemPageVO(itemPageQueryFormDTO);
-        return ResponseEntity.ok(vo);
+        return Result.success(vo);
     }
 
-    @PostMapping("/createItem")
-    public ResponseEntity<ItemVO> createItem(
-            @RequestBody ItemCreateOrUpdateFormDTO itemCreateOrUpdateFormDTO
+    @PostMapping
+    public Result<ItemVO> createItem(
+            @RequestBody @Valid ItemCreateOrUpdateFormDTO itemCreateOrUpdateFormDTO
     ) {
         ItemVO vo = itemService.createItem(itemCreateOrUpdateFormDTO);
-        return ResponseEntity.ok(vo);
+        return Result.success(vo);
     }
 
-    @PutMapping("/updateItem")
-    public ResponseEntity<ItemVO> updateItem(
-            @RequestBody ItemCreateOrUpdateFormDTO itemCreateOrUpdateFormDTO
+    @PutMapping
+    public Result<ItemVO> updateItem(
+            @RequestBody @Valid ItemCreateOrUpdateFormDTO itemCreateOrUpdateFormDTO
     ) {
         ItemVO vo = itemService.updateItem(itemCreateOrUpdateFormDTO);
-        return ResponseEntity.ok(vo);
+        return Result.success(vo);
     }
 
-    @DeleteMapping("/deleteItem/{id}")
-    public ResponseEntity<Void> deleteItem(
+    @DeleteMapping("/{id}")
+    public Result<Void> deleteItem(
             @PathVariable("id") Long id
     ) {
         itemService.deleteItem(id);
-        return ResponseEntity.ok().build();
+        return Result.success();
     }
 }

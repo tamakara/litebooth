@@ -106,4 +106,9 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements
                 .eq(Stock::getOrderId, orderId));
         return stocks.stream().map(Stock::getContent).collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteStock(Long id) {
+        stockMapper.deleteById(id);
+    }
 }

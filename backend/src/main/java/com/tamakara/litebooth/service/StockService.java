@@ -22,4 +22,6 @@ public interface StockService extends IService<Stock> {
     List<String> allocateStock(Long itemId, Long orderId, Long quantity);
 
     List<String> getStockContentByOrderId(Long orderId);
+
+    void deleteStock( Long id);
 }

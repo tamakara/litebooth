@@ -1,10 +1,10 @@
 package com.tamakara.litebooth.controller.user;
 
+import com.tamakara.litebooth.common.result.Result;
 import com.tamakara.litebooth.domain.vo.shop.ShopInfoVO;
 import com.tamakara.litebooth.service.ShopService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "用户端店铺模块接口")
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserShopController {
     private final ShopService shopService;
 
-    @GetMapping("/getShopInfoVO")
-    public ResponseEntity<ShopInfoVO> getShopInfoVO() {
+    @GetMapping
+    public Result<ShopInfoVO> getShopInfo() {
         ShopInfoVO vo = shopService.getShopInfoVO();
-        return ResponseEntity.ok(vo);
+        return Result.success(vo);
     }
 }

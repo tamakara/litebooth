@@ -1,16 +1,18 @@
 import editForm from "../form.vue";
 import {message} from "@/utils/message";
-import {getItemList, createItem, updateItem, deleteItem} from "@/api/item";
 import {addDialog} from "@/components/ReDialog";
 import {reactive, ref, onMounted, h} from "vue";
 import {PaginationProps} from "@pureadmin/table";
 import {
-  ItemCreateOrUpdateFormDTO,
+  getItemList,
+  createItem,
+  updateItem,
+  deleteItem,
   ItemPageQueryFormDTO,
-  ItemVO
-} from "../utils/types";
-import {GroupListVO, GroupMapVO} from "@/views/group/utils/types";
-import {getGroupListVO, getGroupMapVO} from "@/api/group";
+  ItemVO,
+  ItemCreateOrUpdateFormDTO
+} from "@/api/item";
+import {getGroupListVO, getGroupMapVO, GroupListVO, GroupMapVO} from "@/api/group";
 
 export function useItem() {
   const form = reactive<ItemPageQueryFormDTO>({
@@ -81,8 +83,10 @@ export function useItem() {
 
   async function getGroupList() {
     try {
-      const data = await getGroupListVO();
-      groupList.value = data;
+      const res: any = await getGroupListVO();
+      if (res.code === 200) {
+        groupList.value = res.data;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -90,8 +94,10 @@ export function useItem() {
 
   async function getGroupMap() {
     try {
-      const data = await getGroupMapVO();
-      groupMap.value = data;
+      const res: any = await getGroupMapVO();
+      if (res.code === 200) {
+        groupMap.value = res.data;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -100,11 +106,17 @@ export function useItem() {
   async function onSearch() {
     loading.value = true;
     try {
-      const data = await getItemList(form);
-      dataList.value = data.records;
-      pagination.total = data.total;
-      pagination.pageSize = data.pageSize;
-      pagination.currentPage = data.pageNum;
+      const res: any = await getItemList(form);
+      if (res.code === 200) {
+        const data = res.data;
+        dataList.value = data.records;
+        pagination.total = data.total;
+        pagination.pageSize = data.pageSize;
+        pagination.currentPage = data.pageNum;
+      } else {
+        message(res.msg || "获取商品列表失败", {type: "error"});
+        dataList.value = [];
+      }
     } catch (e) {
       console.error(e);
       message("获取商品列表失败", {type: "error"});
@@ -131,9 +143,13 @@ export function useItem() {
   }
 
   function handleDelete(row) {
-    deleteItem(row.id).then(() => {
-      message("删除成功", {type: "success"});
-      onSearch();
+    deleteItem(row.id).then((res: any) => {
+      if (res.code === 200) {
+        message("删除成功", {type: "success"});
+        onSearch();
+      } else {
+        message(res.msg || "删除失败", {type: "error"});
+      }
     });
   }
 
@@ -164,16 +180,24 @@ export function useItem() {
         FormRef.validate(valid => {
           if (valid) {
             if (title === "新增") {
-              createItem(curData).then(() => {
-                message("新增成功", {type: "success"});
-                done();
-                onSearch();
+              createItem(curData).then((res: any) => {
+                if (res.code === 200) {
+                  message("新增成功", {type: "success"});
+                  done();
+                  onSearch();
+                } else {
+                  message(res.msg || "新增失败", {type: "error"});
+                }
               });
             } else {
-              updateItem(curData).then(() => {
-                message("修改成功", {type: "success"});
-                done();
-                onSearch();
+              updateItem(curData).then((res: any) => {
+                if (res.code === 200) {
+                  message("修改成功", {type: "success"});
+                  done();
+                  onSearch();
+                } else {
+                  message(res.msg || "修改失败", {type: "error"});
+                }
               });
             }
           }

@@ -25,10 +25,14 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   await formEl.validate(async (valid, fields) => {
     if (valid) {
       try {
-        await changePassword(form);
-        message("密码修改成功", { type: "success" });
-        form.oldPassword = "";
-        form.newPassword = "";
+        const res: any = await changePassword(form);
+        if (res.code === 200) {
+          message("密码修改成功", { type: "success" });
+          form.oldPassword = "";
+          form.newPassword = "";
+        } else {
+          message(res.msg || "密码修改失败", { type: "error" });
+        }
       } catch (error) {
         console.error(error);
       }

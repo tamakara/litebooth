@@ -1,10 +1,10 @@
 import editForm from "../form.vue";
 import {message} from "@/utils/message";
-import {createGroup, updateGroup, deleteGroup, getGroupPageVO} from "@/api/group";
+import {createGroup, updateGroup, deleteGroup, getGroupPageVO, type GroupPageQueryFormDTO} from "@/api/group";
 import {addDialog} from "@/components/ReDialog";
 import {reactive, ref, onMounted, h} from "vue";
 import {PaginationProps} from "@pureadmin/table";
-import type {FormItemProps, GroupPageQueryFormDTO} from "../utils/types";
+import type {FormItemProps} from "../utils/types";
 
 export function useGroup() {
   const form = reactive<GroupPageQueryFormDTO>({
@@ -43,8 +43,8 @@ export function useGroup() {
     }
   ];
 
-  function handleSelectionChange(val) {
-    console.log("handleSelectionChange", val);
+  function handleSelectionChange() {
+    // handleSelectionChange
   }
 
   function resetForm(formEl) {
@@ -56,11 +56,17 @@ export function useGroup() {
   async function onSearch() {
     loading.value = true;
     try {
-      const data = await getGroupPageVO(form);
-      dataList.value = data.records;
-      pagination.total = data.total;
-      pagination.pageSize = data.pageSize;
-      pagination.currentPage = data.pageNum;
+      const res: any = await getGroupPageVO(form);
+      if (res.code === 200) {
+        const data = res.data;
+        dataList.value = data.records;
+        pagination.total = data.total;
+        pagination.pageSize = data.pageSize;
+        pagination.currentPage = data.pageNum;
+      } else {
+        message(res.msg || "获取商品组列表失败", {type: "error"});
+        dataList.value = [];
+      }
     } catch (e) {
       console.error(e);
       message("获取商品组列表失败", {type: "error"});
@@ -101,24 +107,32 @@ export function useGroup() {
           if (valid) {
             if (title === "新增") {
               createGroup(curData.name)
-                .then(() => {
-                  message(`您新增了商品组名称为${curData.name}的这条数据`, {
-                    type: "success"
-                  });
-                  done(); // 关闭弹框
-                  onSearch(); // 刷新表格数据
+                .then((res: any) => {
+                  if (res.code === 200) {
+                    message(`您新增了商品组名称为${curData.name}的这条数据`, {
+                      type: "success"
+                    });
+                    done(); // 关闭弹框
+                    onSearch(); // 刷新表格数据
+                  } else {
+                    message(res.msg || "新增商品组失败", {type: "error"});
+                  }
                 })
                 .catch(() => {
                   message("新增商品组失败", {type: "error"});
                 });
             } else {
               updateGroup(curData as any)
-                .then(() => {
-                  message(`您修改了商品组名称为${curData.name}的这条数据`, {
-                    type: "success"
-                  });
-                  done(); // 关闭弹框
-                  onSearch(); // 刷新表格数据
+                .then((res: any) => {
+                  if (res.code === 200) {
+                    message(`您修改了商品组名称为${curData.name}的这条数据`, {
+                      type: "success"
+                    });
+                    done(); // 关闭弹框
+                    onSearch(); // 刷新表格数据
+                  } else {
+                    message(res.msg || "修改商品组失败", {type: "error"});
+                  }
                 })
                 .catch(() => {
                   message("修改商品组失败", {type: "error"});
@@ -132,11 +146,15 @@ export function useGroup() {
 
   function handleDelete(row) {
     deleteGroup(row.id)
-      .then(() => {
-        message(`您删除了商品组名称为${row.name}的这条数据`, {
-          type: "success"
-        });
-        onSearch();
+      .then((res: any) => {
+        if (res.code === 200) {
+          message(`您删除了商品组名称为${row.name}的这条数据`, {
+            type: "success"
+          });
+          onSearch();
+        } else {
+          message(res.msg || "删除商品组失败", {type: "error"});
+        }
       })
       .catch(() => {
         message("删除商品组失败", {type: "error"});

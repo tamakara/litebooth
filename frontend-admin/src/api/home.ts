@@ -1,4 +1,5 @@
 import { http } from "@/utils/http";
+import { Result } from "@/utils/http/types";
 
 export interface CardDataVO {
   name: string;
@@ -38,6 +39,6 @@ export interface DashboardVO {
 }
 
 export const getDashboardData = () => {
-  return http.request<DashboardVO>("get", "/home/getDashboardData");
+  return http.request<Result<DashboardVO>>("get", "/admin/dashboard");
 };
 

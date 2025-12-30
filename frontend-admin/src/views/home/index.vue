@@ -3,9 +3,8 @@ import { ref, onMounted } from "vue";
 import ReCol from "@/components/ReCol";
 import { useDark } from "./utils";
 import WelcomeTable from "./components/table/index.vue";
-import { ChartBar, ChartLine, ChartRound } from "./components/charts";
+import { ChartBar, ChartLine } from "./components/charts";
 import Segmented, { type OptionsType } from "@/components/ReSegmented";
-import { chartData as initialChartData, barChartData as initialBarChartData, progressData as initialProgressData } from "./data";
 import { getDashboardData, DashboardVO } from "@/api/home";
 import GroupLine from "~icons/ri/group-line";
 import Question from "~icons/ri/question-answer-line";
@@ -41,88 +40,89 @@ const optionsBasis: Array<OptionsType> = [
 ];
 
 const dashboardData = ref<DashboardVO>();
-const chartData = ref<ChartDataItem[]>(initialChartData as any);
-const barChartData = ref(initialBarChartData as any);
-const progressData = ref(initialProgressData);
+const chartData = ref<ChartDataItem[]>([]);
+const barChartData = ref([]);
+const progressData = ref([]);
 const recentOrders = ref([]);
 
 onMounted(async () => {
   try {
-    const data = await getDashboardData();
-    dashboardData.value = data;
+    const res: any = await getDashboardData();
+    if (res.code === 200) {
+      const data = res.data;
+      dashboardData.value = data;
 
-    // Update Cards
-    chartData.value = [
-      {
-        icon: GroupLine,
-        bgColor: "#effaff",
-        color: "#41b6ff",
-        duration: 2200,
-        name: data.totalSales.name,
-        value: parseFloat(data.totalSales.value.replace(/[^\d.]/g, '')),
-        valueStr: data.totalSales.value,
-        percent: data.totalSales.percent,
-        data: data.totalSales.data
-      },
-      {
-        icon: Question,
-        bgColor: "#fff5f4",
-        color: "#e85f33",
-        duration: 1600,
-        name: data.totalOrders.name,
-        value: parseFloat(data.totalOrders.value),
-        valueStr: data.totalOrders.value,
-        percent: data.totalOrders.percent,
-        data: data.totalOrders.data
-      },
-      {
-        icon: CheckLine,
-        bgColor: "#eff8f4",
-        color: "#26ce83",
-        duration: 1500,
-        name: data.soldItems.name,
-        value: parseFloat(data.soldItems.value),
-        valueStr: data.soldItems.value,
-        percent: data.soldItems.percent,
-        data: data.soldItems.data
-      },
-      {
-        icon: Smile,
-        bgColor: "#f6f4fe",
-        color: "#7846e5",
+      // Update Cards
+      chartData.value = [
+        {
+          icon: GroupLine,
+          bgColor: "#effaff",
+          color: "#41b6ff",
+          duration: 2200,
+          name: data.totalSales.name,
+          value: parseFloat(data.totalSales.value.replace(/[^\d.]/g, '')),
+          valueStr: data.totalSales.value,
+          percent: data.totalSales.percent,
+          data: data.totalSales.data
+        },
+        {
+          icon: Question,
+          bgColor: "#fff5f4",
+          color: "#e85f33",
+          duration: 1600,
+          name: data.totalOrders.name,
+          value: parseFloat(data.totalOrders.value),
+          valueStr: data.totalOrders.value,
+          percent: data.totalOrders.percent,
+          data: data.totalOrders.data
+        },
+        {
+          icon: CheckLine,
+          bgColor: "#eff8f4",
+          color: "#26ce83",
+          duration: 1500,
+          name: data.soldItems.name,
+          value: parseFloat(data.soldItems.value),
+          valueStr: data.soldItems.value,
+          percent: data.soldItems.percent,
+          data: data.soldItems.data
+        },
+        {
+          icon: Smile,
+          bgColor: "#f6f4fe",
+          color: "#7846e5",
+          duration: 100,
+          name: data.totalStock.name,
+          value: parseFloat(data.totalStock.value),
+          valueStr: data.totalStock.value,
+          percent: data.totalStock.percent,
+          data: data.totalStock.data
+        }
+      ];
+
+      // Update Bar Chart
+      barChartData.value = [
+        {
+          data: data.salesTrend.lastWeekData,
+          dates: data.salesTrend.dates
+        },
+        {
+          data: data.salesTrend.thisWeekData,
+          dates: data.salesTrend.dates
+        }
+      ];
+
+      // Update Top Items
+      progressData.value = data.topItems.map((item, index) => ({
+        week: item.name,
+        percentage: item.percentage,
         duration: 100,
-        name: data.totalStock.name,
-        value: parseFloat(data.totalStock.value),
-        valueStr: data.totalStock.value,
-        percent: data.totalStock.percent,
-        data: data.totalStock.data
-      }
-    ];
+        color: index % 2 === 0 ? "#41b6ff" : "#26ce83"
+      }));
 
-
-    // Update Bar Chart
-    barChartData.value = [
-      {
-        data: data.salesTrend.lastWeekData,
-        dates: data.salesTrend.dates
-      },
-      {
-        data: data.salesTrend.thisWeekData,
-        dates: data.salesTrend.dates
-      }
-    ];
-
-    // Update Top Items
-    progressData.value = data.topItems.map((item, index) => ({
-      week: item.name,
-      percentage: item.percentage,
-      duration: 100,
-      color: index % 2 === 0 ? "#41b6ff" : "#26ce83"
-    }));
-
-    // Update Recent Orders
-    recentOrders.value = data.recentOrders;
-
+      // Update Recent Orders
+      recentOrders.value = data.recentOrders;
+    }
   } catch (e) {
     console.error(e);
   }
@@ -211,6 +211,7 @@ onMounted(async () => {
           </div>
           <div class="flex justify-between items-start mt-3">
             <ChartBar
+              v-if="barChartData.length > 0"
               :data="barChartData[curWeek].data"
               :xAxisData="barChartData[curWeek].dates"
             />

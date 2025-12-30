@@ -1,7 +1,6 @@
-import http from "@/api/http.js";
-import {AxiosResponse} from "axios";
+import http from "@/api/http";
 import { ShopInfoVO} from "@/types";
 
-export function fetchShopInfoVO(): Promise<AxiosResponse<ShopInfoVO>> {
-    return http.get('/shop/getShopInfoVO')
+export function fetchShopInfoVO(): Promise<ShopInfoVO> {
+    return http.get('/user/shop')
 }

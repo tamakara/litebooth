@@ -1,7 +1,6 @@
-import {ref, onMounted} from "vue";
+import {ref} from "vue";
 import {message} from "@/utils/message";
-import {updateShopInfo, getShopInfo} from "@/api/shop";
-import type {ShopInfoVO, ShopInfoUpdateFormDTO,} from "./types";
+import {updateShopInfo, getShopInfo, type ShopInfoVO, type ShopInfoUpdateFormDTO} from "@/api/shop";
 import {uploadFile} from "@/api/file";
 
 export function useShop() {
@@ -18,8 +17,12 @@ export function useShop() {
   });
 
   const handleLogoUpload = async (file: File) => {
-    const res = await uploadFile(file);
-    form.value.logoFileId = res;
+    const res: any = await uploadFile(file);
+    if (res.code === 200) {
+      form.value.logoFileId = res.data;
+    } else {
+      throw new Error(res.msg || "上传失败");
+    }
   };
 
   const customUploadRequest = (options: any) => {
@@ -43,16 +46,20 @@ export function useShop() {
   const loadShopInfo = async () => {
     loading.value = true;
     try {
-      const data = await getShopInfo();
-      const vo = data as ShopInfoVO;
-      form.value = {
-        logoFileId: vo.logoFileId ||0,
-        logoTitle: vo.logoTitle || "",
-        homeTitle: vo.homeTitle || "",
-        homeSubtitle: vo.homeSubtitle || "",
-        homeAnnouncement: vo.homeAnnouncement || ""
-      };
-      logoPreviewUrl.value = vo.logoFileUrl;
+      const res: any = await getShopInfo();
+      if (res.code === 200) {
+        const vo = res.data;
+        form.value = {
+          logoFileId: vo.logoFileId || 0,
+          logoTitle: vo.logoTitle || "",
+          homeTitle: vo.homeTitle || "",
+          homeSubtitle: vo.homeSubtitle || "",
+          homeAnnouncement: vo.homeAnnouncement || ""
+        };
+        logoPreviewUrl.value = vo.logoFileUrl;
+      } else {
+        message(res.msg || "加载店铺信息失败", {type: "error"});
+      }
     } catch (e) {
       console.error(e);
       message("加载店铺信息失败", {type: "error"});
@@ -65,8 +72,12 @@ export function useShop() {
     formRef.value?.validate(async valid => {
       if (!valid) return;
       try {
-        await updateShopInfo(form.value);
-        message("保存成功", {type: "success"});
+        const res: any = await updateShopInfo(form.value);
+        if (res.code === 200) {
+          message("保存成功", {type: "success"});
+        } else {
+          message(res.msg || "保存失败", {type: "error"});
+        }
       } catch (e) {
         console.error(e);
         message("保存失败", {type: "error"});
@@ -80,10 +91,6 @@ export function useShop() {
     loadShopInfo();
   };
 
-  onMounted(() => {
-    loadShopInfo();
-  });
-
   return {
     form,
     formRef,
@@ -91,6 +98,7 @@ export function useShop() {
     logoPreviewUrl,
     customUploadRequest,
     handleSubmit,
-    handleReset
+    handleReset,
+    loadShopInfo
   };
 }

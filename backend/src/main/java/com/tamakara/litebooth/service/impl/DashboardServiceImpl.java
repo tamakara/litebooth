@@ -29,26 +29,18 @@ public class DashboardServiceImpl implements DashboardService {
     public DashboardVO getDashboardData() {
         DashboardVO vo = new DashboardVO();
 
-        // 1. Card Data
         vo.setTotalSales(getTotalSalesCard());
         vo.setTotalOrders(getTotalOrdersCard());
         vo.setSoldItems(getSoldItemsCard());
         vo.setTotalStock(getTotalStockCard());
-
-        // 2. Chart Data (Sales Trend)
         vo.setSalesTrend(getSalesTrendChart());
-
-        // 3. Top Items (Mock for now or complex query)
         vo.setTopItems(getTopItems());
-
-        // 4. Recent Orders
         vo.setRecentOrders(getRecentOrders());
 
         return vo;
     }
 
     private CardDataVO getTotalSalesCard() {
-        // Total sales amount (FINISHED orders)
         List<Order> orders = orderMapper.selectList(new LambdaQueryWrapper<Order>()
                 .eq(Order::getStatus, OrderStatus.FINISHED));
         double total = orders.stream().mapToDouble(Order::getAmount).sum();
